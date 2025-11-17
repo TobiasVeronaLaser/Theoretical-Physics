@@ -1,0 +1,11 @@
+{
+  "name": "LaTeX Codespace",
+  "build": { "dockerfile": "Dockerfile" },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "extensions": [
+    "James-Yu.latex-workshop"
+  ],
+  "remoteUser": "vscode"
+}
