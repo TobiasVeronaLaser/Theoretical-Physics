@@ -1,3 +1,0 @@
-\babel@toc {nil}{}\relax 
-\contentsline {section}{\numberline {1}Einleitung}{1}{section.1}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
