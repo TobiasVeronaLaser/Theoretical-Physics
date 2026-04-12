@@ -1,0 +1,655 @@
+% Header: General study / work / project template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+% General packages
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{braket}
+\usepackage{icomma}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Language: choose one
+% \usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+
+% Units / tables / floats / references
+\usepackage[locale = UK,space-before-unit=true,per-mode = symbol]{siunitx}
+\usepackage{booktabs,multirow}
+\usepackage{placeins}
+\usepackage[natbib,abbreviate=true,doi=false,style=numeric-comp,giveninits=true,sorting=none]{biblatex}
+\usepackage{csquotes}
+
+% Optional bibliography
+% \addbibresource{references.bib}
+
+% Graphics paths
+\graphicspath{{Bilder/} {images/} {figures/} {chapters/}}
+
+% Optional math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ol}[1]{\overline{#1}}
+
+% Optional units
+\DeclareSIUnit{\dBm}{dBm}
+
+% Box styles
+\newtcolorbox{calculationbox}[1][]{
+    title=Calculation,
+    breakable,
+    #1
+}
+
+\newtcolorbox{solutionbox}[1][]{
+    title=Solution,
+    breakable,
+    #1
+}
+
+\newtcolorbox{answerbox}[1][]{
+    title=Answer,
+    breakable,
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    title=Notes,
+    breakable,
+    #1
+}
+
+\newtcolorbox{sidecalcbox}[1][]{
+    title=Side Calculation,
+    breakable,
+    #1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title{Theoretical Physics 2 - Blatt 04}
+\author{Tobias Laser}
+\date{\today}
+\maketitle
+\vfill
+\thispagestyle{empty}
+
+\pagenumbering{arabic}
+
+% ================================================================
+\paragraph{10. Measurement Probability}
+Given the three-dimensional wavefunction
+\begin{align*}
+    \psi(x, y, z) = N \exp \left(-\left(\frac{\abs{x}}{2a} + \frac{\abs{y}}{2b} + \frac{z}{2c}\right)\right)
+\end{align*}
+where $a, b, c$ are positive real numbers.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Compute the normalization constant $N$.
+    \begin{calculationbox}
+        $\abs{N}^2 \int dx dy dz \exp\left(-\left(\frac{\abs{x}}{2a} + \frac{\abs{y}}{2b} + \frac{z}{2c}\right)\right) = 1$
+        \begin{calculationbox}
+            $\int\limits_0^{+\infty} dx \exp\left(-\frac{x}{a}\right)$
+        \end{calculationbox}
+        $\abs{N}^2 2^3 a b c = 1 \Leftrightarrow N = \frac{1}{\sqrt{2^3 a b c}}$
+    \end{calculationbox}
+    \item What is the probability that a measurement of $X$ yields a result between $0$ and $a$?
+    \begin{calculationbox}
+        $\int\limits_0^a dx \frac{1}{2^3 a b c} \exp\left(\frac{-x}{a} \right) \int\limits dy dx \exp\left(-\left(\frac{\abs{y}}{b} + \frac{\abs{z}}{c} \right) \right) = \int\limits_0^a dx \frac{\exp\left(-\frac{x}{a} \right)}{2a} = -\frac{a \exp\left(-\frac{x}{a} \right)}{2 a}\left. \right|_0^a = \frac{1}{2}(1 - \frac{1}{e})$
+    \end{calculationbox}
+    \item What is the probability that a simultaneous measurement of $Y$ and $Z$ yields values between $-b$ and $b$, and between $-c$ and $c$, respectively?
+    \begin{calculationbox}
+        $\int\limits_{-\infty}^{+\infty} dx \int\limits_{-\infty}^{+\infty} dy \int\limits_{-\infty}^{+\infty} dz \frac{1}{2^3 a b c} \exp\left(-\left(\frac{\abs{x}}{a} + \frac{\abs{y}}{b} + \frac{\abs{z}}{c}\right) \right) = \frac{4}{4 b c} \int\limits_0^b dy \exp\left(-\frac{y}{b} \right) \int\limits_0^c dz \exp\left(-\frac{z}{c} \right) = \frac{1}{b c} \left(-b \exp\left(-\frac{y}{b} \right) \right)\left. \right|_0^b \left(-c \exp\left(-\frac{z}{c} \right) \right)\left. \right|_0^c = (1-\frac{1}{e})^2$
+    \end{calculationbox}
+    \item Compute the probability that a measurement of the momentum yields a result within the volume element $dp_x dp_y dp_z$, centered at the point $p_x = p_y = 0, p_z = \frac{\hbar}{c}$.
+    \begin{calculationbox}
+        Probability amplitude in momentum space:
+        \begin{align*}
+            \phi(\mathbf{p}) 
+            &= \frac{1}{(2\pi\hbar)^{3/2}} \int dx\,dy\,dz \; \psi(x,y,z)\, e^{-i \frac{p_x x + p_y y + p_z z}{\hbar}}
+        \end{align*}
+        
+        For $p_x = p_y = 0$, $p_z = \frac{\hbar}{c}$:
+        \begin{align*}
+            \phi(0,0,\hbar/c)
+            &= \frac{1}{(2\pi\hbar)^{3/2}} \int dx\,dy\,dz \; \psi(x,y,z)\, e^{-i z / c}
+        \end{align*}
+
+        Insert $\psi(x,y,z) = N e^{-\left(\frac{|x|}{2a} + \frac{|y|}{2b} + \frac{|z|}{2c}\right)}$:
+        \begin{align*}
+            \phi 
+            &= \frac{N}{(2\pi\hbar)^{3/2}} 
+            \left( \int dx\, e^{-\frac{|x|}{2a}} \right)
+            \left( \int dy\, e^{-\frac{|y|}{2b}} \right)
+            \left( \int dz\, e^{-\frac{|z|}{2c}} e^{-i z / c} \right)
+        \end{align*}
+
+        Using
+        \begin{align*}
+            \int_{-\infty}^{\infty} e^{-\frac{|x|}{2a}} dx = 4a, 
+            \quad 
+            \int_{-\infty}^{\infty} e^{-\frac{|y|}{2b}} dy = 4b
+        \end{align*}
+
+        and splitting the $z$-integral:
+        \begin{align*}
+            \int_{-\infty}^{\infty} dz\, e^{-\frac{|z|}{2c}} e^{-i z / c}
+            &= \int_{-\infty}^{0} dz\, e^{\frac{z}{2c}} e^{-i z / c}
+            + \int_{0}^{\infty} dz\, e^{-\frac{z}{2c}} e^{-i z / c}
+        \end{align*}
+
+        \begin{align*}
+            &= \int_{-\infty}^{0} dz\, e^{\left(\frac{1}{2c} - \frac{i}{c}\right) z}
+            + \int_{0}^{\infty} dz\, e^{-\left(\frac{1}{2c} + \frac{i}{c}\right) z}
+        \end{align*}
+
+        Evaluating:
+        \begin{align*}
+            &= \frac{2c}{1 - 2i} + \frac{2c}{1 + 2i}
+            = \frac{4c}{1 + 4}
+            = \frac{4c}{5}
+        \end{align*}
+
+        Therefore:
+        \begin{align*}
+            \phi(0,0,\hbar/c)
+            &= \frac{N}{(2\pi\hbar)^{3/2}} \cdot (4a)(4b)\cdot \frac{4c}{5}
+            = \frac{64 abc\, N}{5 (2\pi\hbar)^{3/2}}
+        \end{align*}
+
+        Using $N = \frac{1}{\sqrt{8abc}}$:
+        \begin{align*}
+            \phi = \frac{64 abc}{5 (2\pi\hbar)^{3/2}} \cdot \frac{1}{\sqrt{8abc}}
+            = \frac{64}{5 (2\pi\hbar)^{3/2}} \sqrt{\frac{abc}{8}}
+        \end{align*}
+
+        Probability:
+        \begin{align*}
+            P = |\phi|^2\, dp_x dp_y dp_z
+            = \frac{64}{25} \frac{abc}{(\pi \hbar)^3} \, dp_x dp_y dp_z
+        \end{align*}
+    \end{calculationbox}
+\end{enumerate}
+
+% ================================================================
+\paragraph{11. Operator Algebra and Measurements}
+Consider a three-dimensional Hilbert space with an orthonormal basis $\{\phi_1,\phi_2,\phi_3\}$. The representations of two operators in this basis are
+\begin{align*}
+    H &= \hbar \omega_0
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & -1 & 0 \\
+        0 & 0 & -1
+    \end{pmatrix},
+    &
+    B &= b
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 1 & 0
+    \end{pmatrix}.
+\end{align*}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Compute the commutator of $H$ and $B$.
+    \begin{calculationbox}
+        We compute
+        \begin{align*}
+            [H,B] = HB - BH.
+        \end{align*}
+        Since
+        \begin{align*}
+            H &= \hbar\omega_0
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & -1 & 0 \\
+                0 & 0 & -1
+            \end{pmatrix},
+            &
+            B &= b
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & 0
+            \end{pmatrix},
+        \end{align*}
+        we obtain
+        \begin{align*}
+            HB
+            &= \hbar\omega_0 b
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & -1 \\
+                0 & -1 & 0
+            \end{pmatrix},
+            \\
+            BH
+            &= \hbar\omega_0 b
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & -1 \\
+                0 & -1 & 0
+            \end{pmatrix}.
+        \end{align*}
+        Hence
+        \begin{align*}
+            [H,B] = 0.
+        \end{align*}
+    \end{calculationbox}
+
+    \item Give the common eigenbasis of $H$ and $B$.
+    \begin{calculationbox}
+        The operator $H$ is already diagonal in the basis $\{\phi_1,\phi_2,\phi_3\}$:
+        \begin{align*}
+            H\phi_1 = \hbar\omega_0 \phi_1,
+            \qquad
+            H\phi_2 = -\hbar\omega_0 \phi_2,
+            \qquad
+            H\phi_3 = -\hbar\omega_0 \phi_3.
+        \end{align*}
+
+        For $B$, we have
+        \begin{align*}
+            B\phi_1 = b\phi_1,
+        \end{align*}
+        and on the subspace spanned by $\phi_2,\phi_3$,
+        \begin{align*}
+            B_0 =
+            \begin{pmatrix}
+                0 & 1 \\
+                1 & 0
+            \end{pmatrix}.
+        \end{align*}
+        Its eigenvalues are $\lambda = \pm 1$, with normalized eigenvectors
+        \begin{align*}
+            v_2 = \frac{1}{\sqrt{2}}(\phi_2 + \phi_3),
+            \qquad
+            v_3 = \frac{1}{\sqrt{2}}(\phi_2 - \phi_3).
+        \end{align*}
+        Also
+        \begin{align*}
+            v_1 = \phi_1.
+        \end{align*}
+
+        Therefore a common eigenbasis of $H$ and $B$ is
+        \begin{align*}
+            v_1 &= \phi_1,
+            \\
+            v_2 &= \frac{1}{\sqrt{2}}(\phi_2 + \phi_3),
+            \\
+            v_3 &= \frac{1}{\sqrt{2}}(\phi_2 - \phi_3).
+        \end{align*}
+    \end{calculationbox}
+
+    \item Do the pairs $\{H,B\}$ and $\{H^2,B\}$ form a complete set of commuting observables?
+    \begin{calculationbox}
+        Since $[H,B]=0$ and both operators are Hermitian, they are compatible observables.
+
+        For the pair $\{H,B\}$:
+        \begin{align*}
+            H v_1 &= \hbar\omega_0 v_1, & B v_1 &= b v_1,
+            \\
+            H v_2 &= -\hbar\omega_0 v_2, & B v_2 &= b v_2,
+            \\
+            H v_3 &= -\hbar\omega_0 v_3, & B v_3 &= -b v_3.
+        \end{align*}
+        The simultaneous eigenvalue pairs are therefore
+        \begin{align*}
+            (\hbar\omega_0,b), \qquad (-\hbar\omega_0,b), \qquad (-\hbar\omega_0,-b),
+        \end{align*}
+        which distinguish all basis vectors. Hence $\{H,B\}$ is a complete set of commuting observables.
+
+        For the pair $\{H^2,B\}$:
+        \begin{align*}
+            H^2 = \hbar^2 \omega_0^2
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 1
+            \end{pmatrix}
+            = \hbar^2 \omega_0^2 I.
+        \end{align*}
+        Thus $H^2$ has the same eigenvalue for all states and gives no additional information. Therefore $\{H^2,B\}$ is not complete.
+    \end{calculationbox}
+
+    \item The system is in the state
+    \begin{align*}
+        \psi = \left\{ \frac{1}{\sqrt{2}}, \frac{1}{2}, \frac{1}{2} \right\}.
+    \end{align*}
+    Compute the probabilities that:
+    \begin{enumerate}[label=\roman*.]
+        \item a measurement of $H$ gives the result $\hbar\omega_0$,
+        \item a measurement of $H$ gives the result $-\hbar\omega_0$,
+        \item a measurement of $B$ gives the result $b$,
+        \item a measurement of $B$ gives the result $-b$,
+        \item a measurement of $B$ gives the result $3b$.
+    \end{enumerate}
+    \begin{calculationbox}
+        In the basis $\{\phi_1,\phi_2,\phi_3\}$,
+        \begin{align*}
+            \psi = \frac{1}{\sqrt{2}}\phi_1 + \frac{1}{2}\phi_2 + \frac{1}{2}\phi_3.
+        \end{align*}
+
+        For $H$:
+        \begin{align*}
+            P(H=\hbar\omega_0) &= \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2},
+            \\
+            P(H=-\hbar\omega_0) &= \left|\frac{1}{2}\right|^2 + \left|\frac{1}{2}\right|^2 = \frac{1}{2}.
+        \end{align*}
+
+        For $B$, rewrite $\psi$ in the common eigenbasis:
+        \begin{align*}
+            \phi_2 &= \frac{1}{\sqrt{2}}(v_2 + v_3),
+            \\
+            \phi_3 &= \frac{1}{\sqrt{2}}(v_2 - v_3).
+        \end{align*}
+        Therefore
+        \begin{align*}
+            \psi
+            &= \frac{1}{\sqrt{2}}v_1 + \frac{1}{2}\cdot\frac{1}{\sqrt{2}}(v_2+v_3)
+            + \frac{1}{2}\cdot\frac{1}{\sqrt{2}}(v_2-v_3)
+            \\
+            &= \frac{1}{\sqrt{2}}v_1 + \frac{1}{\sqrt{2}}v_2.
+        \end{align*}
+        So
+        \begin{align*}
+            P(B=b) &= \left|\frac{1}{\sqrt{2}}\right|^2 + \left|\frac{1}{\sqrt{2}}\right|^2 = 1,
+            \\
+            P(B=-b) &= 0,
+            \\
+            P(B=3b) &= 0,
+        \end{align*}
+        since $3b$ is not an eigenvalue of $B$.
+    \end{calculationbox}
+
+    \item The system from (d) is measured twice.
+    \begin{enumerate}[label=\roman*.]
+        \item In the first measurement of $H$, one obtains $-\hbar\omega_0$. Compute the probability that a second measurement of $B$ gives $+b$.
+        \item In the first measurement of $H$, one obtains $-\hbar\omega_0$. Compute the probability that a second measurement of $B$ gives $-b$.
+        \item In the first measurement of $H$, one obtains $\hbar\omega_0$. What is obtained in the second measurement of $B$?
+    \end{enumerate}
+    \begin{calculationbox}
+        If the first measurement of $H$ yields $-\hbar\omega_0$, the state collapses onto the normalized projection of $\psi$ onto the eigenspace spanned by $\phi_2,\phi_3$:
+        \begin{align*}
+            \psi' = \frac{\frac{1}{2}\phi_2 + \frac{1}{2}\phi_3}{\sqrt{\frac{1}{4}+\frac{1}{4}}}
+            = \frac{1}{\sqrt{2}}(\phi_2+\phi_3)
+            = v_2.
+        \end{align*}
+        Since $v_2$ is an eigenstate of $B$ with eigenvalue $+b$:
+        \begin{align*}
+            P(B=+b) = 1,
+            \qquad
+            P(B=-b) = 0.
+        \end{align*}
+
+        If the first measurement of $H$ yields $\hbar\omega_0$, the state collapses to
+        \begin{align*}
+            \psi'' = \phi_1 = v_1.
+        \end{align*}
+        Since $v_1$ is an eigenstate of $B$ with eigenvalue $+b$, the second measurement yields
+        \begin{align*}
+            B = +b
+        \end{align*}
+        with certainty.
+    \end{calculationbox}
+
+\end{enumerate}
+
+% ================================================================
+\paragraph{12. States of Minimal Position and Momentum Uncertainty}
+The Heisenberg uncertainty relation for position and momentum operators can be proven as follows. For a given state $\ket{\psi}$ define
+\begin{align*}
+    \hat{X}' &= \hat{X} - \langle \hat{X} \rangle,
+    &
+    \hat{P}' &= \hat{P} - \langle \hat{P} \rangle,
+\end{align*}
+such that
+\begin{align*}
+    \Delta X^2 = \langle \hat{X}'^2 \rangle,
+    \qquad
+    \Delta P^2 = \langle \hat{P}'^2 \rangle.
+\end{align*}
+Consider the state
+\begin{align*}
+    \ket{\phi} = (\hat{X}' + i \lambda \hat{P}') \ket{\psi}
+\end{align*}
+with arbitrary real parameter $\lambda$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Show that from
+    \begin{align*}
+        \forall \lambda \in \mathbb{R}: \langle \phi | \phi \rangle \geq 0
+    \end{align*}
+    the Heisenberg uncertainty relation $\Delta X \Delta P \geq \hbar/2$ follows.
+    \begin{calculationbox}
+        We have
+        \begin{align*}
+            \langle \phi | \phi \rangle
+            &= \bra{\psi}(\hat{X}' - i \lambda \hat{P}')(\hat{X}' + i \lambda \hat{P}')\ket{\psi}
+            \geq 0.
+        \end{align*}
+        Expanding:
+        \begin{align*}
+            \langle \phi | \phi \rangle
+            &= \bra{\psi}\hat{X}'^2\ket{\psi}
+            + i\lambda \bra{\psi}\hat{X}'\hat{P}'\ket{\psi}
+            - i\lambda \bra{\psi}\hat{P}'\hat{X}'\ket{\psi}
+            + \lambda^2 \bra{\psi}\hat{P}'^2\ket{\psi}.
+        \end{align*}
+        Hence
+        \begin{align*}
+            \langle \phi | \phi \rangle
+            &= \Delta X^2 + \lambda^2 \Delta P^2 + i\lambda \langle [\hat{X}',\hat{P}'] \rangle.
+        \end{align*}
+        Since constants commute,
+        \begin{align*}
+            [\hat{X}',\hat{P}'] = [\hat{X},\hat{P}] = i\hbar,
+        \end{align*}
+        therefore
+        \begin{align*}
+            \langle \phi | \phi \rangle
+            &= \Delta X^2 + \lambda^2 \Delta P^2 + i\lambda (i\hbar)
+            \\
+            &= \Delta X^2 + \lambda^2 \Delta P^2 - \lambda \hbar.
+        \end{align*}
+        Thus for all $\lambda \in \mathbb{R}$,
+        \begin{align*}
+            \Delta X^2 + \lambda^2 \Delta P^2 - \lambda \hbar \geq 0.
+        \end{align*}
+        This quadratic expression in $\lambda$ must be non-negative for all real $\lambda$, so its discriminant must satisfy
+        \begin{align*}
+            \hbar^2 - 4 \Delta X^2 \Delta P^2 \leq 0.
+        \end{align*}
+        Hence
+        \begin{align*}
+            4 \Delta X^2 \Delta P^2 \geq \hbar^2,
+        \end{align*}
+        and therefore
+        \begin{align*}
+            \Delta X \Delta P \geq \frac{\hbar}{2}.
+        \end{align*}
+    \end{calculationbox}
+
+    \item Show that equality holds for a state $\ket{\psi}$ if and only if
+    \begin{align*}
+        (\hat{X}' + i\lambda_0 \hat{P}')\ket{\psi} = 0
+    \end{align*}
+    with
+    \begin{align*}
+        \lambda_0 = \frac{\hbar}{2\Delta P^2} = \frac{2\Delta X^2}{\hbar}.
+    \end{align*}
+    \begin{calculationbox}
+        Equality in the uncertainty relation holds if and only if the quadratic expression
+        \begin{align*}
+            f(\lambda) = \Delta X^2 + \lambda^2 \Delta P^2 - \lambda \hbar
+        \end{align*}
+        has a double root, i.e. its minimum is zero.
+
+        The minimum is attained at
+        \begin{align*}
+            \frac{d f}{d\lambda} = 2\lambda \Delta P^2 - \hbar = 0
+            \qquad \Longrightarrow \qquad
+            \lambda_0 = \frac{\hbar}{2\Delta P^2}.
+        \end{align*}
+        At equality we also have
+        \begin{align*}
+            \Delta X \Delta P = \frac{\hbar}{2},
+        \end{align*}
+        so that
+        \begin{align*}
+            \Delta X^2 = \frac{\hbar^2}{4\Delta P^2}.
+        \end{align*}
+        Hence
+        \begin{align*}
+            \lambda_0 = \frac{\hbar}{2\Delta P^2} = \frac{2\Delta X^2}{\hbar}.
+        \end{align*}
+
+        Now, if
+        \begin{align*}
+            (\hat{X}' + i\lambda_0 \hat{P}')\ket{\psi} = 0,
+        \end{align*}
+        then $\ket{\phi}=0$ and therefore
+        \begin{align*}
+            \langle \phi | \phi \rangle = 0,
+        \end{align*}
+        so the lower bound is saturated.
+
+        Conversely, if equality holds, then the minimum value of $\langle \phi|\phi\rangle$ is zero at $\lambda=\lambda_0$, which implies
+        \begin{align*}
+            \|(\hat{X}' + i\lambda_0 \hat{P}')\ket{\psi}\|^2 = 0.
+        \end{align*}
+        Therefore
+        \begin{align*}
+            (\hat{X}' + i\lambda_0 \hat{P}')\ket{\psi} = 0.
+        \end{align*}
+    \end{calculationbox}
+
+    \item Write the equation
+    \begin{align*}
+        (\hat{X}' + i\lambda_0 \hat{P}')\ket{\psi} = 0
+    \end{align*}
+    in the position representation and solve the resulting differential equation for $\psi(x)=\langle x|\psi\rangle$. Consider the ansatz
+    \begin{align*}
+        \psi(x)=\exp\!\left(i\frac{\langle \hat{P}\rangle x}{\hbar}\right) f(x-\langle \hat{X}\rangle).
+    \end{align*}
+    Which states are obtained?
+    \begin{calculationbox}
+        In the position representation,
+        \begin{align*}
+            \hat{X}\psi(x) &= x\psi(x),
+            &
+            \hat{P}\psi(x) &= -i\hbar \frac{d}{dx}\psi(x).
+        \end{align*}
+        Therefore
+        \begin{align*}
+            \hat{X}' &= x - \langle \hat{X} \rangle,
+            &
+            \hat{P}' &= -i\hbar \frac{d}{dx} - \langle \hat{P} \rangle.
+        \end{align*}
+        The equation becomes
+        \begin{align*}
+            \left[
+                x - \langle \hat{X} \rangle
+                + i\lambda_0\left(-i\hbar\frac{d}{dx} - \langle \hat{P} \rangle\right)
+            \right]\psi(x)=0.
+        \end{align*}
+        Hence
+        \begin{align*}
+            \left[
+                x - \langle \hat{X} \rangle
+                + \lambda_0 \hbar \frac{d}{dx}
+                - i\lambda_0 \langle \hat{P} \rangle
+            \right]\psi(x)=0.
+        \end{align*}
+
+        Use the ansatz
+        \begin{align*}
+            \psi(x)=\exp\!\left(i\frac{\langle \hat{P}\rangle x}{\hbar}\right) f(x-\langle \hat{X}\rangle).
+        \end{align*}
+        Let
+        \begin{align*}
+            \xi = x-\langle \hat{X}\rangle.
+        \end{align*}
+        Then
+        \begin{align*}
+            \frac{d\psi}{dx}
+            = \exp\!\left(i\frac{\langle \hat{P}\rangle x}{\hbar}\right)
+            \left(
+                i\frac{\langle \hat{P}\rangle}{\hbar} f(\xi) + f'(\xi)
+            \right).
+        \end{align*}
+        Substituting into the differential equation, the terms containing $\langle \hat{P}\rangle$ cancel, and we obtain
+        \begin{align*}
+            \xi f(\xi) + \lambda_0 \hbar f'(\xi) = 0.
+        \end{align*}
+        Thus
+        \begin{align*}
+            \frac{f'(\xi)}{f(\xi)} = - \frac{\xi}{\lambda_0 \hbar}.
+        \end{align*}
+        Integrating:
+        \begin{align*}
+            \ln f(\xi) = -\frac{\xi^2}{2\lambda_0 \hbar} + \text{const}.
+        \end{align*}
+        Therefore
+        \begin{align*}
+            f(\xi) = C \exp\!\left(-\frac{\xi^2}{2\lambda_0 \hbar}\right).
+        \end{align*}
+        Since
+        \begin{align*}
+            \lambda_0 = \frac{2\Delta X^2}{\hbar},
+        \end{align*}
+        we get
+        \begin{align*}
+            f(\xi) = C \exp\!\left(-\frac{\xi^2}{4\Delta X^2}\right).
+        \end{align*}
+        Hence
+        \begin{align*}
+            \psi(x)
+            = C \exp\!\left(
+                -\frac{(x-\langle \hat{X}\rangle)^2}{4\Delta X^2}
+                + i\frac{\langle \hat{P}\rangle x}{\hbar}
+            \right).
+        \end{align*}
+
+        To normalize:
+        \begin{align*}
+            1
+            &= |C|^2 \int_{-\infty}^{\infty}
+            \exp\!\left(-\frac{(x-\langle \hat{X}\rangle)^2}{2\Delta X^2}\right)\,dx
+            \\
+            &= |C|^2 \sqrt{2\pi}\,\Delta X.
+        \end{align*}
+        Thus
+        \begin{align*}
+            C = \frac{1}{(2\pi \Delta X^2)^{1/4}}
+        \end{align*}
+        up to an irrelevant overall phase.
+
+        Therefore the states are
+        \begin{align*}
+            \psi(x)
+            = \frac{1}{(2\pi \Delta X^2)^{1/4}}
+            \exp\!\left(
+                -\frac{(x-\langle \hat{X}\rangle)^2}{4\Delta X^2}
+                + i\frac{\langle \hat{P}\rangle x}{\hbar}
+            \right),
+        \end{align*}
+        i.e. Gaussian wave packets, also called minimum-uncertainty states.
+    \end{calculationbox}
+\end{enumerate}
+\end{document}

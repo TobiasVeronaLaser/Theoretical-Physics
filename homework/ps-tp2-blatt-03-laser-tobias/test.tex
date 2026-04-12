@@ -1,0 +1,1079 @@
+% Header: General study / work / project template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+% General packages
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{icomma}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Language: choose one
+% \usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+
+% Units / tables / floats / references
+\usepackage[locale = UK,space-before-unit=true,per-mode = symbol]{siunitx}
+\usepackage{booktabs,multirow}
+\usepackage{placeins}
+\usepackage[natbib,abbreviate=true,doi=false,style=numeric-comp,giveninits=true,sorting=none]{biblatex}
+\usepackage{csquotes}
+
+% Optional bibliography
+% \addbibresource{references.bib}
+
+% Graphics paths
+\graphicspath{{Bilder/} {images/} {figures/} {chapters/}}
+
+% Optional math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ol}[1]{\overline{#1}}
+
+% Optional units
+\DeclareSIUnit{\dBm}{dBm}
+
+% Box styles
+\newtcolorbox{calculationbox}[1][]{
+    title=Calculation,
+    breakable,
+    #1
+}
+
+\newtcolorbox{solutionbox}[1][]{
+    title=Solution,
+    breakable,
+    #1
+}
+
+\newtcolorbox{answerbox}[1][]{
+    title=Answer,
+    breakable,
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    title=Notes,
+    breakable,
+    #1
+}
+
+\newtcolorbox{sidecalcbox}[1][]{
+    title=Side Calculation,
+    breakable,
+    #1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\title{Theoretical Physics 2 - Blatt 03}
+\author{Tobias Laser}
+\date{}
+\maketitle
+\vfill
+\thispagestyle{empty}
+
+\pagenumbering{arabic}
+
+% ================================================================
+\paragraph{Section 1: Moments of statistical distributions}
+
+Compute the expectation value $\mu=\langle X\rangle$ and the variance
+\[
+\sigma^2=\langle (X-\mu)^2\rangle
+\]
+for the given distributions. In part (c), also compute the third central moment
+\[
+\mu_3=\langle (X-\mu)^3\rangle.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bernoulli distribution with
+    \[
+    P(X)=p^X(1-p)^{1-X}, \qquad X\in\{0,1\}.
+    \]
+
+    \begin{calculationbox}
+    Since $X$ only takes the values $0$ and $1$, we have
+    \[
+    P(X=0)=1-p, \qquad P(X=1)=p.
+    \]
+
+    Therefore,
+    \begin{align*}
+        \mu=\langle X\rangle
+        &= \sum_{X\in\{0,1\}} X\,P(X) \\
+        &= 0\cdot(1-p)+1\cdot p \\
+        &= p.
+    \end{align*}
+
+    For the variance, we may either use $\sigma^2=\langle X^2\rangle-\langle X\rangle^2$ or directly the definition.
+    Since $X^2=X$ for $X\in\{0,1\}$, we get
+    \[
+    \langle X^2\rangle=\langle X\rangle=p.
+    \]
+    Hence
+    \begin{align*}
+        \sigma^2
+        &= \langle X^2\rangle-\mu^2 \\
+        &= p-p^2 \\
+        &= p(1-p).
+    \end{align*}
+    \end{calculationbox}
+
+    \begin{answerbox}
+    For the Bernoulli distribution,
+    \[
+    \boxed{\mu=p, \qquad \sigma^2=p(1-p).}
+    \]
+    \end{answerbox}
+
+    \item Poisson distribution with
+    \[
+    P_\lambda(X)=\frac{\lambda^X e^{-\lambda}}{X!}, \qquad X\in\N.
+    \]
+
+    \begin{calculationbox}
+    We compute the expectation value:
+    \begin{align*}
+        \mu=\langle X\rangle
+        &= \sum_{X=0}^\infty X \frac{\lambda^X e^{-\lambda}}{X!}.
+    \end{align*}
+    The term $X=0$ vanishes, so
+    \begin{align*}
+        \mu
+        &= e^{-\lambda}\sum_{X=1}^\infty X\frac{\lambda^X}{X!} \\
+        &= e^{-\lambda}\sum_{X=1}^\infty \frac{\lambda^X}{(X-1)!} \\
+        &= \lambda e^{-\lambda}\sum_{X=1}^\infty \frac{\lambda^{X-1}}{(X-1)!}.
+    \end{align*}
+    Set $n=X-1$. Then
+    \begin{align*}
+        \mu
+        &= \lambda e^{-\lambda}\sum_{n=0}^\infty \frac{\lambda^n}{n!} \\
+        &= \lambda e^{-\lambda} e^\lambda \\
+        &= \lambda.
+    \end{align*}
+
+    Next, compute $\langle X(X-1)\rangle$:
+    \begin{align*}
+        \langle X(X-1)\rangle
+        &= \sum_{X=0}^\infty X(X-1)\frac{\lambda^X e^{-\lambda}}{X!}.
+    \end{align*}
+    Again only $X\ge 2$ contributes:
+    \begin{align*}
+        \langle X(X-1)\rangle
+        &= e^{-\lambda}\sum_{X=2}^\infty \frac{\lambda^X}{(X-2)!} \\
+        &= \lambda^2 e^{-\lambda}\sum_{X=2}^\infty \frac{\lambda^{X-2}}{(X-2)!}.
+    \end{align*}
+    With $m=X-2$:
+    \begin{align*}
+        \langle X(X-1)\rangle
+        &= \lambda^2 e^{-\lambda}\sum_{m=0}^\infty \frac{\lambda^m}{m!} \\
+        &= \lambda^2.
+    \end{align*}
+
+    Since
+    \[
+    X^2=X(X-1)+X,
+    \]
+    we obtain
+    \begin{align*}
+        \langle X^2\rangle
+        &= \langle X(X-1)\rangle+\langle X\rangle \\
+        &= \lambda^2+\lambda.
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        \sigma^2
+        &= \langle X^2\rangle-\mu^2 \\
+        &= (\lambda^2+\lambda)-\lambda^2 \\
+        &= \lambda.
+    \end{align*}
+    \end{calculationbox}
+
+    \begin{answerbox}
+    For the Poisson distribution,
+    \[
+    \boxed{\mu=\lambda, \qquad \sigma^2=\lambda.}
+    \]
+    Thus for a Poisson distribution the mean and variance are equal.
+    \end{answerbox}
+
+    \item Gaussian distribution with density
+    \[
+    P(X)=\frac{1}{\sqrt{2\pi b}}\,\exp\!\left[-\frac{(X-a)^2}{2b}\right], \qquad X,a,b\in\R,
+    \]
+    with $b>0$.
+
+    \begin{calculationbox}
+    This is the normal distribution with mean parameter $a$ and variance parameter $b$.
+    To see this explicitly, introduce
+    \[
+    y=X-a.
+    \]
+    Then
+    \[
+    P(X)\,dX = \frac{1}{\sqrt{2\pi b}} e^{-y^2/(2b)}\,dy,
+    \]
+    which is an even function of $y$.
+
+    First moment:
+    \begin{align*}
+        \mu=\langle X\rangle
+        &= \int_{-\infty}^{\infty} X\,P(X)\,dX \\
+        &= \int_{-\infty}^{\infty} (a+y)\frac{1}{\sqrt{2\pi b}}e^{-y^2/(2b)}\,dy \\
+        &= a\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi b}}e^{-y^2/(2b)}\,dy
+        + \int_{-\infty}^{\infty} y\frac{1}{\sqrt{2\pi b}}e^{-y^2/(2b)}\,dy.
+    \end{align*}
+    The first integral is $1$ and the second vanishes because the integrand is odd. Hence
+    \[
+    \mu=a.
+    \]
+
+    The variance is
+    \begin{align*}
+        \sigma^2
+        &= \langle (X-\mu)^2\rangle \\
+        &= \langle (X-a)^2\rangle \\
+        &= \int_{-\infty}^{\infty} y^2 \frac{1}{\sqrt{2\pi b}} e^{-y^2/(2b)}\,dy.
+    \end{align*}
+    This is the standard second central moment of a Gaussian and equals $b$. Hence
+    \[
+    \sigma^2=b.
+    \]
+
+    The third central moment is
+    \begin{align*}
+        \mu_3
+        &= \langle (X-\mu)^3\rangle \\
+        &= \langle (X-a)^3\rangle \\
+        &= \int_{-\infty}^{\infty} y^3 \frac{1}{\sqrt{2\pi b}} e^{-y^2/(2b)}\,dy.
+    \end{align*}
+    Since the integrand is odd and the integration interval is symmetric,
+    \[
+    \mu_3=0.
+    \]
+    This expresses the symmetry of the Gaussian distribution about its mean.
+    \end{calculationbox}
+
+    \begin{answerbox}
+    For the Gaussian distribution,
+    \[
+    \boxed{\mu=a,\qquad \sigma^2=b,\qquad \mu_3=0.}
+    \]
+    \end{answerbox}
+\end{enumerate}
+
+% ================================================================
+\paragraph{Section 2: Charged 1D harmonic oscillator in a uniform electric field}
+
+We consider the Hamiltonian
+\[
+H(E)=\frac{P^2}{2m}+\frac12 m\omega^2 X^2-eEX.
+\]
+Determine the energy eigenvalues $E_n(E)$ and eigenfunctions $\phi_n(x)$, discuss the energy shift and wavefunctions, and compute the expectation value of the electric dipole moment
+\[
+\langle D\rangle=e(\phi_n,X\phi_n).
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item Energy spectrum, shifted coordinate, eigenfunctions, and dipole moment.
+
+    \begin{calculationbox}
+    The key step is to complete the square in the potential:
+    \begin{align*}
+        \frac12 m\omega^2 x^2 - eEx
+        &= \frac12 m\omega^2\left(x^2 - 2\frac{eE}{m\omega^2}x\right) \\
+        &= \frac12 m\omega^2\left(x-\frac{eE}{m\omega^2}\right)^2
+           - \frac12 m\omega^2\left(\frac{eE}{m\omega^2}\right)^2 \\
+        &= \frac12 m\omega^2\left(x-\frac{eE}{m\omega^2}\right)^2
+           - \frac{e^2E^2}{2m\omega^2}.
+    \end{align*}
+
+    Define the shifted coordinate
+    \[
+    u=x-\frac{eE}{m\omega^2}.
+    \]
+    Then the Hamiltonian becomes
+    \[
+    H(E)=\frac{P^2}{2m}+\frac12 m\omega^2 u^2-\frac{e^2E^2}{2m\omega^2}.
+    \]
+
+    Since $u=X-\frac{eE}{m\omega^2}$ differs from $X$ only by a constant,
+    \[
+    [u,P]=[X,P]=i\hbar.
+    \]
+    Thus $u$ and $P$ are again canonically conjugate variables.
+
+    Therefore the problem is exactly the usual harmonic oscillator in the variable $u$, plus a constant energy shift.
+    For the ordinary oscillator, the eigenvalues are
+    \[
+    E_n^{(0)}=\hbar\omega\left(n+\frac12\right), \qquad n=0,1,2,\dots
+    \]
+    Hence here
+    \[
+    \boxed{
+    E_n(E)=\hbar\omega\left(n+\frac12\right)-\frac{e^2E^2}{2m\omega^2}
+    }.
+    \]
+
+    The eigenfunctions are the usual oscillator eigenfunctions, but centered at
+    \[
+    x_0=\frac{eE}{m\omega^2}.
+    \]
+    Thus
+    \[
+    \phi_n(x;E)=\varphi_n\!\left(x-\frac{eE}{m\omega^2}\right),
+    \]
+    where $\varphi_n$ is the $n$-th eigenfunction of the standard harmonic oscillator:
+    \[
+    \varphi_n(u)=
+    \frac{1}{\sqrt{2^n n!}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\,u\right)
+    \exp\!\left(-\frac{m\omega}{2\hbar}u^2\right).
+    \]
+    Therefore
+    \[
+    \boxed{
+    \phi_n(x;E)=
+    \frac{1}{\sqrt{2^n n!}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    H_n\!\left(\sqrt{\frac{m\omega}{\hbar}}\left(x-\frac{eE}{m\omega^2}\right)\right)
+    \exp\!\left[-\frac{m\omega}{2\hbar}\left(x-\frac{eE}{m\omega^2}\right)^2\right]
+    }.
+    \]
+
+    The energy shift is the same for all levels:
+    \[
+    \Delta E = -\frac{e^2E^2}{2m\omega^2}.
+    \]
+    Hence the level spacing remains unchanged:
+    \[
+    E_{n+1}(E)-E_n(E)=\hbar\omega.
+    \]
+
+    Now compute the dipole moment:
+    \[
+    \langle D\rangle = e\langle X\rangle.
+    \]
+    Since the eigenfunctions are centered at $x_0=\frac{eE}{m\omega^2}$ and the standard oscillator eigenstates satisfy $\langle u\rangle_n=0$, we have
+    \[
+    \langle X\rangle_n = \left\langle u+\frac{eE}{m\omega^2}\right\rangle_n
+    = \langle u\rangle_n + \frac{eE}{m\omega^2}
+    = \frac{eE}{m\omega^2}.
+    \]
+    Thus
+    \[
+    \boxed{
+    \langle D\rangle_n = e\langle X\rangle_n
+    = \frac{e^2 E}{m\omega^2}
+    }.
+    \]
+    This expectation value is independent of $n$.
+    \end{calculationbox}
+
+    \begin{answerbox}
+    The electric field shifts the harmonic oscillator potential rigidly by
+    \[
+    x_0=\frac{eE}{m\omega^2},
+    \]
+    without changing its curvature. Therefore all energy levels are shifted by the same constant:
+    \[
+    \boxed{
+    E_n(E)=\hbar\omega\left(n+\frac12\right)-\frac{e^2E^2}{2m\omega^2}.
+    }
+    \]
+    The eigenfunctions are the usual harmonic oscillator wavefunctions translated by $x_0$, and the dipole moment expectation value is
+    \[
+    \boxed{
+    \langle D\rangle_n=\frac{e^2E}{m\omega^2}.
+    }
+    \]
+    \end{answerbox}
+\end{enumerate}
+
+% ================================================================
+\paragraph{Section 3: Coherent states of the 1D harmonic oscillator --- properties}
+
+Let
+\[
+\phi_\alpha := e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\varphi_n,
+\qquad \alpha\in\mathbb{C},
+\]
+where $\varphi_n$ are the harmonic oscillator energy eigenstates,
+\[
+\hat H\varphi_n=\hbar\omega\left(n+\frac12\right)\varphi_n,
+\qquad
+\hat H=\hbar\omega\left(\hat a^\dagger \hat a+\frac12\right).
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item Show that coherent states are eigenstates of the annihilation operator:
+    \[
+    \hat a \phi_\alpha = \alpha \phi_\alpha.
+    \]
+
+    \begin{calculationbox}
+    We use
+    \[
+    \hat a \varphi_n = \sqrt{n}\,\varphi_{n-1}, \qquad \hat a\varphi_0=0.
+    \]
+    Then
+    \begin{align*}
+        \hat a \phi_\alpha
+        &= e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\,\hat a\varphi_n \\
+        &= e^{-|\alpha|^2/2}\sum_{n=1}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\sqrt{n}\,\varphi_{n-1} \\
+        &= e^{-|\alpha|^2/2}\sum_{n=1}^{\infty}\frac{\alpha^n}{\sqrt{(n-1)!}}\,\varphi_{n-1}.
+    \end{align*}
+    Set $m=n-1$:
+    \begin{align*}
+        \hat a \phi_\alpha
+        &= e^{-|\alpha|^2/2}\sum_{m=0}^{\infty}\frac{\alpha^{m+1}}{\sqrt{m!}}\,\varphi_m \\
+        &= \alpha e^{-|\alpha|^2/2}\sum_{m=0}^{\infty}\frac{\alpha^m}{\sqrt{m!}}\,\varphi_m \\
+        &= \alpha \phi_\alpha.
+    \end{align*}
+    \end{calculationbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{\hat a\phi_\alpha=\alpha\phi_\alpha.}
+    \]
+    Thus $\phi_\alpha$ is indeed an eigenstate of the annihilation operator with eigenvalue $\alpha$.
+    \end{answerbox}
+
+    \item Show that coherent states are normalized: $\norm{\phi_\alpha}=1$.
+
+    \begin{solutionbox}
+    Using orthonormality $(\varphi_n,\varphi_m)=\delta_{nm}$,
+    \begin{align*}
+        \norm{\phi_\alpha}^2
+        &= (\phi_\alpha,\phi_\alpha) \\
+        &= e^{-|\alpha|^2}
+        \sum_{n,m=0}^{\infty}
+        \frac{(\alpha^*)^m \alpha^n}{\sqrt{m!n!}}(\varphi_m,\varphi_n) \\
+        &= e^{-|\alpha|^2}
+        \sum_{n=0}^{\infty}
+        \frac{|\alpha|^{2n}}{n!} \\
+        &= e^{-|\alpha|^2} e^{|\alpha|^2} \\
+        &= 1.
+    \end{align*}
+    Hence
+    \[
+    \boxed{\norm{\phi_\alpha}=1.}
+    \]
+    \end{solutionbox}
+
+    \item Show completeness:
+    \[
+    \frac1\pi\int_{\mathbb{C}} d^2\alpha\, \phi_\alpha(\phi_\alpha,\psi)=\psi
+    \qquad \forall \psi\in L^2(\R).
+    \]
+
+    \begin{calculationbox}
+    It is sufficient to show that the operator
+    \[
+    \hat I_c := \frac1\pi\int_{\mathbb{C}} d^2\alpha\, |\phi_\alpha\rangle\langle \phi_\alpha|
+    \]
+    acts as the identity on the number basis $\{\varphi_n\}$.
+
+    Insert the coherent-state expansion:
+    \begin{align*}
+        |\phi_\alpha\rangle\langle \phi_\alpha|
+        &= e^{-|\alpha|^2}
+        \sum_{n,m=0}^{\infty}
+        \frac{\alpha^n(\alpha^*)^m}{\sqrt{n!m!}}
+        |\varphi_n\rangle\langle\varphi_m|.
+    \end{align*}
+    Therefore
+    \begin{align*}
+        \hat I_c
+        &= \frac1\pi \sum_{n,m=0}^{\infty}
+        \frac{|\varphi_n\rangle\langle\varphi_m|}{\sqrt{n!m!}}
+        \int_{\mathbb{C}} d^2\alpha\,
+        e^{-|\alpha|^2}\alpha^n(\alpha^*)^m.
+    \end{align*}
+
+    Using polar coordinates $\alpha=re^{i\theta}$, one gets the standard integral
+    \[
+    \frac1\pi\int_{\mathbb{C}} d^2\alpha\,
+    e^{-|\alpha|^2}\alpha^n(\alpha^*)^m
+    = n!\,\delta_{nm}.
+    \]
+    Hence
+    \begin{align*}
+        \hat I_c
+        &= \sum_{n,m=0}^{\infty}
+        \frac{n!\,\delta_{nm}}{\sqrt{n!m!}}
+        |\varphi_n\rangle\langle\varphi_m| \\
+        &= \sum_{n=0}^{\infty} |\varphi_n\rangle\langle\varphi_n| \\
+        &= \mathbb{1}.
+    \end{align*}
+    Therefore,
+    \[
+    \frac1\pi\int_{\mathbb{C}} d^2\alpha\, \phi_\alpha(\phi_\alpha,\psi)=\psi.
+    \]
+    \end{calculationbox}
+
+    \begin{answerbox}
+    The coherent states are overcomplete and satisfy the resolution of the identity
+    \[
+    \boxed{
+    \frac1\pi\int_{\mathbb{C}} d^2\alpha\, |\phi_\alpha\rangle\langle \phi_\alpha| = \mathbb{1}.
+    }
+    \]
+    \end{answerbox}
+
+    \item Show that the probability to measure the energy
+    \[
+    E_n=\hbar\omega\left(n+\frac12\right)
+    \]
+    in the state $\phi_\alpha$ is Poisson distributed.
+
+    \begin{solutionbox}
+    The amplitude for the level $n$ is
+    \[
+    \langle \varphi_n|\phi_\alpha\rangle
+    = e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}.
+    \]
+    Therefore the probability is
+    \begin{align*}
+        P_n
+        &= \abs{\langle \varphi_n|\phi_\alpha\rangle}^2 \\
+        &= e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.
+    \end{align*}
+    This is precisely a Poisson distribution with parameter
+    \[
+    \lambda=|\alpha|^2.
+    \]
+    \end{solutionbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{
+    P_n = e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.
+    }
+    \]
+    Thus the energy measurement statistics in a coherent state are Poissonian.
+    \end{answerbox}
+
+    \item Show that the mean energy and energy uncertainty are
+    \[
+    \langle H\rangle_\alpha = \hbar\omega\left(|\alpha|^2+\frac12\right),
+    \qquad
+    \Delta H_\alpha = \hbar\omega |\alpha|.
+    \]
+
+    \begin{calculationbox}
+    Since
+    \[
+    \hat H = \hbar\omega\left(\hat N+\frac12\right),
+    \qquad \hat N=\hat a^\dagger \hat a,
+    \]
+    it is enough to compute the moments of $\hat N$.
+
+    Because $\hat a\phi_\alpha=\alpha\phi_\alpha$, we get
+    \begin{align*}
+        \langle \hat N\rangle_\alpha
+        &= \langle \phi_\alpha|\hat a^\dagger\hat a|\phi_\alpha\rangle \\
+        &= \langle \hat a\phi_\alpha|\hat a\phi_\alpha\rangle \\
+        &= |\alpha|^2.
+    \end{align*}
+    Hence
+    \[
+    \langle H\rangle_\alpha
+    = \hbar\omega\left(\langle \hat N\rangle_\alpha+\frac12\right)
+    = \hbar\omega\left(|\alpha|^2+\frac12\right).
+    \]
+
+    Next,
+    \[
+    \Delta H_\alpha = \hbar\omega\,\Delta N_\alpha.
+    \]
+    So we compute
+    \[
+    \Delta N_\alpha^2 = \langle \hat N^2\rangle_\alpha - \langle \hat N\rangle_\alpha^2.
+    \]
+    Since the number distribution is Poisson with parameter $|\alpha|^2$, its variance is also $|\alpha|^2$. Therefore
+    \[
+    \Delta N_\alpha^2 = |\alpha|^2
+    \qquad \Rightarrow \qquad
+    \Delta N_\alpha = |\alpha|.
+    \]
+    Hence
+    \[
+    \boxed{\Delta H_\alpha = \hbar\omega |\alpha|.}
+    \]
+
+    The relative energy fluctuation behaves as
+    \[
+    \frac{\Delta H_\alpha}{\langle H\rangle_\alpha}
+    = \frac{|\alpha|}{|\alpha|^2+\frac12}
+    \sim \frac{1}{|\alpha|}
+    \qquad (|\alpha|\gg 1),
+    \]
+    so it vanishes in the quasi-classical limit.
+    \end{calculationbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{
+    \langle H\rangle_\alpha = \hbar\omega\left(|\alpha|^2+\frac12\right),
+    \qquad
+    \Delta H_\alpha = \hbar\omega |\alpha|.
+    }
+    \]
+    \end{answerbox}
+
+    \item Show that the position and momentum expectation values and uncertainties are
+    \[
+    \langle X\rangle_\alpha = \sqrt{\frac{2\hbar}{m\omega}}\Re(\alpha),
+    \qquad
+    \langle P\rangle_\alpha = \sqrt{2m\hbar\omega}\Im(\alpha),
+    \]
+    and
+    \[
+    \Delta X_\alpha=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P_\alpha=\sqrt{\frac{m\hbar\omega}{2}}.
+    \]
+
+    \begin{calculationbox}
+    We use the operator identities
+    \[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(\hat a+\hat a^\dagger),
+    \qquad
+    P=-i\sqrt{\frac{m\hbar\omega}{2}}(\hat a-\hat a^\dagger).
+    \]
+
+    Therefore
+    \begin{align*}
+        \langle X\rangle_\alpha
+        &= \sqrt{\frac{\hbar}{2m\omega}}
+        \left(\langle \hat a\rangle_\alpha + \langle \hat a^\dagger\rangle_\alpha\right) \\
+        &= \sqrt{\frac{\hbar}{2m\omega}}(\alpha+\alpha^*) \\
+        &= \sqrt{\frac{2\hbar}{m\omega}}\Re(\alpha).
+    \end{align*}
+
+    Similarly,
+    \begin{align*}
+        \langle P\rangle_\alpha
+        &= -i\sqrt{\frac{m\hbar\omega}{2}}
+        \left(\langle \hat a\rangle_\alpha - \langle \hat a^\dagger\rangle_\alpha\right) \\
+        &= -i\sqrt{\frac{m\hbar\omega}{2}}(\alpha-\alpha^*) \\
+        &= \sqrt{2m\hbar\omega}\Im(\alpha).
+    \end{align*}
+
+    Now for the variances. First,
+    \[
+    X^2 = \frac{\hbar}{2m\omega}\left(\hat a^2 + \hat a\hat a^\dagger + \hat a^\dagger \hat a + (\hat a^\dagger)^2\right).
+    \]
+    Using $\hat a\hat a^\dagger=\hat a^\dagger\hat a+1$ and the coherent-state expectation values
+    \[
+    \langle \hat a\rangle=\alpha,\quad
+    \langle \hat a^\dagger\rangle=\alpha^*,\quad
+    \langle \hat a^2\rangle=\alpha^2,\quad
+    \langle (\hat a^\dagger)^2\rangle=(\alpha^*)^2,\quad
+    \langle \hat a^\dagger \hat a\rangle=|\alpha|^2,
+    \]
+    we find
+    \begin{align*}
+        \langle X^2\rangle_\alpha
+        &= \frac{\hbar}{2m\omega}
+        \left(\alpha^2 + (\alpha^*)^2 + |\alpha|^2 + (|\alpha|^2+1)\right) \\
+        &= \frac{\hbar}{2m\omega}
+        \left(\alpha^2 + (\alpha^*)^2 + 2|\alpha|^2 + 1\right).
+    \end{align*}
+    On the other hand,
+    \begin{align*}
+        \langle X\rangle_\alpha^2
+        &= \frac{\hbar}{2m\omega}(\alpha+\alpha^*)^2 \\
+        &= \frac{\hbar}{2m\omega}
+        \left(\alpha^2+(\alpha^*)^2+2|\alpha|^2\right).
+    \end{align*}
+    Therefore
+    \[
+    \Delta X_\alpha^2
+    = \langle X^2\rangle_\alpha - \langle X\rangle_\alpha^2
+    = \frac{\hbar}{2m\omega},
+    \]
+    so
+    \[
+    \boxed{
+    \Delta X_\alpha=\sqrt{\frac{\hbar}{2m\omega}}.
+    }
+    \]
+
+    Likewise one finds
+    \[
+    \boxed{
+    \Delta P_\alpha=\sqrt{\frac{m\hbar\omega}{2}}.
+    }
+    \]
+
+    Hence
+    \[
+    \Delta X_\alpha \Delta P_\alpha
+    = \sqrt{\frac{\hbar}{2m\omega}}\sqrt{\frac{m\hbar\omega}{2}}
+    = \frac{\hbar}{2}.
+    \]
+    Thus coherent states are minimum-uncertainty states.
+    \end{calculationbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{
+    \langle X\rangle_\alpha = \sqrt{\frac{2\hbar}{m\omega}}\Re(\alpha),
+    \qquad
+    \langle P\rangle_\alpha = \sqrt{2m\hbar\omega}\Im(\alpha)
+    }
+    \]
+    and
+    \[
+    \boxed{
+    \Delta X_\alpha=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P_\alpha=\sqrt{\frac{m\hbar\omega}{2}},
+    \qquad
+    \Delta X_\alpha\Delta P_\alpha=\frac{\hbar}{2}.
+    }
+    \]
+    \end{answerbox}
+
+    \item Derive the position-space form of the coherent state.
+
+    \begin{calculationbox}
+    One elegant way is to solve
+    \[
+    (\hat a-\alpha)\phi_\alpha(x)=0
+    \]
+    in the position representation.
+
+    In $x$-space,
+    \[
+    \hat a =
+    \sqrt{\frac{m\omega}{2\hbar}}\,x
+    +
+    \sqrt{\frac{\hbar}{2m\omega}}\frac{d}{dx}.
+    \]
+    Therefore the equation becomes
+    \[
+    \left(
+    \sqrt{\frac{m\omega}{2\hbar}}\,x
+    +
+    \sqrt{\frac{\hbar}{2m\omega}}\frac{d}{dx}
+    -\alpha
+    \right)\phi_\alpha(x)=0.
+    \]
+    Multiply by $\sqrt{\frac{2m\omega}{\hbar}}$:
+    \[
+    \left(
+    \frac{m\omega}{\hbar}x + \frac{d}{dx}
+    - \sqrt{\frac{2m\omega}{\hbar}}\alpha
+    \right)\phi_\alpha(x)=0.
+    \]
+    Hence
+    \[
+    \frac{d\phi_\alpha}{dx}
+    =
+    \left(
+    \sqrt{\frac{2m\omega}{\hbar}}\alpha
+    -\frac{m\omega}{\hbar}x
+    \right)\phi_\alpha.
+    \]
+    Integrating,
+    \[
+    \phi_\alpha(x)=C
+    \exp\!\left(
+    \sqrt{\frac{2m\omega}{\hbar}}\alpha\,x
+    -\frac{m\omega}{2\hbar}x^2
+    \right).
+    \]
+
+    Writing $\alpha=\Re(\alpha)+i\Im(\alpha)$ and completing the square gives the Gaussian wave packet form
+    \[
+    \phi_\alpha(x)
+    =
+    e^{i\theta_\alpha}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    \exp\!\left[
+    -\frac{(x-\langle X\rangle_\alpha)^2}{4(\Delta X_\alpha)^2}
+    + \frac{i}{\hbar}\langle P\rangle_\alpha x
+    \right],
+    \]
+    with
+    \[
+    \langle X\rangle_\alpha=\sqrt{\frac{2\hbar}{m\omega}}\Re(\alpha),
+    \qquad
+    \langle P\rangle_\alpha=\sqrt{2m\hbar\omega}\Im(\alpha),
+    \qquad
+    \Delta X_\alpha=\sqrt{\frac{\hbar}{2m\omega}}.
+    \]
+
+    Therefore
+    \[
+    |\phi_\alpha(x)|^2
+    =
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/2}
+    \exp\!\left[
+    -\frac{(x-\langle X\rangle_\alpha)^2}{2(\Delta X_\alpha)^2}
+    \right].
+    \]
+    This is a Gaussian wave packet centered at $\langle X\rangle_\alpha$ with width $\Delta X_\alpha$.
+    \end{calculationbox}
+
+    \begin{answerbox}
+    The coherent state in position representation is
+    \[
+    \boxed{
+    \phi_\alpha(x)
+    =
+    e^{i\theta_\alpha}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    \exp\!\left[
+    -\frac{(x-\langle X\rangle_\alpha)^2}{4(\Delta X_\alpha)^2}
+    + \frac{i}{\hbar}\langle P\rangle_\alpha x
+    \right]
+    }
+    \]
+    and its probability density is a Gaussian packet:
+    \[
+    \boxed{
+    |\phi_\alpha(x)|^2
+    =
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/2}
+    \exp\!\left[
+    -\frac{(x-\langle X\rangle_\alpha)^2}{2(\Delta X_\alpha)^2}
+    \right].
+    }
+    \]
+    \end{answerbox}
+\end{enumerate}
+
+% ================================================================
+\paragraph{Section 4: Bonus --- time evolution of coherent states}
+
+At time $t=0$ the oscillator is prepared in the coherent state
+\[
+\psi(x,0)=\phi_{\alpha_0}(x).
+\]
+Study the time evolution under
+\[
+\hat H=\hbar\omega\left(\hat a^\dagger\hat a+\frac12\right).
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item Show that
+    \[
+    \psi_t = e^{-i\hat H t/\hbar}\psi_0
+    = e^{-i\omega t/2}\phi_{\alpha_t},
+    \qquad
+    \alpha_t=\alpha_0 e^{-i\omega t}.
+    \]
+
+    \begin{calculationbox}
+    Expand the initial state in the energy eigenbasis:
+    \[
+    \phi_{\alpha_0}
+    =
+    e^{-|\alpha_0|^2/2}\sum_{n=0}^\infty
+    \frac{\alpha_0^n}{\sqrt{n!}}\varphi_n.
+    \]
+    The time-evolution operator acts as
+    \[
+    e^{-i\hat H t/\hbar}\varphi_n
+    = e^{-i\omega(n+1/2)t}\varphi_n.
+    \]
+    Therefore
+    \begin{align*}
+        \psi_t
+        &= e^{-|\alpha_0|^2/2}\sum_{n=0}^\infty
+        \frac{\alpha_0^n}{\sqrt{n!}}
+        e^{-i\omega(n+1/2)t}\varphi_n \\
+        &= e^{-i\omega t/2}
+        e^{-|\alpha_0|^2/2}
+        \sum_{n=0}^\infty
+        \frac{(\alpha_0 e^{-i\omega t})^n}{\sqrt{n!}}\varphi_n.
+    \end{align*}
+    Since
+    \[
+    |\alpha_0 e^{-i\omega t}|=|\alpha_0|,
+    \]
+    this is exactly
+    \[
+    \psi_t = e^{-i\omega t/2}\phi_{\alpha_t},
+    \qquad
+    \alpha_t=\alpha_0 e^{-i\omega t}.
+    \]
+    \end{calculationbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{
+    \psi_t=e^{-i\omega t/2}\phi_{\alpha_0 e^{-i\omega t}}.
+    }
+    \]
+    Thus a coherent state remains coherent under time evolution of the harmonic oscillator.
+    \end{answerbox}
+
+    \item Compute the expectation values of position, momentum, and energy, and compare them to classical mechanics.
+
+    \begin{calculationbox}
+    Since at time $t$ the state is again a coherent state with parameter
+    \[
+    \alpha_t=\alpha_0 e^{-i\omega t},
+    \]
+    the formulas from the previous section apply directly:
+    \[
+    \langle X\rangle_t=\sqrt{\frac{2\hbar}{m\omega}}\Re(\alpha_t),
+    \qquad
+    \langle P\rangle_t=\sqrt{2m\hbar\omega}\Im(\alpha_t).
+    \]
+
+    Write
+    \[
+    \alpha_0 = |\alpha_0|e^{i\varphi}.
+    \]
+    Then
+    \[
+    \alpha_t=|\alpha_0|e^{i(\varphi-\omega t)}.
+    \]
+    Hence
+    \[
+    \boxed{
+    \langle X\rangle_t=
+    \sqrt{\frac{2\hbar}{m\omega}}\,|\alpha_0|\cos(\omega t-\varphi)
+    }
+    \]
+    and
+    \[
+    \boxed{
+    \langle P\rangle_t=
+    -\sqrt{2m\hbar\omega}\,|\alpha_0|\sin(\omega t-\varphi).
+    }
+    \]
+
+    These are exactly the classical solutions for a harmonic oscillator:
+    \[
+    x_{\mathrm{cl}}(t)=A\cos(\omega t-\varphi),\qquad
+    p_{\mathrm{cl}}(t)=m\dot x_{\mathrm{cl}}(t),
+    \]
+    with amplitude
+    \[
+    A=\sqrt{\frac{2\hbar}{m\omega}}\,|\alpha_0|.
+    \]
+
+    The energy expectation value is
+    \[
+    \langle H\rangle_t
+    =
+    \hbar\omega\left(|\alpha_t|^2+\frac12\right).
+    \]
+    Since $|\alpha_t|=|\alpha_0|$, this is constant:
+    \[
+    \boxed{
+    \langle H\rangle_t=\hbar\omega\left(|\alpha_0|^2+\frac12\right).
+    }
+    \]
+
+    The classical harmonic oscillator energy is also conserved. Thus the expectation values of $X$ and $P$ follow the classical trajectory exactly, while the energy remains constant.
+    \end{calculationbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{
+    \langle X\rangle_t=
+    \sqrt{\frac{2\hbar}{m\omega}}\Re(\alpha_0 e^{-i\omega t}),
+    \qquad
+    \langle P\rangle_t=
+    \sqrt{2m\hbar\omega}\Im(\alpha_0 e^{-i\omega t}),
+    }
+    \]
+    and
+    \[
+    \boxed{
+    \langle H\rangle_t=\hbar\omega\left(|\alpha_0|^2+\frac12\right).
+    }
+    \]
+    The position and momentum expectation values follow the classical harmonic motion exactly.
+    \end{answerbox}
+
+    \item Compute the uncertainties $\Delta X_t$ and $\Delta P_t$.
+
+    \begin{solutionbox}
+    Since $\psi_t$ is again a coherent state for all $t$, the uncertainties remain those of any coherent state:
+    \[
+    \Delta X_t=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P_t=\sqrt{\frac{m\hbar\omega}{2}}.
+    \]
+    Therefore
+    \[
+    \Delta X_t\,\Delta P_t=\frac{\hbar}{2}
+    \]
+    at all times.
+
+    So the wave packet oscillates without changing shape: its center moves classically, while its width stays constant.
+    \end{solutionbox}
+
+    \begin{answerbox}
+    \[
+    \boxed{
+    \Delta X_t=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P_t=\sqrt{\frac{m\hbar\omega}{2}}.
+    }
+    \]
+    The coherent state remains a minimum-uncertainty wave packet at all times.
+    \end{answerbox}
+\end{enumerate}
+
+% ================================================================
+\textbf{Additional Notes / Side Calculations}
+
+\begin{sidecalcbox}
+Useful identities for the harmonic oscillator:
+\begin{align*}
+    \hat a \varphi_n &= \sqrt{n}\,\varphi_{n-1}, \\
+    \hat a^\dagger \varphi_n &= \sqrt{n+1}\,\varphi_{n+1}, \\
+    \hat N &= \hat a^\dagger \hat a, \\
+    X &= \sqrt{\frac{\hbar}{2m\omega}}(\hat a+\hat a^\dagger), \\
+    P &= -i\sqrt{\frac{m\hbar\omega}{2}}(\hat a-\hat a^\dagger).
+\end{align*}
+
+Useful Gaussian integral:
+\[
+\frac1\pi \int_{\mathbb{C}} d^2\alpha\,
+e^{-|\alpha|^2}\alpha^n(\alpha^*)^m
+= n!\,\delta_{nm}.
+\]
+This is the key identity behind the completeness relation of coherent states.
+\end{sidecalcbox}
+
+\begin{notebox}
+Physical interpretation:
+\begin{itemize}
+    \item The Bernoulli distribution models a binary random event; its fluctuations are maximal at $p=1/2$.
+    \item For the Poisson distribution, mean and variance coincide, which is a characteristic signature of counting statistics.
+    \item The Gaussian has vanishing odd central moments because it is symmetric about its mean.
+    \item In a constant electric field, the harmonic oscillator potential is merely shifted in space; the shape and level spacing are unchanged.
+    \item Coherent states are the most classical oscillator states: the packet center follows the classical orbit, while the quantum uncertainty stays minimal and constant.
+\end{itemize}
+\end{notebox}
+
+\end{document}

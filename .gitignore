@@ -1,10 +1,13 @@
+# --- LaTeX auxiliary files ---
 *.acn
 *.acr
 *.alg
 *.aux
 *.bak
-*.bbl
+*.bbl*
 *.bcf
+*.bcf-SAVE-ERROR
+*.bbl-SAVE-ERROR
 *.blg
 *.brf
 *.bst
@@ -32,7 +35,7 @@
 *.pyg
 *.run.xml
 *.snm
-*.synctex.gz
+*.synctex*
 *.tex.backup
 *.tex~
 *.thm
@@ -40,7 +43,13 @@
 *.vrb
 *.xdy
 *.xml
+
+# --- BibLaTeX ---
 *blx.bib
-.bak 
+
+# --- Misc ---
 .mtc
+.bak
+
+# --- Build folders ---
 build/
