@@ -1,0 +1,472 @@
+% Header: General study / work / project template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+% General packages
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{braket}
+\usepackage{icomma}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Language: choose one
+% \usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+
+% Units / tables / floats / references
+\usepackage[locale = UK,space-before-unit=true,per-mode = symbol]{siunitx}
+\usepackage{booktabs,multirow}
+\usepackage{placeins}
+\usepackage[natbib,abbreviate=true,doi=false,style=numeric-comp,giveninits=true,sorting=none]{biblatex}
+\usepackage{csquotes}
+
+% Optional bibliography
+% \addbibresource{references.bib}
+
+% Graphics paths
+\graphicspath{{Bilder/} {images/} {figures/} {chapters/}}
+
+% Optional math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ol}[1]{\overline{#1}}
+
+% Optional units
+\DeclareSIUnit{\dBm}{dBm}
+
+% Box styles
+\newtcolorbox{calculationbox}[1][]{
+    title=Calculation,
+    breakable,
+    #1
+}
+
+\newtcolorbox{solutionbox}[1][]{
+    title=Solution,
+    breakable,
+    #1
+}
+
+\newtcolorbox{answerbox}[1][]{
+    title=Answer,
+    breakable,
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    title=Notes,
+    breakable,
+    #1
+}
+
+\newtcolorbox{sidecalcbox}[1][]{
+    title=Side Calculation,
+    breakable,
+    #1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    \title{Theoretical Physics 2 - Blatt 05}
+    \author{Tobias Laser}
+    \date{\today}
+    \maketitle
+    \vfill
+    \thispagestyle{empty}
+
+    \pagenumbering{arabic}
+
+    % ================================================================
+    \paragraph{13. Bra-Ket Notation} 
+
+    Consider the states $\ket{\psi_n}$ as eigenstates of a Hermitian operator $H$ with 
+    \begin{align*}
+        H \ket{\psi_n} = \lambda_n \ket{\psi_n}
+    \end{align*}
+
+    Assume that the $\ket{\psi_n}$ form a discrete orthonormal basis.
+    \begin{enumerate}
+        \item The operator $U_{mn}$ is defined as
+        \begin{align*}
+            U_{mn} = \ket{\psi_m} \bra{\psi_n}.
+        \end{align*}
+
+        Compute the adjoint operator $U^\dagger_{mn}$, the commutator $[U_{mn}, H]$, and show that 
+        \begin{align*}
+            U_{mn} U_{pq} = \delta U_{mq}
+        \end{align*}
+
+        (kronecker delta).
+
+        \begin{calculationbox}
+            \begin{calculationbox}
+                $U^\dagger_{mn} = (\ket{\psi_m} \bra{\psi_n})^\dagger = \bra{\psi_n}^\dagger \ket{\psi_m}^\dagger = \ket{\psi_n} \bra{\psi_m} = U_{nm}$
+            \end{calculationbox}
+
+            \begin{calculationbox}
+                $U_{mn} U_{pq} = \ket{\psi_m} \braket{\psi_n | \psi_p} \bra{\psi_q} = \ket{\psi_m} \delta_{np} \bra{\psi_q} = \delta_{np} \ket{\psi_m} \bra{\psi_q} = \delta_{np} U_{mq}$
+            \end{calculationbox}
+            
+        \end{calculationbox}
+
+        \item Show that for an arbitrary operator A and 
+        \begin{align*}
+            a_{mn} = \braket{\psi_m | A | \psi_n},
+        \end{align*}
+
+        the following holds:
+        \begin{align*}
+            A = \sum\limits_{m,n} a_{mn} U_{mn}
+        \end{align*}
+
+        \begin{calculationbox}
+            Lets define $B := \sum\limits_{m,n} a_{mn} U_{mn}$ and let $B$ operate on an arbitrary basis vector $\ket{\psi_k}$:
+            
+            $B \ket{\psi_k} 
+            = \sum\limits_{m,n} a_{mn} \ket{\psi_m} \braket{\psi_n | \psi_k} 
+            = \sum\limits_{m,n} a_{mn} \ket{\psi_m} \delta_{nk} 
+            = \sum\limits_m a_{mk} \ket{\psi_m} 
+            = \sum\limits_n \braket{\psi_m | A | \psi_k} \ket{\psi_m}
+            = \sum\limits_n \ket{\psi_m}\braket{\psi_m | A | \psi_k}
+            = A \ket{\psi_k}$
+            \begin{calculationbox}
+                $\ket{\phi} = \sum\limits_m \ket{\psi_m} \braket{\psi_m |\phi}$
+            \end{calculationbox}
+
+            Therefore $a = B = \sum\limits_{m,n} a_{mn} U_{mn}$
+        \end{calculationbox}
+
+        or other way of calculation
+
+        \begin{calculationbox}
+            Completeness relation $I = \sum\limits_m \ket{\psi_m} \bra{\psi_m}$
+
+            $A 
+            = I A I 
+            = (\sum\limits_m \ket{\psi_m} \bra{\psi_m})A(\sum\limits_n \ket{\psi_n} \bra{\psi_n}) 
+            = \sum\limits_{m,n} \ket{\psi_m} \braket{\psi_m |A | \psi_n} \bra{\psi_n} 
+            = \sum\limits_{m,n} \ket{\psi_m} a_{mn} \bra{\psi_n} 
+            = \sum\limits_{m,n} a_{mn} \ket{\psi_m | \psi_n} 
+            = \sum\limits_{mn} a_{mn} U_{mn}$
+        \end{calculationbox}
+
+        \item Consider the following states:
+        \begin{align*}
+            \ket{\phi} &= \frac{1}{\sqrt{2}} \ket{\psi_1} + \frac{i}{2} \ket{\psi_2} + \frac{1}{2} \ket{\psi_3},\\
+            \ket{X} &= \frac{1}{4} \ket{\psi_1} + \frac{1}{3} \ket{\psi_3}. 
+        \end{align*}
+
+        Are these states normalized? 
+        \begin{calculationbox}
+            $\braket{\phi | \phi} \stackrel{!}{=} 1$
+            \begin{calculationbox}
+                $\braket{\phi | \phi}
+                = \abs{\frac{1}{\sqrt{2}}}^2 + \abs{\frac{i}{2}}^2 + \abs{\frac{1}{2}}^2
+                = \frac{1}{2} + \frac{1}{4} + \frac{1}{4}
+                = 1
+                $
+            \end{calculationbox}
+
+            $\braket{X | X} \stackrel{!}{=} 1$
+            \begin{calculationbox}
+                $\braket{X | X}
+                = \abs{\frac{1}{4}}^2 + \abs{\frac{1}{3}}^2
+                = \frac{1}{16} + \frac{1}{9} \neq 1
+                $
+            \end{calculationbox}
+
+        \end{calculationbox}
+
+        Are they orthogonal?
+        \begin{calculationbox}
+            $\braket{\phi | X} \stackrel{!}{=} 0$
+            \begin{calculationbox}
+                $\braket{\phi | X}
+                = \ket{\phi}^\dagger \ket{X}
+                = (\frac{1}{\sqrt{2}} \ket{\psi_1} + \frac{i}{2} \ket{\psi_2} + \frac{1}{2} \ket{\psi_3})^\dagger (\frac{1}{4} \ket{\psi_1} + \frac{1}{3} \ket{\psi_3})$
+
+                $= (\frac{1}{\sqrt{2}} \bra{\psi_1} - \frac{i}{2} \bra{\psi_2} + \frac{1}{2} \bra{\psi_3}) (\frac{1}{4} \ket{\psi_1} + \frac{1}{3} \ket{\psi_3})
+                =\frac{1}{\sqrt{2}} \frac{1}{4} + \frac{1}{2}\frac{1}{3} > 0 
+                $
+            \end{calculationbox}
+
+        \end{calculationbox}
+
+        Compute the projectors onto $\ket{\phi}$ and $\ket{X}$, and show that the projectors are self-adjoint operators.
+        \begin{calculationbox}
+            Let $\ket{\psi_1} := \begin{pmatrix}
+                1\\0\\0
+            \end{pmatrix}$, 
+            $\ket{\psi_2} := \begin{pmatrix}
+                0\\1\\0
+            \end{pmatrix}$,
+            $\ket{\psi_3} = \begin{pmatrix}
+                0\\0\\1
+            \end{pmatrix}$
+
+            \begin{calculationbox}
+                $\ket{\phi} = \begin{pmatrix}
+                    \frac{1}{\sqrt{2}} \\ \frac{i}{2}\\ \frac{1}{2}
+                \end{pmatrix}$, 
+                $\bra{\phi} = \begin{pmatrix}
+                    \frac{1}{\sqrt{2}} & -\frac{i}{2} & \frac{1}{2}
+                \end{pmatrix}$
+
+                $P_\phi 
+                = \ket{\phi} \bra{\phi}
+                = \begin{pmatrix}
+                    \frac{1}{2} & -\frac{i}{2\sqrt{2}} & \frac{1}{2\sqrt{2}}\\
+                    \frac{i}{2\sqrt{2}} & \frac{1}{4} & \frac{i}{4}\\
+                    \frac{1}{2\sqrt{2}} & -\frac{i}{4} & \frac{1}{4}
+                \end{pmatrix}
+                $
+            \end{calculationbox}
+
+            \begin{calculationbox}
+                $\ket{\phi} = \begin{pmatrix}
+                    \frac{1}{4} \\ 0 \\ \frac{1}{3}
+                \end{pmatrix}$, 
+                $\bra{\phi} = \begin{pmatrix}
+                    \frac{1}{4} & 0 & \frac{1}{3}
+                \end{pmatrix}$
+
+                $P_\phi 
+                = \ket{\phi} \bra{\phi}
+                = \begin{pmatrix}
+                    \frac{1}{16} & 0 & \frac{1}{12}\\
+                    0 & 0 & 0 \\
+                    \frac{1}{12} & 0 & \frac{1}{9}
+                \end{pmatrix}
+                $
+                
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Let $\ket{\phi}$ and $\ket{X}$ be two arbitrary vectors in the state space. Under what condition is 
+        \begin{align*}
+            K = \ket{\phi} \bra{X}
+        \end{align*}
+        Hermitian?
+
+        \begin{calculationbox}
+            Condition $K^\dagger \stackrel{!}{=} K$
+            \begin{calculationbox}
+                $K^\dagger = \ket{X} \bra{\phi}$
+            \end{calculationbox}
+            That does not hold for all $\ket{\phi}, \ket{X}$. That can only be true if they are linear dependent $\ket{X} = \lambda \ket{\phi}$
+
+            \begin{calculationbox}
+                $K = \ket{\phi} \bra{X} = \ket{\phi} (\lambda \ket{\phi})^\dagger = \ket{\phi} \lambda^\star \bar{\phi} = \lambda^\star \ket{\phi} \bar{\phi}$
+            \end{calculationbox}
+            $\implies \lambda = \lambda^\star$
+        \end{calculationbox}
+
+        Under what condition is $K$ a projector? 
+        
+        \begin{calculationbox}
+            $K^2 \stackrel{!}{=}$
+            \begin{calculationbox}
+                $K^2
+                = (\ket{\phi} \bra{X}) (\ket{\phi} \bra{X})
+                = \ket{\phi} \braket{X | \phi} \bra{X}
+                = \braket{ X | \phi} \ket{\phi} \bra{X}
+                = \braket{X | \phi} K
+                $
+            \end{calculationbox}
+            $\implies$
+            \begin{calculationbox}
+                Trivial for $K = 0 $
+
+                $\braket{X | \phi} K = K \implies \braket{X | \phi} = 1$
+            \end{calculationbox}
+        \end{calculationbox}
+
+        Show that $K$ can always be written as 
+        \begin{align*}
+            K = \alpha P_1 P_2
+        \end{align*}
+        where $P_i$ are projectors and $\alpha \in \mathbb{C}$.
+
+        \begin{calculationbox}
+            Start with projections in the direction of $\ket{\phi}$ and $\ket{X}$
+            
+            \begin{calculationbox}
+                For $ket{\phi} \neq 0$ and $\ket{X} \neq 0$
+
+                we get the normalized
+
+                $\ket{\hat{\phi}} = \frac{\ket{\phi}}{\norm{\phi}}$ and 
+                $\ket{\hat{X}} = \frac{\ket{X}}{\norm{X}}$
+            \end{calculationbox}
+
+            Let $P_1 = \ket{\hat{\phi}} \bra{\hat{\phi}}$,
+            $P_2 = \ket{\hat{X}} \bra{\hat{X}}$
+            and calculate:
+            \begin{calculationbox}
+
+                $P_1 P_2
+                = \ket{\hat{\phi}} \braket{\hat{\phi} | \hat{X}} \bra{\hat{X}}
+                = \braket{\hat{\psi} | \hat{X}} \ket{\hat{\phi}} \bra{\hat{X}}.
+                $
+
+                $\implies$
+
+                $\ket{\hat{\phi}} \bra{\hat{X}}
+                = \frac{1}{\norm{\phi}\norm{X}} \ket{\phi} \bra{X}
+                $
+
+                $P_1 P_2 = \frac{\braket{\hat{\phi} | \hat{X}}}{\norm{\phi} \norm{X}} \ket{\phi} \bra{X}$
+            \end{calculationbox}
+            With this $K = \ket{\phi} \bra{X} 
+            = \frac{\norm{\phi} \norm{X}}{\braket{\hat{\phi} | \hat{X}}} P_1 P_2
+            = \frac{\norm{\phi}^2 \norm{X}^2}{\braket{\phi | X}} P_1 P_2
+            = \alpha P_1 P_2$
+        \end{calculationbox}
+
+        \item Let $H \ket{\phi_n} = \lambda_n \ket{\phi_n}$ and assume that the eigenvalues $\lambda$  are non-degenerate. Show that the so-calles \textbf{null operator}: 
+        \begin{align*}
+            \Pi_0 = \prod\limits_n (H - \lambda_n)
+        \end{align*}
+        satisfies
+        \begin{align*}
+            \Pi_0 \ket{\phi} = 0
+        \end{align*}
+        for all vectors $\ket{\phi}$.
+
+        \begin{calculationbox}
+            Want to show, that when $\ket{\phi_n}$ is as basis, that $\Pi_0 = 0$ on any basis vectors. 
+            \begin{calculationbox}
+                Take an arbitrary eigenvector $\ket{\phi_m}$ and lets apply $H-\lambda_n$ on it:
+
+                $(H - \lambda_n) \ket{\phi_m} = (\lambda_m - \lambda_n)\ket{\phi_m}$,
+            \end{calculationbox}
+            
+            Lets look at the null operator
+            \begin{calculationbox}
+                $\Pi_0\ket{\phi_m} 
+                = \prod\limits_n (H - \lambda_n) \ket{\phi_m}
+                = \prod\limits_n (\lambda_m - \lambda_n) \ket{\phi_m}
+                = ... \cdot (\lambda_m - lambda_m) \cdot ...
+                = 0$
+            \end{calculationbox}
+            and applied to any vector $\ket{\phi} = \sum\limits_m c_m \ket{\phi_m}$
+            \begin{calculationbox}
+                $\Pi_0 \ket{\phi}
+                = \Pi_0 \sum\limits_m c_m \ket{\phi_m}
+                = \sum\limits_m c_m \Pi_0 \ket{text}
+                =\sum\limits_m c_m \cdot 0
+                = 0
+                $
+            \end{calculationbox}
+
+        \end{calculationbox}
+
+        How does the operator
+        \begin{align*}
+            \Pi_{n \neq m} \left( \frac{H - \lambda_n}{\lambda_m - \lambda_n} \right)
+        \end{align*}
+        act?
+
+        \begin{calculationbox}
+            Let $P_m := \prod\limits_{n \neq m} \left( \frac{H - \lambda_n}{\lambda_m - \lambda_n} \right)$
+
+            Lets apply $P_m$ an an arbitrary eigenvector $\ket{\phi_k}$
+            \begin{calculationbox}
+                $P_m \ket{\phi}$
+
+                Case 1: $k = m$
+                \begin{calculationbox}
+                    $P_m \ket{\phi_m} = \prod\limits_{n \neq m} \left( \frac{\lambda_m - \lambda_n}{\lambda_m - \lambda_n} \ket{\phi_m} \right)$
+
+                    $\implies$
+
+                    $\P_m \ket{\phi_m} = 1 \ket{\phi_m}$
+                \end{calculationbox}
+
+                Case 2: $k \neq m$
+                \begin{calculationbox}
+                    $\lambda_k - \lambda_k = 0$
+                    Therefore $P_m \ket{\phi_k} = 0$
+                \end{calculationbox}
+            \end{calculationbox}
+            
+            For any arbitrary vector $\ket{\phi} = \sum\limits_k c_k \ket{\phi_k}$ the operator takes only the m-th component of the vector.
+            
+            $P_m \ket{\phi}
+            =\sum\limits_k c_k P_m \ket{\phi_k} \sum_k \delta_{mk} \ket{\phi_k}
+            = c_m \ket{\phi_m}
+            $
+        \end{calculationbox}
+
+        Can this operator be expressed in another way?
+        \begin{calculationbox}
+            $P_m = \ket{\phi_m} \bra{\phi_m}$
+
+            $\ket{\phi_m} \bra{\phi_m} \ket{\phi_k} = \delta_{mk} \ket{\phi_m}$
+
+            Same effect, because it takes the k-th component of the vector $\ket{\phi}$
+
+        \end{calculationbox}
+
+        \item  Compute the matrix elements of the momentum operator $\hat{p}$ in the position representation,
+        \begin{align*}
+            \braket{x' | \hat{p} | x},
+        \end{align*}
+        using the momentum representation
+        \begin{align}
+            \braket{p'|p} = \delta(p' - p),
+        \end{align}
+        and the known wavefunction
+        \begin{align*}
+            \braket{x | p} = \frac{\exp{\frac{ipx}{\hbar}}}{\sqrt{2\pi \hbar}}
+        \end{align*}
+
+        \begin{calculationbox}
+            $1 = \int dp \ket{p}\bra{p}$
+
+            $\braket{x'|1 \cdot \hat{p} \dot 1|x} = \int dp' \int dp \braket{x'|p'} \braket{p'|\hat{p} | p} \braket{p|x}$
+
+            \begin{calculationbox}
+                Eigenstade/ eigenvector $\ket{p}$
+
+                $\hat{p}\ket{p} = p \ket{p} \implies \braket{p'| \hat{p} | p} = p\braket{p'| p} = p \delta(p' - p)$
+            \end{calculationbox}
+
+            Plug in
+            $\braket{x' | \hat{p} | x} = \int dp' \int dp \braket{x'|p'} p \delta(p'-p) \braket{p|x} = \int dp \braket{x' | p} p \braket{p | x}$
+
+            plug in wavefunction and adjungated wavefunction ($\braket{p | x} = \frac{\exp{\frac{-ipx}{\hbar}}}{\sqrt{2\pi \hbar}}$)
+
+            $\braket{x' | \hat{p} | x} 
+            = \int dp \frac{\exp{\frac{ipx'}{\hbar}}}{\sqrt{2\pi \hbar}} p \frac{\exp{\frac{-ipx}{\hbar}}}{\sqrt{2\pi \hbar}}
+            = \frac{1}{2 \pi \hbar} \int dp p \exp{\frac{ip (x'-x)}{\hbar}}
+            $
+
+            Using Identity: $\delta(x' - x) = \frac{1}{2\pi\hbar} \int dp \exp{\frac{i p (x' - x)}{\hbar}}$
+
+            the derivation of the Identity $\frac{\partial}{\partial x'} \delta(x' - x) = \frac{1}{2\pi\hbar} \int dp \frac{ip}{\hbar} \exp{\frac{i p (x' - x)}{\hbar}}$
+
+            And therefore $\frac{1}{2\pi \hbar} \in dp p \exp{\frac{i p (x' - x)}{\hbar}} = - i \hbar \frac{partial}{\partial x'} \delta(x' - x)$
+
+            Result $\braket{x' | \hat{p} | x} = - i \hbar \frac{\partial}{\partial x'} \delta(x' - x)$
+
+        \end{calculationbox}
+
+    \end{enumerate}
+
+\end{document}
