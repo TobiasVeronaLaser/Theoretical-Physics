@@ -395,7 +395,7 @@
 
                     $\implies$
 
-                    $\P_m \ket{\phi_m} = 1 \ket{\phi_m}$
+                    $P_m \ket{\phi_m} = 1 \ket{\phi_m}$
                 \end{calculationbox}
 
                 Case 2: $k \neq m$
@@ -467,6 +467,63 @@
 
         \end{calculationbox}
 
+    \end{enumerate}
+
+    \paragraph{Two-dimensional Harmonic Oscillator:} Consider the two-dimensional motion of a particle of mass m in a potential of the form
+    \begin{align*}
+        V(r) = \frac{1}{2} m \omega^2 r^2, \text{ with } r = \sqrt{x^2 + y^2}
+    \end{align*}
+
+    \begin{enumerate}
+        \item Consider the Hamiltonian operator $\hat{H}$ of the system and show that it can be written as a sum
+        \begin{align*}
+            \hat{H} = \hat{H}_x + \hat{H}_y,
+        \end{align*}
+        where $\hat{H}_x$ and $\hat{H}_y$ are Hamiltonians of one-dimensional harmonic oscillators.
+        \begin{calculationbox}
+            \begin{align*}
+                T &= \frac{1}{2m} (p_x^2 + p_y^2)\\
+                V &= \frac{1}{2} m\omega^2 (x^2 + y^2)\\
+                H &= T + V\\
+                H_x &= \frac{1}{2m} p_x^2 + \frac{1}{2} m \omega^2 x^2\\
+                H_y &= \frac{1}{2m} p_y^2 + \frac{1}{2} m \omega^2 y^2\\
+                H &= H_x + H_y\\
+            \end{align*}
+        \end{calculationbox}
+        Introduce the raising and lowering operators $\hat{a}_x, \hat{a}_x^\dagger$ and $\hat{a}_y, \hat{a}_y^\dagger$ for these oscillators and express $\hat{H}$ in terms of them.
+        \begin{calculationbox}
+            \begin{align*}
+                a_x &= \frac{1}{\sqrt{2 \hbar m \omega}} (m\omega x + i p_x)\\
+                a_x^\dagger &= \frac{1}{\sqrt{2 \hbar m \omega}} (m\omega x - i p_x)\\
+                a_y &= \frac{1}{\sqrt{2 \hbar m \omega}} (m\omega y + i p_y)\\
+                a_y^\dagger &= \frac{1}{\sqrt{2 \hbar m \omega}} (m\omega y - i p_y)\\
+            \end{align*}
+            \begin{align*}
+                H_x &= \hbar \omega (a_x^\dagger a_x + \frac{1}{2})\\
+                H_y &= \hbar \omega (a_y^\dagger a_y + \frac{1}{2})
+            \end{align*}
+            \begin{align*}
+                H &= \hbar \omega (a_y^\dagger a_y + \frac{1}{2})
+            \end{align*}
+        \end{calculationbox}
+        
+        What follows for the energy eigenvalues of $\hat{H}$? Express the corresponding energy eigenfunctions using the ground state
+        \begin{align*}
+            \ket{\phi_{00}} = \ket{\phi_0^x, \phi_0^y}
+        \end{align*}
+        (where $\hat{a}_x \ket{\phi_0^x} = 0$ and $\hat{a}_y \ket{\phi_0^y} = 0$) and the raising operators $\hat{a}_x^\dagger$ and $\hat{a}_y^\dagger$.
+        \begin{calculationbox}
+            $n_x, n_y \in \mathbb{N}_0$
+
+            $\implies$
+
+            $E = \hbar \omega (n_x 1 n_y + 1)$
+        \end{calculationbox}
+        \begin{calculationbox}
+            $\ket{\phi_{00} = \ket{\phi_0^x, \phi_0^y}}$        
+
+            with $a_x \ket{\phi_0^x} = 0$, $a_y \ket{\phi_0^y}$
+        \end{calculationbox}
     \end{enumerate}
 
 \end{document}
