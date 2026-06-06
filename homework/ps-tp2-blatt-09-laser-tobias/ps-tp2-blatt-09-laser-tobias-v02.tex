@@ -1,0 +1,783 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header: General study / work / project template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% General packages
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{braket}
+\usepackage{icomma}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% Units / tables / floats / references
+\usepackage[locale = DE,space-before-unit=true,per-mode = symbol]{siunitx}
+\usepackage{booktabs,multirow}
+\usepackage{placeins}
+\usepackage[natbib,abbreviate=true,doi=false,style=numeric-comp,giveninits=true,sorting=none]{biblatex}
+\usepackage{csquotes}
+
+% Optional math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\op}[1]{\hat{#1}}
+\newcommand{\Eone}{E_1^{(0)}}
+\newcommand{\Etwo}{E_2^{(0)}}
+\newcommand{\DeltaE}{\Delta}
+
+% Box styles
+\newtcolorbox{calculationbox}[1][]{
+    title=Calculation,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{solutionbox}[1][]{
+    title=Solution,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{answerbox}[1][]{
+    title=Answer,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    title=Notes,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{sidecalcbox}[1][]{
+    title=Side Calculation,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    \title{Theoretische Physik 2 -- Blatt 09}
+    \author{Tobias Laser}
+    \date{\today}
+    \maketitle
+    \vfill
+    \thispagestyle{empty}
+    \newpage
+
+    \pagenumbering{arabic}
+
+    % ================================================================
+    \paragraph{21. Zeitunabhängige Störungstheorie und ein 2-Niveau-System:}
+
+    Wir betrachten ein 2-Niveau-System mit Hamiltonoperator
+    \begin{align*}
+        \op H
+        =
+        \op H_0 + \lambda \op V
+        =
+        \begin{pmatrix}
+            E_1^{(0)} & 0 \\
+            0 & E_2^{(0)}
+        \end{pmatrix}
+        +
+        \lambda
+        \begin{pmatrix}
+            1 & 1 \\
+            1 & 1
+        \end{pmatrix}.
+    \end{align*}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Finden Sie die Eigenzustände von $\op H_0$ (ohne Rechnung), sowie eine exakte Lösung für die Eigenwerte $E_1,E_2$ und Eigenzustände $\ket{\psi_1},\ket{\psi_2}$ des gesamten Hamiltonoperators $\op H$.
+
+        \begin{calculationbox}
+            Da $\op H_0$ bereits diagonal ist, sind die Eigenzustände von $\op H_0$ direkt die beiden Standardbasiszustände. Für den gesamten Hamiltonoperator addiert die Störung auf jedes Matrixelement den Beitrag $\lambda$ dort, wo in $V$ eine $1$ steht. Deshalb lautet die Matrix von $\op H$
+            \begin{align*}
+                \op H
+                =
+                \begin{pmatrix}
+                    E_1^{(0)}+\lambda & \lambda\\
+                    \lambda & E_2^{(0)}+\lambda
+                \end{pmatrix}.
+            \end{align*}
+
+            \begin{solutionbox}[title=Ungestörte Eigenzustände]
+                \begin{align*}
+                    \ket{1}=\begin{pmatrix}1\\0\end{pmatrix},
+                    \qquad
+                    \ket{2}=\begin{pmatrix}0\\1\end{pmatrix},
+                    \qquad
+                    \op H_0\ket{1}=E_1^{(0)}\ket{1},
+                    \qquad
+                    \op H_0\ket{2}=E_2^{(0)}\ket{2}.
+                \end{align*}
+            \end{solutionbox}
+
+            \begin{calculationbox}[title=Exakte Eigenwerte]
+                Für die exakten Eigenwerte lösen wir die charakteristische Gleichung. Dazu setzen wir
+                \begin{align*}
+                    \det(\op H-E\mathbb 1)=0.
+                \end{align*}
+                Damit folgt
+                \begin{align*}
+                    0
+                    &=
+                    \det
+                    \begin{pmatrix}
+                        E_1^{(0)}+\lambda-E & \lambda\\
+                        \lambda & E_2^{(0)}+\lambda-E
+                    \end{pmatrix}\\
+                    &=
+                    (E_1^{(0)}+\lambda-E)(E_2^{(0)}+\lambda-E)-\lambda^2.
+                \end{align*}
+                Um die quadratische Gleichung übersichtlich zu schreiben, verwenden wir
+                \begin{align*}
+                    \bar E^{(0)}=\frac{E_1^{(0)}+E_2^{(0)}}{2},
+                    \qquad
+                    \Delta=E_1^{(0)}-E_2^{(0)}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Exakte Eigenwerte]
+                    \begin{align*}
+                        E_{\pm}
+                        =
+                        \bar E^{(0)}+\lambda
+                        \pm
+                        \sqrt{\left(\frac{\Delta}{2}\right)^2+\lambda^2}.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Exakte Eigenzustände]
+                Wir schreiben einen Eigenzustand als Linearkombination der Basiszustände:
+                \begin{align*}
+                    \ket{\psi_\pm}=a_\pm\ket{1}+b_\pm\ket{2}.
+                \end{align*}
+                Die erste Zeile der Eigenwertgleichung $(\op H-E_\pm)\ket{\psi_\pm}=0$ liefert
+                \begin{align*}
+                    (E_1^{(0)}+\lambda-E_\pm)a_\pm+\lambda b_\pm=0.
+                \end{align*}
+                Daher kann man
+                \begin{align*}
+                    b_\pm=\frac{E_\pm-E_1^{(0)}-\lambda}{\lambda}a_\pm
+                \end{align*}
+                wählen. Wir definieren den Quotienten
+                \begin{align*}
+                    q_\pm
+                    :=
+                    \frac{b_\pm}{a_\pm}
+                    =
+                    \frac{E_\pm-E_1^{(0)}-\lambda}{\lambda}
+                    =
+                    \frac{-\Delta/2\pm\sqrt{(\Delta/2)^2+\lambda^2}}{\lambda}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Exakte Eigenzustände]
+                    \begin{align*}
+                        \ket{\psi_\pm}
+                        =
+                        \frac{1}{\sqrt{1+q_\pm^2}}
+                        \left(\ket{1}+q_\pm\ket{2}\right),
+                        \qquad
+                        q_\pm=
+                        \frac{-\Delta/2\pm\sqrt{(\Delta/2)^2+\lambda^2}}{\lambda}.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Nehmen Sie an, dass $\lambda \ll \abs{E_1^{(0)}-E_2^{(0)}}$, und berechnen Sie mit zeitunabhängiger Störungstheorie die Energieeigenwerte in erster und zweiter Ordnung in $\lambda$, sowie die Energieeigenzustände bis zu erster Ordnung in $\lambda$. Vergleichen Sie dieses Ergebnis mit (a).
+
+        \begin{calculationbox}
+            Hier ist der Abstand der ungestörten Energien groß gegenüber der Störung. Deshalb ist nicht-entartete Störungstheorie anwendbar. Wir setzen wieder
+            \begin{align*}
+                \Delta=E_1^{(0)}-E_2^{(0)}.
+            \end{align*}
+            Die relevanten Matrixelemente der Störung sind
+            \begin{align*}
+                V_{11}=V_{22}=V_{12}=V_{21}=1.
+            \end{align*}
+
+            \begin{calculationbox}[title=Energien bis zweiter Ordnung]
+                Für einen nicht-entarteten Zustand $\ket n$ gilt
+                \begin{align*}
+                    E_n
+                    =
+                    E_n^{(0)}
+                    +\lambda V_{nn}
+                    +\lambda^2\sum_{m\neq n}
+                    \frac{\abs{V_{mn}}^2}{E_n^{(0)}-E_m^{(0)}}
+                    +\mathcal O(\lambda^3).
+                \end{align*}
+                Für $\ket 1$ erhalten wir
+                \begin{align*}
+                    E_1
+                    &=
+                    E_1^{(0)}
+                    +\lambda V_{11}
+                    +\lambda^2\frac{\abs{V_{21}}^2}{E_1^{(0)}-E_2^{(0)}}
+                    +\mathcal O(\lambda^3)\\
+                    &=
+                    E_1^{(0)}
+                    +\lambda
+                    +\frac{\lambda^2}{\Delta}
+                    +\mathcal O(\lambda^3).
+                \end{align*}
+                Für $\ket 2$ erhalten wir analog
+                \begin{align*}
+                    E_2
+                    &=
+                    E_2^{(0)}
+                    +\lambda V_{22}
+                    +\lambda^2\frac{\abs{V_{12}}^2}{E_2^{(0)}-E_1^{(0)}}
+                    +\mathcal O(\lambda^3)\\
+                    &=
+                    E_2^{(0)}
+                    +\lambda
+                    -\frac{\lambda^2}{\Delta}
+                    +\mathcal O(\lambda^3).
+                \end{align*}
+
+                \begin{solutionbox}[title=Energieeigenwerte für $\lambda\ll\abs\Delta$]
+                    \begin{align*}
+                        E_1
+                        =
+                        E_1^{(0)}+\lambda+\frac{\lambda^2}{\Delta}
+                        +\mathcal O(\lambda^3),
+                        \qquad
+                        E_2
+                        =
+                        E_2^{(0)}+\lambda-\frac{\lambda^2}{\Delta}
+                        +\mathcal O(\lambda^3).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Eigenzustände bis erster Ordnung]
+                Für die Korrektur eines nicht-entarteten Eigenzustands gilt
+                \begin{align*}
+                    \ket{n^{(1)}}
+                    =
+                    \lambda
+                    \sum_{m\neq n}
+                    \frac{V_{mn}}{E_n^{(0)}-E_m^{(0)}}\ket m.
+                \end{align*}
+                Also folgt für $\ket1$
+                \begin{align*}
+                    \ket{\psi_1}
+                    =
+                    \ket1+\lambda\frac{V_{21}}{E_1^{(0)}-E_2^{(0)}}\ket2
+                    +\mathcal O(\lambda^2)
+                    =
+                    \ket1+\frac{\lambda}{\Delta}\ket2+\mathcal O(\lambda^2).
+                \end{align*}
+                Für $\ket2$ folgt
+                \begin{align*}
+                    \ket{\psi_2}
+                    =
+                    \ket2+\lambda\frac{V_{12}}{E_2^{(0)}-E_1^{(0)}}\ket1
+                    +\mathcal O(\lambda^2)
+                    =
+                    \ket2-\frac{\lambda}{\Delta}\ket1+\mathcal O(\lambda^2).
+                \end{align*}
+
+                \begin{solutionbox}[title=Eigenzustände bis erster Ordnung]
+                    \begin{align*}
+                        \ket{\psi_1}
+                        =
+                        \ket1+\frac{\lambda}{\Delta}\ket2+\mathcal O(\lambda^2),
+                        \qquad
+                        \ket{\psi_2}
+                        =
+                        \ket2-\frac{\lambda}{\Delta}\ket1+\mathcal O(\lambda^2).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Vergleich mit der exakten Lösung]
+                Für $\abs\lambda\ll\abs\Delta$ wird die Wurzel aus Teil (a) entwickelt. Für $\Delta>0$ gilt
+                \begin{align*}
+                    \sqrt{\left(\frac{\Delta}{2}\right)^2+\lambda^2}
+                    &=
+                    \frac{\Delta}{2}\sqrt{1+\frac{4\lambda^2}{\Delta^2}}\\
+                    &=
+                    \frac{\Delta}{2}
+                    \left(1+\frac{2\lambda^2}{\Delta^2}+\mathcal O(\lambda^4)\right)\\
+                    &=
+                    \frac{\Delta}{2}+\frac{\lambda^2}{\Delta}+\mathcal O(\lambda^4).
+                \end{align*}
+                Einsetzen in $E_\pm$ liefert genau die Energien aus der Störungstheorie. Die Entwicklung der exakten Eigenzustände liefert ebenfalls dieselben ersten Ordnungen.
+
+                \begin{solutionbox}[title=Vergleich]
+                    \begin{align*}
+                        E_+=E_1^{(0)}+\lambda+\frac{\lambda^2}{\Delta}+\mathcal O(\lambda^4),
+                        \qquad
+                        E_-=E_2^{(0)}+\lambda-\frac{\lambda^2}{\Delta}+\mathcal O(\lambda^4).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Nehmen Sie an, dass $E_1^{(0)}$ und $E_2^{(0)}$ fast entartet sind, d.h. $\abs{E_1^{(0)}-E_2^{(0)}}\ll \lambda$, und berechnen Sie die Energieeigenwerte bis zu erster Ordnung in $\lambda$, sowie die Energieeigenzustände nullter Ordnung mit Störungstheorie im Fall $E_1^{(0)}=E_2^{(0)}$. Vergleichen Sie das Ergebnis mit der exakten Lösung von (a).
+
+        \begin{calculationbox}
+            Wenn die ungestörten Energien entartet oder fast entartet sind, ist die nicht-entartete Formel nicht geeignet, weil die Nenner klein werden. Im exakt entarteten Fall setzen wir
+            \begin{align*}
+                E_1^{(0)}=E_2^{(0)}=:E^{(0)}.
+            \end{align*}
+            Dann muss die Störung im entarteten Unterraum diagonalisiert werden:
+            \begin{align*}
+                V=
+                \begin{pmatrix}
+                    1&1\\
+                    1&1
+                \end{pmatrix}.
+            \end{align*}
+
+            \begin{calculationbox}[title=Diagonalisierung im entarteten Unterraum]
+                Für den symmetrischen Zustand gilt
+                \begin{align*}
+                    V\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}
+                    =
+                    \frac{1}{\sqrt2}\begin{pmatrix}2\\2\end{pmatrix}
+                    =
+                    2\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}.
+                \end{align*}
+                Für den antisymmetrischen Zustand gilt
+                \begin{align*}
+                    V\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}
+                    =
+                    \frac{1}{\sqrt2}\begin{pmatrix}0\\0\end{pmatrix}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Richtige Zustände nullter Ordnung]
+                    \begin{align*}
+                        \ket{\psi_+^{(0)}}=\frac{1}{\sqrt2}(\ket1+\ket2),
+                        \qquad
+                        \ket{\psi_-^{(0)}}=\frac{1}{\sqrt2}(\ket1-\ket2).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Energien erster Ordnung]
+                Die Energieverschiebungen erster Ordnung sind die Eigenwerte von $\lambda V$. Also erhält der symmetrische Zustand die Verschiebung $2\lambda$ und der antisymmetrische Zustand die Verschiebung $0$.
+
+                \begin{solutionbox}[title=Energien im entarteten Fall]
+                    \begin{align*}
+                        E_+=E^{(0)}+2\lambda,
+                        \qquad
+                        E_-=E^{(0)}.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Vergleich mit der exakten Lösung]
+                In der exakten Lösung aus Teil (a) setzen wir $\Delta=0$. Dann ist
+                \begin{align*}
+                    E_\pm=E^{(0)}+\lambda\pm\abs\lambda.
+                \end{align*}
+                Für $\lambda>0$ ergibt das
+                \begin{align*}
+                    E_+=E^{(0)}+2\lambda,
+                    \qquad
+                    E_-=E^{(0)}.
+                \end{align*}
+                Das stimmt mit der entarteten Störungstheorie überein. Der Unterschied zur nicht-entarteten Rechnung ist, dass man bei Entartung zuerst die Störung im entarteten Unterraum diagonalisiert.
+
+                \begin{solutionbox}[title=Vergleich]
+                    \begin{align*}
+                        \Delta=0
+                        \quad\Longrightarrow\quad
+                        E_\pm=E^{(0)}+\lambda\pm\abs\lambda.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+    \end{enumerate}
+
+    % ================================================================
+    \paragraph{22. Magnetische Dipolwechselwirkung:}
+
+    Wir betrachten zwei Spin-$\frac12$-Teilchen mit magnetischem Moment
+    \begin{align*}
+        \vec M^{(i)}=\gamma\vec S^{(i)},
+        \qquad i=1,2,
+    \end{align*}
+    in einem externen Magnetfeld
+    \begin{align*}
+        \vec B=B_0\vec e_z.
+    \end{align*}
+    Der Hamiltonoperator des Systems ist
+    \begin{align*}
+        \op H_0=-\vec B\cdot(\vec M^{(1)}+\vec M^{(2)}).
+    \end{align*}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Zeigen Sie, dass der Hamiltonoperator $\op H_0$ diagonal in der Produktbasis
+        \begin{align*}
+            \ket{++},\quad \ket{+-},\quad \ket{-+},\quad \ket{--}
+        \end{align*}
+        ist und geben Sie die zugehörigen Energieeigenwerte an. Gibt es entartete Energieniveaus? Es ist nützlich, die Frequenz $\omega_0=\gamma B_0$ zu definieren.
+
+        \begin{calculationbox}
+            Da das Magnetfeld in $z$-Richtung zeigt, enthält $\op H_0$ nur $z$-Komponenten der Spins. Mit $\omega_0=\gamma B_0$ gilt
+            \begin{align*}
+                \op H_0
+                =
+                -B_0\gamma(\op S_z^{(1)}+\op S_z^{(2)})
+                =
+                -\omega_0(\op S_z^{(1)}+\op S_z^{(2)}).
+            \end{align*}
+            Die Produktbasis besteht aus Eigenzuständen von $\op S_z^{(1)}$ und $\op S_z^{(2)}$. Deshalb ist $\op H_0$ in dieser Basis diagonal.
+
+            \begin{calculationbox}[title=Energieeigenwerte]
+                Für Spin-$\frac12$ gilt
+                \begin{align*}
+                    \op S_z\ket+=\frac{\hbar}{2}\ket+,
+                    \qquad
+                    \op S_z\ket-=-\frac{\hbar}{2}\ket-.
+                \end{align*}
+                Daher
+                \begin{align*}
+                    \op H_0\ket{++}
+                    &=-\omega_0\left(\frac{\hbar}{2}+\frac{\hbar}{2}\right)\ket{++}
+                    =-\hbar\omega_0\ket{++},\\
+                    \op H_0\ket{+-}
+                    &=-\omega_0\left(\frac{\hbar}{2}-\frac{\hbar}{2}\right)\ket{+-}
+                    =0,\\
+                    \op H_0\ket{-+}
+                    &=-\omega_0\left(-\frac{\hbar}{2}+\frac{\hbar}{2}\right)\ket{-+}
+                    =0,\\
+                    \op H_0\ket{--}
+                    &=-\omega_0\left(-\frac{\hbar}{2}-\frac{\hbar}{2}\right)\ket{--}
+                    =+\hbar\omega_0\ket{--}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Ungestörtes Spektrum]
+                    \begin{align*}
+                        E_{++}^{(0)}=-\hbar\omega_0,
+                        \qquad
+                        E_{+-}^{(0)}=0,
+                        \qquad
+                        E_{-+}^{(0)}=0,
+                        \qquad
+                        E_{--}^{(0)}=+\hbar\omega_0.
+                    \end{align*}
+                \end{solutionbox}
+                Das Niveau $E=0$ ist zweifach entartet, weil die Zustände $\ket{+-}$ und $\ket{-+}$ dieselbe Energie besitzen.
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Die Teilchen sind sich so nahe, dass die Dipol-Dipol-Wechselwirkung der beiden magnetischen Momente nicht vernachlässigt werden kann. Diese wird durch einen Hamiltonoperator
+        \begin{align*}
+            \op H_1
+            =
+            \frac{\mu_0}{4\pi}\frac{1}{r^3}
+            \left[
+                \vec M^{(1)}\cdot \vec M^{(2)}
+                -3(\vec M^{(1)}\cdot\vec n)(\vec M^{(2)}\cdot\vec n)
+            \right]
+        \end{align*}
+        beschrieben, wobei $r$ den Abstand zwischen den Teilchen und
+        \begin{align*}
+            \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)
+        \end{align*}
+        den Einheitsvektor in diese Richtung bezeichnet. Der Abstand $r$ sei groß genug, sodass $\op H_1$ als Störungsterm behandelt werden kann. Berechnen Sie zuerst die Verschiebung der Energieniveaus $\ket{++}$, $\ket{--}$ in erster Ordnung von $\op H_1$. Zur Berechnung der relevanten Matrixelemente $\bra{\pm\pm}\op H_1\ket{\pm\pm}$ müssen nur die Terme in $\op H_1$ betrachtet werden, die proportional zu $S_z^{(1)}S_z^{(2)}$ sind. Warum? Es ist nützlich, die Frequenz
+        \begin{align*}
+            \Omega=\frac{\mu_0\gamma^2\hbar}{4\pi r^3}
+        \end{align*}
+        zu definieren.
+
+        \begin{calculationbox}
+            Wir setzen $\vec M^{(i)}=\gamma\vec S^{(i)}$ ein. Dann wird
+            \begin{align*}
+                \op H_1
+                =
+                \frac{\mu_0\gamma^2}{4\pi r^3}
+                \left[
+                    \vec S^{(1)}\cdot\vec S^{(2)}
+                    -3(\vec S^{(1)}\cdot\vec n)(\vec S^{(2)}\cdot\vec n)
+                \right].
+            \end{align*}
+            Mit
+            \begin{align*}
+                \Omega=\frac{\mu_0\gamma^2\hbar}{4\pi r^3}
+            \end{align*}
+            gilt also
+            \begin{align*}
+                \frac{\mu_0\gamma^2}{4\pi r^3}=\frac{\Omega}{\hbar}.
+            \end{align*}
+
+            \begin{calculationbox}[title=Warum nur $S_z^{(1)}S_z^{(2)}$ beiträgt]
+                Die Zustände $\ket{++}$ und $\ket{--}$ sind Eigenzustände von $S_z^{(1)}$ und $S_z^{(2)}$. Ein diagonales Matrixelement wie $\bra{++}\op H_1\ket{++}$ ist nur dann ungleich null, wenn der Operator den Zustand nicht in einen orthogonalen Zustand überführt. Die Operatoren $S_x$ und $S_y$ enthalten Leiteroperatoren,
+                \begin{align*}
+                    S_x=\frac12(S_++S_-),
+                    \qquad
+                    S_y=\frac{1}{2i}(S_+-S_-),
+                \end{align*}
+                und ändern Spinrichtungen. Daher liefern sie bei diesen diagonalen Matrixelementen keinen Beitrag. Es bleibt nur der Anteil proportional zu $S_z^{(1)}S_z^{(2)}$.
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Relevanter Anteil des Störoperators]
+                Aus
+                \begin{align*}
+                    \vec S^{(1)}\cdot\vec S^{(2)}
+                    &=
+                    S_x^{(1)}S_x^{(2)}+S_y^{(1)}S_y^{(2)}+S_z^{(1)}S_z^{(2)},\\
+                    (\vec S^{(1)}\cdot\vec n)(\vec S^{(2)}\cdot\vec n)
+                    &\supset
+                    \cos^2\theta\,S_z^{(1)}S_z^{(2)}
+                \end{align*}
+                folgt
+                \begin{align*}
+                    \op H_1
+                    \supset
+                    \frac{\Omega}{\hbar}
+                    (1-3\cos^2\theta)S_z^{(1)}S_z^{(2)}.
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Energieverschiebungen von $\ket{++}$ und $\ket{--}$]
+                Für beide Zustände ist
+                \begin{align*}
+                    \bra{++}S_z^{(1)}S_z^{(2)}\ket{++}
+                    &=
+                    \frac{\hbar}{2}\frac{\hbar}{2}
+                    =
+                    \frac{\hbar^2}{4},\\
+                    \bra{--}S_z^{(1)}S_z^{(2)}\ket{--}
+                    &=
+                    \left(-\frac{\hbar}{2}\right)
+                    \left(-\frac{\hbar}{2}\right)
+                    =
+                    \frac{\hbar^2}{4}.
+                \end{align*}
+                Also folgt
+                \begin{align*}
+                    \Delta E_{++}^{(1)}
+                    =
+                    \Delta E_{--}^{(1)}
+                    =
+                    \frac{\Omega}{\hbar}(1-3\cos^2\theta)\frac{\hbar^2}{4}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Verschiebung der äußeren Niveaus]
+                    \begin{align*}
+                        \Delta E_{++}^{(1)}
+                        =
+                        \Delta E_{--}^{(1)}
+                        =
+                        \frac{\hbar\Omega}{4}(1-3\cos^2\theta).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Berechnen Sie nun die Verschiebung der Energieniveaus $\ket{+-}$, $\ket{-+}$ in erster Ordnung von $\op H_1$ und bestimmen Sie die zugehörigen Spinwellenfunktionen. Zur Berechnung der relevanten Matrixelemente $\bra{\pm\mp}\op H_1\ket{\pm\mp}$ bzw. $\bra{\pm\mp}\op H_1\ket{\mp\pm}$ müssen nur die Terme in $\op H_1$ betrachtet werden, die proportional zu $S_z^{(1)}S_z^{(2)}$ bzw. $S_x^{(1)}S_x^{(2)}$, $S_y^{(1)}S_y^{(2)}$ sind. Warum?
+
+        \begin{calculationbox}
+            Die Zustände $\ket{+-}$ und $\ket{-+}$ sind bezüglich $\op H_0$ entartet. Daher müssen wir die Störung im entarteten Unterraum
+            \begin{align*}
+                \mathcal H_0=\operatorname{span}\{\ket{+-},\ket{-+}\}
+            \end{align*}
+            diagonalisisieren.
+
+            \begin{calculationbox}[title=Warum genau diese Terme beitragen]
+                Für diagonale Matrixelemente $\bra{+-}\op H_1\ket{+-}$ und $\bra{-+}\op H_1\ket{-+}$ muss der Zustand unverändert bleiben. Dafür trägt nur $S_z^{(1)}S_z^{(2)}$ bei. Für außerdiagonale Matrixelemente wie $\bra{+-}\op H_1\ket{-+}$ müssen beide Spins gleichzeitig umgedreht werden. Genau diese Kopplung liefern $S_x^{(1)}S_x^{(2)}$ und $S_y^{(1)}S_y^{(2)}$. Terme mit nur einem $S_z$ und einem transversalen Spinoperator ändern höchstens einen Spin und geben wegen Orthogonalität keinen Beitrag.
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Diagonale Matrixelemente]
+                Der relevante diagonale Anteil ist
+                \begin{align*}
+                    \frac{\Omega}{\hbar}(1-3\cos^2\theta)S_z^{(1)}S_z^{(2)}.
+                \end{align*}
+                Für $\ket{+-}$ gilt
+                \begin{align*}
+                    \bra{+-}S_z^{(1)}S_z^{(2)}\ket{+-}
+                    =
+                    \frac{\hbar}{2}\left(-\frac{\hbar}{2}\right)
+                    =
+                    -\frac{\hbar^2}{4}.
+                \end{align*}
+                Dasselbe gilt für $\ket{-+}$. Wir definieren zur Abkürzung
+                \begin{align*}
+                    B:=\frac{\hbar\Omega}{4}(3\cos^2\theta-1).
+                \end{align*}
+
+                \begin{solutionbox}[title=Diagonale Matrixelemente]
+                    \begin{align*}
+                        \bra{+-}\op H_1\ket{+-}
+                        =
+                        \bra{-+}\op H_1\ket{-+}
+                        =
+                        B,
+                        \qquad
+                        B=\frac{\hbar\Omega}{4}(3\cos^2\theta-1).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Außerdiagonale Matrixelemente]
+                Die Koeffizienten vor den relevanten Operatoren sind
+                \begin{align*}
+                    S_x^{(1)}S_x^{(2)} &: \quad 1-3\sin^2\theta\cos^2\varphi,\\
+                    S_y^{(1)}S_y^{(2)} &: \quad 1-3\sin^2\theta\sin^2\varphi.
+                \end{align*}
+                Außerdem gilt
+                \begin{align*}
+                    \bra{+-}S_x^{(1)}S_x^{(2)}\ket{-+}
+                    =
+                    \frac{\hbar^2}{4},
+                    \qquad
+                    \bra{+-}S_y^{(1)}S_y^{(2)}\ket{-+}
+                    =
+                    \frac{\hbar^2}{4}.
+                \end{align*}
+                Deshalb
+                \begin{align*}
+                    \bra{+-}\op H_1\ket{-+}
+                    &=
+                    \frac{\Omega}{\hbar}\frac{\hbar^2}{4}
+                    \left[
+                        1-3\sin^2\theta\cos^2\varphi
+                        +1-3\sin^2\theta\sin^2\varphi
+                    \right]\\
+                    &=
+                    \frac{\hbar\Omega}{4}(2-3\sin^2\theta)\\
+                    &=
+                    \frac{\hbar\Omega}{4}(3\cos^2\theta-1)
+                    =B.
+                \end{align*}
+
+                \begin{solutionbox}[title=Außerdiagonale Matrixelemente]
+                    \begin{align*}
+                        \bra{+-}\op H_1\ket{-+}
+                        =
+                        \bra{-+}\op H_1\ket{+-}
+                        =
+                        B.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Störmatrix und Diagonalisierung]
+                Im entarteten Unterraum lautet die effektive Störmatrix
+                \begin{align*}
+                    H_1^{\mathrm{eff}}
+                    =
+                    \begin{pmatrix}
+                        B&B\\
+                        B&B
+                    \end{pmatrix}.
+                \end{align*}
+                Die Matrix hat den symmetrischen Eigenvektor mit Eigenwert $2B$ und den antisymmetrischen Eigenvektor mit Eigenwert $0$.
+
+                \begin{solutionbox}[title=Aufgespaltene Zustände und Verschiebungen]
+                    \begin{align*}
+                        \ket{\psi_s}
+                        =
+                        \frac{1}{\sqrt2}(\ket{+-}+\ket{-+}),
+                        \qquad
+                        \Delta E_s^{(1)}
+                        =
+                        2B
+                        =
+                        \frac{\hbar\Omega}{2}(3\cos^2\theta-1),\\[0.6em]
+                        \ket{\psi_a}
+                        =
+                        \frac{1}{\sqrt2}(\ket{+-}-\ket{-+}),
+                        \qquad
+                        \Delta E_a^{(1)}=0.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Skizzieren Sie, wie sich das Energiespektrum durch die Wechselwirkung verschiebt.
+
+        \begin{calculationbox}
+            Ohne Wechselwirkung gibt es die Niveaus $-\hbar\omega_0$, $0$ und $+\hbar\omega_0$, wobei das mittlere Niveau zweifach entartet ist. Aus den vorherigen Teilaufgaben folgt für die Verschiebung der äußeren Niveaus
+            \begin{align*}
+                A:=\frac{\hbar\Omega}{4}(1-3\cos^2\theta).
+            \end{align*}
+            Das mittlere Niveau spaltet in einen symmetrischen Zustand mit Verschiebung $-2A$ und einen antisymmetrischen Zustand mit Verschiebung $0$ auf.
+
+            \begin{solutionbox}[title=Gestörtes Spektrum bis erster Ordnung]
+                \begin{align*}
+                    E_{++}
+                    &=
+                    -\hbar\omega_0
+                    +
+                    \frac{\hbar\Omega}{4}(1-3\cos^2\theta),\\
+                    E_{--}
+                    &=
+                    +\hbar\omega_0
+                    +
+                    \frac{\hbar\Omega}{4}(1-3\cos^2\theta),\\
+                    E_s
+                    &=
+                    \frac{\hbar\Omega}{2}(3\cos^2\theta-1),\\
+                    E_a
+                    &=
+                    0.
+                \end{align*}
+            \end{solutionbox}
+
+            \begin{calculationbox}[title=Beschreibung der Skizze]
+                Für die Skizze zeichnet man links zuerst die ungestörten Energieniveaus:
+                \begin{align*}
+                    -\hbar\omega_0,
+                    \qquad
+                    0 \text{ (zweifach entartet)},
+                    \qquad
+                    +\hbar\omega_0.
+                \end{align*}
+                Rechts zeichnet man nach Einschalten von $\op H_1$ die verschobenen Niveaus: $\ket{++}$ und $\ket{--}$ verschieben sich beide um $A$. Das vorher entartete Niveau bei $0$ spaltet auf in $E_s=-2A$ und $E_a=0$. Das Vorzeichen der Verschiebung hängt vom Winkel $\theta$ ab.
+
+                \begin{solutionbox}[title=Magischer Winkel]
+                    \begin{align*}
+                        3\cos^2\theta-1=0
+                        \quad\Longleftrightarrow\quad
+                        \theta=\arccos\left(\frac{1}{\sqrt3}\right).
+                    \end{align*}
+                \end{solutionbox}
+                Bei diesem Winkel verschwinden die ersten Ordnungsverschiebungen.
+            \end{calculationbox}
+        \end{calculationbox}
+    \end{enumerate}
+
+\end{document}

@@ -1,0 +1,193 @@
+% Header: General study / work / project template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+% General packages
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{braket}
+\usepackage{icomma}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Language: choose one
+% \usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+
+% Units / tables / floats / references
+\usepackage[locale = UK,space-before-unit=true,per-mode = symbol]{siunitx}
+\usepackage{booktabs,multirow}
+\usepackage{placeins}
+\usepackage[natbib,abbreviate=true,doi=false,style=numeric-comp,giveninits=true,sorting=none]{biblatex}
+\usepackage{csquotes}
+
+% Optional bibliography
+% \addbibresource{references.bib}
+
+% Graphics paths
+\graphicspath{{Bilder/} {images/} {figures/} {chapters/}}
+
+% Optional math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+%\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ol}[1]{\overline{#1}}
+
+% Optional units
+\DeclareSIUnit{\dBm}{dBm}
+
+% Box styles
+\newtcolorbox{calculationbox}[1][]{
+    title=Calculation,
+    breakable,
+    #1
+}
+
+\newtcolorbox{solutionbox}[1][]{
+    title=Solution,
+    breakable,
+    #1
+}
+
+\newtcolorbox{answerbox}[1][]{
+    title=Answer,
+    breakable,
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    title=Notes,
+    breakable,
+    #1
+}
+
+\newtcolorbox{sidecalcbox}[1][]{
+    title=Side Calculation,
+    breakable,
+    #1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    \title{Theoretical Physics 2 - Blatt 06}
+    \author{Tobias Laser}
+    \date{\today}
+    \maketitle
+    \vfill
+    \thispagestyle{empty}
+
+    \pagenumbering{arabic}
+
+    % ================================================================
+    \paragraph{19. Zeitentwicklung und Messungen eines Spins mit $s = 1 / 2$}:
+    
+    Wir betrachten ein Spin-$\frac{1}{2}$-Teilchen, das sich zum Zeitpunkt $t = 0$ im  Zustand $\ket{\psi(t = 0)} = \ket{\downarrow}$ befindet. Die Zeitentwicklung wird durch den Hamiltonoperator
+    \begin{align*}
+        \operatorname{H} = \frac{\hbar \omega}{2} \sigma_x,
+    \end{align*} 
+    beschrieben.
+    \begin{enumerate}
+        \item Es wird zum Zeitpunkt $t_1 = \frac{\pi}{2 \omega}$ eine Messung des Operators $\sigma_z$ durchgeführt. In welchem Zustand befindet sich das Teilchen zu diesem Zeitpunkt? Welche Messergebnisse sind möglich, und mit welchen Wahrscheinlichkeiten tretten sie auf?
+        \item Direkt nach der Messung entwickelt sich das System für ein Zeitintervall $\Delta t = \frac{\pi}{2\omega}$ weiter. Zum Zeitpunkt $t_2 = t_1 + \delta t = \frac{\pi}{\omega}$ wird erneut $\sigma_z$ gemessen. Abhängig vom Messergebnis aus Teilaufgabe (1): In welchem Zustand befindet sich das Teilchen zum Zeitpunkt $t_2$, und mit welchen Wahrscheinlichkeiten treten die jeweiligen Messergebnisse auf?
+        \item Im Gegensatz zu den vorherigen Teilaufgaben entwickelt sich das Teilchen nun ungestört (d.h. ohne Messung bei $t=t_1$) bis zum Zeitpunkt $t_2$. In welchem Zustand befindet sich das Teilchen zu diesem Zeitpunkt? Welche Wahrscheinlichkeiten ergeben sich bei einer Messung von $\sigma_z$ zum Zeitpunkt $t_2$? Begründen Sie die Unterschiede zu Teilaufgabe (2).
+    \end{enumerate}
+
+    \paragraph{20. System mit Drehimpuls $l=1$}:
+
+    Betrachten Sie ein System mit Drehiumpuls $l=1$. Die drei Vektoren $\ket{+1}, \ket{0}, \ket{-1}$, Eigenvektoren von $\operatorname{L}_z$ zu den Eigenwerten $\hbar, 0, -\hbar$, bilden eine Basis des zugehörigen Zustandsraumes. Für diese Eigenvektoren gilt
+    \begin{align*}
+        \operatorname{L}_\pm\ket{m} = \hbar \sqrt{2} \ket{m \pm 1}\\
+        \operatorname{L}_+\ket{1} = \operatorname{L}_- \ket{- 1} = 0\\
+    \end{align*}
+    Dijeses System besitzt ein elektrisches Quadrupolmoment und befinde sich in einem elektrischen Feldgradienten. Der Hamiltonoperator ist gegeben durch
+    \begin{align*}
+        \operatorname{H} = \frac{\omega_0}{\hbar} (\operatorname{L}_u^2 - L_v^2),
+    \end{align*}
+    wobei $\operatorname{L}_u$ und $\operatorname{L}_v$ die Komponenten von $\operatorname{L}$ entlang der Diagonalen $u$ und $v$ der $xz$-Ebende sind; $\omega_0$ ist eine reelle Konstante.
+    \begin{enumerate}
+        \item Geben Sie die Matrixdarstellung für $\operatorname{H}$ in der Basis $\{\ket{+1}, \ket{0}\ket{-1}\}$ an. Wie lauten die stationären Zustände des Systems und ihre Energieeigenwerte? Schreiben Sie diese Zustände als $\ket{E_1}, \ket{E_2}, \ket{E_3}$, mit $E_1 \geq E_2 \geq E_3$.
+        \begin{calculationbox}
+            \begin{calculationbox}
+                \begin{align*}
+                    \operatorname{H}&=\frac{\omega_0}{\hbar} \left(
+                        \operatorname{}
+                    \right)
+                    \\
+                    &=
+                    \frac{\omega_0}{\hbar} \left( 
+                        \hbar
+                        \begin{pmatrix}
+                            1&0&0\\
+                            0&0&0\\
+                            0&0&-1\\
+                        \end{pmatrix}
+                        \frac{\hbar}{\sqrt{2}}
+                        \begin{pmatrix}
+                            0&1&0\\
+                            1&0&1\\
+                            0&1&0\\
+                        \end{pmatrix}
+                        + \frac{\hbar}{\sqrt{2}}
+                        \begin{pmatrix}
+                            0&1&0\\
+                            1&0&1\\
+                            0&1&0\\
+                        \end{pmatrix}
+                        \hbar
+                        \begin{pmatrix}
+                            1&0&0\\
+                            0&0&0\\
+                            0&0&-1\\
+                        \end{pmatrix}
+                    \right)\\
+                    &=
+                    \frac{\hbar \omega_0}{\sqrt{2}}
+                    \left(
+                        \begin{pmatrix}
+                            0&1&0\\
+                            0&0&0\\
+                            0&-1&0\\
+                        \end{pmatrix}
+                        +
+                        \begin{pmatrix}
+                            0&0&0\\
+                            1&0&-1\\
+                            0&0&0\\
+                        \end{pmatrix}
+                    \right)\\
+                    &=
+                    \frac{\hbar \omega_0}{\sqrt{2}}
+                    \begin{pmatrix}
+                        0&1&0\\
+                        1&0&-1\\
+                        0&-1&0\\
+                    \end{pmatrix}
+                \end{align*}
+            \end{calculationbox}
+        \end{calculationbox}
+        \item Zur Zeit $t=0$ sei das System im Zustand
+        \begin{align*}
+            \ket{\psi(0)} = \frac{1}{\sqrt{2}}[\ket{+1} - \ket{-1}].
+        \end{align*}
+        Wie lautet der Zustandsvektor $\ket{\psi(t)}$ Zur Zeit $t$ werde $\operatorname{L}_z$ gemessen; wie groß sind die Wahrscheinlichkeiten der verschiedenen möglichen Ergebnisse?
+        \item Berechen Sie die Erwartungswerte $\braket{\operatorname{L}_x(t)}, \braket{\operatorname{L}_y(t)}$ und $\braket{\operatorname{L}_z(t)}$. Welche Bewegung führt der Vektor $\braket{\operatorname{L}(t)}$ aus? Skizzieren Sie die Trajektorie von $\braket{\operatorname{L}(t)}$.
+        \item Zur Zeit $t$ werde eine Messung von $\operatorname{L}_z^2$ durchgeführt.
+        \begin{enumerate}
+            \item Gibt es Zeiten, wo nur ein einziges Ergebnis möglich ist?
+            \item Nehmen Sie an, dass diese MEssung das Ergebnis $\hbar^2$ ergeben hat. In welchem Zustand befindet sich das System unmittelbar nach der Messung? Beschreiben Sie ohne Rechnung die nachfolgende entwicklung.
+        \end{enumerate}
+    \end{enumerate}
+\end{document}

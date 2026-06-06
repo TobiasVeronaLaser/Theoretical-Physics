@@ -1,0 +1,744 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header: General study / work / project template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{scrartcl}
+
+% Layout
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+
+% General packages
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage[breaklinks=true,colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath,amsthm,amssymb,mathtools}
+\usepackage{braket}
+\usepackage{icomma}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+% Units / tables / floats / references
+\usepackage[locale = DE,space-before-unit=true,per-mode = symbol]{siunitx}
+\usepackage{booktabs,multirow}
+\usepackage{placeins}
+\usepackage[natbib,abbreviate=true,doi=false,style=numeric-comp,giveninits=true,sorting=none]{biblatex}
+\usepackage{csquotes}
+
+% Optional math shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\op}[1]{\hat{#1}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Ylm}{Y_l^m}
+\newcommand{\Pex}{\pi_{12}}
+
+% Box styles
+\newtcolorbox{calculationbox}[1][]{
+    title=Calculation,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{solutionbox}[1][]{
+    title=Solution,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{answerbox}[1][]{
+    title=Answer,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{notebox}[1][]{
+    title=Notes,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+\newtcolorbox{sidecalcbox}[1][]{
+    title=Side Calculation,
+    breakable,
+    enhanced,
+    colback=white,
+    colframe=black!65,
+    #1
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    \title{Theoretische Physik 2 -- Blatt 10}
+    \author{Tobias Laser}
+    \date{\today}
+    \maketitle
+    \vfill
+    \thispagestyle{empty}
+    \newpage
+
+    \pagenumbering{arabic}
+
+    % ================================================================
+    \paragraph{23. Identische Teilchen im Kasten:}
+
+    Zwei identische Spin-$\frac12$-Teilchen bewegen sich in einem eindimensionalen Kastenpotential
+    \begin{align*}
+        V(x)=
+        \begin{cases}
+            \infty, & x<0 \text{ oder } x>L,\\
+            0, & 0\le x\le L.
+        \end{cases}
+    \end{align*}
+    Die Einteilchen-Eigenfunktionen und Einteilchen-Energien im Kasten sind
+    \begin{align*}
+        \varphi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right),
+        \qquad
+        \eps_n=\frac{\hbar^2\pi^2 n^2}{2mL^2},
+        \qquad n=1,2,3,\dots
+    \end{align*}
+    Da die Teilchen Spin-$\frac12$-Fermionen sind, muss die volle Wellenfunktion unter Teilchenaustausch antisymmetrisch sein.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Finden Sie den Grundzustand und die Grundzustandsenergie für den Fall, in dem sich die Teilchen in einem Triplettzustand befinden.
+
+        \begin{calculationbox}
+            Ein Triplettzustand ist im Spinanteil symmetrisch. Damit die gesamte Wellenfunktion für zwei identische Fermionen antisymmetrisch ist, muss der Ortsanteil antisymmetrisch sein.
+
+            \begin{calculationbox}[title=Symmetriebedingung]
+                Für Fermionen gilt
+                \begin{align*}
+                    \Pex\Psi(x_1,x_2;\sigma_1,\sigma_2)=-\Psi(x_1,x_2;\sigma_1,\sigma_2).
+                \end{align*}
+                Im Triplett ist der Spinanteil symmetrisch:
+                \begin{align*}
+                    \Pex\chi_{S=1,M}=+\chi_{S=1,M}.
+                \end{align*}
+                Also muss für den Ortsanteil gelten
+                \begin{align*}
+                    \Pex\psi_{\mathrm{ort}}(x_1,x_2)=-\psi_{\mathrm{ort}}(x_1,x_2).
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Kleinste antisymmetrische Ortswellenfunktion]
+                Eine antisymmetrische Ortswellenfunktion kann nicht beide Teilchen im selben Einteilchenzustand haben, denn
+                \begin{align*}
+                    \frac{1}{\sqrt2}\left[\varphi_1(x_1)\varphi_1(x_2)-\varphi_1(x_2)\varphi_1(x_1)\right]=0.
+                \end{align*}
+                Deshalb müssen die beiden niedrigsten verschiedenen Einteilchenzustände besetzt werden, also $n=1$ und $n=2$:
+                \begin{align*}
+                    \psi_A(x_1,x_2)
+                    =
+                    \frac{1}{\sqrt2}
+                    \left[
+                        \varphi_1(x_1)\varphi_2(x_2)
+                        -
+                        \varphi_2(x_1)\varphi_1(x_2)
+                    \right].
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Grundzustandsenergie]
+                Die Energie ist die Summe der besetzten Einteilchenenergien:
+                \begin{align*}
+                    E_T^{(0)}
+                    &=\eps_1+\eps_2\\
+                    &=\frac{\hbar^2\pi^2}{2mL^2}
+                    +
+                    \frac{4\hbar^2\pi^2}{2mL^2}\\
+                    &=\frac{5\hbar^2\pi^2}{2mL^2}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Triplett-Grundzustand]
+                    \begin{align*}
+                        \Psi_{T,M}(x_1,x_2)
+                        =
+                        \psi_A(x_1,x_2)\chi_{1,M},
+                        \qquad
+                        E_T^{(0)}=\frac{5\hbar^2\pi^2}{2mL^2}.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Finden Sie den Grundzustand und die Grundzustandsenergie für den Fall, in dem sich die Teilchen in einem Singulettzustand befinden.
+
+        \begin{calculationbox}
+            Ein Singulettzustand ist im Spinanteil antisymmetrisch. Deshalb muss der Ortsanteil symmetrisch sein, damit die gesamte Wellenfunktion wieder antisymmetrisch ist.
+
+            \begin{calculationbox}[title=Symmetriebedingung]
+                Im Singulett gilt
+                \begin{align*}
+                    \Pex\chi_{0,0}=-\chi_{0,0}.
+                \end{align*}
+                Da die Gesamtwellenfunktion antisymmetrisch sein muss, folgt
+                \begin{align*}
+                    \Pex\psi_{\mathrm{ort}}(x_1,x_2)=+\psi_{\mathrm{ort}}(x_1,x_2).
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Kleinste symmetrische Ortswellenfunktion]
+                Für den symmetrischen Ortsanteil dürfen beide Fermionen denselben Einteilchen-Ortszustand besetzen, weil der Spinanteil schon antisymmetrisch ist. Der niedrigste Zustand ist daher
+                \begin{align*}
+                    \psi_S(x_1,x_2)
+                    =
+                    \varphi_1(x_1)\varphi_1(x_2).
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Grundzustandsenergie]
+                Die Energie ist
+                \begin{align*}
+                    E_S^{(0)}
+                    &=\eps_1+\eps_1\\
+                    &=2\frac{\hbar^2\pi^2}{2mL^2}\\
+                    &=\frac{\hbar^2\pi^2}{mL^2}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Singulett-Grundzustand]
+                    \begin{align*}
+                        \Psi_S(x_1,x_2)
+                        =
+                        \varphi_1(x_1)\varphi_1(x_2)\chi_{0,0},
+                        \qquad
+                        E_S^{(0)}=\frac{\hbar^2\pi^2}{mL^2}.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Wir nehmen an, die Teilchen unterliegen einer sehr kurzreichweitigen attraktiven Wechselwirkung
+        \begin{align*}
+            \op V=-\lambda\delta(x_1-x_2),
+            \qquad \lambda>0.
+        \end{align*}
+        Diskutieren Sie mittels Störungstheorie den Effekt dieses Potentials auf die Grundzustände.
+
+        \begin{calculationbox}
+            In erster Ordnung Störungstheorie ist die Energieverschiebung
+            \begin{align*}
+                \Delta E^{(1)}
+                =
+                \bra{\psi}\op V\ket{\psi}
+                =
+                -\lambda
+                \int_0^L\int_0^L
+                \abs{\psi(x_1,x_2)}^2\delta(x_1-x_2)\,dx_1\,dx_2.
+            \end{align*}
+            Mit der Deltafunktion wird daraus
+            \begin{align*}
+                \Delta E^{(1)}
+                =
+                -\lambda\int_0^L\abs{\psi(x,x)}^2\,dx.
+            \end{align*}
+
+            \begin{calculationbox}[title=Triplett-Ortszustand]
+                Für den antisymmetrischen Ortszustand gilt am Ort $x_1=x_2=x$
+                \begin{align*}
+                    \psi_A(x,x)
+                    &=
+                    \frac{1}{\sqrt2}
+                    \left[
+                        \varphi_1(x)\varphi_2(x)
+                        -
+                        \varphi_2(x)\varphi_1(x)
+                    \right]\\
+                    &=0.
+                \end{align*}
+                Daher ist die erste Ordnungsverschiebung
+                \begin{align*}
+                    \Delta E_T^{(1)}=0.
+                \end{align*}
+
+                \begin{solutionbox}[title=Effekt im Triplett]
+                    \begin{align*}
+                        \Delta E_T^{(1)}=0.
+                    \end{align*}
+                    Die kurzreichweitige Wechselwirkung wirkt nicht in erster Ordnung, weil die antisymmetrische Ortswellenfunktion bei Teilchenkoinzidenz verschwindet.
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Singulett-Ortszustand]
+                Im Singulett ist
+                \begin{align*}
+                    \psi_S(x_1,x_2)=\varphi_1(x_1)\varphi_1(x_2),
+                    \qquad
+                    \psi_S(x,x)=\varphi_1(x)^2.
+                \end{align*}
+                Damit
+                \begin{align*}
+                    \Delta E_S^{(1)}
+                    &=-\lambda\int_0^L\abs{\varphi_1(x)}^4\,dx\\
+                    &=-\lambda\int_0^L
+                    \left(\frac{2}{L}\sin^2\left(\frac{\pi x}{L}\right)\right)^2dx\\
+                    &=-\lambda\frac{4}{L^2}\int_0^L\sin^4\left(\frac{\pi x}{L}\right)dx.
+                \end{align*}
+                Mit
+                \begin{align*}
+                    \int_0^L\sin^4\left(\frac{\pi x}{L}\right)dx=\frac{3L}{8}
+                \end{align*}
+                folgt
+                \begin{align*}
+                    \Delta E_S^{(1)}
+                    =
+                    -\lambda\frac{4}{L^2}\frac{3L}{8}
+                    =
+                    -\frac{3\lambda}{2L}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Effekt im Singulett]
+                    \begin{align*}
+                        \Delta E_S^{(1)}=-\frac{3\lambda}{2L},
+                        \qquad
+                        E_S\approx \frac{\hbar^2\pi^2}{mL^2}-\frac{3\lambda}{2L}.
+                    \end{align*}
+                    Die attraktive Delta-Wechselwirkung senkt den Singulett-Grundzustand in erster Ordnung ab.
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+    \end{enumerate}
+
+    % ================================================================
+    \paragraph{24. Relativer Drehimpuls identischer Teilchen:}
+
+    Wir betrachten zwei identische Teilchen mit Wechselwirkungspotential, das nur vom Betrag des relativen Abstands abhängt:
+    \begin{align*}
+        \op H
+        =
+        \frac{\vec p_1^{\,2}}{2m}
+        +
+        \frac{\vec p_2^{\,2}}{2m}
+        +
+        V(\abs{\vec r_1-\vec r_2}).
+    \end{align*}
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Geben Sie $\op H$ in den Schwerpunkts- und Relativkoordinaten
+        \begin{align*}
+            \vec R=\frac12(\vec r_1+\vec r_2),
+            \qquad
+            \vec P=\vec p_1+\vec p_2,
+            \qquad
+            \vec r=\vec r_1-\vec r_2,
+            \qquad
+            \vec p=\frac12(\vec p_1-\vec p_2)
+        \end{align*}
+        an und zeigen Sie, dass $[H,\vec P]=[H,\vec L^2]=[H,L_z]=0$ mit $\vec L=\vec r\times\vec p$. Zeigen Sie außerdem die Form der Eigenfunktionen und geben Sie die Radialgleichung für $R_{n,l}(r)$ an.
+
+        \begin{calculationbox}
+            Wir lösen zuerst die Impulse nach $\vec p_1$ und $\vec p_2$ auf.
+
+            \begin{calculationbox}[title=Transformation der kinetischen Energie]
+                Aus
+                \begin{align*}
+                    \vec P=\vec p_1+\vec p_2,
+                    \qquad
+                    \vec p=\frac12(\vec p_1-\vec p_2)
+                \end{align*}
+                folgt
+                \begin{align*}
+                    \vec p_1=\frac{\vec P}{2}+\vec p,
+                    \qquad
+                    \vec p_2=\frac{\vec P}{2}-\vec p.
+                \end{align*}
+                Daher ist
+                \begin{align*}
+                    \frac{\vec p_1^{\,2}}{2m}+\frac{\vec p_2^{\,2}}{2m}
+                    &=
+                    \frac{1}{2m}
+                    \left[
+                        \left(\frac{\vec P}{2}+\vec p\right)^2
+                        +
+                        \left(\frac{\vec P}{2}-\vec p\right)^2
+                    \right]\\
+                    &=
+                    \frac{1}{2m}
+                    \left[
+                        \frac{\vec P^{\,2}}{2}+2\vec p^{\,2}
+                    \right]\\
+                    &=
+                    \frac{\vec P^{\,2}}{4m}+\frac{\vec p^{\,2}}{m}.
+                \end{align*}
+
+                \begin{solutionbox}[title=Hamiltonoperator in Schwerpunkts- und Relativkoordinaten]
+                    \begin{align*}
+                        \op H
+                        =
+                        \frac{\vec P^{\,2}}{4m}
+                        +
+                        \frac{\vec p^{\,2}}{m}
+                        +
+                        V(r),
+                        \qquad r=\abs{\vec r}.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Kommutatoren]
+                Der Hamiltonoperator hängt von $\vec R$ nicht ab. Deshalb ist der Schwerpunktsimpuls erhalten:
+                \begin{align*}
+                    [\op H,\vec P]=0.
+                \end{align*}
+                Der relative Anteil
+                \begin{align*}
+                    \op H_{\mathrm{rel}}=\frac{\vec p^{\,2}}{m}+V(r)
+                \end{align*}
+                ist rotationsinvariant, weil $\vec p^{\,2}$ ein Skalar ist und $V$ nur von $r$ abhängt. Deshalb kommutiert $\op H_{\mathrm{rel}}$ mit dem relativen Drehimpuls:
+                \begin{align*}
+                    [\op H,\vec L^{\,2}]=0,
+                    \qquad
+                    [\op H,L_z]=0.
+                \end{align*}
+                Man kann also gemeinsame Eigenzustände von $\op H$, $\vec P$, $\vec L^{\,2}$ und $L_z$ wählen.
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Separationsansatz]
+                Da der Schwerpunkt frei ist, ist der Schwerpunktanteil eine ebene Welle. Da der relative Hamiltonoperator zentral ist, trennt man den Winkelanteil in Kugelflächenfunktionen:
+                \begin{align*}
+                    \psi_{\vec P,n,l,m}(\vec R,\vec r)
+                    =
+                    \frac{1}{(2\pi\hbar)^{3/2}}
+                    \e^{\ii\vec P\cdot\vec R/\hbar}
+                    R_{n,l}(r)Y_l^m(\theta,\varphi).
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Radialgleichung]
+                In Ortsdarstellung gilt für den relativen Impuls
+                \begin{align*}
+                    \vec p^{\,2}=-\hbar^2\nabla_r^2.
+                \end{align*}
+                Für Funktionen der Form $R_{n,l}(r)Y_l^m(\theta,\varphi)$ ist
+                \begin{align*}
+                    \nabla_r^2
+                    =
+                    \frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)
+                    -
+                    \frac{\vec L^{\,2}}{\hbar^2r^2},
+                    \qquad
+                    \vec L^{\,2}Y_l^m=\hbar^2l(l+1)Y_l^m.
+                \end{align*}
+                Wenn
+                \begin{align*}
+                    E=\frac{\vec P^{\,2}}{4m}+\eps_{n,l},
+                \end{align*}
+                dann erfüllt $R_{n,l}(r)$ die Gleichung
+                \begin{align*}
+                    \left[
+                        -\frac{\hbar^2}{m}
+                        \frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)
+                        +
+                        \frac{\hbar^2l(l+1)}{mr^2}
+                        +
+                        V(r)
+                    \right]
+                    R_{n,l}(r)
+                    =
+                    \eps_{n,l}R_{n,l}(r).
+                \end{align*}
+
+                \begin{solutionbox}[title=Eigenfunktionen und Radialgleichung]
+                    \begin{align*}
+                        \psi_{\vec P,n,l,m}(\vec R,\vec r)
+                        =
+                        \frac{1}{(2\pi\hbar)^{3/2}}
+                        \e^{\ii\vec P\cdot\vec R/\hbar}
+                        R_{n,l}(r)Y_l^m(\theta,\varphi),
+                    \end{align*}
+                    \begin{align*}
+                        \left[
+                            -\frac{\hbar^2}{m}
+                            \frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)
+                            +
+                            \frac{\hbar^2l(l+1)}{mr^2}
+                            +
+                            V(r)
+                        \right]
+                        R_{n,l}(r)=\eps_{n,l}R_{n,l}(r).
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Die Teilchen seien Bosonen mit Spin $0$. Zeigen Sie, dass nur geradzahlige Werte für $l$ erlaubt sind.
+
+        \begin{calculationbox}
+            Für zwei identische Spin-$0$-Bosonen gibt es keinen nichttrivialen Spinanteil. Die Ortswellenfunktion selbst muss also symmetrisch unter Teilchenaustausch sein.
+
+            \begin{calculationbox}[title=Wirkung des Teilchenaustauschs]
+                Unter Austausch $1\leftrightarrow 2$ gilt
+                \begin{align*}
+                    \vec R\mapsto \vec R,
+                    \qquad
+                    \vec r=\vec r_1-\vec r_2\mapsto -\vec r.
+                \end{align*}
+                In Kugelkoordinaten bedeutet $\vec r\mapsto -\vec r$
+                \begin{align*}
+                    r\mapsto r,
+                    \qquad
+                    \theta\mapsto \pi-\theta,
+                    \qquad
+                    \varphi\mapsto \varphi+\pi.
+                \end{align*}
+                Der Schwerpunktfaktor und der Radialfaktor bleiben unverändert. Relevant ist also nur die Kugelflächenfunktion.
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Parität der Kugelflächenfunktionen]
+                Mit der angegebenen Darstellung
+                \begin{align*}
+                    Y_l^m(\theta,\varphi)
+                    =
+                    N_{l,m}\e^{\ii m\varphi}(\sin\theta)^m
+                    \frac{d^{l+m}}{d(\cos\theta)^{l+m}}(\sin\theta)^{2l}
+                \end{align*}
+                erhält man unter $\theta\mapsto \pi-\theta$ und $\varphi\mapsto \varphi+\pi$ den bekannten Paritätsfaktor
+                \begin{align*}
+                    Y_l^m(\pi-\theta,\varphi+\pi)=(-1)^lY_l^m(\theta,\varphi).
+                \end{align*}
+                Kurz gesagt: Kugelflächenfunktionen haben Parität $(-1)^l$.
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Bosonische Symmetriebedingung]
+                Für Bosonen muss gelten
+                \begin{align*}
+                    \Pex\psi_{\vec P,n,l,m}(\vec R,\vec r)=+\psi_{\vec P,n,l,m}(\vec R,\vec r).
+                \end{align*}
+                Wegen $\vec r\mapsto -\vec r$ folgt
+                \begin{align*}
+                    (-1)^l=+1.
+                \end{align*}
+
+                \begin{solutionbox}[title=Erlaubte Werte für Spin-$0$-Bosonen]
+                    \begin{align*}
+                        l=0,2,4,\dots
+                    \end{align*}
+                    Für identische Spin-$0$-Bosonen sind nur gerade relative Drehimpulse erlaubt.
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Die Teilchen seien Fermionen mit Spin $\frac12$. Welche Werte sind für $l$ erlaubt, wenn sich die Spins in einem Singulett- bzw. Triplettzustand befinden?
+
+        \begin{calculationbox}
+            Für zwei identische Fermionen muss die volle Wellenfunktion antisymmetrisch sein. Der Ortsanteil liefert unter Austausch den Faktor $(-1)^l$.
+
+            \begin{calculationbox}[title=Spin-Symmetrie]
+                Für zwei Spin-$\frac12$-Teilchen gilt:
+                \begin{align*}
+                    \text{Singulett }(S=0):&\quad \text{antisymmetrischer Spinanteil},\\
+                    \text{Triplett }(S=1):&\quad \text{symmetrischer Spinanteil}.
+                \end{align*}
+                Also ist der Austauschfaktor des Spinanteils
+                \begin{align*}
+                    \eta_S=
+                    \begin{cases}
+                        -1, & S=0,\\
+                        +1, & S=1.
+                    \end{cases}
+                \end{align*}
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Fermionische Antisymmetrie]
+                Die Gesamtwellenfunktion transformiert mit
+                \begin{align*}
+                    \Pex\Psi=(-1)^l\eta_S\Psi.
+                \end{align*}
+                Für Fermionen muss $\Pex\Psi=-\Psi$ gelten. Daher
+                \begin{align*}
+                    (-1)^l\eta_S=-1.
+                \end{align*}
+
+                \begin{solutionbox}[title=Erlaubte relative Drehimpulse]
+                    \begin{align*}
+                        S=0\text{ Singulett:}\quad &(-1)^l(-1)=-1
+                        \quad\Longrightarrow\quad l=0,2,4,\dots,\\
+                        S=1\text{ Triplett:}\quad &(-1)^l(+1)=-1
+                        \quad\Longrightarrow\quad l=1,3,5,\dots.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+
+        \item Die Teilchen seien identische Spin-$1$-Bosonen. Welche zulässigen Werte für $l$ ergeben sich?
+
+        \begin{calculationbox}
+            Für zwei identische Spin-$1$-Bosonen muss die volle Wellenfunktion symmetrisch sein. Die möglichen Gesamtspins sind
+            \begin{align*}
+                S=0,1,2.
+            \end{align*}
+            Der Ortsanteil liefert wieder den Faktor $(-1)^l$.
+
+            \begin{calculationbox}[title=Symmetrie des Spinanteils]
+                Für zwei gleiche Spin-$1$-Teilchen gilt unter Teilchenaustausch
+                \begin{align*}
+                    \eta_S=(-1)^{2s-S}=(-1)^{2-S},
+                    \qquad s=1.
+                \end{align*}
+                Damit
+                \begin{align*}
+                    S=0:&\quad \eta_S=+1,\\
+                    S=1:&\quad \eta_S=-1,\\
+                    S=2:&\quad \eta_S=+1.
+                \end{align*}
+                Also sind $S=0$ und $S=2$ symmetrische Spin-Zustände, während $S=1$ antisymmetrisch ist.
+            \end{calculationbox}
+
+            \begin{calculationbox}[title=Bosonische Symmetriebedingung]
+                Für Bosonen gilt
+                \begin{align*}
+                    (-1)^l\eta_S=+1.
+                \end{align*}
+
+                \begin{solutionbox}[title=Erlaubte Werte für Spin-$1$-Bosonen]
+                    \begin{align*}
+                        S=0\text{ oder }S=2:
+                        \quad l=0,2,4,\dots,\\
+                        S=1:
+                        \quad l=1,3,5,\dots.
+                    \end{align*}
+                \end{solutionbox}
+            \end{calculationbox}
+        \end{calculationbox}
+    \end{enumerate}
+
+    % ================================================================
+    \paragraph{25. Bonusaufgabe: Spin-Bahn-Kopplung und Clebsch-Gordan-Koeffizienten:}
+
+    Gesucht sind die Clebsch-Gordan-Koeffizienten für die Kopplung eines Bahndrehimpulses $l$ an den Elektronspin $s=\frac12$:
+    \begin{align*}
+        \ket{l,\tfrac12,J,M},
+        \qquad
+        J=l\pm\frac12.
+    \end{align*}
+    Für festes $M$ gibt es die beiden Produktbasiszustände
+    \begin{align*}
+        \ket a
+        :=
+        \ket{l,M+\tfrac12;\tfrac12,-\tfrac12},
+        \qquad
+        \ket b
+        :=
+        \ket{l,M-\tfrac12;\tfrac12,+\tfrac12}.
+    \end{align*}
+
+    \begin{calculationbox}
+        Die beiden Zustände $\ket a$ und $\ket b$ haben beide Gesamtmagnetquantenzahl $M$. Wir diagonalisiseren $\vec J^{\,2}$ in diesem zweidimensionalen Raum.
+
+        \begin{calculationbox}[title=Matrix von $\vec J^{\,2}$ in der Produktbasis]
+            Es gilt
+            \begin{align*}
+                \vec J=\vec L+\vec S,
+                \qquad
+                \vec J^{\,2}=\vec L^{\,2}+\vec S^{\,2}+2L_zS_z+L_+S_-+L_-S_+.
+            \end{align*}
+            Auf der Basis $(\ket a,\ket b)$ erhält man
+            \begin{align*}
+                \frac{\vec J^{\,2}}{\hbar^2}
+                =
+                \begin{pmatrix}
+                    l(l+1)+\frac14-M & C\\
+                    C & l(l+1)+\frac14+M
+                \end{pmatrix},
+            \end{align*}
+            wobei
+            \begin{align*}
+                C
+                =
+                \sqrt{l(l+1)-\left(M+\frac12\right)\left(M-\frac12\right)}
+                =
+                \sqrt{\left(l+\frac12\right)^2-M^2}.
+            \end{align*}
+        \end{calculationbox}
+
+        \begin{calculationbox}[title=Eigenwerte]
+            Die möglichen Gesamtbahndrehimpulse sind
+            \begin{align*}
+                J_+=l+\frac12,
+                \qquad
+                J_-=l-\frac12.
+            \end{align*}
+            Daher müssen die Eigenwerte von $\vec J^{\,2}$ gleich
+            \begin{align*}
+                \hbar^2J_+(J_++1)
+                =
+                \hbar^2\left(l+\frac12\right)\left(l+\frac32\right)
+            \end{align*}
+            beziehungsweise
+            \begin{align*}
+                \hbar^2J_-(J_-+1)
+                =
+                \hbar^2\left(l-\frac12\right)\left(l+\frac12\right)
+            \end{align*}
+            sein. Die zugehörigen normierten Eigenvektoren liefern die Clebsch-Gordan-Koeffizienten.
+        \end{calculationbox}
+
+        \begin{calculationbox}[title=Normierte Eigenzustände]
+            Mit der Condon-Shortley-Phasenkonvention erhält man
+            \begin{align*}
+                \ket{l,\tfrac12,l+\tfrac12,M}
+                &=
+                \sqrt{\frac{l-M+\frac12}{2l+1}}
+                \ket{l,M+\tfrac12;\tfrac12,-\tfrac12}
+                +
+                \sqrt{\frac{l+M+\frac12}{2l+1}}
+                \ket{l,M-\tfrac12;\tfrac12,+\tfrac12},\\[0.7em]
+                \ket{l,\tfrac12,l-\tfrac12,M}
+                &=
+                -\sqrt{\frac{l+M+\frac12}{2l+1}}
+                \ket{l,M+\tfrac12;\tfrac12,-\tfrac12}
+                +
+                \sqrt{\frac{l-M+\frac12}{2l+1}}
+                \ket{l,M-\tfrac12;\tfrac12,+\tfrac12}.
+            \end{align*}
+        \end{calculationbox}
+
+        \begin{solutionbox}[title=Clebsch-Gordan-Koeffizienten]
+            Für $J=l+\frac12$ gilt
+            \begin{align*}
+                \left\langle l,M+\frac12;\frac12,-\frac12\middle|l,\frac12,l+\frac12,M\right\rangle
+                &=
+                \sqrt{\frac{l-M+\frac12}{2l+1}},\\
+                \left\langle l,M-\frac12;\frac12,+\frac12\middle|l,\frac12,l+\frac12,M\right\rangle
+                &=
+                \sqrt{\frac{l+M+\frac12}{2l+1}}.
+            \end{align*}
+            Für $J=l-\frac12$ gilt
+            \begin{align*}
+                \left\langle l,M+\frac12;\frac12,-\frac12\middle|l,\frac12,l-\frac12,M\right\rangle
+                &=
+                -\sqrt{\frac{l+M+\frac12}{2l+1}},\\
+                \left\langle l,M-\frac12;\frac12,+\frac12\middle|l,\frac12,l-\frac12,M\right\rangle
+                &=
+                \sqrt{\frac{l-M+\frac12}{2l+1}}.
+            \end{align*}
+        \end{solutionbox}
+
+        \begin{notebox}[title=Hinweis zur Phase]
+            Das relative Minuszeichen im Zustand mit $J=l-\frac12$ ist eine Konvention. Physikalische Wahrscheinlichkeiten hängen von den Betragsquadraten der Clebsch-Gordan-Koeffizienten ab; die Standardtabellen verwenden typischerweise die oben gewählte Condon-Shortley-Konvention.
+        \end{notebox}
+    \end{calculationbox}
+
+\end{document}
