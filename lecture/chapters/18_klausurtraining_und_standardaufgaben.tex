@@ -1,3 +1,1266 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\proj}[1]{\left|#1\right\rangle\left\langle#1\right|}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\dd}{\mathrm{d}}
+\providecommand{\idop}{\mathbf{1}}
+\providecommand{\opH}{\hat H}
+\providecommand{\opA}{\hat A}
+\providecommand{\opB}{\hat B}
+\providecommand{\opC}{\hat C}
+\providecommand{\opV}{\hat V}
+\providecommand{\opX}{\hat X}
+\providecommand{\opP}{\hat P}
+\providecommand{\opL}{\hat L}
+\providecommand{\Tr}{\operatorname{Tr}}
+\providecommand{\sgn}{\operatorname{sgn}}
+
 \chapter{Klausurtraining und Standardaufgaben}
 
-% Inhalt wird später anhand der Stichwortliste und Quellen ergänzt.
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel ist kein neues Stoffkapitel, sondern ein systematisches Training für typische Klausur- und Proseminaraufgaben in der Quantentheorie. Es fasst die wichtigsten Rechenmuster zusammen und zeigt, wie man Aufgaben so bearbeitet, dass an der Tafel und in einer schriftlichen Prüfung klar erkennbar ist, was getan wird.
+
+\begin{conceptbox}
+In der Klausur geht es selten darum, eine Formel auswendig hinzuschreiben. Typisch ist eine Kombination aus:
+\begin{itemize}
+    \item physikalische Situation erkennen,
+    \item passenden Hilbertraum und passende Basis wählen,
+    \item Operatoren diagonal darstellen oder Eigenwertprobleme lösen,
+    \item Messwahrscheinlichkeiten über Projektionen berechnen,
+    \item Zeitentwicklung mit Phasenfaktoren oder Exponentialoperatoren durchführen,
+    \item Randbedingungen, Symmetrien und Kommutatoren richtig verwenden.
+\end{itemize}
+\end{conceptbox}
+
+Das Kapitel enthält:
+\begin{itemize}
+    \item eine Lern- und Bearbeitungsstrategie,
+    \item eine kompakte Checkliste der wichtigsten Formeln,
+    \item Standardfragen mit Musterantworten,
+    \item vollständig ausgearbeitete Rechenrezepte für die häufigsten Aufgabentypen,
+    \item typische Fehlerquellen,
+    \item Mini-Aufgaben zum Selbsttest.
+\end{itemize}
+
+\section{Wie man Quantenmechanik-Aufgaben systematisch löst}
+
+Viele Aufgaben wirken auf den ersten Blick unterschiedlich, haben aber dieselbe innere Struktur. Man sollte sich immer zuerst fragen:
+
+\begin{examtipbox}
+\textbf{Grundalgorithmus für fast jede Aufgabe:}
+\begin{enumerate}
+    \item Was ist der Zustandsraum? Zum Beispiel $L^2(\mathbb R)$, $L^2([0,L])$, $\mathbb C^2$, $\mathbb C^3$ oder ein Tensorprodukt.
+    \item Welche Basis ist natürlich? Energieeigenbasis, Ortsbasis, Impulsbasis, $L_z$-Basis, Spinbasis oder Produktbasis.
+    \item Welche Operatoren sind gegeben? Sind sie hermitesch, unitär, kommutierend oder Projektoren?
+    \item Muss diagonalisiert werden? Wenn ja: Eigenwerte und normierte Eigenvektoren bestimmen.
+    \item Geht es um eine Messung? Dann Zustand in Eigenbasis der gemessenen Observablen entwickeln.
+    \item Geht es um Zeitentwicklung? Dann Zustand in Energieeigenbasis entwickeln und Phasen $\e^{-\ii E_nt/\hbar}$ anhängen.
+    \item Geht es um ein Potentialproblem? Dann Bereiche trennen, allgemeine Lösungen schreiben und Randbedingungen verwenden.
+    \item Geht es um identische Teilchen? Dann Symmetrie des Gesamtzustands prüfen.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Kompakte Formelsammlung für Standardaufgaben}
+
+\subsection{Postulate, Messung und Zeitentwicklung}
+
+\begin{formulabox}
+Ein Zustand ist ein normierter Vektor $\ket{\psi}$ im Hilbertraum. Physikalisch gleiche Zustände unterscheiden sich höchstens durch eine globale Phase:
+\[
+    \ket{\psi} \sim \e^{\ii\alpha}\ket{\psi}.
+\]
+Eine Observable wird durch einen hermiteschen beziehungsweise selbstadjungierten Operator beschrieben.
+\end{formulabox}
+
+Hat eine Observable $\opA$ die Spektraldarstellung
+\[
+    \opA=\sum_n a_n P_n,
+\]
+dann ist die Wahrscheinlichkeit für das Messergebnis $a_n$ im Zustand $\ket{\psi}$
+\[
+    p(a_n)=\mel{\psi}{P_n}{\psi}.
+\]
+Ist der Eigenwert nicht entartet und $P_n=\proj{a_n}$, dann gilt
+\[
+    p(a_n)=|\braket{a_n}{\psi}|^2.
+\]
+Nach der Messung ist der Zustand
+\[
+    \ket{\psi}\longmapsto \frac{P_n\ket{\psi}}{\sqrt{\mel{\psi}{P_n}{\psi}}}.
+\]
+
+Für einen zeitunabhängigen Hamiltonoperator gilt
+\[
+    \ket{\psi(t)}=U(t)\ket{\psi(0)},
+    \qquad
+    U(t)=\e^{-\frac{\ii}{\hbar}\opH t}.
+\]
+Ist
+\[
+    \ket{\psi(0)}=\sum_n c_n\ket{n},
+    \qquad
+    \opH\ket{n}=E_n\ket{n},
+\]
+dann folgt
+\[
+    \ket{\psi(t)}=\sum_n c_n\e^{-\frac{\ii}{\hbar}E_nt}\ket{n}.
+\]
+
+\subsection{Erwartungswerte und Unschärfen}
+
+\[
+    \langle A\rangle=\mel{\psi}{\opA}{\psi},
+    \qquad
+    (\Delta A)^2=\langle A^2\rangle-\langle A\rangle^2.
+\]
+Für einen normierten Zustand in einer diskreten Eigenbasis gilt
+\[
+    \ket{\psi}=\sum_n c_n\ket{a_n},
+    \qquad
+    \langle A\rangle=\sum_n |c_n|^2 a_n,
+    \qquad
+    \langle A^2\rangle=\sum_n |c_n|^2 a_n^2.
+\]
+
+\begin{formulabox}
+Allgemeine Unschärferelation:
+\[
+    \Delta A\,\Delta B\geq \frac12\left|\mel{\psi}{[\opA,\opB]}{\psi}\right|.
+\]
+Für Ort und Impuls:
+\[
+    \Delta X\,\Delta P\geq \frac{\hbar}{2}.
+\]
+\end{formulabox}
+
+\subsection{Kommutatoren}
+
+\[
+    [\opA,\opB]=\opA\opB-\opB\opA.
+\]
+Wichtige Regeln:
+\[
+    [\opA,\opB+\opC]=[\opA,\opB]+[\opA,\opC],
+\]
+\[
+    [\opA,\opB\opC]=[\opA,\opB]\opC+\opB[\opA,\opC],
+\]
+\[
+    [\opX_j,\opP_k]=\ii\hbar\delta_{jk}.
+\]
+Für Potenzreihenfunktionen gilt formal
+\[
+    [X_j,G(P_j)]=\ii\hbar\frac{\partial G}{\partial P_j},
+    \qquad
+    [P_j,F(X_j)]=-\ii\hbar\frac{\partial F}{\partial X_j}.
+\]
+
+\subsection{Potentialprobleme in einer Dimension}
+
+Stationäre Schrödingergleichung:
+\[
+    -\frac{\hbar^2}{2m}\frac{\dd^2\psi}{\dd x^2}+V(x)\psi(x)=E\psi(x).
+\]
+In Bereichen mit konstantem Potential $V_i$:
+\[
+    \psi_i(x)=A_i\e^{\ii k_i x}+B_i\e^{-\ii k_i x},
+    \qquad
+    k_i=\frac{\sqrt{2m(E-V_i)}}{\hbar},
+\]
+wenn $E>V_i$, und
+\[
+    \psi_i(x)=C_i\e^{\kappa_i x}+D_i\e^{-\kappa_i x},
+    \qquad
+    \kappa_i=\frac{\sqrt{2m(V_i-E)}}{\hbar},
+\]
+wenn $E<V_i$.
+
+Bei endlichen Sprungstellen ohne Delta-Potential gelten
+\[
+    \psi(x_0^-)=\psi(x_0^+),
+    \qquad
+    \psi'(x_0^-)=\psi'(x_0^+).
+\]
+Bei einem attraktiven Delta-Potential $V(x)=-\alpha\delta(x)$ gilt
+\[
+    \psi(0^-)=\psi(0^+),
+    \qquad
+    \psi'(0^+)-\psi'(0^-)
+    =-\frac{2m\alpha}{\hbar^2}\psi(0).
+\]
+
+\subsection{Harmonischer Oszillator}
+
+\[
+    \opH=\frac{\opP^2}{2m}+\frac12m\omega^2\opX^2
+    =\hbar\omega\left(a^\dagger a+\frac12\right).
+\]
+\[
+    [a,a^\dagger]=1,
+    \qquad
+    N=a^\dagger a,
+    \qquad
+    N\ket{n}=n\ket{n}.
+\]
+\[
+    a\ket{n}=\sqrt n\ket{n-1},
+    \qquad
+    a^\dagger\ket{n}=\sqrt{n+1}\ket{n+1}.
+\]
+\[
+    E_n=\hbar\omega\left(n+\frac12\right).
+\]
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger),
+    \qquad
+    P=-\ii\sqrt{\frac{m\hbar\omega}{2}}(a-a^\dagger).
+\]
+
+\subsection{Drehimpuls und Spin}
+
+\[
+    [L_i,L_j]=\ii\hbar\sum_k\varepsilon_{ijk}L_k,
+    \qquad
+    L_\pm=L_x\pm\ii L_y.
+\]
+\[
+    L^2\ket{l,m}=\hbar^2l(l+1)\ket{l,m},
+    \qquad
+    L_z\ket{l,m}=\hbar m\ket{l,m}.
+\]
+\[
+    L_\pm\ket{l,m}=\hbar\sqrt{l(l+1)-m(m\pm1)}\ket{l,m\pm1}.
+\]
+Für Spin $1/2$:
+\[
+    S_i=\frac{\hbar}{2}\sigma_i,
+\]
+mit
+\[
+    \sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \quad
+    \sigma_y=\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},
+    \quad
+    \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+
+\subsection{Störungstheorie}
+
+Für
+\[
+    \opH=\opH_0+\lambda\opV
+\]
+und nichtentartete ungestörte Zustände $\ket{n^{(0)}}$ gilt
+\[
+    E_n^{(1)}=\mel{n^{(0)}}{\opV}{n^{(0)}},
+\]
+\[
+    E_n^{(2)}=\sum_{m\neq n}\frac{|\mel{m^{(0)}}{\opV}{n^{(0)}}|^2}{E_n^{(0)}-E_m^{(0)}},
+\]
+\[
+    \ket{n^{(1)}}=\sum_{m\neq n}\frac{\mel{m^{(0)}}{\opV}{n^{(0)}}}{E_n^{(0)}-E_m^{(0)}}\ket{m^{(0)}}.
+\]
+
+\section{Standardfrage 1: Allgemeine Kurzfragen}
+
+\subsection{Welche Operatoren beschreiben Observable?}
+
+\begin{answerbox}
+Observable werden durch hermitesche beziehungsweise selbstadjungierte Operatoren beschrieben. In endlichdimensionalen Hilberträumen bedeutet das
+\[
+    A=A^\dagger.
+\]
+Dann sind die Eigenwerte reell, und Eigenvektoren zu verschiedenen Eigenwerten sind orthogonal.
+\end{answerbox}
+
+\subsection{Wann sind zwei Observable simultan scharf messbar?}
+
+\begin{answerbox}
+Zwei Observable $A$ und $B$ sind simultan scharf messbar, wenn die zugehörigen Operatoren kommutieren:
+\[
+    [A,B]=0.
+\]
+Dann kann man eine gemeinsame Eigenbasis wählen. Bei Entartungen muss man genauer prüfen, ob die gegebenen Operatoren einen vollständigen Satz kommutierender Observablen bilden.
+\end{answerbox}
+
+\subsection{Welche Operatoren erhalten die Norm?}
+
+\begin{answerbox}
+Normerhaltende Zeitentwicklungen werden durch unitäre Operatoren beschrieben:
+\[
+    U^\dagger U=UU^\dagger=\idop.
+\]
+Für einen selbstadjungierten Hamiltonoperator ist
+\[
+    U(t)=\e^{-\frac{\ii}{\hbar}Ht}
+\]
+unitär.
+\end{answerbox}
+
+\subsection{Was muss man beim Delta-Potential sofort wissen?}
+
+Für
+\[
+    H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}-\alpha\delta(x)
+\]
+hat $\delta(x)$ die Dimension $1/\text{Länge}$. Da $\alpha\delta(x)$ eine Energie sein muss, gilt
+\[
+    [\alpha]=[E]\,[L].
+\]
+Für $\alpha>0$ ist das Delta-Potential attraktiv und besitzt genau einen gebundenen Zustand:
+\[
+    E=-\frac{m\alpha^2}{2\hbar^2},
+    \qquad
+    \psi(x)=\sqrt{\rho}\,\e^{-\rho|x|},
+    \qquad
+    \rho=\frac{m\alpha}{\hbar^2}.
+\]
+
+\section{Standardaufgabe 2: Teilchen auf einem Ring}
+
+\subsection{Aufgabenstruktur}
+
+Ein Teilchen der Masse $m$ bewegt sich auf einem Ring mit Radius $R$. Die Umfangskoordinate ist $x=R\theta$. Der Hamiltonoperator lautet
+\[
+    H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}.
+\]
+Gesucht sind meist:
+\begin{itemize}
+    \item Umschreiben in Winkelkoordinate,
+    \item Selbstadjungiertheit mit periodischen Randbedingungen,
+    \item Eigenfunktionen und Eigenwerte,
+    \item Entwicklung eines gegebenen Zustands,
+    \item Erwartungswerte von $p_\theta$ und $H$.
+\end{itemize}
+
+\subsection{Umschreiben des Hamiltonoperators}
+
+Da $x=R\theta$, gilt
+\[
+    \frac{\dd}{\dd x}=\frac{1}{R}\frac{\dd}{\dd\theta}.
+\]
+Damit folgt
+\[
+    H=-\frac{\hbar^2}{2mR^2}\frac{\dd^2}{\dd\theta^2}
+    =-\frac{\hbar^2}{2I}\frac{\dd^2}{\dd\theta^2},
+    \qquad
+    I=mR^2.
+\]
+
+\subsection{Eigenfunktionen}
+
+Die stationäre Schrödingergleichung lautet
+\[
+    -\frac{\hbar^2}{2I}\frac{\dd^2\psi}{\dd\theta^2}=E\psi.
+\]
+Mit dem Ansatz
+\[
+    \psi_k(\theta)=A\e^{\ii k\theta}
+\]
+erhält man
+\[
+    E_k=\frac{\hbar^2k^2}{2I}.
+\]
+Periodizität fordert
+\[
+    \psi(\theta+2\pi)=\psi(\theta)
+    \quad\Rightarrow\quad
+    \e^{\ii 2\pi k}=1
+    \quad\Rightarrow\quad
+    k\in\mathbb Z.
+\]
+Die Normierung auf $[0,2\pi)$ ergibt
+\[
+    1=\int_0^{2\pi}|A|^2\dd\theta=2\pi|A|^2,
+    \qquad
+    A=\frac{1}{\sqrt{2\pi}}.
+\]
+Also
+\[
+    \psi_k(\theta)=\frac{1}{\sqrt{2\pi}}\e^{\ii k\theta},
+    \qquad
+    E_k=\frac{\hbar^2k^2}{2I},
+    \qquad
+    k\in\mathbb Z.
+\]
+
+\begin{examtipbox}
+Der Grundzustand auf dem Ring ist $k=0$ und damit konstant. Das ist anders als beim unendlich hohen Kasten, wo der Grundzustand eine halbe Sinuswelle ist und nicht konstant sein kann, weil die Wellenfunktion an den Wänden verschwinden muss.
+\end{examtipbox}
+
+\subsection{Beispiel: Entwicklung von $N(1+\sin\theta)$}
+
+Sei
+\[
+    \psi(\theta)=N(1+\sin\theta).
+\]
+Zuerst normieren:
+\[
+    1=|N|^2\int_0^{2\pi}(1+\sin\theta)^2\dd\theta.
+\]
+Wegen
+\[
+    \int_0^{2\pi}1\,\dd\theta=2\pi,
+    \qquad
+    \int_0^{2\pi}\sin\theta\,\dd\theta=0,
+    \qquad
+    \int_0^{2\pi}\sin^2\theta\,\dd\theta=\pi,
+\]
+folgt
+\[
+    |N|^2 3\pi=1,
+    \qquad
+    N=\frac{1}{\sqrt{3\pi}}.
+\]
+Mit
+\[
+    \sin\theta=\frac{\e^{\ii\theta}-\e^{-\ii\theta}}{2\ii}
+\]
+ist
+\[
+    \psi(\theta)=\frac{1}{\sqrt{3\pi}}\left(1+\frac{\e^{\ii\theta}-\e^{-\ii\theta}}{2\ii}\right).
+\]
+Da $\psi_k=(2\pi)^{-1/2}\e^{\ii k\theta}$, sind nur $k=0,1,-1$ enthalten:
+\[
+    c_0=\sqrt{\frac{2}{3}},
+    \qquad
+    c_1=-\ii\frac{1}{\sqrt6},
+    \qquad
+    c_{-1}=\ii\frac{1}{\sqrt6}.
+\]
+Daraus folgt
+\[
+    \langle p_\theta\rangle=\sum_k |c_k|^2\hbar k=0,
+\]
+weil die Beiträge von $k=1$ und $k=-1$ gleich groß sind. Für die Energie:
+\[
+    \langle H\rangle=\sum_k |c_k|^2\frac{\hbar^2k^2}{2I}
+    =\frac{1}{6}\frac{\hbar^2}{2I}+\frac{1}{6}\frac{\hbar^2}{2I}
+    =\frac{\hbar^2}{6I}.
+\]
+
+\section{Standardaufgabe 3: Messungen in endlichdimensionalen Räumen}
+
+\subsection{Rezept}
+
+Gegeben sind Matrizen $A$ und $B$ in einer Basis. Typische Fragen sind:
+\begin{itemize}
+    \item Kommutator berechnen,
+    \item Eigenwerte und Eigenvektoren finden,
+    \item VSKO prüfen,
+    \item Messwahrscheinlichkeiten bestimmen,
+    \item Zustand nach Messung angeben,
+    \item zweite Messung nach erster Messung auswerten.
+\end{itemize}
+
+\begin{examtipbox}
+Bei einer Messaufgabe diagonalisiert man nicht den Hamiltonoperator, sondern den Operator, der gemessen wird. Bei Zeitentwicklung diagonalisiert man dagegen den Hamiltonoperator.
+\end{examtipbox}
+
+\subsection{Allgemeines Schema}
+
+Sei $A$ hermitesch mit normierten Eigenzuständen $\ket{a_n}$. Ein Zustand sei
+\[
+    \ket{\psi}=\sum_n c_n\ket{a_n}.
+\]
+Dann gilt:
+\[
+    p(a_n)=|c_n|^2,
+    \qquad
+    \ket{\psi}\mapsto \ket{a_n}
+\]
+für eine nichtentartete Messung mit Ergebnis $a_n$.
+
+Ist der Eigenwert entartet, verwendet man den Projektor auf den gesamten Eigenraum:
+\[
+    P_a=\sum_{\mu}\ket{a,\mu}\bra{a,\mu}.
+\]
+Dann gilt
+\[
+    p(a)=\mel{\psi}{P_a}{\psi},
+    \qquad
+    \ket{\psi}\mapsto \frac{P_a\ket{\psi}}{\sqrt{p(a)}}.
+\]
+
+\subsection{Typische Matrixaufgabe}
+
+Betrachte
+\[
+    A=\begin{pmatrix}0&2\\2&0\end{pmatrix},
+    \qquad
+    B=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}.
+\]
+Der Kommutator ist
+\[
+    [A,B]=AB-BA.
+\]
+Man berechnet
+\[
+    AB=\begin{pmatrix}-2&4\\4&-2\end{pmatrix},
+    \qquad
+    BA=\begin{pmatrix}-2&4\\4&-2\end{pmatrix},
+\]
+also
+\[
+    [A,B]=0.
+\]
+Daher sind $A$ und $B$ simultan diagonalisierbar. Die Eigenvektoren sind die symmetrische und antisymmetrische Kombination
+\[
+    \ket{+}=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},
+    \qquad
+    \ket{-}=\frac{1}{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}.
+\]
+Für $A$ gilt
+\[
+    A\ket{+}=2\ket{+},
+    \qquad
+    A\ket{-}=-2\ket{-}.
+\]
+Für $B$ gilt
+\[
+    B\ket{+}=1\ket{+},
+    \qquad
+    B\ket{-}=3\ket{-}.
+\]
+
+\begin{answerbox}
+Da die Paare der Eigenwerte $(2,1)$ und $(-2,3)$ verschieden sind, bilden $A$ und $B$ in diesem zweidimensionalen Raum einen vollständigen Satz kommutierender Observablen.
+\end{answerbox}
+
+\section{Standardaufgabe 4: Harmonischer Oszillator in Superposition}
+
+\subsection{Energieerwartungswert und Energieunschärfe}
+
+Sei
+\[
+    \ket{\psi}=\frac{1}{\sqrt2}(\ket{1}+\ket{2}),
+\]
+mit
+\[
+    H\ket{n}=\hbar\omega\left(n+\frac12\right)\ket{n}.
+\]
+Dann sind
+\[
+    E_1=\frac32\hbar\omega,
+    \qquad
+    E_2=\frac52\hbar\omega.
+\]
+Da beide Zustände gleich gewichtet sind,
+\[
+    \langle H\rangle=\frac12E_1+\frac12E_2=2\hbar\omega.
+\]
+Außerdem
+\[
+    \langle H^2\rangle=\frac12E_1^2+\frac12E_2^2
+    =\frac12\left(\frac{9}{4}+\frac{25}{4}\right)\hbar^2\omega^2
+    =\frac{17}{4}\hbar^2\omega^2.
+\]
+Damit
+\[
+    (\Delta H)^2=\langle H^2\rangle-\langle H\rangle^2
+    =\frac{17}{4}\hbar^2\omega^2-4\hbar^2\omega^2
+    =\frac14\hbar^2\omega^2.
+\]
+Also
+\[
+    \Delta H=\frac12\hbar\omega.
+\]
+
+\subsection{Zeitentwicklung}
+
+\[
+    \ket{\psi(t)}=\frac{1}{\sqrt2}\left(\e^{-\frac{\ii}{\hbar}E_1t}\ket{1}
+    +\e^{-\frac{\ii}{\hbar}E_2t}\ket{2}\right).
+\]
+Da $H$ mit sich selbst kommutiert, ist die Energieerwartung zeitlich konstant:
+\[
+    \langle H\rangle(t)=2\hbar\omega.
+\]
+
+\begin{examtipbox}
+Auch wenn der Zustand relativphasig zeitabhängig ist, ist der Erwartungswert der Energie bei zeitunabhängigem Hamiltonoperator konstant. Andere Observable, die nicht mit $H$ kommutieren, können aber zeitabhängige Erwartungswerte haben.
+\end{examtipbox}
+
+\subsection{Messung von $x$ nach Energiemessung}
+
+Wenn eine Energiemessung den Wert $3\hbar\omega/2$ liefert, kollabiert der Zustand auf $\ket{1}$. Danach ist die Wahrscheinlichkeit, bei einer Ortsmessung $x>0$ zu finden,
+\[
+    P(x>0)=\int_0^\infty |\psi_1(x)|^2\dd x.
+\]
+Der Zustand $\psi_1(x)$ ist ungerade, aber $|\psi_1(x)|^2$ ist gerade. Daher liegt genau die Hälfte der Wahrscheinlichkeit rechts von null:
+\[
+    P(x>0)=\frac12.
+\]
+
+\section{Standardaufgabe 5: 3D harmonischer Oszillator und Entartung}
+
+\subsection{Hamiltonoperator und Energieeigenwerte}
+
+Der dreidimensionale isotrope harmonische Oszillator hat
+\[
+    H=\sum_{j=x,y,z}\left(\frac{P_j^2}{2m}+\frac12m\omega^2X_j^2\right).
+\]
+Mit den Leiteroperatoren
+\[
+    a_j=\sqrt{\frac{m\omega}{2\hbar}}\left(X_j+\frac{\ii}{m\omega}P_j\right),
+    \qquad
+    a_j^\dagger=\sqrt{\frac{m\omega}{2\hbar}}\left(X_j-\frac{\ii}{m\omega}P_j\right)
+\]
+gilt
+\[
+    H=\hbar\omega\left(a_x^\dagger a_x+a_y^\dagger a_y+a_z^\dagger a_z+\frac32\right).
+\]
+Die Eigenzustände sind
+\[
+    \ket{n_x,n_y,n_z},
+\]
+und die Energien lauten
+\[
+    E_N=\hbar\omega\left(N+\frac32\right),
+    \qquad
+    N=n_x+n_y+n_z.
+\]
+
+\subsection{Entartungsgrad}
+
+Der Entartungsgrad ist die Anzahl nichtnegativer ganzzahliger Lösungen von
+\[
+    n_x+n_y+n_z=N.
+\]
+Das ist
+\[
+    g_N=\frac{(N+1)(N+2)}{2}.
+\]
+
+\begin{examplebox}
+Für $N=0$ gibt es nur $(0,0,0)$, also $g_0=1$. Für $N=1$ gibt es $(1,0,0)$, $(0,1,0)$, $(0,0,1)$, also $g_1=3$. Für $N=2$ gibt es sechs Möglichkeiten, also $g_2=6$.
+\end{examplebox}
+
+\section{Standardaufgabe 6: Kommutatoren und Erhaltungsgrößen}
+
+\subsection{Typische Aufgabe}
+
+Gegeben seien
+\[
+    H=\frac{\vec P^{\,2}}{2m}+V(r),
+    \qquad
+    \vec L=\vec X\times\vec P.
+\]
+Man soll zeigen:
+\[
+    [H,L_j]=0,
+    \qquad
+    [H,L^2]=0.
+\]
+
+\subsection{Lösungsidee}
+
+Der kinetische Anteil ist rotationsinvariant:
+\[
+    [\vec P^{\,2},L_j]=0.
+\]
+Der Potentialanteil $V(r)$ hängt nur vom Abstand
+\[
+    r=\sqrt{X_1^2+X_2^2+X_3^2}
+\]
+ab und ist deshalb ebenfalls rotationsinvariant:
+\[
+    [V(r),L_j]=0.
+\]
+Also
+\[
+    [H,L_j]=0.
+\]
+Daraus folgt durch die Produktregel
+\[
+    [H,L^2]=\sum_j[H,L_j^2]
+    =\sum_j\left([H,L_j]L_j+L_j[H,L_j]\right)=0.
+\]
+
+\begin{answerbox}
+Bei einem Zentralpotential sind Energie, Gesamtdrehimpuls und eine Drehimpulskomponente gleichzeitig messbar. Ein natürlicher VSKO ist
+\[
+    \{H,L^2,L_z\}.
+\]
+\end{answerbox}
+
+\section{Standardaufgabe 7: Delta-Topf}
+
+\subsection{Aufgabenmuster}
+
+Für
+\[
+    V(x)=-\alpha\delta(x),
+    \qquad
+    \alpha>0,
+\]
+soll man typischerweise zeigen:
+\begin{itemize}
+    \item die Ableitung der Wellenfunktion springt bei $x=0$,
+    \item es gibt genau einen gebundenen Zustand,
+    \item Energie und Eigenfunktion bestimmen.
+\end{itemize}
+
+\subsection{Sprungbedingung}
+
+Die stationäre Schrödingergleichung lautet
+\[
+    -\frac{\hbar^2}{2m}\psi''(x)-\alpha\delta(x)\psi(x)=E\psi(x).
+\]
+Integration von $-\varepsilon$ bis $+\varepsilon$ liefert
+\[
+    -\frac{\hbar^2}{2m}\int_{-\varepsilon}^{+\varepsilon}\psi''(x)\dd x
+    -\alpha\int_{-\varepsilon}^{+\varepsilon}\delta(x)\psi(x)\dd x
+    =E\int_{-\varepsilon}^{+\varepsilon}\psi(x)\dd x.
+\]
+Für $\varepsilon\to0$ verschwindet die rechte Seite, und man erhält
+\[
+    -\frac{\hbar^2}{2m}\left[\psi'(0^+)-\psi'(0^-)\right]-\alpha\psi(0)=0.
+\]
+Also
+\[
+    \psi'(0^+)-\psi'(0^-)
+    =-\frac{2m\alpha}{\hbar^2}\psi(0).
+\]
+
+\subsection{Gebundener Zustand}
+
+Für $E<0$ schreibt man
+\[
+    E=-\frac{\hbar^2\rho^2}{2m},
+    \qquad
+    \rho>0.
+\]
+Normierbarkeit erzwingt
+\[
+    \psi(x)=A\e^{-\rho|x|}.
+\]
+Dann gilt
+\[
+    \psi'(0^+)=-\rho A,
+    \qquad
+    \psi'(0^-)=+\rho A.
+\]
+Also
+\[
+    \psi'(0^+)-\psi'(0^-)=-2\rho A.
+\]
+Vergleich mit der Sprungbedingung ergibt
+\[
+    -2\rho A=-\frac{2m\alpha}{\hbar^2}A,
+    \qquad
+    \rho=\frac{m\alpha}{\hbar^2}.
+\]
+Damit
+\[
+    E=-\frac{m\alpha^2}{2\hbar^2}.
+\]
+Normierung:
+\[
+    1=|A|^2\int_{-\infty}^{\infty}\e^{-2\rho|x|}\dd x
+    =|A|^2\frac{1}{\rho},
+\]
+also
+\[
+    A=\sqrt\rho.
+\]
+
+\section{Standardaufgabe 8: Potentialbarriere und Tunneleffekt}
+
+\subsection{Ansatz}
+
+Für eine Barriere
+\[
+    V(x)=
+    \begin{cases}
+        0, & x<0,\\
+        V_0, & 0\leq x<2a,\\
+        0, & x\geq 2a,
+    \end{cases}
+\]
+und $0<E<V_0$ verwendet man
+\[
+    \psi_I(x)=A\e^{\ii kx}+B\e^{-\ii kx},
+\]
+\[
+    \psi_{II}(x)=C\e^{\kappa x}+D\e^{-\kappa x},
+\]
+\[
+    \psi_{III}(x)=F\e^{\ii kx}+G\e^{-\ii kx},
+\]
+mit
+\[
+    k=\frac{\sqrt{2mE}}{\hbar},
+    \qquad
+    \kappa=\frac{\sqrt{2m(V_0-E)}}{\hbar}.
+\]
+
+\begin{examtipbox}
+Für ein von links einfallendes Teilchen setzt man $G=0$. Dann ist $A$ die einfallende Amplitude, $B$ die reflektierte Amplitude und $F$ die transmittierte Amplitude.
+\end{examtipbox}
+
+Die Anschlussbedingungen an $x=0$ und $x=2a$ sind
+\[
+    \psi_I(0)=\psi_{II}(0),
+    \qquad
+    \psi_I'(0)=\psi_{II}'(0),
+\]
+\[
+    \psi_{II}(2a)=\psi_{III}(2a),
+    \qquad
+    \psi_{II}'(2a)=\psi_{III}'(2a).
+\]
+Der Transmissionskoeffizient ist
+\[
+    T(E)=\left|\frac{F}{A}\right|^2.
+\]
+Für die rechteckige Barriere erhält man
+\[
+    T(E)=\left[1+\left(1+\frac{\epsilon^2}{4}\right)\sinh^2(2\kappa a)\right]^{-1},
+    \qquad
+    \epsilon=\frac{\kappa}{k}-\frac{k}{\kappa}.
+\]
+Für eine hohe und breite Barriere $\kappa a\gg1$ ist
+\[
+    T(E)\approx
+    \frac{16k^2\kappa^2}{(k^2+\kappa^2)^2}\e^{-4\kappa a}.
+\]
+
+\section{Standardaufgabe 9: Kugelflächenfunktionen und Drehimpuls}
+
+\subsection{Was muss man können?}
+
+Typische Aufgaben fragen nach:
+\begin{itemize}
+    \item $L_x,L_y,L_z$ in Ortsdarstellung,
+    \item $L^2$ und $L_z$ in Kugelkoordinaten,
+    \item Eigenwertgleichungen für $Y_l^m(\theta,\varphi)$,
+    \item Leiteroperatoren,
+    \item explizite Formen für $l=1$,
+    \item Einsetzen zur Kontrolle der Eigenwertgleichungen.
+\end{itemize}
+
+\subsection{Wichtige Gleichungen}
+
+In Kugelkoordinaten gilt
+\[
+    L_z=-\ii\hbar\frac{\partial}{\partial\varphi}.
+\]
+Die Eigenwertgleichung
+\[
+    L_zY_l^m=\hbar mY_l^m
+\]
+erzwingt die $\varphi$-Abhängigkeit
+\[
+    Y_l^m(\theta,\varphi)=\Theta_l^m(\theta)\e^{\ii m\varphi}.
+\]
+Außerdem
+\[
+    L^2Y_l^m=\hbar^2l(l+1)Y_l^m.
+\]
+Für $l=1$ kann man verwenden:
+\[
+    Y_1^0(\theta,\varphi)=\sqrt{\frac{3}{4\pi}}\cos\theta,
+\]
+\[
+    Y_1^{+1}(\theta,\varphi)=-\sqrt{\frac{3}{8\pi}}\sin\theta\,\e^{\ii\varphi},
+    \qquad
+    Y_1^{-1}(\theta,\varphi)=\sqrt{\frac{3}{8\pi}}\sin\theta\,\e^{-\ii\varphi}.
+\]
+
+\begin{examtipbox}
+Die Vorzeichenkonvention für $Y_l^m$ hängt von der Condon-Shortley-Phase ab. In Rechnungen ist vor allem wichtig, innerhalb einer Konvention konsistent zu bleiben.
+\end{examtipbox}
+
+\section{Standardaufgabe 10: Spin-$\frac12$-Zeitentwicklung}
+
+\subsection{Exponent von Pauli-Matrizen}
+
+Für eine Pauli-Matrix gilt
+\[
+    \sigma_i^2=\idop.
+\]
+Daher
+\[
+    \e^{-\ii\alpha\sigma_i}
+    =\cos\alpha\,\idop-\ii\sin\alpha\,\sigma_i.
+\]
+
+\subsection{Beispiel}
+
+Sei
+\[
+    H=\frac{\hbar\omega}{2}\sigma_x,
+    \qquad
+    \ket{\psi(0)}=\ket{\downarrow}.
+\]
+Dann
+\[
+    U(t)=\e^{-\ii\omega t\sigma_x/2}
+    =\cos\left(\frac{\omega t}{2}\right)\idop
+    -\ii\sin\left(\frac{\omega t}{2}\right)\sigma_x.
+\]
+Da
+\[
+    \sigma_x\ket{\downarrow}=\ket{\uparrow},
+\]
+folgt
+\[
+    \ket{\psi(t)}=
+    \cos\left(\frac{\omega t}{2}\right)\ket{\downarrow}
+    -\ii\sin\left(\frac{\omega t}{2}\right)\ket{\uparrow}.
+\]
+Bei Messung von $\sigma_z$ sind die Wahrscheinlichkeiten
+\[
+    P(\uparrow)=\sin^2\left(\frac{\omega t}{2}\right),
+    \qquad
+    P(\downarrow)=\cos^2\left(\frac{\omega t}{2}\right).
+\]
+
+\subsection{Messung unterbricht Zeitentwicklung}
+
+Wenn bei einer Zwischenzeit gemessen wird, kollabiert der Zustand. Danach entwickelt sich nicht mehr die ursprüngliche Superposition weiter, sondern der projizierte Zustand. Deshalb können Messungen zu anderen späteren Wahrscheinlichkeiten führen als ungestörte Zeitentwicklung.
+
+\section{Standardaufgabe 11: Zwei-Niveau-System und Störungstheorie}
+
+\subsection{Exakte Diagonalisierung}
+
+Betrachte
+\[
+    H=H_0+\lambda V
+    =\begin{pmatrix}E_1^{(0)}&0\\0&E_2^{(0)}\end{pmatrix}
+    +\lambda\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+Dann
+\[
+    H=\begin{pmatrix}E_1^{(0)}+\lambda&\lambda\\\lambda&E_2^{(0)}+\lambda\end{pmatrix}.
+\]
+Mit
+\[
+    \overline E^{(0)}=\frac{E_1^{(0)}+E_2^{(0)}}{2},
+    \qquad
+    \Delta=E_1^{(0)}-E_2^{(0)}
+\]
+sind die exakten Eigenwerte
+\[
+    E_\pm=\overline E^{(0)}+\lambda
+    \pm\sqrt{\left(\frac{\Delta}{2}\right)^2+\lambda^2}.
+\]
+
+\subsection{Nichtentarteter Grenzfall}
+
+Wenn
+\[
+    \lambda\ll |E_1^{(0)}-E_2^{(0)}|,
+\]
+dann kann man gewöhnliche nichtentartete Störungstheorie verwenden:
+\[
+    E_1=E_1^{(0)}+\lambda+\lambda^2\frac{1}{E_1^{(0)}-E_2^{(0)}}+\cdots,
+\]
+\[
+    E_2=E_2^{(0)}+\lambda+\lambda^2\frac{1}{E_2^{(0)}-E_1^{(0)}}+\cdots.
+\]
+Die Zustände bis zur ersten Ordnung sind
+\[
+    \ket{1}\mapsto \ket{1}+\lambda\frac{1}{E_1^{(0)}-E_2^{(0)}}\ket{2},
+\]
+\[
+    \ket{2}\mapsto \ket{2}+\lambda\frac{1}{E_2^{(0)}-E_1^{(0)}}\ket{1}.
+\]
+
+\subsection{Entarteter Grenzfall}
+
+Wenn $E_1^{(0)}=E_2^{(0)}=E_0$, muss man die Störung im entarteten Unterraum diagonalieren:
+\[
+    V=\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+Die Eigenvektoren sind
+\[
+    \ket{+}=\frac{1}{\sqrt2}(\ket{1}+\ket{2}),
+    \qquad
+    \ket{-}=\frac{1}{\sqrt2}(\ket{1}-\ket{2}),
+\]
+mit Störungseigenwerten $2$ und $0$. Daher
+\[
+    E_+=E_0+2\lambda,
+    \qquad
+    E_-=E_0.
+\]
+
+\begin{examtipbox}
+Bei Entartung darf man nicht blind durch $E_n^{(0)}-E_m^{(0)}$ teilen. Der Nenner wäre null. Zuerst muss die Störung im entarteten Unterraum diagonalisiert werden.
+\end{examtipbox}
+
+\section{Standardaufgabe 12: Identische Teilchen im Kasten}
+
+\subsection{Einzelteilchenzustände}
+
+Im unendlich hohen Kasten $0\leq x\leq L$ sind die Eigenfunktionen
+\[
+    \phi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right),
+    \qquad
+    n=1,2,3,\dots
+\]
+mit Energien
+\[
+    \epsilon_n=\frac{\hbar^2\pi^2n^2}{2mL^2}.
+\]
+
+\subsection{Zwei identische Spin-$\frac12$-Teilchen}
+
+Für Fermionen muss der Gesamtzustand antisymmetrisch sein. Der Gesamtzustand ist Produkt aus Ortsanteil und Spinanteil:
+\[
+    \Psi_{\text{gesamt}}=\Psi_{\text{Ort}}\chi_{\text{Spin}}.
+\]
+Wenn der Spinanteil symmetrisch ist, muss der Ortsanteil antisymmetrisch sein. Wenn der Spinanteil antisymmetrisch ist, muss der Ortsanteil symmetrisch sein.
+
+\subsection{Singulett und Triplett}
+
+Der antisymmetrische Singulettzustand ist
+\[
+    \chi_{0,0}=\frac{1}{\sqrt2}(\ket{+ -}-\ket{- +}).
+\]
+Die symmetrischen Triplettzustände sind
+\[
+    \chi_{1,1}=\ket{++},
+    \qquad
+    \chi_{1,0}=\frac{1}{\sqrt2}(\ket{+ -}+\ket{- +}),
+    \qquad
+    \chi_{1,-1}=\ket{--}.
+\]
+
+\subsection{Grundzustände}
+
+Für einen antisymmetrischen Spinanteil darf der Ortsanteil symmetrisch sein. Beide Teilchen können dann im niedrigsten Ortszustand sein:
+\[
+    \Psi_{\text{Ort}}(x_1,x_2)=\phi_1(x_1)\phi_1(x_2),
+\]
+und
+\[
+    E=2\epsilon_1.
+\]
+Für einen symmetrischen Spinanteil muss der Ortsanteil antisymmetrisch sein:
+\[
+    \Psi_{\text{Ort}}(x_1,x_2)=\frac{1}{\sqrt2}\left[\phi_1(x_1)\phi_2(x_2)-\phi_2(x_1)\phi_1(x_2)\right],
+\]
+und
+\[
+    E=\epsilon_1+
+    \epsilon_2=5\epsilon_1.
+\]
+
+\begin{examtipbox}
+Bei zwei identischen Fermionen ist nicht der Ortszustand allein immer antisymmetrisch, sondern der Gesamtzustand aus Ort und Spin. Das ist eine der häufigsten Fehlerquellen.
+\end{examtipbox}
+
+\section{Standardaufgabe 13: Qubit, Bloch-Vektor und Bell-Zustände}
+
+\subsection{Bloch-Vektor}
+
+Ein reiner Qubit-Zustand kann geschrieben werden als
+\[
+    \ket{\psi}=\cos\left(\frac{\theta}{2}\right)\ket{0}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{1}.
+\]
+Der zugehörige Bloch-Vektor ist
+\[
+    \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta).
+\]
+Man erhält ihn über
+\[
+    n_i=\mel{\psi}{\sigma_i}{\psi}.
+\]
+
+\subsection{Beispiele}
+
+\[
+    \frac{\ket{0}+\ket{1}}{\sqrt2}
+    \quad\Rightarrow\quad
+    \vec n=(1,0,0).
+\]
+\[
+    \frac{\ket{0}-\ii\ket{1}}{\sqrt2}
+    \quad\Rightarrow\quad
+    \vec n=(0,-1,0).
+\]
+Für $\theta=\pi/2$ und $\varphi=\pi/2$ gilt
+\[
+    \vec n=(0,1,0).
+\]
+
+\subsection{Bell-Zustand}
+
+Der Zustand
+\[
+    \ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2}
+\]
+ist normiert:
+\[
+    \braket{\Phi^+}{\Phi^+}=\frac12(1+1)=1.
+\]
+Er ist nicht separierbar. Angenommen
+\[
+    \ket{\Phi^+}=(a\ket0+b\ket1)\otimes(c\ket0+d\ket1).
+\]
+Dann wäre
+\[
+    ac\ket{00}+ad\ket{01}+bc\ket{10}+bd\ket{11}
+    =\frac{1}{\sqrt2}\ket{00}+\frac{1}{\sqrt2}\ket{11}.
+\]
+Also müsste
+\[
+    ad=0,
+    \qquad
+    bc=0,
+    \qquad
+    ac\neq0,
+    \qquad
+    bd\neq0.
+\]
+Das ist unmöglich: $ac\neq0$ impliziert $a\neq0,c\neq0$, und $bd\neq0$ impliziert $b\neq0,d\neq0$. Dann wären aber $ad\neq0$ und $bc\neq0$. Widerspruch.
+
+\begin{answerbox}
+Bei Messung des ersten Qubits von $\ket{\Phi^+}$ in der Rechenbasis erhält Alice $0$ und $1$ jeweils mit Wahrscheinlichkeit $1/2$. Wenn Alice $0$ misst, bleibt Bob im Zustand $\ket0$. Wenn Alice $1$ misst, bleibt Bob im Zustand $\ket1$. Die Ergebnisse sind perfekt korreliert.
+\end{answerbox}
+
+Für
+\[
+    \ket{\Psi^+}=\frac{\ket{01}+\ket{10}}{\sqrt2}
+\]
+sind die Einzelwahrscheinlichkeiten für Alice wieder $1/2$ und $1/2$, aber die Ergebnisse sind perfekt antikorreliert: Misst Alice $0$, bleibt Bob in $\ket1$; misst Alice $1$, bleibt Bob in $\ket0$.
+
+\section{Typische Fehlerquellen}
+
+\begin{examtipbox}
+\begin{enumerate}
+    \item \textbf{Nicht normieren:} Vor jeder Wahrscheinlichkeit muss der Zustand normiert sein.
+    \item \textbf{Falsche Basis:} Messwahrscheinlichkeiten berechnet man in der Eigenbasis der gemessenen Observablen, nicht automatisch in der gegebenen Basis.
+    \item \textbf{Entartung ignorieren:} Bei entarteten Eigenwerten muss auf den gesamten Eigenraum projiziert werden.
+    \item \textbf{Zeitentwicklung nach Messung falsch:} Nach einer Messung entwickelt sich der kollabierte Zustand weiter, nicht der ursprüngliche Zustand.
+    \item \textbf{Delta-Potential wie normalen Sprung behandeln:} Bei Delta-Potentialen ist $\psi$ stetig, aber $\psi'$ springt.
+    \item \textbf{Streuung falsch normieren:} Für Reflexion und Transmission muss man Wahrscheinlichkeitsströme vergleichen, nicht nur Amplituden, wenn die Wellenzahlen links und rechts verschieden sind.
+    \item \textbf{Störungstheorie bei Entartung falsch anwenden:} Erst Störung im entarteten Unterraum diagonalieren.
+    \item \textbf{Identische Teilchen:} Für Fermionen muss der Gesamtzustand antisymmetrisch sein, nicht zwingend jeder einzelne Faktor.
+    \item \textbf{Globale und relative Phase verwechseln:} Eine globale Phase ist irrelevant, eine relative Phase verändert Messwahrscheinlichkeiten in anderen Basen.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Wie man Lösungen in der Prüfung sauber aufschreibt}
+
+\begin{examtipbox}
+Eine gute Klausurlösung zeigt nicht nur das Ergebnis, sondern die Struktur:
+\begin{enumerate}
+    \item Ansatz klar hinschreiben.
+    \item Randbedingungen oder Eigenwertgleichungen sichtbar anwenden.
+    \item Normierung nicht vergessen.
+    \item Ergebnis mit Einheiten oder physikalischer Interpretation prüfen.
+    \item Bei Messungen immer Wahrscheinlichkeit und Zustand nach der Messung trennen.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Mini-Selbsttest}
+
+\subsection{Fragen ohne Rechnung}
+
+\begin{enumerate}
+    \item Warum müssen Observable hermitesch sein?
+    \item Warum ist Zeitentwicklung unitär?
+    \item Was bedeutet $[A,B]=0$ physikalisch?
+    \item Warum gibt es beim attraktiven Delta-Potential genau einen gebundenen Zustand?
+    \item Warum ist der Grundzustand des Teilchens auf dem Ring konstant?
+    \item Warum ist $\ket{\Phi^+}$ verschränkt?
+    \item Warum muss man bei entarteter Störungstheorie zuerst diagonalieren?
+    \item Was ist der Unterschied zwischen einer Superposition und einem Gemisch?
+\end{enumerate}
+
+\subsection{Kurze Rechenaufgaben}
+
+\begin{enumerate}
+    \item Normiere $\psi(x)=A\e^{-\alpha|x|}$.
+    \item Berechne $[X,P^2]$.
+    \item Bestimme $\langle H\rangle$ für $\ket\psi=(\ket0+\ket3)/\sqrt2$ im harmonischen Oszillator.
+    \item Berechne den Bloch-Vektor von $(\ket0+\ii\ket1)/\sqrt2$.
+    \item Prüfe, ob $\begin{pmatrix}1&\ii\\-\ii&2\end{pmatrix}$ hermitesch ist.
+    \item Bestimme die Energie des Zustands $\ket{n_x,n_y,n_z}=\ket{1,2,0}$ im 3D-Oszillator.
+\end{enumerate}
+
+\section{Antworten zum Mini-Selbsttest}
+
+\subsection{Kurze Rechenantworten}
+
+\begin{enumerate}
+    \item
+    \[
+        1=|A|^2\int_{-\infty}^{\infty}\e^{-2\alpha|x|}\dd x
+        =|A|^2\frac{1}{\alpha}
+        \quad\Rightarrow\quad
+        A=\sqrt\alpha.
+    \]
+    \item
+    \[
+        [X,P^2]=[X,P]P+P[X,P]=2\ii\hbar P.
+    \]
+    \item
+    \[
+        E_0=\frac12\hbar\omega,
+        \qquad
+        E_3=\frac72\hbar\omega,
+    \]
+    also
+    \[
+        \langle H\rangle=\frac12E_0+\frac12E_3=2\hbar\omega.
+    \]
+    \item Für
+    \[
+        \ket\psi=\frac{1}{\sqrt2}(\ket0+\ii\ket1)
+    \]
+    gilt
+    \[
+        \vec n=(0,1,0).
+    \]
+    \item
+    \[
+        A=\begin{pmatrix}1&\ii\\-\ii&2\end{pmatrix}
+    \]
+    ist nicht hermitesch, denn hermitesch wäre $A_{21}=A_{12}^*=-\ii$, das stimmt hier zwar, und die Diagonale ist reell. Also ist die Matrix tatsächlich hermitesch.
+    \item Für $N=1+2+0=3$ gilt
+    \[
+        E=\hbar\omega\left(3+\frac32\right)=\frac92\hbar\omega.
+    \]
+\end{enumerate}
+
+\section{Prioritäten für die Wiederholung}
+
+\begin{notebox}
+Wenn die Zeit knapp ist, sollte man in dieser Reihenfolge lernen:
+\begin{enumerate}
+    \item Messpostulate, Projektionen, Erwartungswerte, Zeitentwicklung.
+    \item Eigenwertprobleme in kleinen Matrizen.
+    \item Harmonischer Oszillator mit Leiteroperatoren.
+    \item Kommutatoren und Unschärferelation.
+    \item 1D-Potentialprobleme mit Randbedingungen.
+    \item Drehimpuls, Spin und Pauli-Matrizen.
+    \item Störungstheorie, besonders Zwei-Niveau-Systeme.
+    \item Identische Teilchen und Symmetrie des Gesamtzustands.
+    \item Qubits, Bloch-Sphäre und Bell-Zustände.
+\end{enumerate}
+\end{notebox}
+
+\section{Abschluss}
+
+Dieses Kapitel soll als aktives Trainingskapitel verwendet werden. Die richtige Methode ist nicht, die Lösungen passiv zu lesen. Man sollte jede Standardaufgabe zunächst mit abgedeckter Lösung selbst aufstellen:
+\begin{enumerate}
+    \item Welche Basis ist sinnvoll?
+    \item Welche Gleichung muss gelöst werden?
+    \item Wo kommen Randbedingungen, Kommutatoren oder Projektoren hinein?
+    \item Wie prüfe ich mein Ergebnis?
+\end{enumerate}
+
+\begin{answerbox}
+Wer diese Standardmuster sicher beherrscht, kann einen großen Teil der typischen Quantentheorie-Aufgaben lösen, auch wenn die Aufgabenstellung leicht anders formuliert ist. Entscheidend ist, das Problem zuerst in die richtige Struktur zu übersetzen: Eigenwertproblem, Messproblem, Zeitentwicklungsproblem, Randwertproblem, Symmetrieproblem oder Störungsproblem.
+\end{answerbox}

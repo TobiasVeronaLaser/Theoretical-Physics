@@ -1,3 +1,1134 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\proj}[1]{\left|#1\right\rangle\left\langle#1\right|}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\idop}{\mathbf{1}}
+\providecommand{\Tr}{\operatorname{Tr}}
+\providecommand{\diag}{\operatorname{diag}}
+\providecommand{\C}{\mathbb C}
+
 \chapter{Qubits, Bloch-Sphäre und Verschränkung}
 
-% Inhalt wird später anhand der Stichwortliste und Quellen ergänzt.
+\section{Ziel dieses Kapitels}
+
+In den bisherigen Kapiteln wurden Zustände, Observable und Zeitentwicklung allgemein eingeführt. In diesem Kapitel wird diese abstrakte Sprache auf das einfachste nichttriviale Quantensystem angewendet: ein Zweizustandssystem. Ein solches System heißt \emph{Qubit}. Mathematisch ist ein Qubit ein normierter Vektor in einem zweidimensionalen komplexen Hilbertraum. Physikalisch kann ein Qubit zum Beispiel ein Spin-\(\frac12\)-Teilchen, ein Atom mit zwei relevanten Energieniveaus oder ein polarisiertes Photon sein.
+
+\begin{conceptbox}
+Ein Qubit ist kein klassisches Bit, das entweder den Wert \(0\) oder den Wert \(1\) besitzt. Ein Qubit kann in einer Superposition der beiden Basiszustände \(\ket{0}\) und \(\ket{1}\) liegen:
+\[
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1},
+    \qquad \alpha,\beta\in\C,
+    \qquad |\alpha|^2+|\beta|^2=1.
+\]
+Bei einer Messung in der Rechenbasis erhält man trotzdem nur eines der beiden klassischen Resultate \(0\) oder \(1\). Die Wahrscheinlichkeiten sind \(|\alpha|^2\) und \(|\beta|^2\).
+\end{conceptbox}
+
+Dieses Kapitel behandelt:
+\begin{itemize}
+    \item den Hilbertraum eines einzelnen Qubits,
+    \item die Rechenbasis und Messungen in dieser Basis,
+    \item die Parametrisierung reiner Qubit-Zustände durch zwei Winkel,
+    \item die Bloch-Sphäre,
+    \item die Darstellung von Zuständen durch Pauli-Matrizen,
+    \item Drehungen eines Qubits durch unitäre Zeitentwicklung,
+    \item Systeme aus mehreren Qubits,
+    \item Produktzustände, separable Zustände und verschränkte Zustände,
+    \item Bell-Zustände und perfekte Korrelationen,
+    \item Messungen an Teilsystemen,
+    \item einfache Qubit-Gatter wie \(X\), \(Z\), Hadamard und CNOT.
+\end{itemize}
+
+\section{Der Hilbertraum eines Qubits}
+
+Der Zustandsraum eines einzelnen Qubits ist
+\[
+    \mathcal H_2 \cong \C^2.
+\]
+Eine besonders wichtige Orthonormalbasis ist die sogenannte Rechenbasis:
+\[
+    \ket{0}=\begin{pmatrix}1\\0\end{pmatrix},
+    \qquad
+    \ket{1}=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Diese Basis ist analog zur \(\sigma_z\)-Eigenbasis eines Spin-\(\frac12\)-Systems. Häufig identifiziert man
+\[
+    \ket{0}\equiv \ket{\uparrow},
+    \qquad
+    \ket{1}\equiv \ket{\downarrow},
+\]
+oder umgekehrt, je nach Konvention. Wichtig ist nur, dass \(\ket{0}\) und \(\ket{1}\) eine orthonormale Basis bilden:
+\[
+    \braket{0}{0}=1,
+    \qquad
+    \braket{1}{1}=1,
+    \qquad
+    \braket{0}{1}=0.
+\]
+
+Ein allgemeiner Qubit-Zustand ist
+\[
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1}
+    =\begin{pmatrix}\alpha\\\beta\end{pmatrix}.
+\]
+Die Normierungsbedingung lautet
+\[
+    \braket{\psi}{\psi}=|
+    \alpha|^2+|\beta|^2=1.
+\]
+
+\begin{warningbox}
+Die Koeffizienten \(\alpha\) und \(\beta\) sind keine klassischen Wahrscheinlichkeiten. Sie sind \emph{Wahrscheinlichkeitsamplituden}. Erst ihre Betragsquadrate liefern Messwahrscheinlichkeiten. Relative Phasen zwischen Amplituden sind physikalisch relevant, globale Phasen nicht.
+\end{warningbox}
+
+\section{Messung eines einzelnen Qubits}
+
+Wir messen zunächst in der Rechenbasis \(\{\ket{0},\ket{1}\}\). Die zugehörigen Projektoren sind
+\[
+    P_0=\proj{0},
+    \qquad
+    P_1=\proj{1}.
+\]
+Für
+\[
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1}
+\]
+gelten die Born-Wahrscheinlichkeiten
+\[
+    p(0)=\mel{\psi}{P_0}{\psi}=|\alpha|^2,
+    \qquad
+    p(1)=\mel{\psi}{P_1}{\psi}=|\beta|^2.
+\]
+Nach der Messung kollabiert der Zustand auf den gemessenen Eigenzustand:
+\[
+    \ket{\psi}\longrightarrow \ket{0}
+    \quad\text{mit Wahrscheinlichkeit }|\alpha|^2,
+\]
+\[
+    \ket{\psi}\longrightarrow \ket{1}
+    \quad\text{mit Wahrscheinlichkeit }|\beta|^2.
+\]
+
+\begin{examplebox}
+Für
+\[
+    \ket{+}=\frac{1}{\sqrt2}(\ket{0}+\ket{1})
+\]
+ist
+\[
+    p(0)=\frac12,
+    \qquad
+    p(1)=\frac12.
+\]
+Der Zustand ist also eine kohärente Superposition, aber eine einzelne Messung liefert trotzdem nur \(0\) oder \(1\).
+\end{examplebox}
+
+\section{Globale und relative Phase}
+
+Zwei Zustandsvektoren, die sich nur durch einen globalen Phasenfaktor unterscheiden, beschreiben denselben physikalischen Zustand:
+\[
+    \ket{\psi}\sim \e^{\ii\gamma}\ket{\psi}.
+\]
+Denn für jede Messwahrscheinlichkeit gilt
+\[
+    |\braket{\phi}{\e^{\ii\gamma}\psi}|^2
+    =|\e^{\ii\gamma}|^2 |\braket{\phi}{\psi}|^2
+    =|\braket{\phi}{\psi}|^2.
+\]
+
+\begin{conceptbox}
+Nur relative Phasen sind messbar. Der Zustand
+\[
+    \frac{1}{\sqrt2}(\ket{0}+\ket{1})
+\]
+ist physikalisch verschieden von
+\[
+    \frac{1}{\sqrt2}(\ket{0}-\ket{1}),
+\]
+obwohl beide bei einer Messung in der Rechenbasis die Wahrscheinlichkeiten \(1/2\) und \(1/2\) liefern. Der Unterschied zeigt sich bei Messungen in anderen Basen, zum Beispiel in der \(\sigma_x\)-Basis.
+\end{conceptbox}
+
+\section{Parametrisierung eines reinen Qubit-Zustands}
+
+Ein normierter Zustand
+\[
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1}
+\]
+hat zwei komplexe Koeffizienten, also vier reelle Parameter. Die Normierung entfernt einen reellen Parameter. Die globale Phase ist physikalisch irrelevant und entfernt einen weiteren Parameter. Übrig bleiben zwei reelle Parameter. Diese schreibt man als Winkel \(\theta\) und \(\varphi\):
+\[
+    \ket{\psi}
+    =\cos\left(\frac{\theta}{2}\right)\ket{0}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{1},
+\]
+mit
+\[
+    0\le \theta\le \pi,
+    \qquad
+    0\le \varphi<2\pi.
+\]
+
+\begin{derivationbox}
+Startet man mit
+\[
+    \alpha=|\alpha|\e^{\ii\gamma_0},
+    \qquad
+    \beta=|\beta|\e^{\ii\gamma_1},
+\]
+so folgt aus der Normierung
+\[
+    |\alpha|^2+|\beta|^2=1.
+\]
+Man kann daher schreiben
+\[
+    |\alpha|=\cos\left(\frac{\theta}{2}\right),
+    \qquad
+    |\beta|=\sin\left(\frac{\theta}{2}\right).
+\]
+Dann ist
+\[
+    \ket{\psi}
+    =\e^{\ii\gamma_0}\left[
+    \cos\left(\frac{\theta}{2}\right)\ket{0}
+    +\e^{\ii(\gamma_1-\gamma_0)}
+    \sin\left(\frac{\theta}{2}\right)\ket{1}
+    \right].
+\]
+Die globale Phase \(\e^{\ii\gamma_0}\) ist irrelevant. Mit \(\varphi=\gamma_1-\gamma_0\) erhält man die Standardform.
+\end{derivationbox}
+
+\section{Die Bloch-Sphäre}
+
+Jeder reine Qubit-Zustand kann als Punkt auf der Einheitskugel dargestellt werden. Diese Kugel heißt \emph{Bloch-Sphäre}. Zum Zustand
+\[
+    \ket{\psi}
+    =\cos\left(\frac{\theta}{2}\right)\ket{0}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{1}
+\]
+gehört der Bloch-Vektor
+\[
+    \vec n
+    =\begin{pmatrix}
+        \sin\theta\cos\varphi\\
+        \sin\theta\sin\varphi\\
+        \cos\theta
+    \end{pmatrix}.
+\]
+Dieser Vektor erfüllt
+\[
+    |\vec n|=1.
+\]
+
+\begin{formulabox}
+Die wichtigsten Punkte auf der Bloch-Sphäre sind
+\[
+    \ket{0}\longleftrightarrow (0,0,1),
+    \qquad
+    \ket{1}\longleftrightarrow (0,0,-1),
+\]
+\[
+    \ket{+}:=\frac{\ket{0}+\ket{1}}{\sqrt2}
+    \longleftrightarrow (1,0,0),
+\]
+\[
+    \ket{-}:=\frac{\ket{0}-\ket{1}}{\sqrt2}
+    \longleftrightarrow (-1,0,0),
+\]
+\[
+    \ket{+\ii}:=\frac{\ket{0}+\ii\ket{1}}{\sqrt2}
+    \longleftrightarrow (0,1,0),
+\]
+\[
+    \ket{-\ii}:=\frac{\ket{0}-\ii\ket{1}}{\sqrt2}
+    \longleftrightarrow (0,-1,0).
+\]
+\end{formulabox}
+
+\subsection{Beispiel: Zustand mit \(\theta=\pi/2\) und \(\varphi=\pi/2\)}
+
+Für
+\[
+    \theta=\frac{\pi}{2},
+    \qquad
+    \varphi=\frac{\pi}{2}
+\]
+ist
+\[
+    \ket{\psi}
+    =\frac{1}{\sqrt2}\ket{0}
+    +\frac{\ii}{\sqrt2}\ket{1}
+    =\frac{\ket{0}+\ii\ket{1}}{\sqrt2}.
+\]
+Der Bloch-Vektor ist
+\[
+    \vec n
+    =\begin{pmatrix}
+        \sin(\pi/2)\cos(\pi/2)\\
+        \sin(\pi/2)\sin(\pi/2)\\
+        \cos(\pi/2)
+    \end{pmatrix}
+    =\begin{pmatrix}0\\1\\0\end{pmatrix}.
+\]
+Der Zustand liegt also auf der positiven \(y\)-Achse der Bloch-Sphäre.
+
+\section{Pauli-Matrizen und Bloch-Vektor}
+
+Die Pauli-Matrizen lauten
+\[
+    \sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \qquad
+    \sigma_y=\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},
+    \qquad
+    \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+Sie erfüllen
+\[
+    \sigma_i^2=\idop,
+    \qquad
+    [\sigma_i,\sigma_j]=2\ii\sum_k\varepsilon_{ijk}\sigma_k,
+    \qquad
+    \{\sigma_i,\sigma_j\}=2\delta_{ij}\idop.
+\]
+
+Der Bloch-Vektor eines reinen Zustands ist direkt durch die Erwartungswerte der Pauli-Matrizen gegeben:
+\[
+    \vec n
+    =\begin{pmatrix}
+        \langle \sigma_x\rangle\\
+        \langle \sigma_y\rangle\\
+        \langle \sigma_z\rangle
+    \end{pmatrix}.
+\]
+
+\begin{derivationbox}
+Für
+\[
+    \ket{\psi}
+    =\cos\left(\frac{\theta}{2}\right)\ket{0}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{1}
+\]
+setzen wir
+\[
+    c=\cos\left(\frac{\theta}{2}\right),
+    \qquad
+    s=\sin\left(\frac{\theta}{2}\right).
+\]
+Dann gilt
+\[
+    \ket{\psi}=\begin{pmatrix}c\\ \e^{\ii\varphi}s\end{pmatrix},
+    \qquad
+    \bra{\psi}=\begin{pmatrix}c& \e^{-\ii\varphi}s\end{pmatrix}.
+\]
+Für \(\sigma_x\):
+\[
+    \langle \sigma_x\rangle
+    =\bra{\psi}\sigma_x\ket{\psi}
+    =c\e^{\ii\varphi}s+\e^{-\ii\varphi}sc
+    =2cs\cos\varphi
+    =\sin\theta\cos\varphi.
+\]
+Für \(\sigma_y\):
+\[
+    \langle \sigma_y\rangle
+    =-\ii c\e^{\ii\varphi}s+\ii\e^{-\ii\varphi}sc
+    =2cs\sin\varphi
+    =\sin\theta\sin\varphi.
+\]
+Für \(\sigma_z\):
+\[
+    \langle \sigma_z\rangle
+    =c^2-s^2
+    =\cos\theta.
+\]
+Damit folgt
+\[
+    \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta).
+\]
+\end{derivationbox}
+
+\section{Dichteoperator eines Qubits}
+
+Für einen reinen Zustand ist der Dichteoperator
+\[
+    \rho=\proj{\psi}.
+\]
+Für ein Qubit kann jeder Dichteoperator in der Form
+\[
+    \rho=\frac12(\idop+\vec r\cdot\vec\sigma)
+\]
+geschrieben werden, wobei
+\[
+    \vec\sigma=(\sigma_x,\sigma_y,\sigma_z),
+    \qquad
+    \vec r\in\mathbb R^3,
+    \qquad
+    |\vec r|\le 1.
+\]
+
+\begin{conceptbox}
+Für reine Qubit-Zustände gilt \(|\vec r|=1\); sie liegen auf der Oberfläche der Bloch-Sphäre. Für gemischte Zustände gilt \(|\vec r|<1\); sie liegen im Inneren der Bloch-Kugel. Der vollständig gemischte Zustand ist
+\[
+    \rho=\frac12\idop,
+\]
+und entspricht \(\vec r=0\), also dem Mittelpunkt der Bloch-Kugel.
+\end{conceptbox}
+
+\section{Messung entlang einer beliebigen Richtung}
+
+Sei
+\[
+    \vec a=(a_x,a_y,a_z)
+\]
+ein Einheitsvektor. Die Observable für eine Spinmessung entlang \(\vec a\) ist
+\[
+    \sigma_{\vec a}=\vec a\cdot\vec\sigma
+    =a_x\sigma_x+a_y\sigma_y+a_z\sigma_z.
+\]
+Sie hat Eigenwerte \(+1\) und \(-1\). Die Projektoren auf die beiden Eigenräume sind
+\[
+    P_+(\vec a)=\frac12(\idop+\vec a\cdot\vec\sigma),
+    \qquad
+    P_-(\vec a)=\frac12(\idop-\vec a\cdot\vec\sigma).
+\]
+Befindet sich das Qubit im Zustand mit Bloch-Vektor \(\vec n\), dann gelten
+\[
+    p_+(\vec a)=\Tr(\rho P_+(\vec a))
+    =\frac12(1+\vec n\cdot\vec a),
+\]
+\[
+    p_-(\vec a)=\Tr(\rho P_-(\vec a))
+    =\frac12(1-\vec n\cdot\vec a).
+\]
+
+\begin{examtipbox}
+Wenn ein Qubit-Zustand als Bloch-Vektor gegeben ist, kann man Messwahrscheinlichkeiten ohne komplizierte Spinorrechnung bestimmen:
+\[
+    p(\text{gleich orientiert})=\frac12(1+\cos\gamma),
+    \qquad
+    p(\text{entgegengesetzt})=\frac12(1-\cos\gamma),
+\]
+wobei \(\gamma\) der Winkel zwischen Zustandsrichtung \(\vec n\) und Messrichtung \(\vec a\) ist.
+\end{examtipbox}
+
+\section{Unitäre Zeitentwicklung und Drehungen auf der Bloch-Sphäre}
+
+Ein Hamiltonoperator der Form
+\[
+    H=\hbar\Omega\sigma_x
+\]
+erzeugt eine Drehung des Bloch-Vektors um die \(x\)-Achse. Allgemeiner erzeugt
+\[
+    H=\hbar\Omega\,\vec a\cdot\vec\sigma
+\]
+eine Drehung um die Achse \(\vec a\). Der Zeitentwicklungsoperator ist
+\[
+    U(t)=\exp\left(-\frac{\ii}{\hbar}Ht\right)
+    =\exp\left(-\ii\Omega t\,\vec a\cdot\vec\sigma\right).
+\]
+Da
+\[
+    (\vec a\cdot\vec\sigma)^2=\idop
+\]
+für \(|\vec a|=1\), folgt
+\[
+    U(t)=\cos(\Omega t)\idop
+    -\ii\sin(\Omega t)\,\vec a\cdot\vec\sigma.
+\]
+
+\begin{notebox}
+In der Bloch-Vektor-Darstellung entspricht
+\[
+    U(t)=\exp(-\ii\Omega t\,\vec a\cdot\vec\sigma)
+\]
+einer räumlichen Drehung des Bloch-Vektors um die Achse \(\vec a\) mit Winkel \(2\Omega t\). Der Faktor \(2\) entsteht, weil SU(2)-Spinoren die Rotationsgruppe SO(3) doppelt überdecken.
+\end{notebox}
+
+\subsection{Drehung um die \(z\)-Achse}
+
+Für
+\[
+    H=\hbar\omega\sigma_z
+\]
+ist
+\[
+    U_z(t)=\e^{-\ii\omega t\sigma_z}
+    =\begin{pmatrix}
+        \e^{-\ii\omega t}&0\\
+        0&\e^{\ii\omega t}
+    \end{pmatrix}.
+\]
+Auf den allgemeinen Zustand angewendet ergibt das
+\[
+    U_z(t)\ket{\psi}
+    =\e^{-\ii\omega t}\cos\left(\frac\theta2\right)\ket{0}
+    +\e^{\ii\omega t}\e^{\ii\varphi}\sin\left(\frac\theta2\right)\ket{1}.
+\]
+Bis auf eine globale Phase ist dies
+\[
+    U_z(t)\ket{\psi}
+    \sim
+    \cos\left(\frac\theta2\right)\ket{0}
+    +\e^{\ii(\varphi+2\omega t)}\sin\left(\frac\theta2\right)\ket{1}.
+\]
+Also bleibt \(\theta\) gleich, während
+\[
+    \varphi\longrightarrow \varphi+2\omega t.
+\]
+Das ist eine Drehung um die \(z\)-Achse.
+
+\subsection{Drehung um die \(x\)-Achse}
+
+Für
+\[
+    H=\hbar\Omega\sigma_x
+\]
+ist
+\[
+    U_x(t)=\e^{-\ii\Omega t\sigma_x}
+    =\cos(\Omega t)\idop-\ii\sin(\Omega t)\sigma_x.
+\]
+In Matrixform:
+\[
+    U_x(t)=
+    \begin{pmatrix}
+        \cos(\Omega t)&-\ii\sin(\Omega t)\\
+        -\ii\sin(\Omega t)&\cos(\Omega t)
+    \end{pmatrix}.
+\]
+Dieser Operator mischt die Amplituden von \(\ket{0}\) und \(\ket{1}\) und dreht den Bloch-Vektor um die \(x\)-Achse.
+
+\section{Ein-Qubit-Gatter}
+
+In der Quanteninformationssprache nennt man eine unitäre Transformation eines Qubits ein \emph{Ein-Qubit-Gatter}. Die wichtigsten Beispiele sind die Pauli-Gatter und das Hadamard-Gatter.
+
+\subsection{X-Gatter}
+
+Das \(X\)-Gatter ist
+\[
+    X=\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+Es wirkt wie ein quantenmechanisches NOT-Gatter:
+\[
+    X\ket{0}=\ket{1},
+    \qquad
+    X\ket{1}=\ket{0}.
+\]
+Für einen allgemeinen Zustand gilt
+\[
+    X(\alpha\ket{0}+\beta\ket{1})
+    =\beta\ket{0}+\alpha\ket{1}.
+\]
+
+\subsection{Z-Gatter}
+
+Das \(Z\)-Gatter ist
+\[
+    Z=\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+Es lässt \(\ket{0}\) unverändert und ändert das Vorzeichen von \(\ket{1}\):
+\[
+    Z\ket{0}=\ket{0},
+    \qquad
+    Z\ket{1}=-\ket{1}.
+\]
+Damit ist
+\[
+    Z(\alpha\ket{0}+\beta\ket{1})
+    =\alpha\ket{0}-\beta\ket{1}.
+\]
+
+\subsection{Hadamard-Gatter}
+
+Das Hadamard-Gatter ist
+\[
+    H_{\mathrm{Had}}
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}
+        1&1\\
+        1&-1
+    \end{pmatrix}.
+\]
+Es erzeugt Superpositionen:
+\[
+    H_{\mathrm{Had}}\ket{0}
+    =\frac{\ket{0}+\ket{1}}{\sqrt2}
+    =\ket{+},
+\]
+\[
+    H_{\mathrm{Had}}\ket{1}
+    =\frac{\ket{0}-\ket{1}}{\sqrt2}
+    =\ket{-}.
+\]
+Umgekehrt gilt
+\[
+    H_{\mathrm{Had}}\ket{+}=\ket{0},
+    \qquad
+    H_{\mathrm{Had}}\ket{-}=\ket{1}.
+\]
+
+\begin{examtipbox}
+Das Hadamard-Gatter ist oft der schnellste Weg, zwischen der \(z\)-Basis und der \(x\)-Basis zu wechseln:
+\[
+    \ket{0},\ket{1}
+    \quad\longleftrightarrow\quad
+    \ket{+},\ket{-}.
+\]
+Deshalb treten Hadamard-Gatter in Aufgaben zu Messungen in verschiedenen Basen, Interferenz und Bell-Zuständen sehr häufig auf.
+\end{examtipbox}
+
+\section{Mehrere Qubits}
+
+Für zwei Qubits ist der Hilbertraum das Tensorprodukt
+\[
+    \mathcal H = \mathcal H_2^{(1)}\otimes \mathcal H_2^{(2)}.
+\]
+Eine Basis ist
+\[
+    \ket{00},\quad \ket{01},\quad \ket{10},\quad \ket{11},
+\]
+wobei
+\[
+    \ket{ij}=\ket{i}\otimes\ket{j}.
+\]
+Ein allgemeiner Zwei-Qubit-Zustand ist
+\[
+    \ket{\psi}
+    =\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+    +\alpha_{10}\ket{10}+\alpha_{11}\ket{11},
+\]
+mit Normierung
+\[
+    |\alpha_{00}|^2+|\alpha_{01}|^2+|\alpha_{10}|^2+|\alpha_{11}|^2=1.
+\]
+
+Für \(n\) Qubits ist
+\[
+    \mathcal H=(\C^2)^{\otimes n}.
+\]
+Die Rechenbasis besteht aus Zuständen
+\[
+    \ket{x_1x_2\dots x_n},
+    \qquad
+    x_j\in\{0,1\}.
+\]
+Es gibt \(2^n\) Basiszustände. Der allgemeinste Zustand lautet
+\[
+    \ket{\psi}=\sum_{x\in\{0,1\}^n}\alpha_x\ket{x},
+    \qquad
+    \sum_x |\alpha_x|^2=1.
+\]
+
+\begin{notebox}
+Der Zustandsraum wächst exponentiell mit der Zahl der Qubits. Ein Register aus \(n\) Qubits hat \(2^n\) komplexe Amplituden. Das bedeutet aber nicht, dass man bei einer Messung \(2^n\) klassische Zahlen auslesen kann. Eine Messung in der Rechenbasis liefert genau einen Bitstring \(x\in\{0,1\}^n\).
+\end{notebox}
+
+\section{Messung eines Teilsystems}
+
+Sei ein Zwei-Qubit-Zustand gegeben durch
+\[
+    \ket{\psi}
+    =\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+    +\alpha_{10}\ket{10}+\alpha_{11}\ket{11}.
+\]
+Wir messen nur das erste Qubit in der Rechenbasis. Die Projektoren lauten
+\[
+    P_0^{(1)}=\proj{0}\otimes \idop,
+    \qquad
+    P_1^{(1)}=\proj{1}\otimes \idop.
+\]
+Die Wahrscheinlichkeit, beim ersten Qubit das Ergebnis \(0\) zu erhalten, ist
+\[
+    p(0)=\mel{\psi}{P_0^{(1)}}{\psi}
+    =|\alpha_{00}|^2+|\alpha_{01}|^2.
+\]
+Der Zustand nach dieser Messung ist
+\[
+    \ket{\psi_{0}}
+    =\frac{P_0^{(1)}\ket{\psi}}{\sqrt{p(0)}}
+    =\frac{\alpha_{00}\ket{00}+\alpha_{01}\ket{01}}
+    {\sqrt{|\alpha_{00}|^2+|\alpha_{01}|^2}}.
+\]
+Analog ist
+\[
+    p(1)=|\alpha_{10}|^2+|\alpha_{11}|^2
+\]
+und
+\[
+    \ket{\psi_{1}}
+    =\frac{\alpha_{10}\ket{10}+\alpha_{11}\ket{11}}
+    {\sqrt{|\alpha_{10}|^2+|\alpha_{11}|^2}}.
+\]
+
+\begin{warningbox}
+Bei einer Messung eines Teilsystems kollabiert im Allgemeinen der Zustand des gesamten zusammengesetzten Systems. Das ist besonders wichtig bei verschränkten Zuständen: Eine Messung an Alice' Qubit kann dann den Zustand von Bobs Qubit festlegen, ohne dass dadurch ein Signal schneller als Licht übertragen wird.
+\end{warningbox}
+
+\section{Produktzustände und separable Zustände}
+
+Ein Zwei-Qubit-Zustand heißt Produktzustand, wenn er als Tensorprodukt zweier Ein-Qubit-Zustände geschrieben werden kann:
+\[
+    \ket{\psi}=\ket{a}\otimes\ket{b}.
+\]
+Sei
+\[
+    \ket{a}=a_0\ket{0}+a_1\ket{1},
+    \qquad
+    \ket{b}=b_0\ket{0}+b_1\ket{1}.
+\]
+Dann ist
+\[
+    \ket{a}\otimes\ket{b}
+    =a_0b_0\ket{00}+a_0b_1\ket{01}
+    +a_1b_0\ket{10}+a_1b_1\ket{11}.
+\]
+Ein allgemeiner Zwei-Qubit-Zustand
+\[
+    \ket{\psi}
+    =\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+    +\alpha_{10}\ket{10}+\alpha_{11}\ket{11}
+\]
+ist genau dann ein Produktzustand, wenn seine Koeffizientenmatrix
+\[
+    A=\begin{pmatrix}
+        \alpha_{00}&\alpha_{01}\\
+        \alpha_{10}&\alpha_{11}
+    \end{pmatrix}
+\]
+Rang \(1\) hat. Das ist äquivalent zu
+\[
+    \det A=0,
+\]
+also
+\[
+    \alpha_{00}\alpha_{11}-\alpha_{01}\alpha_{10}=0.
+\]
+
+\begin{formulabox}
+Ein reiner Zwei-Qubit-Zustand ist separabel genau dann, wenn
+\[
+    \alpha_{00}\alpha_{11}=\alpha_{01}\alpha_{10}.
+\]
+Ist diese Gleichung nicht erfüllt, ist der Zustand verschränkt.
+\end{formulabox}
+
+\section{Verschränkung}
+
+Ein reiner Zustand eines zusammengesetzten Systems heißt \emph{verschränkt}, wenn er nicht als Produktzustand geschrieben werden kann. Für zwei Qubits bedeutet das:
+\[
+    \ket{\psi}\neq \ket{a}\otimes\ket{b}
+\]
+für alle Ein-Qubit-Zustände \(\ket{a}\) und \(\ket{b}\).
+
+\begin{conceptbox}
+Verschränkung ist eine Eigenschaft des gemeinsamen Zustands, nicht eines einzelnen Teilsystems. Bei einem verschränkten Zustand besitzt das Gesamtsystem einen wohldefinierten reinen Zustand, während die Teilsysteme für sich allein im Allgemeinen nur durch gemischte Zustände beschrieben werden können.
+\end{conceptbox}
+
+\section{Bell-Zustände}
+
+Die vier Bell-Zustände sind
+\[
+    \ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2},
+    \qquad
+    \ket{\Phi^-}=\frac{\ket{00}-\ket{11}}{\sqrt2},
+\]
+\[
+    \ket{\Psi^+}=\frac{\ket{01}+\ket{10}}{\sqrt2},
+    \qquad
+    \ket{\Psi^-}=\frac{\ket{01}-\ket{10}}{\sqrt2}.
+\]
+Sie bilden eine Orthonormalbasis des Zwei-Qubit-Hilbertraums.
+
+\begin{derivationbox}
+Wir zeigen exemplarisch, dass
+\[
+    \ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2}
+\]
+verschränkt ist. Angenommen, es gäbe
+\[
+    \ket{\Phi^+}=(a\ket{0}+b\ket{1})\otimes(c\ket{0}+d\ket{1}).
+\]
+Dann wäre
+\[
+    \ket{\Phi^+}
+    =ac\ket{00}+ad\ket{01}+bc\ket{10}+bd\ket{11}.
+\]
+Vergleich mit
+\[
+    \frac{\ket{00}+\ket{11}}{\sqrt2}
+\]
+liefert
+\[
+    ac=\frac{1}{\sqrt2},
+    \qquad
+    ad=0,
+    \qquad
+    bc=0,
+    \qquad
+    bd=\frac{1}{\sqrt2}.
+\]
+Aus \(ac\neq0\) folgt \(a\neq0\) und \(c\neq0\). Aus \(ad=0\) folgt dann \(d=0\), und aus \(bc=0\) folgt \(b=0\). Dann wäre aber \(bd=0\), im Widerspruch zu \(bd=1/\sqrt2\). Also ist \(\ket{\Phi^+}\) nicht separabel.
+\end{derivationbox}
+
+\section{Messungen am Bell-Zustand \texorpdfstring{\(\ket{\Phi^+}\)}{Phi+}}
+
+Sei
+\[
+    \ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2}.
+\]
+Alice besitzt das erste Qubit, Bob das zweite. Alice misst ihr Qubit in der Rechenbasis.
+
+Die Wahrscheinlichkeit für Alice' Ergebnis \(0\) ist
+\[
+    p_A(0)=\frac12.
+\]
+Nach dieser Messung ist der gemeinsame Zustand
+\[
+    \ket{00}.
+\]
+Bobs Qubit ist dann sicher im Zustand \(\ket{0}\). Wenn Bob anschließend in der Rechenbasis misst, erhält er mit Wahrscheinlichkeit \(1\) das Ergebnis \(0\).
+
+Die Wahrscheinlichkeit für Alice' Ergebnis \(1\) ist ebenfalls
+\[
+    p_A(1)=\frac12.
+\]
+Nach dieser Messung ist der gemeinsame Zustand
+\[
+    \ket{11}.
+\]
+Bobs Qubit ist dann sicher im Zustand \(\ket{1}\). Wenn Bob anschließend in der Rechenbasis misst, erhält er mit Wahrscheinlichkeit \(1\) das Ergebnis \(1\).
+
+\begin{answerbox}
+Für den Bell-Zustand \(\ket{\Phi^+}\) sind Alice' und Bobs Messergebnisse in der Rechenbasis perfekt korreliert:
+\[
+    A=0 \Rightarrow B=0,
+    \qquad
+    A=1 \Rightarrow B=1.
+\]
+Jedes einzelne Ergebnis ist zufällig, aber die beiden Ergebnisse stimmen immer überein.
+\end{answerbox}
+
+\section{Messungen am Bell-Zustand \texorpdfstring{\(\ket{\Psi^+}\)}{Psi+}}
+
+Sei nun
+\[
+    \ket{\Psi^+}=\frac{\ket{01}+\ket{10}}{\sqrt2}.
+\]
+Alice misst wieder das erste Qubit in der Rechenbasis.
+
+Wenn Alice \(0\) misst, kollabiert der Zustand auf
+\[
+    \ket{01}.
+\]
+Dann ist Bobs Zustand \(\ket{1}\).
+
+Wenn Alice \(1\) misst, kollabiert der Zustand auf
+\[
+    \ket{10}.
+\]
+Dann ist Bobs Zustand \(\ket{0}\).
+
+\begin{answerbox}
+Für den Bell-Zustand \(\ket{\Psi^+}\) sind Alice' und Bobs Messergebnisse in der Rechenbasis perfekt antikorreliert:
+\[
+    A=0 \Rightarrow B=1,
+    \qquad
+    A=1 \Rightarrow B=0.
+\]
+Wieder sind die einzelnen Ergebnisse zufällig, aber die Relation zwischen den Ergebnissen ist fest.
+\end{answerbox}
+
+\section{Reduzierter Dichteoperator und lokale Gemischtheit}
+
+Der Zustand
+\[
+    \ket{\Phi^+}=\frac{\ket{00}+\ket{11}}{\sqrt2}
+\]
+ist ein reiner Zustand des Gesamtsystems. Der Dichteoperator des Gesamtsystems ist
+\[
+    \rho_{AB}=\proj{\Phi^+}.
+\]
+Ausmultipliziert:
+\[
+    \rho_{AB}
+    =\frac12\left(
+    \ket{00}\bra{00}
+    +\ket{00}\bra{11}
+    +\ket{11}\bra{00}
+    +\ket{11}\bra{11}
+    \right).
+\]
+Der Zustand von Alice allein ist der reduzierte Dichteoperator
+\[
+    \rho_A=\Tr_B(\rho_{AB}).
+\]
+Dabei wird über Bobs Hilbertraum gespurt. Es ergibt sich
+\[
+    \rho_A=\frac12\ket{0}\bra{0}+\frac12\ket{1}\bra{1}
+    =\frac12\idop.
+\]
+Analog gilt
+\[
+    \rho_B=\frac12\idop.
+\]
+
+\begin{conceptbox}
+Beim Bell-Zustand ist das Gesamtsystem rein, aber jedes einzelne Teilsystem maximal gemischt. Das ist ein typisches Kennzeichen maximaler Verschränkung: Die Information steckt nicht lokal in Alice oder lokal in Bob, sondern in den Korrelationen zwischen beiden Teilsystemen.
+\end{conceptbox}
+
+\section{Korrelationen im Bell-Zustand}
+
+Für den Bell-Zustand \(\ket{\Phi^+}\) gilt
+\[
+    \langle \sigma_z\otimes\sigma_z\rangle=1.
+\]
+Denn
+\[
+    (\sigma_z\otimes\sigma_z)\ket{00}=+\ket{00},
+    \qquad
+    (\sigma_z\otimes\sigma_z)\ket{11}=+\ket{11}.
+\]
+Also ist \(\ket{\Phi^+}\) ein Eigenzustand von \(\sigma_z\otimes\sigma_z\) zum Eigenwert \(+1\).
+
+Auch
+\[
+    \langle \sigma_x\otimes\sigma_x\rangle=1
+\]
+gilt, denn
+\[
+    (\sigma_x\otimes\sigma_x)\ket{00}=\ket{11},
+    \qquad
+    (\sigma_x\otimes\sigma_x)\ket{11}=\ket{00},
+\]
+und daher
+\[
+    (\sigma_x\otimes\sigma_x)\ket{\Phi^+}=\ket{\Phi^+}.
+\]
+Für \(\sigma_y\) erhält man dagegen
+\[
+    \langle \sigma_y\otimes\sigma_y\rangle=-1.
+\]
+
+\begin{notebox}
+Bell-Zustände zeigen Korrelationen, die stärker sind als klassische Korrelationen. Das ist der Inhalt des Bellschen Theorems. Für das Lernskript reicht zunächst: Verschränkte Zustände können perfekte Korrelationen besitzen, obwohl die lokalen Messergebnisse einzeln zufällig sind.
+\end{notebox}
+
+\section{CNOT-Gatter und Erzeugung eines Bell-Zustands}
+
+Ein wichtiges Zwei-Qubit-Gatter ist das CNOT-Gatter. Das erste Qubit ist das Kontrollqubit, das zweite das Zielqubit. Die Wirkung ist
+\[
+    \ket{00}\mapsto\ket{00},
+    \qquad
+    \ket{01}\mapsto\ket{01},
+\]
+\[
+    \ket{10}\mapsto\ket{11},
+    \qquad
+    \ket{11}\mapsto\ket{10}.
+\]
+In der Basis
+\[
+    \ket{00},\ket{01},\ket{10},\ket{11}
+\]
+lautet die Matrix
+\[
+    U_{\mathrm{CNOT}}
+    =\begin{pmatrix}
+        1&0&0&0\\
+        0&1&0&0\\
+        0&0&0&1\\
+        0&0&1&0
+    \end{pmatrix}.
+\]
+
+Ein Bell-Zustand kann aus einem Produktzustand erzeugt werden. Starte mit
+\[
+    \ket{00}.
+\]
+Wende auf das erste Qubit ein Hadamard-Gatter an:
+\[
+    (H_{\mathrm{Had}}\otimes\idop)\ket{00}
+    =\frac{\ket{0}+\ket{1}}{\sqrt2}\otimes\ket{0}
+    =\frac{\ket{00}+\ket{10}}{\sqrt2}.
+\]
+Wende danach CNOT an:
+\[
+    U_{\mathrm{CNOT}}\frac{\ket{00}+\ket{10}}{\sqrt2}
+    =\frac{\ket{00}+\ket{11}}{\sqrt2}
+    =\ket{\Phi^+}.
+\]
+
+\begin{formulabox}
+Bell-Zustandserzeugung:
+\[
+    \ket{00}
+    \xrightarrow{H\otimes\idop}
+    \frac{\ket{00}+\ket{10}}{\sqrt2}
+    \xrightarrow{\mathrm{CNOT}}
+    \frac{\ket{00}+\ket{11}}{\sqrt2}.
+\]
+\end{formulabox}
+
+\section{No-Cloning-Theorem}
+
+Ein klassisches Bit kann kopiert werden. Ein unbekannter Qubit-Zustand kann im Allgemeinen nicht perfekt kopiert werden. Angenommen, es gäbe einen unitären Operator \(U\), der jeden Zustand kopiert:
+\[
+    U\ket{\psi}\ket{0}=\ket{\psi}\ket{\psi}
+\]
+für alle \(\ket{\psi}\). Für einen zweiten Zustand \(\ket{\phi}\) müsste dann auch gelten
+\[
+    U\ket{\phi}\ket{0}=\ket{\phi}\ket{\phi}.
+\]
+Da \(U\) unitär ist, erhält es Skalarprodukte:
+\[
+    \braket{\phi}{\psi}
+    =\left(\bra{\phi}\bra{0}\right)U^\dagger U\left(\ket{\psi}\ket{0}\right).
+\]
+Nach Anwendung der Kopierannahme wäre aber
+\[
+    \left(\bra{\phi}\bra{\phi}\right)
+    \left(\ket{\psi}\ket{\psi}\right)
+    =\braket{\phi}{\psi}^2.
+\]
+Also müsste für alle Zustände gelten
+\[
+    \braket{\phi}{\psi}=\braket{\phi}{\psi}^2.
+\]
+Das ist nur möglich, wenn
+\[
+    \braket{\phi}{\psi}=0
+    \quad\text{oder}\quad
+    \braket{\phi}{\psi}=1.
+\]
+Für beliebige nichtorthogonale, verschiedene Zustände ist das falsch. Daher kann es keinen universellen Kopieroperator geben.
+
+\begin{conceptbox}
+Das No-Cloning-Theorem sagt nicht, dass man Basiszustände wie \(\ket{0}\) und \(\ket{1}\) nicht kopieren kann. Es sagt, dass kein einziger unitärer Prozess einen beliebigen unbekannten Qubit-Zustand perfekt kopieren kann.
+\end{conceptbox}
+
+\section{Typische Aufgabenmuster}
+
+\subsection{Aus Zustand den Bloch-Vektor bestimmen}
+
+Gegeben sei
+\[
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1}.
+\]
+Dann rechnet man
+\[
+    n_x=\bra{\psi}\sigma_x\ket{\psi}=\alpha^*\beta+\beta^*\alpha=2\operatorname{Re}(\alpha^*\beta),
+\]
+\[
+    n_y=\bra{\psi}\sigma_y\ket{\psi}=-\ii\alpha^*\beta+\ii\beta^*\alpha=2\operatorname{Im}(\alpha^*\beta),
+\]
+\[
+    n_z=\bra{\psi}\sigma_z\ket{\psi}=|\alpha|^2-|\beta|^2.
+\]
+
+\subsection{Aus Bloch-Vektor den Zustand bestimmen}
+
+Gegeben sei
+\[
+    \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta).
+\]
+Dann ist ein zugehöriger Zustandsvektor
+\[
+    \ket{\psi}
+    =\cos\left(\frac\theta2\right)\ket{0}
+    +\e^{\ii\varphi}\sin\left(\frac\theta2\right)\ket{1}.
+\]
+
+\subsection{Prüfen, ob ein Zwei-Qubit-Zustand verschränkt ist}
+
+Schreibe
+\[
+    \ket{\psi}
+    =\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+    +\alpha_{10}\ket{10}+\alpha_{11}\ket{11}.
+\]
+Dann bilde
+\[
+    D=\alpha_{00}\alpha_{11}-\alpha_{01}\alpha_{10}.
+\]
+Wenn
+\[
+    D=0,
+\]
+ist der Zustand separabel. Wenn
+\[
+    D\neq 0,
+\]
+ist er verschränkt.
+
+\subsection{Messung am ersten Qubit}
+
+Für
+\[
+    \ket{\psi}
+    =\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+    +\alpha_{10}\ket{10}+\alpha_{11}\ket{11}
+\]
+gilt
+\[
+    p(0)=|\alpha_{00}|^2+|\alpha_{01}|^2,
+    \qquad
+    p(1)=|\alpha_{10}|^2+|\alpha_{11}|^2.
+\]
+Die normierten Nachmesszustände sind
+\[
+    \ket{\psi_0}
+    =\frac{\alpha_{00}\ket{00}+\alpha_{01}\ket{01}}{
+    \sqrt{|\alpha_{00}|^2+|\alpha_{01}|^2}},
+\]
+\[
+    \ket{\psi_1}
+    =\frac{\alpha_{10}\ket{10}+\alpha_{11}\ket{11}}{
+    \sqrt{|\alpha_{10}|^2+|\alpha_{11}|^2}}.
+\]
+
+\section{Zusammenfassung}
+
+\begin{formulabox}
+Ein einzelnes Qubit ist
+\[
+    \ket{\psi}=\alpha\ket{0}+\beta\ket{1},
+    \qquad
+    |\alpha|^2+|\beta|^2=1.
+\]
+Bis auf globale Phase kann jeder reine Qubit-Zustand geschrieben werden als
+\[
+    \ket{\psi}
+    =\cos\left(\frac{\theta}{2}\right)\ket{0}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{1}.
+\]
+Der zugehörige Bloch-Vektor ist
+\[
+    \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta).
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Für zwei Qubits lautet der allgemeine Zustand
+\[
+    \ket{\psi}
+    =\alpha_{00}\ket{00}+\alpha_{01}\ket{01}
+    +\alpha_{10}\ket{10}+\alpha_{11}\ket{11}.
+\]
+Er ist genau dann separabel, wenn
+\[
+    \alpha_{00}\alpha_{11}-\alpha_{01}\alpha_{10}=0.
+\]
+Ist diese Bedingung nicht erfüllt, ist der Zustand verschränkt.
+\end{formulabox}
+
+\begin{formulabox}
+Die Bell-Zustände sind
+\[
+    \ket{\Phi^\pm}=\frac{\ket{00}\pm\ket{11}}{\sqrt2},
+    \qquad
+    \ket{\Psi^\pm}=\frac{\ket{01}\pm\ket{10}}{\sqrt2}.
+\]
+Sie sind maximal verschränkte Zwei-Qubit-Zustände. Bei \(\ket{\Phi^+}\) sind Messungen in der Rechenbasis perfekt korreliert; bei \(\ket{\Psi^+}\) sind sie perfekt antikorreliert.
+\end{formulabox}
+

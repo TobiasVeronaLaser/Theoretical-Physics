@@ -1,3 +1,936 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\idop}{\mathbf{1}}
+\providecommand{\opH}{\hat H}
+\providecommand{\opV}{\hat V}
+\providecommand{\opW}{\hat W}
+
 \chapter{Zeitunabhängige Störungstheorie}
 
-% Inhalt wird später anhand der Stichwortliste und Quellen ergänzt.
+\section{Ziel dieses Kapitels}
+
+Viele Hamiltonoperatoren in der Quantenmechanik lassen sich nicht exakt diagonalisieren. Die zeitunabhängige Störungstheorie ist das Standardverfahren, wenn ein System nur leicht von einem exakt lösbaren System abweicht. Man zerlegt den Hamiltonoperator in einen bekannten Anteil und eine kleine Störung:
+\[
+    \opH = \opH_0 + \lambda \opV.
+\]
+Dabei ist \(\opH_0\) exakt lösbar, \(\opV\) ist die Störung und \(\lambda\) ist ein formaler kleiner Parameter. Am Ende setzt man meistens \(\lambda=1\), sofern die Störung wirklich klein genug ist.
+
+\begin{conceptbox}
+Die Grundidee ist: Man kennt Eigenwerte und Eigenzustände von \(\opH_0\) und berechnet daraus näherungsweise Eigenwerte und Eigenzustände von
+\[
+    \opH_0+\lambda\opV.
+\]
+Die Eigenwerte und Eigenzustände werden als Potenzreihen in \(\lambda\) entwickelt.
+\end{conceptbox}
+
+Dieses Kapitel behandelt:
+\begin{itemize}
+    \item die Motivation und Gültigkeit der Störungstheorie,
+    \item die nichtentartete zeitunabhängige Störungstheorie,
+    \item Energiekorrekturen erster und zweiter Ordnung,
+    \item Zustandskorrekturen erster Ordnung,
+    \item Normierungsfragen und Phasenkonventionen,
+    \item die entartete Störungstheorie,
+    \item fast entartete Zwei-Niveau-Systeme,
+    \item typische Rechenrezepte für Klausur- und Übungsaufgaben.
+\end{itemize}
+
+\section{Motivation: Warum Störungstheorie?}
+
+Ein Eigenwertproblem der Form
+\[
+    \opH\ket{\psi_n}=E_n\ket{\psi_n}
+\]
+ist im Allgemeinen schwer. Exakt lösbar sind nur spezielle Modelle, zum Beispiel:
+\begin{itemize}
+    \item freies Teilchen,
+    \item unendlich hoher Potentialtopf,
+    \item harmonischer Oszillator,
+    \item Wasserstoffatom ohne Feinstruktur,
+    \item einfache Spin-Systeme.
+\end{itemize}
+
+In realen Problemen treten aber zusätzliche Terme auf. Beispiele sind:
+\begin{itemize}
+    \item ein kleines äußeres elektrisches oder magnetisches Feld,
+    \item Spin-Spin-Wechselwirkungen,
+    \item kleine Korrekturen durch relativistische Effekte,
+    \item schwache Kopplung zwischen zwei vorher unabhängigen Systemen,
+    \item ein Potential, das von einem bekannten Potential leicht abweicht.
+\end{itemize}
+
+\begin{notebox}
+Störungstheorie ist keine neue Quantenmechanik. Sie ist ein Näherungsverfahren für das gewöhnliche Eigenwertproblem. Man ersetzt ein schweres Problem durch ein exakt lösbares Problem plus kontrollierte Korrekturen.
+\end{notebox}
+
+\section{Allgemeine Problemstellung}
+
+Wir betrachten einen Hamiltonoperator
+\[
+    \opH(\lambda)=\opH_0+\lambda\opV.
+\]
+Das ungestörte Problem sei bekannt:
+\[
+    \opH_0\ket{n^{(0)}}=E_n^{(0)}\ket{n^{(0)}}.
+\]
+Die ungestörten Zustände bilden eine Orthonormalbasis:
+\[
+    \braket{m^{(0)}}{n^{(0)}}=\delta_{mn},
+    \qquad
+    \sum_n \ket{n^{(0)}}\bra{n^{(0)}}=\idop.
+\]
+Gesucht sind die Eigenwerte und Eigenzustände des gestörten Hamiltonoperators:
+\[
+    \opH(\lambda)\ket{\psi_n(\lambda)}=E_n(\lambda)\ket{\psi_n(\lambda)}.
+\]
+
+\begin{definitionbox}
+Man nennt \(\opV\) den Störoperator. Der Parameter \(\lambda\) dient als Buchhaltungsparameter. Die Ordnung in \(\lambda\) gibt an, wie viele Potenzen der Störung berücksichtigt werden.
+\end{definitionbox}
+
+\section{Störungsansatz}
+
+Für den \(n\)-ten Eigenwert und Eigenzustand setzt man Potenzreihen an:
+\[
+    E_n(\lambda)
+    = E_n^{(0)}+\lambda E_n^{(1)}+\lambda^2E_n^{(2)}+\lambda^3E_n^{(3)}+\cdots,
+\]
+\[
+    \ket{\psi_n(\lambda)}
+    = \ket{n^{(0)}}
+    +\lambda\ket{n^{(1)}}
+    +\lambda^2\ket{n^{(2)}}
+    +\cdots.
+\]
+Hier ist \(E_n^{(k)}\) die Energiekorrektur \(k\)-ter Ordnung und \(\ket{n^{(k)}}\) die Zustandskorrektur \(k\)-ter Ordnung.
+
+\begin{examtipbox}
+In Aufgaben schreibt man oft kürzer
+\[
+    \ket{n}\equiv \ket{n^{(0)}}.
+\]
+Dann bedeutet \(V_{mn}=\mel{m}{\opV}{n}\) immer ein Matrixelement in der ungestörten Basis.
+\end{examtipbox}
+
+Setzt man die Reihen in
+\[
+    (\opH_0+\lambda\opV)\ket{\psi_n(\lambda)}
+    =E_n(\lambda)\ket{\psi_n(\lambda)}
+\]
+ein und vergleicht gleiche Potenzen von \(\lambda\), erhält man Gleichungen für die Korrekturen.
+
+\section{Nichtentarteter Fall}
+
+\subsection{Voraussetzung}
+
+Der Eigenwert \(E_n^{(0)}\) sei nicht entartet. Das bedeutet: Es gibt bis auf einen Phasenfaktor genau einen Eigenzustand \(\ket{n^{(0)}}\) zu diesem Eigenwert. Für alle \(m\neq n\) gilt also
+\[
+    E_m^{(0)}\neq E_n^{(0)}.
+\]
+
+\begin{conceptbox}
+Nichtentartete Störungstheorie funktioniert nur direkt, wenn die Nenner
+\[
+    E_n^{(0)}-E_m^{(0)}
+\]
+nicht verschwinden. Falls ein Nenner verschwindet, ist der Zustand entartet und man muss zuerst entartete Störungstheorie verwenden.
+\end{conceptbox}
+
+\subsection{Gleichung nullter Ordnung}
+
+Die Ordnung \(\lambda^0\) ergibt
+\[
+    \opH_0\ket{n^{(0)}}=E_n^{(0)}\ket{n^{(0)}}.
+\]
+Das ist gerade das bekannte ungestörte Eigenwertproblem.
+
+\subsection{Gleichung erster Ordnung}
+
+Die Ordnung \(\lambda^1\) ergibt
+\[
+    \opH_0\ket{n^{(1)}}+\opV\ket{n^{(0)}}
+    =E_n^{(0)}\ket{n^{(1)}}+E_n^{(1)}\ket{n^{(0)}}.
+\]
+Umgestellt:
+\[
+    (\opH_0-E_n^{(0)})\ket{n^{(1)}}
+    =-(\opV-E_n^{(1)})\ket{n^{(0)}}.
+\]
+
+\subsection{Energiekorrektur erster Ordnung}
+
+Wir multiplizieren die Gleichung erster Ordnung von links mit \(\bra{n^{(0)}}\). Dann ist
+\[
+    \bra{n^{(0)}}(\opH_0-E_n^{(0)})=0,
+\]
+weil \(\opH_0\) hermitesch ist und \(\ket{n^{(0)}}\) Eigenzustand von \(\opH_0\) ist. Es bleibt
+\[
+    0=-\mel{n^{(0)}}{\opV}{n^{(0)}}+E_n^{(1)}.
+\]
+Also:
+\begin{formulabox}
+\[
+    E_n^{(1)}=\mel{n^{(0)}}{\opV}{n^{(0)}}.
+\]
+Die Energiekorrektur erster Ordnung ist der Erwartungswert der Störung im ungestörten Zustand.
+\end{formulabox}
+
+\begin{notebox}
+Physikalisch bedeutet das: In erster Ordnung muss man nicht wissen, wie sich der Zustand verändert. Man berechnet nur, welchen Mittelwert die Störung im ursprünglichen Zustand hat.
+\end{notebox}
+
+\subsection{Zustandskorrektur erster Ordnung}
+
+Für die Zustandskorrektur entwickeln wir
+\[
+    \ket{n^{(1)}}=\sum_m c_m^{(1)}\ket{m^{(0)}}.
+\]
+Die Komponente parallel zu \(\ket{n^{(0)}}\) kann durch eine Normierungs- und Phasenkonvention gewählt werden. Üblich ist die sogenannte Zwischen-Normierung:
+\[
+    \braket{n^{(0)}}{\psi_n(\lambda)}=1.
+\]
+Daraus folgt insbesondere
+\[
+    \braket{n^{(0)}}{n^{(1)}}=0.
+\]
+Also enthält \(\ket{n^{(1)}}\) nur Beiträge von Zuständen \(m\neq n\):
+\[
+    \ket{n^{(1)}}=\sum_{m\neq n}c_m^{(1)}\ket{m^{(0)}}.
+\]
+Wir multiplizieren die Gleichung erster Ordnung von links mit \(\bra{m^{(0)}}\) für \(m\neq n\). Dann folgt
+\[
+    (E_m^{(0)}-E_n^{(0)})c_m^{(1)}
+    =-\mel{m^{(0)}}{\opV}{n^{(0)}}.
+\]
+Somit
+\[
+    c_m^{(1)}=\frac{\mel{m^{(0)}}{\opV}{n^{(0)}}}{E_n^{(0)}-E_m^{(0)}}.
+\]
+
+\begin{formulabox}
+\[
+    \ket{\psi_n}
+    =\ket{n^{(0)}}
+    +\lambda\sum_{m\neq n}
+    \frac{\mel{m^{(0)}}{\opV}{n^{(0)}}}{E_n^{(0)}-E_m^{(0)}}
+    \ket{m^{(0)}}
+    +O(\lambda^2).
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Die erste Zustandskorrektur mischt andere ungestörte Zustände hinein. Stark gemischt werden vor allem Zustände, die
+\begin{itemize}
+    \item durch \(\opV\) gekoppelt sind, also \(V_{mn}\neq 0\), und
+    \item energetisch nahe liegen, also kleinen Abstand \(\abs{E_n^{(0)}-E_m^{(0)}}\) haben.
+\end{itemize}
+Genau deshalb versagt nichtentartete Störungstheorie bei Entartung oder fast Entartung.
+\end{examtipbox}
+
+\section{Energiekorrektur zweiter Ordnung}
+
+\subsection{Gleichung zweiter Ordnung}
+
+Die Ordnung \(\lambda^2\) ergibt
+\[
+    \opH_0\ket{n^{(2)}}+\opV\ket{n^{(1)}}
+    =E_n^{(0)}\ket{n^{(2)}}+E_n^{(1)}\ket{n^{(1)}}+E_n^{(2)}\ket{n^{(0)}}.
+\]
+Wir multiplizieren von links mit \(\bra{n^{(0)}}\). Die Terme mit \(\opH_0-E_n^{(0)}\) verschwinden wieder. In Zwischen-Normierung gilt \(\braket{n^{(0)}}{n^{(1)}}=0\), also bleibt
+\[
+    E_n^{(2)}=\mel{n^{(0)}}{\opV}{n^{(1)}}.
+\]
+Setzt man die erste Zustandskorrektur ein, folgt
+\[
+    E_n^{(2)}
+    =\sum_{m\neq n}
+    \mel{n^{(0)}}{\opV}{m^{(0)}}
+    \frac{\mel{m^{(0)}}{\opV}{n^{(0)}}}{E_n^{(0)}-E_m^{(0)}}.
+\]
+Da \(\opV\) hermitesch ist, gilt
+\[
+    \mel{n^{(0)}}{\opV}{m^{(0)}}
+    \mel{m^{(0)}}{\opV}{n^{(0)}}
+    =\abs{\mel{m^{(0)}}{\opV}{n^{(0)}}}^2.
+\]
+
+\begin{formulabox}
+\[
+    E_n^{(2)}
+    =\sum_{m\neq n}
+    \frac{\abs{\mel{m^{(0)}}{\opV}{n^{(0)}}}^2}{E_n^{(0)}-E_m^{(0)}}.
+\]
+\end{formulabox}
+
+\subsection{Interpretation der zweiten Ordnung}
+
+Die zweite Ordnung beschreibt virtuelle Beimischungen anderer Zustände. Jeder Zustand \(m\neq n\) trägt bei mit
+\[
+    \frac{\abs{V_{mn}}^2}{E_n^{(0)}-E_m^{(0)}}.
+\]
+Daraus folgt:
+\begin{itemize}
+    \item Zustände oberhalb von \(n\) mit \(E_m^{(0)}>E_n^{(0)}\) geben negative Beiträge.
+    \item Zustände unterhalb von \(n\) mit \(E_m^{(0)}<E_n^{(0)}\) geben positive Beiträge.
+    \item Nahe Zustände tragen besonders stark bei.
+\end{itemize}
+
+\begin{notebox}
+Für den Grundzustand ist \(E_m^{(0)}>E_0^{(0)}\) für alle \(m\neq 0\). Daher ist
+\[
+    E_0^{(2)}\leq 0.
+\]
+Die zweite Ordnung senkt also die Grundzustandsenergie oder lässt sie unverändert, falls alle relevanten Matrixelemente verschwinden.
+\end{notebox}
+
+\section{Kompakte Formeln im nichtentarteten Fall}
+
+Für
+\[
+    \opH=\opH_0+\lambda\opV
+\]
+und nichtentartete ungestörte Eigenwerte lauten die wichtigsten Ergebnisse:
+
+\begin{formulabox}
+\[
+    E_n
+    =E_n^{(0)}
+    +\lambda V_{nn}
+    +\lambda^2\sum_{m\neq n}\frac{\abs{V_{mn}}^2}{E_n^{(0)}-E_m^{(0)}}
+    +O(\lambda^3),
+\]
+\[
+    \ket{\psi_n}
+    =\ket{n^{(0)}}
+    +\lambda\sum_{m\neq n}\frac{V_{mn}}{E_n^{(0)}-E_m^{(0)}}\ket{m^{(0)}}
+    +O(\lambda^2),
+\]
+mit
+\[
+    V_{mn}=\mel{m^{(0)}}{\opV}{n^{(0)}}.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Ein typischer Fehler ist, in der Zustandskorrektur \(V_{nm}\) statt \(V_{mn}\) zu verwenden. Die Formel für den Koeffizienten vor \(\ket{m^{(0)}}\) lautet
+\[
+    c_m^{(1)}=\frac{\mel{m^{(0)}}{\opV}{n^{(0)}}}{E_n^{(0)}-E_m^{(0)}}.
+\]
+Die Zeile und Spalte müssen also zur Richtung \(n\to m\) passen.
+\end{examtipbox}
+
+\section{Normierung des gestörten Zustands}
+
+Die Zwischen-Normierung
+\[
+    \braket{n^{(0)}}{\psi_n}=1
+\]
+ist praktisch, aber der Zustand ist dann nicht automatisch auf Eins normiert. Bis zur ersten Ordnung ist das kein Problem, denn
+\[
+    \braket{\psi_n}{\psi_n}
+    =1+O(\lambda^2),
+\]
+weil \(\braket{n^{(0)}}{n^{(1)}}=0\). Wenn man Wahrscheinlichkeiten bis Ordnung \(\lambda^2\) berechnet, muss man aber die Normierung beachten.
+
+Bis zur zweiten Ordnung gilt näherungsweise
+\[
+    \ket{\psi_n}_{\mathrm{norm}}
+    =\left(1-\frac{\lambda^2}{2}\sum_{m\neq n}\abs{c_m^{(1)}}^2\right)
+    \ket{n^{(0)}}
+    +\lambda\sum_{m\neq n}c_m^{(1)}\ket{m^{(0)}}
+    +O(\lambda^2\text{ in fremden Komponenten}).
+\]
+
+\begin{notebox}
+Für viele Energieaufgaben braucht man diese explizite Normierung nicht. Für Messwahrscheinlichkeiten oder Erwartungswerte bis höherer Ordnung kann sie aber wichtig werden.
+\end{notebox}
+
+\section{Auswahlregeln und verschwindende Matrixelemente}
+
+Oft muss man nicht alle Matrixelemente berechnen. Symmetrien können viele Matrixelemente zum Verschwinden bringen. Wenn zum Beispiel \(\opV\) eine bestimmte Parität hat, dann ist
+\[
+    \mel{m}{\opV}{n}=0
+\]
+für viele Kombinationen von \(m,n\).
+
+\begin{conceptbox}
+Eine Auswahlregel ist eine Regel, die sagt, welche Matrixelemente aus Symmetriegründen verschwinden. In der Störungstheorie bestimmen diese Matrixelemente direkt, welche Zustände miteinander gemischt werden und welche Energiekorrekturen auftreten.
+\end{conceptbox}
+
+Typisches Vorgehen:
+\begin{enumerate}
+    \item Bestimme die Symmetrie der ungestörten Zustände.
+    \item Bestimme die Symmetrie des Störoperators.
+    \item Prüfe, ob das Produkt im Matrixelement insgesamt symmetrisch ist.
+    \item Nur dann kann das Integral beziehungsweise Matrixelement ungleich null sein.
+\end{enumerate}
+
+\section{Beispiel: Zwei-Niveau-System, nichtentartet}
+
+\subsection{Problem}
+
+Wir betrachten
+\[
+    \opH=\opH_0+\lambda\opV
+    =
+    \begin{pmatrix}
+        E_1^{(0)} & 0\\
+        0 & E_2^{(0)}
+    \end{pmatrix}
+    +\lambda
+    \begin{pmatrix}
+        1 & 1\\
+        1 & 1
+    \end{pmatrix}.
+\]
+Die ungestörten Eigenzustände sind
+\[
+    \ket{1}=\begin{pmatrix}1\\0\end{pmatrix},
+    \qquad
+    \ket{2}=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Wir definieren
+\[
+    \Delta=E_1^{(0)}-E_2^{(0)}.
+\]
+Für den nichtentarteten Fall gelte \(\Delta\neq 0\) und \(\abs{\lambda}\ll\abs{\Delta}\).
+
+\subsection{Störungsmatrixelemente}
+
+Die Störungsmatrix ist
+\[
+    V=\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+Also gilt
+\[
+    V_{11}=1,
+    \qquad
+    V_{22}=1,
+    \qquad
+    V_{12}=V_{21}=1.
+\]
+
+\subsection{Energien bis zweiter Ordnung}
+
+Für \(\ket{1}\) gilt
+\[
+    E_1=E_1^{(0)}+\lambda V_{11}
+    +\lambda^2\frac{\abs{V_{21}}^2}{E_1^{(0)}-E_2^{(0)}}+O(\lambda^3).
+\]
+Also
+\[
+    E_1=E_1^{(0)}+\lambda+\frac{\lambda^2}{\Delta}+O(\lambda^3).
+\]
+Für \(\ket{2}\) gilt
+\[
+    E_2=E_2^{(0)}+\lambda+\lambda^2\frac{\abs{V_{12}}^2}{E_2^{(0)}-E_1^{(0)}}+O(\lambda^3),
+\]
+also
+\[
+    E_2=E_2^{(0)}+\lambda-\frac{\lambda^2}{\Delta}+O(\lambda^3).
+\]
+
+\begin{answerbox}
+\[
+    E_1=E_1^{(0)}+\lambda+\frac{\lambda^2}{\Delta}+O(\lambda^3),
+    \qquad
+    E_2=E_2^{(0)}+\lambda-\frac{\lambda^2}{\Delta}+O(\lambda^3).
+\]
+\end{answerbox}
+
+\subsection{Eigenzustände bis erster Ordnung}
+
+Für \(\ket{1}\):
+\[
+    \ket{\psi_1}=\ket{1}+\lambda\frac{V_{21}}{E_1^{(0)}-E_2^{(0)}}\ket{2}+O(\lambda^2)
+    =\ket{1}+\frac{\lambda}{\Delta}\ket{2}+O(\lambda^2).
+\]
+Für \(\ket{2}\):
+\[
+    \ket{\psi_2}=\ket{2}+\lambda\frac{V_{12}}{E_2^{(0)}-E_1^{(0)}}\ket{1}+O(\lambda^2)
+    =\ket{2}-\frac{\lambda}{\Delta}\ket{1}+O(\lambda^2).
+\]
+
+\begin{answerbox}
+\[
+    \ket{\psi_1}=\ket{1}+\frac{\lambda}{\Delta}\ket{2}+O(\lambda^2),
+    \qquad
+    \ket{\psi_2}=\ket{2}-\frac{\lambda}{\Delta}\ket{1}+O(\lambda^2).
+\]
+\end{answerbox}
+
+\section{Exakte Lösung des Zwei-Niveau-Systems}
+
+Zur Kontrolle kann man das Zwei-Niveau-System exakt lösen. Die Matrix lautet
+\[
+    H=
+    \begin{pmatrix}
+        E_1^{(0)}+\lambda & \lambda\\
+        \lambda & E_2^{(0)}+\lambda
+    \end{pmatrix}.
+\]
+Die Eigenwerte sind
+\[
+    E_\pm=\bar E^{(0)}+\lambda
+    \pm\sqrt{\left(\frac{\Delta}{2}\right)^2+\lambda^2},
+\]
+mit
+\[
+    \bar E^{(0)}=\frac{E_1^{(0)}+E_2^{(0)}}{2},
+    \qquad
+    \Delta=E_1^{(0)}-E_2^{(0)}.
+\]
+Für \(\Delta>0\) und \(\abs{\lambda}\ll\abs{\Delta}\) entwickelt man
+\[
+    \sqrt{\left(\frac{\Delta}{2}\right)^2+\lambda^2}
+    =\frac{\Delta}{2}\sqrt{1+\frac{4\lambda^2}{\Delta^2}}
+    =\frac{\Delta}{2}+\frac{\lambda^2}{\Delta}+O(\lambda^4).
+\]
+Daher
+\[
+    E_+=E_1^{(0)}+\lambda+\frac{\lambda^2}{\Delta}+O(\lambda^4),
+\]
+\[
+    E_-=E_2^{(0)}+\lambda-\frac{\lambda^2}{\Delta}+O(\lambda^4).
+\]
+Das stimmt mit der nichtentarteten Störungstheorie überein.
+
+\begin{notebox}
+Dieses Beispiel zeigt auch die Grenze der nichtentarteten Theorie: Wenn \(\Delta\to 0\), divergieren die Formeln mit \(1/\Delta\). Die exakte Lösung bleibt aber endlich. In diesem Fall muss man entartete Störungstheorie verwenden.
+\end{notebox}
+
+\section{Entartete Störungstheorie}
+
+\subsection{Warum ist Entartung ein Problem?}
+
+Angenommen, ein ungestörter Eigenwert \(E_a^{(0)}\) ist \(g\)-fach entartet. Dann gibt es Zustände
+\[
+    \ket{a,1},\ket{a,2},\dots,\ket{a,g}
+\]
+mit
+\[
+    \opH_0\ket{a,\alpha}=E_a^{(0)}\ket{a,\alpha},
+    \qquad \alpha=1,\dots,g.
+\]
+Jede Linearkombination
+\[
+    \ket{\psi^{(0)}}=\sum_{\alpha=1}^g c_\alpha\ket{a,\alpha}
+\]
+ist ebenfalls Eigenzustand von \(\opH_0\) zum selben Eigenwert. Die nullte Ordnung legt also nicht eindeutig fest, welcher Zustand der richtige Ausgangspunkt ist.
+
+\begin{conceptbox}
+Bei Entartung muss man zuerst innerhalb des entarteten Unterraums die Störung diagonalieren. Die Eigenvektoren dieser Störungsmatrix sind die richtigen Zustände nullter Ordnung.
+\end{conceptbox}
+
+\subsection{Störungsmatrix im entarteten Unterraum}
+
+Wir bilden die Matrix
+\[
+    W_{\alpha\beta}=\mel{a,\alpha}{\opV}{a,\beta},
+    \qquad \alpha,\beta=1,\dots,g.
+\]
+Diese Matrix ist hermitesch, wenn \(\opV\) hermitesch ist.
+
+Die erste Ordnung der Energie erhält man durch das Eigenwertproblem
+\[
+    \sum_{\beta=1}^g W_{\alpha\beta}c_\beta
+    =E^{(1)}c_\alpha.
+\]
+In Matrixform:
+\[
+    W\vec c=E^{(1)}\vec c.
+\]
+
+\begin{formulabox}
+Entartete Störungstheorie erster Ordnung:
+\begin{enumerate}
+    \item Bestimme den entarteten Unterraum zu \(E_a^{(0)}\).
+    \item Bilde die Störungsmatrix
+    \[
+        W_{\alpha\beta}=\mel{a,\alpha}{\opV}{a,\beta}.
+    \]
+    \item Diagonalisiere \(W\).
+    \item Die Eigenwerte von \(W\) sind die Energiekorrekturen erster Ordnung.
+    \item Die Eigenvektoren von \(W\) liefern die richtigen Linearkombinationen der entarteten Zustände.
+\end{enumerate}
+\end{formulabox}
+
+\subsection{Energieaufspaltung}
+
+Wenn \(W\) verschiedene Eigenwerte besitzt, wird die Entartung aufgehoben. Die gestörten Energien lauten in erster Ordnung
+\[
+    E_{a,r}=E_a^{(0)}+\lambda w_r+O(\lambda^2),
+\]
+wobei \(w_r\) die Eigenwerte der Störungsmatrix \(W\) sind.
+
+Falls \(W\) selbst noch entartete Eigenwerte hat, bleibt ein Teil der Entartung in erster Ordnung bestehen. Dann muss man entweder höhere Ordnungen betrachten oder eine weitere Symmetrie ausnutzen.
+
+\begin{notebox}
+Man sagt: Die Störung hebt die Entartung ganz oder teilweise auf. Eine vollständige Aufhebung bedeutet, dass aus einem \(g\)-fach entarteten Niveau \(g\) verschiedene Energieniveaus entstehen.
+\end{notebox}
+
+\section{Beispiel: Zwei-Niveau-System im entarteten Fall}
+
+Wir betrachten wieder
+\[
+    \opH=
+    \begin{pmatrix}
+        E_0 & 0\\
+        0 & E_0
+    \end{pmatrix}
+    +\lambda
+    \begin{pmatrix}
+        1 & 1\\
+        1 & 1
+    \end{pmatrix}.
+\]
+Das ungestörte Niveau \(E_0\) ist zweifach entartet. Der entartete Unterraum wird von \(\ket{1},\ket{2}\) aufgespannt. Die Störungsmatrix in diesem Unterraum ist
+\[
+    W=\begin{pmatrix}1&1\\1&1\end{pmatrix}.
+\]
+Die Eigenwerte von \(W\) sind
+\[
+    w_+=2,
+    \qquad
+    w_-=0.
+\]
+Die zugehörigen normierten Eigenvektoren sind
+\[
+    \ket{+}=\frac{1}{\sqrt2}(\ket{1}+\ket{2}),
+    \qquad
+    \ket{-}=\frac{1}{\sqrt2}(\ket{1}-\ket{2}).
+\]
+Daher lauten die Energien in erster Ordnung
+\[
+    E_+=E_0+2\lambda+O(\lambda^2),
+    \qquad
+    E_-=E_0+O(\lambda^2).
+\]
+
+\begin{answerbox}
+Die Störung spaltet das zweifach entartete Niveau in
+\[
+    \frac{1}{\sqrt2}(\ket{1}+\ket{2})
+    \quad \text{mit} \quad E_0+2\lambda
+\]
+und
+\[
+    \frac{1}{\sqrt2}(\ket{1}-\ket{2})
+    \quad \text{mit} \quad E_0.
+\]
+\end{answerbox}
+
+\section{Fast entartete Zustände}
+
+Fast entartete Zustände liegen energetisch so nahe beieinander, dass
+\[
+    \abs{E_1^{(0)}-E_2^{(0)}}\ll \abs{\lambda V_{12}}.
+\]
+Dann ist nichtentartete Störungstheorie schlecht, weil die Nenner sehr klein werden. Praktisch behandelt man solche Zustände wie ein kleines entartetes System: Man diagonalisiert den Hamiltonoperator im fast entarteten Unterraum exakt.
+
+Für zwei Zustände verwendet man die Matrix
+\[
+    H_{\mathrm{eff}}=
+    \begin{pmatrix}
+        E_1^{(0)}+\lambda V_{11} & \lambda V_{12}\\
+        \lambda V_{21} & E_2^{(0)}+\lambda V_{22}
+    \end{pmatrix}.
+\]
+Diese \(2\times2\)-Matrix diagonalisiert man exakt. Dadurch bekommt man die sogenannte vermiedene Kreuzung: Die Energien stoßen sich ab, statt sich zu schneiden.
+
+\begin{conceptbox}
+Nahe Entartung bedeutet: Nicht einzelne ungestörte Zustände sind die richtige Basis, sondern Linearkombinationen der nahe beieinanderliegenden Zustände.
+\end{conceptbox}
+
+\section{Allgemeines Rechenrezept}
+
+\subsection{Nichtentartete Störungstheorie}
+
+\begin{examtipbox}
+Rezept für nichtentartete Aufgaben:
+\begin{enumerate}
+    \item Schreibe \(\opH=\opH_0+\lambda\opV\).
+    \item Bestimme \(E_n^{(0)}\) und \(\ket{n^{(0)}}\).
+    \item Prüfe, ob \(E_n^{(0)}\) nicht entartet ist.
+    \item Berechne \(V_{nn}\). Dann ist \(E_n^{(1)}=V_{nn}\).
+    \item Berechne alle relevanten \(V_{mn}\) mit \(m\neq n\).
+    \item Setze ein:
+    \[
+        E_n^{(2)}=\sum_{m\neq n}\frac{\abs{V_{mn}}^2}{E_n^{(0)}-E_m^{(0)}}.
+    \]
+    \item Für den Zustand:
+    \[
+        \ket{\psi_n}=\ket{n^{(0)}}+\lambda\sum_{m\neq n}\frac{V_{mn}}{E_n^{(0)}-E_m^{(0)}}\ket{m^{(0)}}.
+    \]
+\end{enumerate}
+\end{examtipbox}
+
+\subsection{Entartete Störungstheorie}
+
+\begin{examtipbox}
+Rezept für entartete Aufgaben:
+\begin{enumerate}
+    \item Finde alle ungestörten Zustände mit demselben Energieeigenwert.
+    \item Wähle eine Basis \(\ket{a,\alpha}\) dieses Unterraums.
+    \item Bilde die Matrix
+    \[
+        W_{\alpha\beta}=\mel{a,\alpha}{\opV}{a,\beta}.
+    \]
+    \item Diagonalisiere \(W\).
+    \item Die Eigenwerte von \(W\) sind die Energiekorrekturen erster Ordnung.
+    \item Die Eigenvektoren von \(W\) liefern die neuen, richtigen Zustände nullter Ordnung.
+    \item Falls nötig: Verwende anschließend nichtentartete Formeln für höhere Ordnungen, aber ohne Zustände aus demselben entarteten Unterraum in den Summen.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Beispiel: Magnetische Dipolwechselwirkung zweier Spins}
+
+\subsection{Ungestörtes System}
+
+Wir betrachten zwei Spin-\(\frac12\)-Teilchen in einem äußeren Magnetfeld in \(z\)-Richtung. Der ungestörte Hamiltonoperator sei
+\[
+    H_0=-\vec B\cdot(\vec M^{(1)}+\vec M^{(2)}),
+    \qquad
+    \vec M^{(i)}=\gamma\vec S^{(i)}.
+\]
+Für \(\vec B=B_0\vec e_z\) und \(\omega_0=\gamma B_0\) gilt bis auf Vorzeichenkonvention
+\[
+    H_0=-\omega_0(S_z^{(1)}+S_z^{(2)}).
+\]
+Die Produktbasis ist
+\[
+    \ket{++},\quad \ket{+-},\quad \ket{-+},\quad \ket{--}.
+\]
+Die Zustände \(\ket{+-}\) und \(\ket{-+}\) sind im einfachen Zeeman-Hamiltonoperator entartet, weil die Gesamtprojektion \(m_1+m_2=0\) ist.
+
+\subsection{Störung}
+
+Die magnetische Dipol-Dipol-Wechselwirkung hat die Form
+\[
+    H_1=\frac{\mu_0}{4\pi}\frac{1}{r^3}
+    \left[
+        \vec M^{(1)}\cdot\vec M^{(2)}
+        -3(\vec M^{(1)}\cdot\vec n)(\vec M^{(2)}\cdot\vec n)
+    \right].
+\]
+Für die Zustände \(\ket{++}\) und \(\ket{--}\) ist der ungestörte Energieeigenwert nicht entartet. Dort kann man direkt
+\[
+    E^{(1)}=\mel{\pm\pm}{H_1}{\pm\pm}
+\]
+berechnen.
+
+Für den entarteten Unterraum
+\[
+    \operatorname{span}\set{\ket{+-},\ket{-+}}
+\]
+muss man dagegen die \(2\times2\)-Störungsmatrix bilden:
+\[
+    W=\begin{pmatrix}
+        \mel{+-}{H_1}{+-} & \mel{+-}{H_1}{-+}\\
+        \mel{-+}{H_1}{+-} & \mel{-+}{H_1}{-+}
+    \end{pmatrix}.
+\]
+
+\begin{conceptbox}
+Dieses Beispiel zeigt den wichtigsten praktischen Punkt: Sobald zwei Zustände in \(H_0\) dieselbe Energie haben, darf man die Diagonalelemente allein nicht als Energiekorrekturen interpretieren. Man muss die Störung im entarteten Unterraum diagonalieren.
+\end{conceptbox}
+
+Oft entstehen als richtige Linearkombinationen symmetrische und antisymmetrische Zustände:
+\[
+    \ket{s}=\frac{1}{\sqrt2}(\ket{+-}+\ket{-+}),
+    \qquad
+    \ket{a}=\frac{1}{\sqrt2}(\ket{+-}-\ket{-+}).
+\]
+Diese sind eng mit Triplett- und Singulettzuständen verbunden.
+
+\section{Störung durch ein elektrisches Feld: Struktur des Stark-Effekts}
+
+Ein wichtiges physikalisches Beispiel ist ein Atom in einem schwachen elektrischen Feld. Die Störung ist in Dipolnäherung
+\[
+    \opV=-\vec d\cdot\vec E.
+\]
+Für ein Elektron mit Ladung \(-e\) gilt \(\vec d=-e\vec r\), also
+\[
+    \opV=e\vec r\cdot\vec E
+\]
+oder je nach Vorzeichenkonvention \(-e\vec r\cdot\vec E\).
+
+Für ein Feld in \(z\)-Richtung ist
+\[
+    \opV\propto z=r\cos\theta.
+\]
+Dann sind Matrixelemente der Form
+\[
+    \mel{n'l'm'}{z}{nlm}
+\]
+entscheidend. Die Winkelabhängigkeit führt zu Auswahlregeln. Typisch sind
+\[
+    \Delta l=\pm 1,
+    \qquad
+    \Delta m=0
+\]
+für linear in \(z\)-Richtung polarisierte Kopplung.
+
+\begin{notebox}
+Der Stark-Effekt ist ein Standardbeispiel dafür, dass Entartung wichtig ist. Im Wasserstoffatom sind Zustände mit gleichem \(n\), aber unterschiedlichem \(l\), ohne weitere Korrekturen entartet. Deshalb muss man innerhalb dieses entarteten Unterraums diagonalieren.
+\end{notebox}
+
+\section{Matrixelemente und Darstellungen}
+
+\subsection{Diskrete Basis}
+
+In einer diskreten ungestörten Basis ist
+\[
+    V_{mn}=\mel{m}{\opV}{n}.
+\]
+Die Störungstheorie wird damit zu linearer Algebra.
+
+\subsection{Ortsdarstellung}
+
+Wenn die ungestörten Zustände als Wellenfunktionen \(\varphi_n(x)\) gegeben sind, lautet das Matrixelement
+\[
+    V_{mn}=\int \dd x\, \varphi_m^*(x)V(x)\varphi_n(x).
+\]
+In drei Dimensionen:
+\[
+    V_{mn}=\int \dd^3x\, \varphi_m^*(\vec x)V(\vec x)\varphi_n(\vec x).
+\]
+
+\subsection{Spinbasis}
+
+Für reine Spin-Systeme berechnet man Matrixelemente meistens direkt mit Matrizen. Beispiel:
+\[
+    S_z=\frac{\hbar}{2}\begin{pmatrix}1&0\\0&-1\end{pmatrix},
+    \qquad
+    S_x=\frac{\hbar}{2}\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
+Dann ist ein Störterm wie \(\opV\propto S_x\) in der \(S_z\)-Basis nicht diagonal und mischt \(\ket{+}\) und \(\ket{-}\).
+
+\section{Kriterien für die Gültigkeit}
+
+Störungstheorie ist eine Näherung. Sie ist gut, wenn die Korrekturen klein bleiben. Im nichtentarteten Fall muss insbesondere gelten:
+\[
+    \abs{\lambda V_{mn}}\ll \abs{E_n^{(0)}-E_m^{(0)}}
+    \qquad (m\neq n).
+\]
+Das bedeutet: Die durch \(\opV\) erzeugte Kopplung zwischen zwei Zuständen muss klein sein gegenüber ihrem ungestörten Energieabstand.
+
+\begin{notebox}
+Falls
+\[
+    \abs{E_n^{(0)}-E_m^{(0)}}
+\]
+sehr klein oder null ist, darf man die nichtentarteten Formeln nicht blind verwenden. Dann muss man die nahe liegenden Zustände gemeinsam diagonalieren.
+\end{notebox}
+
+Weitere mögliche Probleme:
+\begin{itemize}
+    \item Die Reihe in \(\lambda\) kann nur asymptotisch sein.
+    \item Bei starken Störungen sind höhere Ordnungen nicht vernachlässigbar.
+    \item Bei kontinuierlichen Spektren treten Integrale statt Summen auf.
+    \item Bei Resonanzen oder Übergängen braucht man zeitabhängige Störungstheorie, nicht zeitunabhängige.
+\end{itemize}
+
+\section{Typische Aufgabenmuster}
+
+\subsection{Aufgabe: Energiekorrektur erster Ordnung}
+
+Gegeben ist \(\opH_0\), ein Zustand \(\ket{n}\) und eine Störung \(\opV\). Gesucht ist die erste Energiekorrektur.
+
+\begin{solutionbox}
+Man berechnet direkt
+\[
+    E_n^{(1)}=\mel{n}{\opV}{n}.
+\]
+In Ortsdarstellung wird daraus
+\[
+    E_n^{(1)}=\int \dd x\,\varphi_n^*(x)V(x)\varphi_n(x).
+\]
+\end{solutionbox}
+
+\subsection{Aufgabe: Energiekorrektur zweiter Ordnung}
+
+Gesucht ist die zweite Korrektur für einen nichtentarteten Zustand.
+
+\begin{solutionbox}
+Man braucht alle Zustände \(m\neq n\), die durch \(\opV\) mit \(n\) gekoppelt sind:
+\[
+    E_n^{(2)}=\sum_{m\neq n}\frac{\abs{V_{mn}}^2}{E_n^{(0)}-E_m^{(0)}}.
+\]
+Zustände mit \(V_{mn}=0\) tragen nicht bei.
+\end{solutionbox}
+
+\subsection{Aufgabe: Entartung aufheben}
+
+Gegeben ist ein entarteter Unterraum. Gesucht sind Energien und Zustände erster Ordnung.
+
+\begin{solutionbox}
+Man bildet die Störungsmatrix im entarteten Unterraum:
+\[
+    W_{\alpha\beta}=\mel{a,\alpha}{\opV}{a,\beta}.
+\]
+Dann diagonalisiert man \(W\). Die Eigenwerte sind die Energiekorrekturen. Die Eigenvektoren sind die richtigen Linearkombinationen der ursprünglichen entarteten Zustände.
+\end{solutionbox}
+
+\subsection{Aufgabe: Vergleich mit exakter Lösung}
+
+Bei kleinen Matrizen, besonders \(2\times2\)-Systemen, kann man die exakten Eigenwerte berechnen und danach in \(\lambda\) entwickeln.
+
+\begin{solutionbox}
+Vorgehen:
+\begin{enumerate}
+    \item Berechne die exakten Eigenwerte aus \(\det(H-E\idop)=0\).
+    \item Entwickle die Wurzel für kleine \(\lambda\).
+    \item Vergleiche mit den Formeln der Störungstheorie.
+\end{enumerate}
+\end{solutionbox}
+
+\section{Häufige Fehler}
+
+\begin{notebox}
+Typische Fehler in der zeitunabhängigen Störungstheorie:
+\begin{itemize}
+    \item Entartete Zustände mit nichtentarteter Störungstheorie behandeln.
+    \item In der zweiten Ordnung das Betragsquadrat \(\abs{V_{mn}}^2\) vergessen.
+    \item Das Vorzeichen des Energienenners falsch verwenden.
+    \item Zustände in der Summe mitzählen, für die \(m=n\) gilt.
+    \item Bei entarteter Störungstheorie nur Diagonalelemente betrachten und Offdiagonalelemente ignorieren.
+    \item Die gestörten Zustände nicht normieren, obwohl Wahrscheinlichkeiten gefragt sind.
+    \item Den formalen Parameter \(\lambda\) mit einer physikalischen Konstante verwechseln.
+\end{itemize}
+\end{notebox}
+
+\section{Zusammenfassung}
+
+\begin{formulabox}
+Nichtentarteter Fall:
+\[
+    E_n=E_n^{(0)}+\lambda V_{nn}
+    +\lambda^2\sum_{m\neq n}\frac{\abs{V_{mn}}^2}{E_n^{(0)}-E_m^{(0)}}+O(\lambda^3),
+\]
+\[
+    \ket{\psi_n}=\ket{n^{(0)}}
+    +\lambda\sum_{m\neq n}\frac{V_{mn}}{E_n^{(0)}-E_m^{(0)}}\ket{m^{(0)}}+O(\lambda^2).
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Entarteter Fall:
+\[
+    W_{\alpha\beta}=\mel{a,\alpha}{\opV}{a,\beta}.
+\]
+Die Eigenwerte von \(W\) sind die Korrekturen erster Ordnung. Die Eigenvektoren von \(W\) bestimmen die richtigen Linearkombinationen im entarteten Unterraum.
+\end{formulabox}
+
+\begin{conceptbox}
+Die wichtigste Entscheidung in jeder Aufgabe ist nicht das Einsetzen in eine Formel, sondern die Frage:
+\[
+    \text{Ist das betrachtete Niveau entartet oder nicht?}
+\]
+Davon hängt ab, ob man direkt die nichtentarteten Formeln verwenden darf oder zuerst eine Störungsmatrix diagonalieren muss.
+\end{conceptbox}

@@ -1,3 +1,1580 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\dd}{\,\mathrm{d}}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\idop}{\mathbf{1}}
+\providecommand{\vecsigma}{\vec\sigma}
+\providecommand{\vecS}{\vec S}
+\providecommand{\vecB}{\vec B}
+\providecommand{\epsijk}{\varepsilon_{ijk}}
+
 \chapter{Spin und Pauli-Matrizen}
 
-% Inhalt wird später anhand der Stichwortliste und Quellen ergänzt.
+\section{Ziel dieses Kapitels}
+
+In den bisherigen Kapiteln wurden Zustände meist durch Wellenfunktionen \(\psi(\vec r)\) beschrieben. Diese Beschreibung enthält die räumlichen Freiheitsgrade eines Teilchens. Für Elektronen und viele andere Teilchen reicht das aber nicht aus: Es gibt zusätzlich einen inneren Drehimpuls, den \emph{Spin}.
+
+\begin{conceptbox}
+Der Spin ist kein Bahndrehimpuls eines kleinen rotierenden Körpers. Er ist ein intrinsischer quantenmechanischer Freiheitsgrad. Mathematisch verhält er sich wie ein Drehimpuls, besitzt also dieselbe Kommutatoralgebra, lebt aber in einem endlichen inneren Zustandsraum.
+\end{conceptbox}
+
+Das wichtigste Beispiel ist der Spin \(s=\frac12\). Dann ist der Spinzustandsraum zweidimensional. Die Spinoperatoren lassen sich durch die Pauli-Matrizen darstellen:
+\[
+    S_i = \frac{\hbar}{2}\sigma_i,
+    \qquad i=1,2,3.
+\]
+Dieses Kapitel erklärt vollständig, wie man damit rechnet.
+
+Die wichtigsten Fragen sind:
+\begin{itemize}
+    \item Warum braucht man einen zusätzlichen Spin-Freiheitsgrad?
+    \item Was bedeutet ein Spin-\(\frac12\)-Zustand?
+    \item Wie sehen die Pauli-Matrizen aus und welche Algebra erfüllen sie?
+    \item Wie berechnet man Messwahrscheinlichkeiten für \(S_x,S_y,S_z\)?
+    \item Wie beschreibt man Zeitentwicklung und Rotation eines Spins?
+    \item Wie koppelt ein Spin an ein Magnetfeld?
+    \item Wie löst man typische Aufgaben mit \(H=(\hbar\omega/2)\sigma_x\) oder \(H=-\vec\mu\cdot\vec B\)?
+\end{itemize}
+
+\section{Physikalische Motivation: Stern-Gerlach und intrinsischer Drehimpuls}
+
+\subsection{Warum Spin eingeführt wird}
+
+Klassisch kann ein geladenes Teilchen durch seine Bahnbewegung ein magnetisches Moment besitzen. In der Quantenmechanik erwartet man deshalb eine Kopplung des Bahndrehimpulses \(\vec L\) an ein Magnetfeld. Experimente wie das Stern-Gerlach-Experiment zeigen jedoch bei Elektronen eine Aufspaltung in zwei Teilstrahlen. Eine reine Bahndrehimpulsbeschreibung würde für ganzzahligen Drehimpuls eine ungerade Anzahl von Einstellmöglichkeiten liefern.
+
+\begin{conceptbox}
+Die beobachtete zweifache Aufspaltung legt nahe, dass es einen inneren Drehimpuls mit zwei möglichen Projektionen gibt. Dieser Freiheitsgrad heißt Spin. Für das Elektron ist
+\[
+    s=\frac12,
+    \qquad m_s=+\frac12 \text{ oder } -\frac12.
+\]
+\end{conceptbox}
+
+Der Spin besitzt ein magnetisches Moment. Für ein Elektron schreibt man in der üblichen nichtrelativistischen Beschreibung näherungsweise
+\[
+    \vec\mu_S = -g_s\frac{e}{2m_e}\vec S,
+    \qquad g_s\approx 2.
+\]
+Mit dem Bohrschen Magneton
+\[
+    \mu_B = \frac{e\hbar}{2m_e}
+\]
+ist dies äquivalent zu
+\[
+    \vec\mu_S = -g_s\frac{\mu_B}{\hbar}\vec S.
+\]
+Das Vorzeichen hängt von der Ladungskonvention ab. Wichtig ist: Der Spin koppelt an Magnetfelder und ist dadurch messbar.
+
+\begin{notebox}
+In vielen Übungsaufgaben wird nicht direkt mit \(\vec\mu\) gearbeitet, sondern mit einem effektiven Hamiltonoperator, zum Beispiel
+\[
+    H=\frac{\hbar\omega}{2}\sigma_x
+    \quad \text{oder} \quad
+    H=\hbar\omega\sigma_z+\hbar\Omega\sigma_x.
+\]
+Dann muss man nicht zuerst das magnetische Moment herleiten, sondern kann unmittelbar mit Pauli-Matrizen rechnen.
+\end{notebox}
+
+\section{Spin als quantenmechanischer Drehimpuls}
+
+\subsection{Postulate für Spinoperatoren}
+
+Der Spin wird durch drei Operatoren
+\[
+    S_1,
+    S_2,
+    S_3
+\]
+beschrieben. Sie erfüllen dieselbe Drehimpulsalgebra wie der Bahndrehimpuls:
+
+\begin{definitionbox}
+\[
+    [S_i,S_j] = \ii\hbar \sum_{k=1}^3 \varepsilon_{ijk} S_k.
+\]
+Insbesondere gilt
+\[
+    [S_1,S_2]=\ii\hbar S_3,
+    \qquad
+    [S_2,S_3]=\ii\hbar S_1,
+    \qquad
+    [S_3,S_1]=\ii\hbar S_2.
+\]
+\end{definitionbox}
+
+Außerdem definiert man
+\[
+    \vec S^{\,2}=S_1^2+S_2^2+S_3^2.
+\]
+Ein Zustand mit festem Spin \(s\) erfüllt
+\[
+    \vec S^{\,2}\ket{s,m}=\hbar^2 s(s+1)\ket{s,m},
+    \qquad
+    S_3\ket{s,m}=\hbar m\ket{s,m}.
+\]
+Für festes \(s\) sind die erlaubten Werte von \(m\)
+\[
+    m=-s,-s+1,\dots,s-1,s.
+\]
+Der Spinzustandsraum hat daher Dimension
+\[
+    \dim R_s = 2s+1.
+\]
+
+\subsection{Spin-\(\frac12\)-Raum}
+
+Für ein Elektron oder allgemeiner ein Spin-\(\frac12\)-Teilchen gilt
+\[
+    s=\frac12,
+    \qquad
+    m=+\frac12 \text{ oder } -\frac12.
+\]
+Der Spinzustandsraum ist also zweidimensional:
+\[
+    R_{1/2}=\operatorname{span}\{\ket{+},\ket{-}\}.
+\]
+Dabei bedeutet
+\[
+    \ket{+}\equiv \ket{\tfrac12,+\tfrac12},
+    \qquad
+    \ket{-}\equiv \ket{\tfrac12,-\tfrac12}.
+\]
+Die Basiszustände sind Eigenzustände von \(S_3\):
+\[
+    S_3\ket{+}=+\frac{\hbar}{2}\ket{+},
+    \qquad
+    S_3\ket{-}=-\frac{\hbar}{2}\ket{-}.
+\]
+Außerdem gilt
+\[
+    \vec S^{\,2}\ket{\pm}=\hbar^2\frac12\left(\frac12+1\right)\ket{\pm}
+    =\frac34\hbar^2\ket{\pm}.
+\]
+
+\begin{formulabox}
+Für Spin \(s=\frac12\) gilt immer
+\[
+    \vec S^{\,2}=\frac34\hbar^2\idop.
+\]
+Daher ist \(\vec S^{\,2}\) im reinen Spin-\(\frac12\)-Raum proportional zur Einheitsmatrix.
+\end{formulabox}
+
+\subsection{Allgemeiner Spinor}
+
+Ein allgemeiner Spin-\(\frac12\)-Zustand ist eine Linearkombination
+\[
+    \ket{\psi}=\alpha\ket{+}+\beta\ket{-},
+    \qquad \alpha,\beta\in\mathbb C.
+\]
+Normierung bedeutet
+\[
+    \braket{\psi}{\psi}=|\alpha|^2+|\beta|^2=1.
+\]
+In Spaltenvektorschreibweise setzt man
+\[
+    \ket{+}\equiv
+    \begin{pmatrix}
+        1\\0
+    \end{pmatrix},
+    \qquad
+    \ket{-}\equiv
+    \begin{pmatrix}
+        0\\1
+    \end{pmatrix}.
+\]
+Dann ist
+\[
+    \ket{\psi}=\alpha
+    \begin{pmatrix}
+        1\\0
+    \end{pmatrix}
+    +\beta
+    \begin{pmatrix}
+        0\\1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \alpha\\\beta
+    \end{pmatrix}.
+\]
+
+\begin{notebox}
+Der Spinor \(\binom{\alpha}{\beta}\) ist nicht eine zweikomponentige Ortskoordinate. Er beschreibt die Amplituden für die beiden möglichen Messresultate von \(S_z\), nämlich \(+\hbar/2\) und \(-\hbar/2\).
+\end{notebox}
+
+\section{Pauli-Matrizen}
+
+\subsection{Definition}
+
+Die Spinoperatoren für \(s=\frac12\) werden durch die Pauli-Matrizen dargestellt:
+\[
+    S_i=\frac{\hbar}{2}\sigma_i.
+\]
+
+\begin{definitionbox}
+Die Pauli-Matrizen sind
+\[
+    \sigma_x=\sigma_1=
+    \begin{pmatrix}
+        0&1\\
+        1&0
+    \end{pmatrix},
+    \qquad
+    \sigma_y=\sigma_2=
+    \begin{pmatrix}
+        0&-\ii\\
+        \ii&0
+    \end{pmatrix},
+    \qquad
+    \sigma_z=\sigma_3=
+    \begin{pmatrix}
+        1&0\\
+        0&-1
+    \end{pmatrix}.
+\]
+\end{definitionbox}
+
+Damit lauten die Spinoperatoren
+\[
+    S_x=\frac{\hbar}{2}
+    \begin{pmatrix}
+        0&1\\1&0
+    \end{pmatrix},
+    \quad
+    S_y=\frac{\hbar}{2}
+    \begin{pmatrix}
+        0&-\ii\\\ii&0
+    \end{pmatrix},
+    \quad
+    S_z=\frac{\hbar}{2}
+    \begin{pmatrix}
+        1&0\\0&-1
+    \end{pmatrix}.
+\]
+
+\subsection{Grundlegende Eigenschaften}
+
+Die Pauli-Matrizen sind hermitesch:
+\[
+    \sigma_i^\dagger=\sigma_i.
+\]
+Daher sind die zugehörigen Spinoperatoren Observable.
+
+Außerdem gilt
+\[
+    \sigma_i^2=\idop,
+    \qquad i=x,y,z.
+\]
+Daraus folgt sofort, dass jede Pauli-Matrix nur Eigenwerte \(\pm1\) haben kann. Denn wenn
+\[
+    \sigma_i\ket{\lambda}=\lambda\ket{\lambda},
+\]
+dann folgt
+\[
+    \sigma_i^2\ket{\lambda}=\lambda^2\ket{\lambda}=\ket{\lambda},
+\]
+also
+\[
+    \lambda^2=1,
+    \qquad \lambda=\pm1.
+\]
+Für die Spinoperatoren \(S_i=(\hbar/2)\sigma_i\) sind die Eigenwerte entsprechend
+\[
+    \pm\frac{\hbar}{2}.
+\]
+
+Weitere wichtige Eigenschaften sind
+\[
+    \operatorname{tr}(\sigma_i)=0,
+    \qquad
+    \det(\sigma_i)=-1.
+\]
+
+\subsection{Kommutatoren und Antikommutatoren}
+
+Die Pauli-Matrizen erfüllen
+\begin{formulabox}
+\[
+    [\sigma_i,\sigma_j]
+    =2\ii\sum_{k=1}^3\varepsilon_{ijk}\sigma_k.
+\]
+\end{formulabox}
+
+Zum Beispiel:
+\[
+    [\sigma_x,\sigma_y]=2\ii\sigma_z,
+    \qquad
+    [\sigma_y,\sigma_z]=2\ii\sigma_x,
+    \qquad
+    [\sigma_z,\sigma_x]=2\ii\sigma_y.
+\]
+Damit folgt für die Spinoperatoren
+\[
+    [S_i,S_j]
+    =\left(\frac{\hbar}{2}\right)^2[\sigma_i,\sigma_j]
+    =\frac{\hbar^2}{4}2\ii\sum_k\varepsilon_{ijk}\sigma_k
+    =\ii\hbar\sum_k\varepsilon_{ijk}S_k.
+\]
+Also reproduzieren die Pauli-Matrizen genau die Drehimpulsalgebra.
+
+Der Antikommutator ist
+\begin{formulabox}
+\[
+    \{\sigma_i,\sigma_j\}
+    =\sigma_i\sigma_j+\sigma_j\sigma_i
+    =2\delta_{ij}\idop.
+\]
+\end{formulabox}
+
+Zusammengefasst gilt die Produktformel
+\begin{formulabox}
+\[
+    \sigma_i\sigma_j
+    =\delta_{ij}\idop+\ii\sum_{k=1}^3\varepsilon_{ijk}\sigma_k.
+\]
+\end{formulabox}
+
+\subsection{Vektoridentität für Pauli-Matrizen}
+
+Für zwei gewöhnliche Vektoren \(\vec a,\vec b\in\mathbb R^3\) gilt
+\begin{formulabox}
+\[
+    (\vecsigma\cdot\vec a)(\vecsigma\cdot\vec b)
+    = (\vec a\cdot\vec b)\idop
+    +\ii\vecsigma\cdot(\vec a\times\vec b).
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Man verwendet
+\[
+    \vecsigma\cdot\vec a=\sum_i\sigma_i a_i,
+    \qquad
+    \vecsigma\cdot\vec b=\sum_j\sigma_j b_j.
+\]
+Dann ist
+\[
+    (\vecsigma\cdot\vec a)(\vecsigma\cdot\vec b)
+    =\sum_{i,j}a_i b_j\sigma_i\sigma_j.
+\]
+Mit
+\[
+    \sigma_i\sigma_j=\delta_{ij}\idop+\ii\sum_k\varepsilon_{ijk}\sigma_k
+\]
+folgt
+\[
+    (\vecsigma\cdot\vec a)(\vecsigma\cdot\vec b)
+    =\sum_{i,j}a_i b_j\delta_{ij}\idop
+    +\ii\sum_{i,j,k}a_i b_j\varepsilon_{ijk}\sigma_k.
+\]
+Der erste Term ist \((\vec a\cdot\vec b)\idop\). Der zweite Term ist \(\ii\vecsigma\cdot(\vec a\times\vec b)\). Damit ist die Identität gezeigt.
+\end{derivationbox}
+
+Ein Spezialfall ist \(\vec a=\vec b\):
+\[
+    (\vecsigma\cdot\vec a)^2
+    =|\vec a|^2\idop,
+\]
+da \(\vec a\times\vec a=0\).
+
+\section{Eigenzustände von \texorpdfstring{\(\sigma_z,\sigma_x,\sigma_y\)}{sigma z, sigma x, sigma y}}
+
+\subsection{Eigenzustände von \(\sigma_z\)}
+
+Die Matrix
+\[
+    \sigma_z=
+    \begin{pmatrix}
+        1&0\\0&-1
+    \end{pmatrix}
+\]
+ist bereits diagonal. Daher gilt
+\[
+    \sigma_z\ket{+}=+\ket{+},
+    \qquad
+    \sigma_z\ket{-}=-\ket{-}.
+\]
+In Spinmessungen entlang der \(z\)-Achse bedeutet das:
+\[
+    S_z\ket{+}=+\frac{\hbar}{2}\ket{+},
+    \qquad
+    S_z\ket{-}=-\frac{\hbar}{2}\ket{-}.
+\]
+
+\subsection{Eigenzustände von \(\sigma_x\)}
+
+Wir lösen
+\[
+    \sigma_x\ket{x_\pm}=\pm\ket{x_\pm}.
+\]
+Mit
+\[
+    \sigma_x=
+    \begin{pmatrix}
+        0&1\\1&0
+    \end{pmatrix}
+\]
+erhält man normiert
+\begin{formulabox}
+\[
+    \ket{x,+}=\frac{1}{\sqrt2}(\ket{+}+\ket{-})
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}
+        1\\1
+    \end{pmatrix},
+\]
+\[
+    \ket{x,-}=\frac{1}{\sqrt2}(\ket{+}-\ket{-})
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}
+        1\\-1
+    \end{pmatrix}.
+\]
+\end{formulabox}
+
+Kontrolle:
+\[
+    \sigma_x\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\1\end{pmatrix}
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\1\end{pmatrix},
+    \qquad
+    \sigma_x\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\-1\end{pmatrix}
+    =-\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\-1\end{pmatrix}.
+\]
+
+\subsection{Eigenzustände von \(\sigma_y\)}
+
+Wir lösen
+\[
+    \sigma_y\ket{y_\pm}=\pm\ket{y_\pm}.
+\]
+Mit
+\[
+    \sigma_y=
+    \begin{pmatrix}
+        0&-\ii\\\ii&0
+    \end{pmatrix}
+\]
+erhält man normiert
+\begin{formulabox}
+\[
+    \ket{y,+}=\frac{1}{\sqrt2}(\ket{+}+\ii\ket{-})
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}
+        1\\\ii
+    \end{pmatrix},
+\]
+\[
+    \ket{y,-}=\frac{1}{\sqrt2}(\ket{+}-\ii\ket{-})
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}
+        1\\-\ii
+    \end{pmatrix}.
+\]
+\end{formulabox}
+
+Kontrolle für \(\ket{y,+}\):
+\[
+    \sigma_y\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\\ii\end{pmatrix}
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}
+        -\ii\cdot\ii\\\ii
+    \end{pmatrix}
+    =\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\\ii\end{pmatrix}.
+\]
+
+\begin{examtipbox}
+Die Eigenzustände von \(\sigma_x\) und \(\sigma_y\) sollte man auswendig können. Sie kommen ständig bei Messwahrscheinlichkeiten, Bloch-Sphäre und Zeitentwicklung vor:
+\[
+    \ket{x,+}=\frac{\ket{+}+\ket{-}}{\sqrt2},
+    \quad
+    \ket{x,-}=\frac{\ket{+}-\ket{-}}{\sqrt2},
+\]
+\[
+    \ket{y,+}=\frac{\ket{+}+\ii\ket{-}}{\sqrt2},
+    \quad
+    \ket{y,-}=\frac{\ket{+}-\ii\ket{-}}{\sqrt2}.
+\]
+\end{examtipbox}
+
+\section{Messungen von Spinobservablen}
+
+\subsection{Messung von \(S_z\)}
+
+Ein allgemeiner Zustand sei
+\[
+    \ket{\psi}=\alpha\ket{+}+\beta\ket{-},
+    \qquad |\alpha|^2+|\beta|^2=1.
+\]
+Bei einer Messung von \(S_z\) sind die möglichen Ergebnisse
+\[
+    +\frac{\hbar}{2},
+    \qquad
+    -\frac{\hbar}{2}.
+\]
+Die Wahrscheinlichkeiten sind
+\[
+    P\left(+\frac{\hbar}{2}\right)=|\braket{+}{\psi}|^2=|\alpha|^2,
+\]
+\[
+    P\left(-\frac{\hbar}{2}\right)=|\braket{-}{\psi}|^2=|\beta|^2.
+\]
+Nach der Messung kollabiert der Zustand auf den zum Messergebnis gehörigen Eigenzustand.
+
+\subsection{Messung von \(S_x\)}
+
+Bei einer Messung von \(S_x\) muss man den Zustand in der \(S_x\)-Eigenbasis entwickeln:
+\[
+    \ket{\psi}=c_+\ket{x,+}+c_-\ket{x,-}.
+\]
+Die Koeffizienten sind
+\[
+    c_+=\braket{x,+}{\psi},
+    \qquad
+    c_-=\braket{x,-}{\psi}.
+\]
+Mit
+\[
+    \ket{x,+}=\frac{\ket{+}+\ket{-}}{\sqrt2},
+    \qquad
+    \ket{x,-}=\frac{\ket{+}-\ket{-}}{\sqrt2}
+\]
+ergibt sich
+\[
+    c_+=\frac{\alpha+\beta}{\sqrt2},
+    \qquad
+    c_- =\frac{\alpha-\beta}{\sqrt2}.
+\]
+Daher
+\[
+    P\left(S_x=+\frac{\hbar}{2}\right)
+    =\left|\frac{\alpha+\beta}{\sqrt2}\right|^2,
+\]
+\[
+    P\left(S_x=-\frac{\hbar}{2}\right)
+    =\left|\frac{\alpha-\beta}{\sqrt2}\right|^2.
+\]
+
+\subsection{Messung von \(S_y\)}
+
+Analog verwendet man die \(S_y\)-Eigenzustände:
+\[
+    \ket{y,+}=\frac{\ket{+}+\ii\ket{-}}{\sqrt2},
+    \qquad
+    \ket{y,-}=\frac{\ket{+}-\ii\ket{-}}{\sqrt2}.
+\]
+Für
+\[
+    \ket{\psi}=\alpha\ket{+}+\beta\ket{-}
+\]
+gilt
+\[
+    \braket{y,+}{\psi}
+    =\frac{1}{\sqrt2}(\alpha-\ii\beta),
+\]
+\[
+    \braket{y,-}{\psi}
+    =\frac{1}{\sqrt2}(\alpha+\ii\beta).
+\]
+Also
+\[
+    P\left(S_y=+\frac{\hbar}{2}\right)
+    =\left|\frac{\alpha-\ii\beta}{\sqrt2}\right|^2,
+\]
+\[
+    P\left(S_y=-\frac{\hbar}{2}\right)
+    =\left|\frac{\alpha+\ii\beta}{\sqrt2}\right|^2.
+\]
+
+\begin{examplebox}
+Sei das System im Zustand \(\ket{+}\). Dann ist eine Messung von \(S_z\) sicher:
+\[
+    P(S_z=+\hbar/2)=1.
+\]
+Eine Messung von \(S_x\) ist dagegen nicht sicher, denn
+\[
+    \ket{+}=\frac{1}{\sqrt2}\ket{x,+}+\frac{1}{\sqrt2}\ket{x,-}.
+\]
+Also
+\[
+    P(S_x=+\hbar/2)=P(S_x=-\hbar/2)=\frac12.
+\]
+Das ist eine direkte Folge davon, dass \(S_z\) und \(S_x\) nicht kommutieren.
+\end{examplebox}
+
+\section{Spin entlang einer beliebigen Richtung}
+
+\subsection{Operator \(\vecsigma\cdot\vec n\)}
+
+Sei \(\vec n\) ein Einheitsvektor:
+\[
+    \vec n=(n_x,n_y,n_z),
+    \qquad |\vec n|=1.
+\]
+Der Spinoperator entlang \(\vec n\) ist
+\[
+    S_{\vec n}=\vec S\cdot\vec n
+    =\frac{\hbar}{2}\vecsigma\cdot\vec n.
+\]
+Dabei ist
+\[
+    \vecsigma\cdot\vec n
+    =n_x\sigma_x+n_y\sigma_y+n_z\sigma_z.
+\]
+Explizit:
+\[
+    \vecsigma\cdot\vec n
+    =
+    \begin{pmatrix}
+        n_z & n_x-\ii n_y\\
+        n_x+\ii n_y & -n_z
+    \end{pmatrix}.
+\]
+Da \(|\vec n|=1\), gilt
+\[
+    (\vecsigma\cdot\vec n)^2=\idop.
+\]
+Also sind die Eigenwerte von \(\vecsigma\cdot\vec n\)
+\[
+    +1,
+    \qquad
+    -1,
+\]
+und die Eigenwerte von \(S_{\vec n}\)
+\[
+    +\frac{\hbar}{2},
+    \qquad
+    -\frac{\hbar}{2}.
+\]
+
+\subsection{Parametrisierung mit Kugelwinkeln}
+
+Man schreibt eine Richtung \(\vec n\) oft als
+\[
+    \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta).
+\]
+Dann ist
+\[
+    \vecsigma\cdot\vec n
+    =
+    \begin{pmatrix}
+        \cos\theta & \sin\theta\,\e^{-\ii\varphi}\\
+        \sin\theta\,\e^{\ii\varphi} & -\cos\theta
+    \end{pmatrix}.
+\]
+Ein normierter Eigenzustand zum Eigenwert \(+1\) ist
+\begin{formulabox}
+\[
+    \ket{\vec n,+}
+    =\cos\left(\frac{\theta}{2}\right)\ket{+}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{-}.
+\]
+\end{formulabox}
+Ein normierter Eigenzustand zum Eigenwert \(-1\) kann gewählt werden als
+\[
+    \ket{\vec n,-}
+    =-\e^{-\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{+}
+    +\cos\left(\frac{\theta}{2}\right)\ket{-}.
+\]
+
+\begin{notebox}
+Der Zustand \(\ket{\vec n,+}\) ist der Zustand, bei dem eine Messung des Spins entlang \(\vec n\) sicher das Ergebnis \(+\hbar/2\) liefert. Er ist später genau der Standardzustand auf der Bloch-Sphäre.
+\end{notebox}
+
+\section{Erwartungswerte und Bloch-Vektor}
+
+\subsection{Erwartungswerte der Pauli-Matrizen}
+
+Sei
+\[
+    \ket{\psi}=\alpha\ket{+}+\beta\ket{-}
+    =
+    \begin{pmatrix}
+        \alpha\\\beta
+    \end{pmatrix},
+    \qquad |\alpha|^2+|\beta|^2=1.
+\]
+Dann sind die Erwartungswerte
+\[
+    \langle\sigma_x\rangle
+    =\bra{\psi}\sigma_x\ket{\psi}
+    =\alpha^*\beta+\beta^*\alpha
+    =2\operatorname{Re}(\alpha^*\beta),
+\]
+\[
+    \langle\sigma_y\rangle
+    =\bra{\psi}\sigma_y\ket{\psi}
+    =-\ii\alpha^*\beta+\ii\beta^*\alpha
+    =2\operatorname{Im}(\alpha^*\beta),
+\]
+\[
+    \langle\sigma_z\rangle
+    =\bra{\psi}\sigma_z\ket{\psi}
+    =|\alpha|^2-|\beta|^2.
+\]
+Der Erwartungswert des Spins ist
+\[
+    \langle\vec S\rangle
+    =\frac{\hbar}{2}
+    \begin{pmatrix}
+        \langle\sigma_x\rangle\\
+        \langle\sigma_y\rangle\\
+        \langle\sigma_z\rangle
+    \end{pmatrix}.
+\]
+
+\subsection{Bloch-Vektor}
+
+Der Vektor
+\[
+    \vec n_\psi=\langle\vecsigma\rangle
+    =
+    \begin{pmatrix}
+        \langle\sigma_x\rangle\\
+        \langle\sigma_y\rangle\\
+        \langle\sigma_z\rangle
+    \end{pmatrix}
+\]
+heißt Bloch-Vektor des reinen Spin-\(\frac12\)-Zustands. Für reine normierte Zustände gilt
+\[
+    |\vec n_\psi|=1.
+\]
+
+Für die Standardparametrisierung
+\[
+    \ket{\psi}
+    =\cos\left(\frac{\theta}{2}\right)\ket{+}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{-}
+\]
+findet man
+\[
+    \langle\sigma_x\rangle=\sin\theta\cos\varphi,
+\]
+\[
+    \langle\sigma_y\rangle=\sin\theta\sin\varphi,
+\]
+\[
+    \langle\sigma_z\rangle=\cos\theta.
+\]
+Also
+\begin{formulabox}
+\[
+    \vec n_\psi
+    =
+    \begin{pmatrix}
+        \sin\theta\cos\varphi\\
+        \sin\theta\sin\varphi\\
+        \cos\theta
+    \end{pmatrix}.
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Setze
+\[
+    \alpha=\cos\left(\frac{\theta}{2}\right),
+    \qquad
+    \beta=\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right).
+\]
+Dann ist
+\[
+    \alpha^*\beta
+    =\cos\left(\frac{\theta}{2}\right)
+    \sin\left(\frac{\theta}{2}\right)\e^{\ii\varphi}
+    =\frac12\sin\theta\,\e^{\ii\varphi}.
+\]
+Daher
+\[
+    \langle\sigma_x\rangle
+    =2\operatorname{Re}(\alpha^*\beta)
+    =\sin\theta\cos\varphi,
+\]
+\[
+    \langle\sigma_y\rangle
+    =2\operatorname{Im}(\alpha^*\beta)
+    =\sin\theta\sin\varphi.
+\]
+Außerdem
+\[
+    \langle\sigma_z\rangle
+    =\cos^2\left(\frac{\theta}{2}\right)
+    -\sin^2\left(\frac{\theta}{2}\right)
+    =\cos\theta.
+\]
+\end{derivationbox}
+
+\section{Spin und Tensorprodukt mit räumlichen Freiheitsgraden}
+
+\subsection{Produkthilbertraum}
+
+Für ein Teilchen mit Ort und Spin ist der gesamte Hilbertraum
+\begin{definitionbox}
+\[
+    \mathcal H = L^2(\mathbb R^3)\otimes R_s.
+\]
+Für ein Spin-\(\frac12\)-Teilchen also
+\[
+    \mathcal H = L^2(\mathbb R^3)\otimes\mathbb C^2.
+\]
+\end{definitionbox}
+
+Ein Zustand kann in Ortsdarstellung als zweikomponentige Wellenfunktion geschrieben werden:
+\[
+    \Psi(\vec r)=
+    \begin{pmatrix}
+        \psi_+(\vec r)\\
+        \psi_-(\vec r)
+    \end{pmatrix}.
+\]
+Dabei ist \(\psi_+(\vec r)\) die Ortsamplitude für Spin \(+\hbar/2\) entlang \(z\), und \(\psi_-(\vec r)\) die Ortsamplitude für Spin \(-\hbar/2\) entlang \(z\).
+
+Die Normierung lautet
+\[
+    \int_{\mathbb R^3}\dd^3r\,
+    \Psi^\dagger(\vec r)\Psi(\vec r)=1,
+\]
+also
+\[
+    \int_{\mathbb R^3}\dd^3r\,
+    \left(|\psi_+(\vec r)|^2+|\psi_-(\vec r)|^2\right)=1.
+\]
+
+\subsection{Kommutation mit Ortsobservablen}
+
+Spinoperatoren wirken nur auf den inneren Spinraum. Orts- und Impulsoperatoren wirken nur auf den räumlichen Anteil. Deshalb kommutieren sie:
+\[
+    [S_i,X_j]=0,
+    \qquad
+    [S_i,P_j]=0.
+\]
+
+\begin{notebox}
+Man kann sich \(S_i\) im Produktraum als \(\idop_{\text{Ort}}\otimes S_i\) vorstellen und \(X_j\) als \(X_j\otimes\idop_{\text{Spin}}\). Operatoren auf verschiedenen Faktoren des Tensorprodukts kommutieren.
+\end{notebox}
+
+\section{Leiteroperatoren für Spin \texorpdfstring{\(\frac12\)}{1/2}}
+
+\subsection{Definition}
+
+Wie beim Bahndrehimpuls definiert man
+\[
+    S_+ = S_x+\ii S_y,
+    \qquad
+    S_- = S_x-\ii S_y.
+\]
+Mit den Pauli-Matrizen ergibt sich
+\[
+    S_+ = \hbar
+    \begin{pmatrix}
+        0&1\\0&0
+    \end{pmatrix},
+    \qquad
+    S_- = \hbar
+    \begin{pmatrix}
+        0&0\\1&0
+    \end{pmatrix}.
+\]
+
+\subsection{Wirkung auf \(\ket{+}\) und \(\ket{-}\)}
+
+Es gilt
+\[
+    S_+\ket{-}=\hbar\ket{+},
+    \qquad
+    S_+\ket{+}=0,
+\]
+\[
+    S_-\ket{+}=\hbar\ket{-},
+    \qquad
+    S_-\ket{-}=0.
+\]
+
+\begin{conceptbox}
+Der Operator \(S_+\) hebt den magnetischen Quantenzahlwert \(m\) um eins an. Bei Spin \(\frac12\) gibt es aber nur \(m=-\frac12\) und \(m=+\frac12\). Deshalb annihiliert \(S_+\) den obersten Zustand \(\ket{+}\). Analog annihiliert \(S_-\) den untersten Zustand \(\ket{-}\).
+\end{conceptbox}
+
+\section{Rotationen von Spinoren}
+
+\subsection{Rotationsoperator}
+
+Für Drehimpulse erzeugt \(\vec S\) Rotationen im Spinraum. Eine Rotation um die Achse \(\vec n\) mit Winkel \(\phi\) wird durch
+\begin{formulabox}
+\[
+    U(\vec n,\phi)
+    =\exp\left(-\frac{\ii}{\hbar}\phi\,\vec n\cdot\vec S\right)
+    =\exp\left(-\frac{\ii}{2}\phi\,\vec n\cdot\vecsigma\right)
+\]
+\end{formulabox}
+beschrieben.
+
+Da
+\[
+    (\vec n\cdot\vecsigma)^2=\idop,
+\]
+kann man die Exponentialfunktion exakt auswerten:
+\begin{formulabox}
+\[
+    U(\vec n,\phi)
+    =\cos\left(\frac{\phi}{2}\right)\idop
+    -\ii\sin\left(\frac{\phi}{2}\right)\vec n\cdot\vecsigma.
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Setze \(A=\vec n\cdot\vecsigma\). Dann gilt \(A^2=\idop\). Also
+\[
+    \e^{-\ii\phi A/2}
+    =\sum_{n=0}^\infty\frac{1}{n!}\left(-\frac{\ii\phi}{2}A\right)^n.
+\]
+Gerade Potenzen liefern \(A^{2k}=\idop\), ungerade Potenzen liefern \(A^{2k+1}=A\). Daher
+\[
+    \e^{-\ii\phi A/2}
+    =\idop\sum_{k=0}^\infty\frac{(-1)^k}{(2k)!}\left(\frac{\phi}{2}\right)^{2k}
+    -\ii A\sum_{k=0}^\infty\frac{(-1)^k}{(2k+1)!}\left(\frac{\phi}{2}\right)^{2k+1}.
+\]
+Das ist
+\[
+    \cos\left(\frac{\phi}{2}\right)\idop
+    -\ii\sin\left(\frac{\phi}{2}\right)A.
+\]
+\end{derivationbox}
+
+\subsection{Besonderheit von Spinoren: Winkelhalbierung}
+
+Auffällig ist der Faktor \(\phi/2\). Bei einer Rotation um \(2\pi\) erhält man
+\[
+    U(\vec n,2\pi)
+    =\cos(\pi)\idop-\ii\sin(\pi)\vec n\cdot\vecsigma
+    =-\idop.
+\]
+Ein Spinor ändert bei einer \(2\pi\)-Rotation also sein Vorzeichen:
+\[
+    \ket{\psi}\mapsto -\ket{\psi}.
+\]
+Erst bei einer \(4\pi\)-Rotation gilt wieder
+\[
+    U(\vec n,4\pi)=+\idop.
+\]
+
+\begin{notebox}
+Das Vorzeichen eines einzelnen Zustandsvektors ist als globale Phase nicht direkt messbar. Trotzdem ist die \(4\pi\)-Eigenschaft von Spinoren physikalisch relevant, weil relative Phasen in Interferenzexperimenten messbar sind.
+\end{notebox}
+
+\section{Zeitentwicklung eines Spin-\texorpdfstring{\(\frac12\)}{1/2}-Systems}
+
+\subsection{Hamiltonoperator proportional zu einer Pauli-Matrix}
+
+Viele Spinaufgaben haben einen Hamiltonoperator der Form
+\[
+    H=\frac{\hbar\omega}{2}\sigma_x.
+\]
+Dann lautet der Zeitentwicklungsoperator
+\[
+    U(t)=\e^{-\ii Ht/\hbar}
+    =\exp\left(-\ii\frac{\omega t}{2}\sigma_x\right).
+\]
+Wegen \(\sigma_x^2=\idop\) folgt
+\begin{formulabox}
+\[
+    U(t)=\cos\left(\frac{\omega t}{2}\right)\idop
+    -\ii\sin\left(\frac{\omega t}{2}\right)\sigma_x.
+\]
+\end{formulabox}
+
+Dies ist eine Rotation des Spins um die \(x\)-Achse.
+
+\subsection{Beispiel: Anfangszustand \(\ket{-}\)}
+
+Sei
+\[
+    \ket{\psi(0)}=\ket{-}.
+\]
+Dann ist
+\[
+    \ket{\psi(t)}=U(t)\ket{-}
+    =\left[\cos\left(\frac{\omega t}{2}\right)\idop
+    -\ii\sin\left(\frac{\omega t}{2}\right)\sigma_x\right]\ket{-}.
+\]
+Da
+\[
+    \sigma_x\ket{-}=\ket{+},
+\]
+folgt
+\begin{formulabox}
+\[
+    \ket{\psi(t)}
+    =\cos\left(\frac{\omega t}{2}\right)\ket{-}
+    -\ii\sin\left(\frac{\omega t}{2}\right)\ket{+}.
+\]
+\end{formulabox}
+
+Bei einer anschließenden Messung von \(\sigma_z\) sind die Wahrscheinlichkeiten
+\[
+    P(+1)=\left|-\ii\sin\left(\frac{\omega t}{2}\right)\right|^2
+    =\sin^2\left(\frac{\omega t}{2}\right),
+\]
+\[
+    P(-1)=\left|\cos\left(\frac{\omega t}{2}\right)\right|^2
+    =\cos^2\left(\frac{\omega t}{2}\right).
+\]
+Für \(S_z\) wären die Messwerte \(\pm\hbar/2\), für \(\sigma_z\) sind sie \(\pm1\).
+
+\subsection{Messung bei \(t_1=\pi/(2\omega)\)}
+
+Für
+\[
+    t_1=\frac{\pi}{2\omega}
+\]
+gilt
+\[
+    \frac{\omega t_1}{2}=\frac{\pi}{4}.
+\]
+Daher
+\[
+    \ket{\psi(t_1)}
+    =\frac{1}{\sqrt2}\ket{-}
+    -\frac{\ii}{\sqrt2}\ket{+}
+    =\frac{1}{\sqrt2}(\ket{-}-\ii\ket{+}).
+\]
+Eine Messung von \(\sigma_z\) liefert
+\[
+    P(+1)=\frac12,
+    \qquad
+    P(-1)=\frac12.
+\]
+Nach der Messung ist der Zustand entweder \(\ket{+}\) oder \(\ket{-}\). Dieser Kollaps ist wichtig: Er unterscheidet eine unterbrochene Zeitentwicklung von einer ungestörten Zeitentwicklung.
+
+\begin{examtipbox}
+Bei Aufgaben mit mehreren Messungen immer sauber trennen:
+\begin{enumerate}
+    \item Zustand vor der Messung durch unitäre Zeitentwicklung berechnen.
+    \item Wahrscheinlichkeiten in der Eigenbasis der gemessenen Observablen berechnen.
+    \item Nach der Messung den Zustand auf den gemessenen Eigenzustand projizieren.
+    \item Erst danach weiter zeitentwickeln.
+\end{enumerate}
+\end{examtipbox}
+
+\subsection{Ungestörte Entwicklung bis \(t_2=\pi/\omega\)}
+
+Ohne Zwischenmessung ist
+\[
+    t_2=\frac{\pi}{\omega},
+    \qquad
+    \frac{\omega t_2}{2}=\frac{\pi}{2}.
+\]
+Damit
+\[
+    \ket{\psi(t_2)}
+    =\cos\left(\frac{\pi}{2}\right)\ket{-}
+    -\ii\sin\left(\frac{\pi}{2}\right)\ket{+}
+    =-\ii\ket{+}.
+\]
+Die globale Phase \(-\ii\) ist nicht messbar, also ist der physikalische Zustand \(\ket{+}\). Eine Messung von \(\sigma_z\) liefert sicher
+\[
+    +1.
+\]
+
+\begin{conceptbox}
+Mit Zwischenmessung geht Phaseninformation verloren, weil der Zustand auf einen Eigenzustand projiziert wird. Ohne Zwischenmessung bleibt die kohärente Superposition erhalten. Deshalb können die späteren Messwahrscheinlichkeiten verschieden sein.
+\end{conceptbox}
+
+\section{Spin im Magnetfeld}
+
+\subsection{Hamiltonoperator}
+
+Ein magnetisches Moment in einem Magnetfeld besitzt die Energie
+\[
+    H=-\vec\mu\cdot\vec B.
+\]
+Für ein Spin-\(\frac12\)-Teilchen ist das magnetische Moment proportional zum Spin:
+\[
+    \vec\mu=\gamma\vec S.
+\]
+Dann gilt
+\[
+    H=-\gamma\vec S\cdot\vec B
+    =-\gamma\frac{\hbar}{2}\vecsigma\cdot\vec B.
+\]
+Für ein konstantes Magnetfeld in \(z\)-Richtung,
+\[
+    \vec B=B_0\vec e_z,
+\]
+ist
+\[
+    H=-\gamma B_0 S_z
+    =-\gamma B_0\frac{\hbar}{2}\sigma_z.
+\]
+Definiert man
+\[
+    \omega_0=-\gamma B_0,
+\]
+erhält man
+\[
+    H=\frac{\hbar\omega_0}{2}\sigma_z.
+\]
+
+\subsection{Larmor-Präzession}
+
+Für
+\[
+    H=\frac{\hbar\boldsymbol{\Omega}}{2}\cdot\vecsigma
+\]
+ist die Zeitentwicklung
+\[
+    U(t)=\exp\left(-\frac{\ii}{2}(\boldsymbol{\Omega}\cdot\vecsigma)t\right).
+\]
+Setze
+\[
+    \Omega=|\boldsymbol{\Omega}|,
+    \qquad
+    \vec n=\frac{\boldsymbol{\Omega}}{\Omega}.
+\]
+Dann
+\[
+    U(t)=\exp\left(-\frac{\ii}{2}\Omega t\,\vec n\cdot\vecsigma\right)
+\]
+und somit
+\[
+    U(t)=\cos\left(\frac{\Omega t}{2}\right)\idop
+    -\ii\sin\left(\frac{\Omega t}{2}\right)\vec n\cdot\vecsigma.
+\]
+Auf der Bloch-Sphäre entspricht dies einer Rotation des Bloch-Vektors um die Achse \(\vec n\) mit Winkel \(\Omega t\).
+
+\begin{notebox}
+Der Zustandsvektor enthält den halben Winkel \(\Omega t/2\), der Bloch-Vektor rotiert aber mit Winkel \(\Omega t\). Das ist kein Widerspruch, sondern eine typische Eigenschaft von Spinoren.
+\end{notebox}
+
+\section{Exponentials von Pauli-Matrizen}
+
+\subsection{Standardformel}
+
+Die wichtigste Rechenformel für Spin-\(\frac12\)-Zeitentwicklung ist
+\begin{formulabox}
+\[
+    \exp(-\ii a\,\vec n\cdot\vecsigma)
+    =\cos(a)\idop-\ii\sin(a)\vec n\cdot\vecsigma,
+    \qquad |\vec n|=1.
+\]
+\end{formulabox}
+
+Sie folgt aus
+\[
+    (\vec n\cdot\vecsigma)^2=\idop.
+\]
+
+\subsection{Häufige Spezialfälle}
+
+Für \(\sigma_x\):
+\[
+    \e^{-\ii a\sigma_x}
+    =
+    \begin{pmatrix}
+        \cos a&-\ii\sin a\\
+        -\ii\sin a&\cos a
+    \end{pmatrix}.
+\]
+Für \(\sigma_y\):
+\[
+    \e^{-\ii a\sigma_y}
+    =
+    \begin{pmatrix}
+        \cos a&-\sin a\\
+        \sin a&\cos a
+    \end{pmatrix}.
+\]
+Für \(\sigma_z\):
+\[
+    \e^{-\ii a\sigma_z}
+    =
+    \begin{pmatrix}
+        \e^{-\ii a}&0\\
+        0&\e^{\ii a}
+    \end{pmatrix}.
+\]
+
+\begin{examtipbox}
+Wenn der Hamiltonoperator proportional zu einer einzelnen Pauli-Matrix ist, diagonalisiere nicht unnötig. Verwende direkt
+\[
+    \e^{-\ii a\sigma_i}=\cos(a)\idop-\ii\sin(a)\sigma_i.
+\]
+Das spart viel Zeit und vermeidet Fehler.
+\end{examtipbox}
+
+\section{Allgemeiner Zweiniveau-Hamiltonoperator}
+
+\subsection{Darstellung mit Pauli-Matrizen}
+
+Jede hermitesche \(2\times2\)-Matrix kann als Linearkombination von \(\idop,\sigma_x,\sigma_y,\sigma_z\) geschrieben werden:
+\[
+    H=h_0\idop+\vec h\cdot\vecsigma,
+\]
+wobei \(h_0\in\mathbb R\) und \(\vec h\in\mathbb R^3\).
+
+Explizit ist für
+\[
+    H=
+    \begin{pmatrix}
+        A&C\\C^*&B
+    \end{pmatrix}
+\]
+mit \(A,B\in\mathbb R\):
+\[
+    h_0=\frac{A+B}{2},
+\]
+\[
+    h_z=\frac{A-B}{2},
+    \qquad
+    h_x=\operatorname{Re}C,
+    \qquad
+    h_y=-\operatorname{Im}C.
+\]
+Denn
+\[
+    h_0\idop+h_x\sigma_x+h_y\sigma_y+h_z\sigma_z
+    =
+    \begin{pmatrix}
+        h_0+h_z&h_x-\ii h_y\\
+        h_x+\ii h_y&h_0-h_z
+    \end{pmatrix}.
+\]
+
+\subsection{Eigenwerte}
+
+Für
+\[
+    H=h_0\idop+\vec h\cdot\vecsigma
+\]
+sind die Eigenwerte
+\begin{formulabox}
+\[
+    E_\pm=h_0\pm|\vec h|.
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Da
+\[
+    (\vec h\cdot\vecsigma)^2=|\vec h|^2\idop,
+\]
+hat \(\vec h\cdot\vecsigma\) die Eigenwerte \(\pm|\vec h|\). Der Term \(h_0\idop\) verschiebt beide Eigenwerte um \(h_0\). Also
+\[
+    E_\pm=h_0\pm|\vec h|.
+\]
+\end{derivationbox}
+
+\subsection{Zeitentwicklung}
+
+Die Zeitentwicklung ist
+\[
+    U(t)=\e^{-\ii Ht/\hbar}
+    =\e^{-\ii h_0t/\hbar}
+    \e^{-\ii (\vec h\cdot\vecsigma)t/\hbar}.
+\]
+Der erste Faktor ist nur eine globale Phase. Der zweite Faktor beschreibt die physikalische Rotation:
+\[
+    \e^{-\ii (\vec h\cdot\vecsigma)t/\hbar}
+    =\cos\left(\frac{|\vec h|t}{\hbar}\right)\idop
+    -\ii\sin\left(\frac{|\vec h|t}{\hbar}\right)\frac{\vec h}{|\vec h|}\cdot\vecsigma.
+\]
+
+\section{Magnetische Resonanz und Rabiformel: Grundidee}
+
+\subsection{Zeitabhängiger Hamiltonoperator}
+
+Ein wichtiges Spinproblem ist ein Spin-\(\frac12\)-Teilchen in einem statischen Magnetfeld und einem rotierenden transversalen Feld. Der Hamiltonoperator kann in der \(\ket{+},\ket{-}\)-Basis die Form
+\[
+    H(t)=\frac{\hbar}{2}
+    \begin{pmatrix}
+        \omega_0&\omega_1\e^{-\ii\omega t}\\
+        \omega_1\e^{\ii\omega t}&-\omega_0
+    \end{pmatrix}
+\]
+haben.
+
+Schreibt man
+\[
+    \ket{\psi(t)}=a_+(t)\ket{+}+a_-(t)\ket{-},
+\]
+dann wird die Schrödingergleichung zu
+\[
+    \ii\hbar\frac{\dd}{\dd t}
+    \begin{pmatrix}
+        a_+\\a_-
+    \end{pmatrix}
+    =\frac{\hbar}{2}
+    \begin{pmatrix}
+        \omega_0&\omega_1\e^{-\ii\omega t}\\
+        \omega_1\e^{\ii\omega t}&-\omega_0
+    \end{pmatrix}
+    \begin{pmatrix}
+        a_+\\a_-
+    \end{pmatrix}.
+\]
+Diese Gleichung ist explizit zeitabhängig.
+
+\subsection{Rotierendes Bezugssystem}
+
+Man eliminiert die explizite Zeitabhängigkeit mit
+\[
+    b_+(t)=\e^{\ii\omega t/2}a_+(t),
+    \qquad
+    b_-(t)=\e^{-\ii\omega t/2}a_-(t).
+\]
+Dann erhält man
+\[
+    \ii\frac{\dd}{\dd t}
+    \begin{pmatrix}
+        b_+\\b_-
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        -\Delta\omega/2&\omega_1/2\\
+        \omega_1/2&+\Delta\omega/2
+    \end{pmatrix}
+    \begin{pmatrix}
+        b_+\\b_-
+    \end{pmatrix},
+\]
+wobei
+\[
+    \Delta\omega=\omega-\omega_0
+\]
+die Verstimmung ist.
+
+\subsection{Rabiformel}
+
+Für einen anfangs im Zustand \(\ket{+}\) präparierten Spin ist die Übergangswahrscheinlichkeit in den Zustand \(\ket{-}\)
+\begin{formulabox}
+\[
+    P_-(t)
+    =\frac{\omega_1^2}{\omega_1^2+\Delta\omega^2}
+    \sin^2\left(\frac{\sqrt{\omega_1^2+\Delta\omega^2}}{2}t\right).
+\]
+\end{formulabox}
+
+Auf Resonanz, also für
+\[
+    \Delta\omega=0,
+\]
+wird daraus
+\[
+    P_-(t)=\sin^2\left(\frac{\omega_1t}{2}\right).
+\]
+Dann kann der Spin vollständig zwischen \(\ket{+}\) und \(\ket{-}\) oszillieren.
+
+Für \(\Delta\omega\ne0\) ist die maximale Übergangswahrscheinlichkeit kleiner:
+\[
+    P_-^{\max}=\frac{\omega_1^2}{\omega_1^2+\Delta\omega^2}<1.
+\]
+
+\begin{conceptbox}
+Resonanz bedeutet: Die Frequenz des äußeren rotierenden Feldes passt zur Energieaufspaltung des Spins. Dann kann das Feld den Spin effizient umklappen. Außerhalb der Resonanz bleibt die Umklappwahrscheinlichkeit kleiner.
+\end{conceptbox}
+
+\section{Pauli-Gleichung und elektromagnetische Kopplung}
+
+\subsection{Minimaler Kontext}
+
+Für ein geladenes Spin-\(\frac12\)-Teilchen in elektromagnetischen Feldern reicht die skalare Schrödingergleichung nicht mehr. Die Wellenfunktion ist zweikomponentig:
+\[
+    \Psi(\vec r,t)=
+    \begin{pmatrix}
+        \psi_+(\vec r,t)\\
+        \psi_-(\vec r,t)
+    \end{pmatrix}.
+\]
+Die nichtrelativistische Pauli-Gleichung enthält neben der minimalen Kopplung auch eine direkte Kopplung des Spins an das Magnetfeld.
+
+Für ein Teilchen der Ladung \(q\) und Masse \(m\) lautet die typische Form
+\[
+    \ii\hbar\frac{\partial}{\partial t}\Psi
+    =\left[
+        \frac{1}{2m}\left(-\ii\hbar\nabla-q\vec A\right)^2
+        +q\Phi
+        -\frac{q\hbar}{2m}\vecsigma\cdot\vec B
+    \right]\Psi,
+\]
+bis auf Vorzeichenkonventionen für die Ladung. Für das Elektron ist \(q=-e\).
+
+\begin{notebox}
+Die Pauli-Gleichung ist für dieses Kapitel nicht der wichtigste Rechenstoff. Wichtig ist aber die Struktur: Pauli-Matrizen koppeln den Spin an \(\vec B\), und die zweikomponentige Wellenfunktion beschreibt Ort und Spin gleichzeitig.
+\end{notebox}
+
+\subsection{Rolle der Pauli-Identität}
+
+Die Identität
+\[
+    (\vecsigma\cdot\vec a)(\vecsigma\cdot\vec b)
+    =\vec a\cdot\vec b+\ii\vecsigma\cdot(\vec a\times\vec b)
+\]
+ist die zentrale algebraische Formel hinter dem Spin-Magnetfeld-Term. Wenn die Komponenten des kinetischen Impulses wegen des Vektorpotentials nicht kommutieren, entsteht aus dem Kreuzproduktterm die Kopplung an \(\vec B\).
+
+\section{Typische Rechenmuster}
+
+\subsection{Muster 1: Messwahrscheinlichkeiten}
+
+Gegeben sei ein Zustand
+\[
+    \ket{\psi}=\alpha\ket{+}+\beta\ket{-}.
+\]
+Gesucht seien Wahrscheinlichkeiten für eine Messung von \(\sigma_x\).
+
+\begin{calculationbox}
+Verwende die Eigenbasis von \(\sigma_x\):
+\[
+    \ket{x,+}=\frac{\ket{+}+\ket{-}}{\sqrt2},
+    \qquad
+    \ket{x,-}=\frac{\ket{+}-\ket{-}}{\sqrt2}.
+\]
+Dann
+\[
+    c_+=\braket{x,+}{\psi}=\frac{\alpha+\beta}{\sqrt2},
+    \qquad
+    c_- =\braket{x,-}{\psi}=\frac{\alpha-\beta}{\sqrt2}.
+\]
+Also
+\[
+    P(+1)=|c_+|^2,
+    \qquad
+    P(-1)=|c_-|^2.
+\]
+\end{calculationbox}
+
+\subsection{Muster 2: Zeitentwicklung mit \(H=(\hbar\omega/2)\sigma_i\)}
+
+Gegeben sei
+\[
+    H=\frac{\hbar\omega}{2}\sigma_i.
+\]
+Dann
+\[
+    U(t)=\e^{-\ii Ht/\hbar}
+    =\e^{-\ii\omega t\sigma_i/2}.
+\]
+
+\begin{calculationbox}
+Direkt einsetzen:
+\[
+    U(t)=\cos\left(\frac{\omega t}{2}\right)\idop
+    -\ii\sin\left(\frac{\omega t}{2}\right)\sigma_i.
+\]
+Dann auf den Anfangszustand anwenden und in der gewünschten Messbasis auswerten.
+\end{calculationbox}
+
+\subsection{Muster 3: Hamiltonoperator als \(\vec h\cdot\vecsigma\)}
+
+Gegeben sei
+\[
+    H=
+    \begin{pmatrix}
+        A&C\\C^*&B
+    \end{pmatrix}.
+\]
+
+\begin{calculationbox}
+Schreibe
+\[
+    H=h_0\idop+\vec h\cdot\vecsigma
+\]
+mit
+\[
+    h_0=\frac{A+B}{2},
+    \quad
+    h_z=\frac{A-B}{2},
+    \quad
+    h_x=\operatorname{Re}C,
+    \quad
+    h_y=-\operatorname{Im}C.
+\]
+Dann sind die Eigenwerte
+\[
+    E_\pm=h_0\pm|\vec h|.
+\]
+\end{calculationbox}
+
+\section{Häufige Fehler}
+
+\begin{examtipbox}
+\textbf{Fehler 1:} Eigenwerte von \(\sigma_i\) und \(S_i\) verwechseln. Pauli-Matrizen haben Eigenwerte \(\pm1\), Spinoperatoren \(S_i=(\hbar/2)\sigma_i\) haben Eigenwerte \(\pm\hbar/2\).
+\end{examtipbox}
+
+\begin{examtipbox}
+\textbf{Fehler 2:} Nach einer Messung einfach unitär weiterrechnen, ohne den Kollaps zu berücksichtigen. Nach einer idealen Messung liegt der Zustand im Eigenraum des gemessenen Ergebnisses.
+\end{examtipbox}
+
+\begin{examtipbox}
+\textbf{Fehler 3:} Komplexe Konjugation in Bra-Vektoren vergessen. Zum Beispiel ist
+\[
+    \ket{y,+}=\frac{1}{\sqrt2}
+    \begin{pmatrix}1\\\ii\end{pmatrix}
+    \quad\Rightarrow\quad
+    \bra{y,+}=\frac{1}{\sqrt2}
+    \begin{pmatrix}1&-\ii\end{pmatrix}.
+\]
+\end{examtipbox}
+
+\begin{examtipbox}
+\textbf{Fehler 4:} Bei \(\e^{-\ii a\sigma_i}\) den Faktor \(1/2\) aus dem Hamiltonoperator vergessen. Wenn
+\[
+    H=\frac{\hbar\omega}{2}\sigma_i,
+\]
+dann ist
+\[
+    U(t)=\e^{-\ii\omega t\sigma_i/2},
+\]
+nicht \(\e^{-\ii\omega t\sigma_i}\).
+\end{examtipbox}
+
+\section{Zusammenfassung}
+
+\begin{conceptbox}
+Der Spin ist ein intrinsischer Drehimpuls. Für Spin \(\frac12\) ist der Spinzustandsraum zweidimensional und die Spinoperatoren werden durch Pauli-Matrizen dargestellt:
+\[
+    S_i=\frac{\hbar}{2}\sigma_i.
+\]
+Die Pauli-Matrizen sind hermitesch, quadrieren zur Einheitsmatrix und erfüllen
+\[
+    [\sigma_i,\sigma_j]=2\ii\sum_k\varepsilon_{ijk}\sigma_k,
+    \qquad
+    \{\sigma_i,\sigma_j\}=2\delta_{ij}\idop.
+\]
+Messungen von \(S_i\) liefern immer \(\pm\hbar/2\). Zeitentwicklung mit Hamiltonoperatoren proportional zu Pauli-Matrizen beschreibt Rotationen des Spins.
+\end{conceptbox}
+
+Die wichtigsten Formeln sind:
+\[
+    \sigma_x=
+    \begin{pmatrix}0&1\\1&0\end{pmatrix},
+    \qquad
+    \sigma_y=
+    \begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},
+    \qquad
+    \sigma_z=
+    \begin{pmatrix}1&0\\0&-1\end{pmatrix},
+\]
+\[
+    S_i=\frac{\hbar}{2}\sigma_i,
+    \qquad
+    \vec S^{\,2}=\frac34\hbar^2\idop,
+\]
+\[
+    (\vecsigma\cdot\vec a)(\vecsigma\cdot\vec b)
+    =(\vec a\cdot\vec b)\idop+\ii\vecsigma\cdot(\vec a\times\vec b),
+\]
+\[
+    \e^{-\ii a\vec n\cdot\vecsigma}
+    =\cos(a)\idop-\ii\sin(a)\vec n\cdot\vecsigma,
+\]
+\[
+    \ket{\vec n,+}
+    =\cos\left(\frac{\theta}{2}\right)\ket{+}
+    +\e^{\ii\varphi}\sin\left(\frac{\theta}{2}\right)\ket{-}.
+\]

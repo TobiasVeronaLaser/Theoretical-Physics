@@ -1,3 +1,1507 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\idop}{\mathbf{1}}
+\providecommand{\vecJ}{\vec J}
+\providecommand{\vecL}{\vec L}
+\providecommand{\vecS}{\vec S}
+\providecommand{\epsijk}{\varepsilon_{ijk}}
+
 \chapter{Gekoppelte Drehimpulse und Spin-Systeme}
 
-% Inhalt wird später anhand der Stichwortliste und Quellen ergänzt.
+\section{Ziel dieses Kapitels}
+
+In den vorherigen Kapiteln wurden Drehimpuls und Spin meistens getrennt behandelt. In vielen physikalischen Systemen treten aber mehrere Drehimpulse gleichzeitig auf: zwei Spins, Bahndrehimpuls und Spin eines Elektrons, oder ein Drehimpuls in einem äußeren Feld. Dieses Kapitel erklärt, wie man solche Systeme systematisch beschreibt.
+
+\begin{conceptbox}
+Das zentrale Problem lautet: Wenn zwei Drehimpulse \(\vec J^{(1)}\) und \(\vec J^{(2)}\) gegeben sind, wie beschreibt man den Gesamtdrehimpuls
+\[
+    \vec J = \vec J^{(1)}+\vec J^{(2)}?
+\]
+Dazu gibt es zwei natürliche Basen:
+\[
+    \ket{j_1,m_1;j_2,m_2}
+    \quad \text{und} \quad
+    \ket{j_1,j_2;j,m}.
+\]
+Die erste Basis heißt \emph{ungekoppelte Basis}, die zweite \emph{gekoppelte Basis}.
+\end{conceptbox}
+
+Die wichtigsten Fragen sind:
+\begin{itemize}
+    \item Wie baut man den Tensorproduktraum zweier Drehimpulse auf?
+    \item Welche Quantenzahlen kann der Gesamtdrehimpuls \(j\) annehmen?
+    \item Wie hängen ungekoppelte und gekoppelte Basis über Clebsch-Gordan-Koeffizienten zusammen?
+    \item Wie behandelt man zwei Spin-\(\frac12\)-Teilchen?
+    \item Was sind Singulett- und Triplettzustände?
+    \item Wie diagonalisiert man Spin-Spin-Kopplungen wie \(\vec S_1\cdot \vec S_2\)?
+    \item Wie behandelt man Bahndrehimpuls-Spin-Kopplung \(\vec L\cdot\vec S\)?
+    \item Wie löst man typische Aufgaben zu \(l=1\)-Systemen und gekoppelten Spin-Systemen?
+\end{itemize}
+
+\section{Zwei unabhängige Drehimpulse}
+
+\subsection{Ausgangspunkt}
+
+Wir betrachten zwei unabhängige Drehimpulse
+\[
+    \vec J^{(1)}=(J^{(1)}_1,J^{(1)}_2,J^{(1)}_3),
+    \qquad
+    \vec J^{(2)}=(J^{(2)}_1,J^{(2)}_2,J^{(2)}_3).
+\]
+Jeder der beiden erfüllt für sich die Drehimpulsalgebra
+\[
+    [J^{(a)}_i,J^{(a)}_j]
+    =\ii\hbar\sum_{k=1}^3 \varepsilon_{ijk}J^{(a)}_k,
+    \qquad a=1,2.
+\]
+Da sie auf verschiedenen Freiheitsgraden wirken, kommutieren sie miteinander:
+\[
+    [J^{(1)}_i,J^{(2)}_j]=0.
+\]
+
+\begin{notebox}
+Streng genommen wirkt \(\vec J^{(1)}\) auf dem ersten Faktor und \(\vec J^{(2)}\) auf dem zweiten Faktor eines Tensorprodukts:
+\[
+    J^{(1)}_i \equiv J^{(1)}_i\otimes \idop_2,
+    \qquad
+    J^{(2)}_i \equiv \idop_1\otimes J^{(2)}_i.
+\]
+In Rechnungen schreibt man diese Einheitsoperatoren meistens nicht explizit mit.
+\end{notebox}
+
+Zu festem \(j_1\) gehört ein Raum
+\[
+    \mathcal H_{j_1}=\operatorname{span}\set{\ket{j_1,m_1}:m_1=-j_1,\dots,j_1},
+\]
+mit Dimension
+\[
+    \dim \mathcal H_{j_1}=2j_1+1.
+\]
+Analog gilt für \(j_2\):
+\[
+    \dim \mathcal H_{j_2}=2j_2+1.
+\]
+Der Gesamtraum ist das Tensorprodukt
+\[
+    \mathcal H_{j_1}\otimes \mathcal H_{j_2}.
+\]
+Seine Dimension ist
+\[
+    \dim(\mathcal H_{j_1}\otimes \mathcal H_{j_2})=(2j_1+1)(2j_2+1).
+\]
+
+\section{Die ungekoppelte Basis}
+
+\subsection{Definition}
+
+Die einfachste Basis des Tensorproduktraums erhält man durch Produktzustände:
+\[
+    \ket{j_1,m_1;j_2,m_2}
+    := \ket{j_1,m_1}\otimes \ket{j_2,m_2}.
+\]
+Diese Zustände sind gemeinsame Eigenzustände von
+\[
+    (\vec J^{(1)})^2,
+    \quad J^{(1)}_3,
+    \quad (\vec J^{(2)})^2,
+    \quad J^{(2)}_3.
+\]
+Man hat also
+\begin{align*}
+    (\vec J^{(1)})^2\ket{j_1,m_1;j_2,m_2}
+    &=\hbar^2 j_1(j_1+1)\ket{j_1,m_1;j_2,m_2},\\
+    J^{(1)}_3\ket{j_1,m_1;j_2,m_2}
+    &=\hbar m_1\ket{j_1,m_1;j_2,m_2},\\
+    (\vec J^{(2)})^2\ket{j_1,m_1;j_2,m_2}
+    &=\hbar^2 j_2(j_2+1)\ket{j_1,m_1;j_2,m_2},\\
+    J^{(2)}_3\ket{j_1,m_1;j_2,m_2}
+    &=\hbar m_2\ket{j_1,m_1;j_2,m_2}.
+\end{align*}
+
+\begin{definitionbox}
+Die Basis
+\[
+    \set{\ket{j_1,m_1;j_2,m_2}}
+\]
+heißt \emph{ungekoppelte Basis}. Sie diagonalisiert die einzelnen Drehimpulse und ihre jeweiligen \(z\)-Komponenten.
+\end{definitionbox}
+
+\subsection{Leiteroperatoren in der ungekoppelten Basis}
+
+Für jeden Drehimpuls definiert man Leiteroperatoren
+\[
+    J^{(a)}_\pm = J^{(a)}_1 \pm \ii J^{(a)}_2,
+    \qquad a=1,2.
+\]
+Sie wirken nur auf den jeweiligen Teilzustand:
+\begin{align*}
+    J^{(1)}_\pm\ket{j_1,m_1;j_2,m_2}
+    &=\hbar\sqrt{j_1(j_1+1)-m_1(m_1\pm1)}
+    \ket{j_1,m_1\pm1;j_2,m_2},\\
+    J^{(2)}_\pm\ket{j_1,m_1;j_2,m_2}
+    &=\hbar\sqrt{j_2(j_2+1)-m_2(m_2\pm1)}
+    \ket{j_1,m_1;j_2,m_2\pm1}.
+\end{align*}
+
+\section{Gesamtdrehimpuls}
+
+\subsection{Definition}
+
+Der Gesamtdrehimpuls ist
+\[
+    \vec J=\vec J^{(1)}+\vec J^{(2)}.
+\]
+Komponentenweise:
+\[
+    J_i=J^{(1)}_i+J^{(2)}_i.
+\]
+Daraus folgt
+\[
+    J_3 = J^{(1)}_3+J^{(2)}_3.
+\]
+Der quadratische Gesamtdrehimpuls ist
+\[
+    \vec J^{\,2}
+    = (\vec J^{(1)}+\vec J^{(2)})^2
+    = (\vec J^{(1)})^2+(\vec J^{(2)})^2+2\vec J^{(1)}\cdot \vec J^{(2)}.
+\]
+
+\begin{formulabox}
+Die Kopplung zwischen zwei Drehimpulsen steckt im Skalarprodukt
+\[
+    \vec J^{(1)}\cdot\vec J^{(2)}.
+\]
+Dieses kann durch den Gesamtdrehimpuls geschrieben werden:
+\[
+    \vec J^{(1)}\cdot\vec J^{(2)}
+    =\frac12\left(\vec J^{\,2}-(\vec J^{(1)})^2-(\vec J^{(2)})^2\right).
+\]
+Diese Formel ist extrem wichtig, weil viele Hamiltonoperatoren genau solche Skalarprodukte enthalten.
+\end{formulabox}
+
+\subsection{Kommutatoren}
+
+Da \(\vec J\) wieder ein Drehimpuls ist, gilt
+\[
+    [J_i,J_j]=\ii\hbar\sum_k\varepsilon_{ijk}J_k.
+\]
+Außerdem gilt
+\[
+    [\vec J^{\,2},J_3]=0.
+\]
+Auch die einzelnen Betragsquadrate kommutieren mit dem Gesamtdrehimpuls:
+\[
+    [(\vec J^{(1)})^2,\vec J^{\,2}]=0,
+    \qquad
+    [(\vec J^{(2)})^2,\vec J^{\,2}]=0.
+\]
+Daher kann man gemeinsame Eigenzustände von
+\[
+    (\vec J^{(1)})^2,
+    \quad
+    (\vec J^{(2)})^2,
+    \quad
+    \vec J^{\,2},
+    \quad
+    J_3
+\]
+wählen.
+
+\section{Die gekoppelte Basis}
+
+\subsection{Definition}
+
+Die gekoppelte Basis besteht aus gemeinsamen Eigenzuständen von
+\[
+    (\vec J^{(1)})^2,
+    \quad
+    (\vec J^{(2)})^2,
+    \quad
+    \vec J^{\,2},
+    \quad
+    J_3.
+\]
+Man schreibt sie als
+\[
+    \ket{j_1,j_2;j,m}.
+\]
+Dabei sind \(j_1\) und \(j_2\) fest, während \(j\) und \(m\) die Quantenzahlen des Gesamtdrehimpulses sind.
+
+Die Eigenwertgleichungen lauten
+\begin{align*}
+    (\vec J^{(1)})^2\ket{j_1,j_2;j,m}
+    &=\hbar^2j_1(j_1+1)\ket{j_1,j_2;j,m},\\
+    (\vec J^{(2)})^2\ket{j_1,j_2;j,m}
+    &=\hbar^2j_2(j_2+1)\ket{j_1,j_2;j,m},\\
+    \vec J^{\,2}\ket{j_1,j_2;j,m}
+    &=\hbar^2j(j+1)\ket{j_1,j_2;j,m},\\
+    J_3\ket{j_1,j_2;j,m}
+    &=\hbar m\ket{j_1,j_2;j,m}.
+\end{align*}
+
+\begin{definitionbox}
+Die Basis
+\[
+    \set{\ket{j_1,j_2;j,m}}
+\]
+heißt \emph{gekoppelte Basis}. Sie diagonalisiert den Gesamtdrehimpuls.
+\end{definitionbox}
+
+\subsection{Erlaubte Werte von \texorpdfstring{\(j\)}{j}}
+
+Die möglichen Werte des Gesamtdrehimpulses sind
+\[
+    j=|j_1-j_2|,
+    |j_1-j_2|+1,
+    \dots,
+    j_1+j_2.
+\]
+Für jedes feste \(j\) nimmt \(m\) die Werte
+\[
+    m=-j,-j+1,\dots,j-1,j
+\]
+an.
+
+\begin{formulabox}
+\[
+    j\in\set{|j_1-j_2|,|j_1-j_2|+1,\dots,j_1+j_2},
+    \qquad
+    m=-j,\dots,j.
+\]
+\end{formulabox}
+
+\begin{sidecalcbox}
+Die Dimension muss erhalten bleiben. In der ungekoppelten Basis ist die Dimension
+\[
+    (2j_1+1)(2j_2+1).
+\]
+In der gekoppelten Basis ist sie
+\[
+    \sum_{j=|j_1-j_2|}^{j_1+j_2}(2j+1).
+\]
+Man kann zeigen:
+\[
+    \sum_{j=|j_1-j_2|}^{j_1+j_2}(2j+1)
+    =(2j_1+1)(2j_2+1).
+\]
+Also enthalten beide Basen gleich viele Zustände.
+\end{sidecalcbox}
+
+\section{Clebsch-Gordan-Koeffizienten}
+
+\subsection{Basiswechsel}
+
+Ungekoppelte und gekoppelte Basis beschreiben denselben Raum. Daher kann man jeden gekoppelten Zustand in der ungekoppelten Basis entwickeln:
+\[
+    \ket{j_1,j_2;j,m}
+    =\sum_{m_1,m_2}
+    \braket{j_1,m_1;j_2,m_2}{j_1,j_2;j,m}
+    \ket{j_1,m_1;j_2,m_2}.
+\]
+Die Zahlen
+\[
+    \braket{j_1,m_1;j_2,m_2}{j_1,j_2;j,m}
+\]
+heißen Clebsch-Gordan-Koeffizienten.
+
+\begin{definitionbox}
+Clebsch-Gordan-Koeffizienten sind die Koeffizienten des Basiswechsels zwischen ungekoppelter und gekoppelter Drehimpulsbasis:
+\[
+    \ket{j_1,j_2;j,m}
+    =\sum_{m_1,m_2} C^{j,m}_{j_1,m_1;j_2,m_2}
+    \ket{j_1,m_1;j_2,m_2}.
+\]
+Dabei gilt
+\[
+    C^{j,m}_{j_1,m_1;j_2,m_2}
+    =\braket{j_1,m_1;j_2,m_2}{j_1,j_2;j,m}.
+\]
+\end{definitionbox}
+
+\subsection{Auswahlregel}
+
+Da
+\[
+    J_3=J^{(1)}_3+J^{(2)}_3
+\]
+gilt, kann ein Produktzustand \(\ket{j_1,m_1;j_2,m_2}\) nur in einem gekoppelten Zustand mit
+\[
+    m=m_1+m_2
+\]
+auftreten.
+
+\begin{formulabox}
+\[
+    C^{j,m}_{j_1,m_1;j_2,m_2}=0
+    \quad \text{falls} \quad
+    m\neq m_1+m_2.
+\]
+\end{formulabox}
+
+\subsection{Konstruktion mit Leiteroperatoren}
+
+Eine praktische Methode zur Konstruktion der Clebsch-Gordan-Koeffizienten ist:
+\begin{enumerate}
+    \item Beginne mit dem Zustand maximaler Projektion \(m=j_1+j_2\).
+    \item Dieser Zustand ist eindeutig:
+    \[
+        \ket{j_1,j_2;j_1+j_2,j_1+j_2}
+        =\ket{j_1,j_1;j_2,j_2}.
+    \]
+    \item Wende den Gesamt-Absteigeoperator
+    \[
+        J_- = J^{(1)}_-+J^{(2)}_-
+    \]
+    an.
+    \item Normiere nach jedem Schritt.
+    \item Zustände mit niedrigerem \(j\) erhält man durch Orthogonalisierung innerhalb desselben \(m\)-Unterraums.
+\end{enumerate}
+
+\begin{examtipbox}
+In Klausuraufgaben muss man selten eine große Clebsch-Gordan-Tabelle auswendig können. Häufig reichen:
+\begin{itemize}
+    \item die Auswahlregel \(m=m_1+m_2\),
+    \item der höchste Zustand \(\ket{j_1+j_2,j_1+j_2}=\ket{j_1,j_1;j_2,j_2}\),
+    \item die Wirkung von \(J_-\),
+    \item Orthogonalität und Normierung.
+\end{itemize}
+\end{examtipbox}
+
+\section{Zwei Spin-\texorpdfstring{\(\frac12\)}{1/2}-Teilchen}
+
+\subsection{Ungekoppelte Basis}
+
+Für ein Spin-\(\frac12\)-Teilchen gibt es zwei Zustände:
+\[
+    \ket{+}:=\ket{\frac12,+\frac12},
+    \qquad
+    \ket{-}:=\ket{\frac12,-\frac12}.
+\]
+Für zwei Spin-\(\frac12\)-Teilchen ist die ungekoppelte Basis
+\[
+    \ket{++},
+    \quad
+    \ket{+-},
+    \quad
+    \ket{-+},
+    \quad
+    \ket{--}.
+\]
+Die Dimension ist
+\[
+    (2\cdot\tfrac12+1)^2=4.
+\]
+
+\subsection{Erlaubte Gesamtdrehimpulse}
+
+Für
+\[
+    j_1=j_2=\frac12
+\]
+sind die möglichen Gesamtspins
+\[
+    S=\left|\frac12-\frac12\right|,
+    \left|\frac12-\frac12\right|+1,
+    \dots,
+    \frac12+\frac12.
+\]
+Also
+\[
+    S=0,1.
+\]
+Der Raum zerfällt in
+\[
+    \frac12\otimes\frac12 = 1\oplus 0.
+\]
+Das bedeutet:
+\begin{itemize}
+    \item ein Triplett mit \(S=1\) und drei Zuständen \(M=1,0,-1\),
+    \item ein Singulett mit \(S=0\) und einem Zustand \(M=0\).
+\end{itemize}
+
+\subsection{Triplettzustände}
+
+Der höchste Zustand ist eindeutig:
+\[
+    \ket{1,1}=\ket{++}.
+\]
+Wendet man den Gesamt-Absteigeoperator
+\[
+    S_- = S^{(1)}_-+S^{(2)}_-
+\]
+an, erhält man
+\[
+    S_-\ket{++}=\hbar\ket{-+}+\hbar\ket{+-}.
+\]
+Andererseits gilt allgemein
+\[
+    S_-\ket{1,1}
+    =\hbar\sqrt{1(1+1)-1(1-1)}\ket{1,0}
+    =\hbar\sqrt2\ket{1,0}.
+\]
+Also
+\[
+    \ket{1,0}=\frac{1}{\sqrt2}(\ket{+-}+\ket{-+}).
+\]
+Noch einmal absteigen liefert
+\[
+    \ket{1,-1}=\ket{--}.
+\]
+
+\begin{formulabox}
+Die Triplettzustände zweier Spin-\(\frac12\)-Teilchen sind
+\[
+    \ket{1,1}=\ket{++},
+\]
+\[
+    \ket{1,0}=\frac{1}{\sqrt2}(\ket{+-}+\ket{-+}),
+\]
+\[
+    \ket{1,-1}=\ket{--}.
+\]
+Sie sind symmetrisch unter Vertauschung der beiden Spins.
+\end{formulabox}
+
+\subsection{Singulettzustand}
+
+Im \(M=0\)-Unterraum gibt es zwei Produktzustände:
+\[
+    \ket{+-},
+    \qquad
+    \ket{-+}.
+\]
+Ein linear unabhängiger Zustand zum Triplettzustand \(\ket{1,0}\) muss orthogonal dazu sein. Daher ist
+\[
+    \ket{0,0}=\frac{1}{\sqrt2}(\ket{+-}-\ket{-+}).
+\]
+
+\begin{formulabox}
+Der Singulettzustand zweier Spin-\(\frac12\)-Teilchen ist
+\[
+    \ket{0,0}=\frac{1}{\sqrt2}(\ket{+-}-\ket{-+}).
+\]
+Er ist antisymmetrisch unter Vertauschung der beiden Spins.
+\end{formulabox}
+
+\begin{notebox}
+Das Wort \emph{Triplett} bedeutet nicht, dass drei Teilchen vorhanden sind. Es bedeutet, dass es für \(S=1\) drei magnetische Unterzustände gibt:
+\[
+    M=1,0,-1.
+\]
+Das Wort \emph{Singulett} bedeutet, dass es nur einen Zustand gibt:
+\[
+    S=0,
+    \quad M=0.
+\]
+\end{notebox}
+
+\section{Spin-Spin-Kopplung}
+
+\subsection{Hamiltonoperator mit Skalarprodukt}
+
+Ein sehr häufiges Modell ist
+\[
+    H=A\vec S_1\cdot\vec S_2,
+\]
+wobei \(A\) eine Kopplungskonstante ist. Man löst dieses Problem am einfachsten in der gekoppelten Basis.
+
+Mit
+\[
+    \vec S=\vec S_1+\vec S_2
+\]
+gilt
+\[
+    \vec S^{\,2}=\vec S_1^{\,2}+\vec S_2^{\,2}+2\vec S_1\cdot\vec S_2.
+\]
+Also
+\[
+    \vec S_1\cdot\vec S_2
+    =\frac12\left(\vec S^{\,2}-\vec S_1^{\,2}-\vec S_2^{\,2}\right).
+\]
+Für zwei Spin-\(\frac12\)-Teilchen gilt
+\[
+    \vec S_1^{\,2}=\vec S_2^{\,2}=\hbar^2\frac12\left(\frac12+1\right)=\frac34\hbar^2.
+\]
+Damit ist auf einem Zustand \(\ket{S,M}\)
+\begin{align*}
+    \vec S_1\cdot\vec S_2\ket{S,M}
+    &=\frac12\left[\hbar^2S(S+1)-\frac34\hbar^2-\frac34\hbar^2\right]\ket{S,M}\\
+    &=\frac{\hbar^2}{2}\left[S(S+1)-\frac32\right]\ket{S,M}.
+\end{align*}
+
+\subsection{Energien für Singulett und Triplett}
+
+Für das Triplett \(S=1\):
+\[
+    \vec S_1\cdot\vec S_2
+    =\frac{\hbar^2}{2}\left[2-\frac32\right]
+    =\frac14\hbar^2.
+\]
+Für das Singulett \(S=0\):
+\[
+    \vec S_1\cdot\vec S_2
+    =\frac{\hbar^2}{2}\left[0-\frac32\right]
+    =-\frac34\hbar^2.
+\]
+Daher gilt für
+\[
+    H=A\vec S_1\cdot\vec S_2:
+\]
+\[
+    E_{S=1}=\frac{A\hbar^2}{4},
+    \qquad
+    E_{S=0}=-\frac{3A\hbar^2}{4}.
+\]
+
+\begin{answerbox}
+Bei einer Spin-Spin-Kopplung \(H=A\vec S_1\cdot\vec S_2\) sind die Eigenzustände die Singulett- und Triplettzustände. Das Triplett ist dreifach entartet, das Singulett einfach.
+\end{answerbox}
+
+\begin{examtipbox}
+Wenn ein Hamiltonoperator \(\vec S_1\cdot\vec S_2\) enthält, rechne nicht in der Produktbasis weiter, außer es wird explizit verlangt. Verwende fast immer
+\[
+    \vec S_1\cdot\vec S_2
+    =\frac12(\vec S^{\,2}-\vec S_1^{\,2}-\vec S_2^{\,2}).
+\]
+Dann ist der Hamiltonoperator in der gekoppelten Basis diagonal.
+\end{examtipbox}
+
+\section{Zwei Spins im Magnetfeld}
+
+\subsection{Hamiltonoperator ohne Wechselwirkung}
+
+Für zwei Spin-\(\frac12\)-Teilchen mit magnetischen Momenten in einem homogenen Magnetfeld entlang der \(z\)-Achse kann man einen Hamiltonoperator der Form
+\[
+    H_0=-\vec B\cdot(\vec M^{(1)}+\vec M^{(2)})
+\]
+betrachten. Wenn
+\[
+    \vec M^{(i)}=\gamma\vec S^{(i)},
+    \qquad
+    \vec B=B_0\vec e_z,
+\]
+dann ist
+\[
+    H_0=-\gamma B_0(S^{(1)}_z+S^{(2)}_z).
+\]
+Mit
+\[
+    \omega_0=\gamma B_0
+\]
+schreibt man
+\[
+    H_0=-\omega_0(S^{(1)}_z+S^{(2)}_z).
+\]
+
+In der Produktbasis ist \(H_0\) diagonal:
+\begin{align*}
+    H_0\ket{++}&=-\omega_0\hbar\ket{++},\\
+    H_0\ket{+-}&=0,\\
+    H_0\ket{-+}&=0,\\
+    H_0\ket{--}&=+\omega_0\hbar\ket{--}.
+\end{align*}
+
+\begin{conceptbox}
+Die Zustände \(\ket{+-}\) und \(\ket{-+}\) sind bei gleichem gyromagnetischem Verhältnis entartet, weil ihre Gesamtprojektion \(M=0\) ist. Diese Entartung wird durch zusätzliche Wechselwirkungen oft aufgehoben oder in Singulett-/Triplettkombinationen besser beschrieben.
+\end{conceptbox}
+
+\subsection{Mit Spin-Spin-Wechselwirkung}
+
+Wenn zusätzlich
+\[
+    H_1=A\vec S_1\cdot\vec S_2
+\]
+wirkt, ist
+\[
+    H=H_0+H_1.
+\]
+Da
+\[
+    S_z=S^{(1)}_z+S^{(2)}_z
+\]
+mit \(\vec S^{\,2}\) kommutiert, ist die gekoppelte Basis \(\ket{S,M}\) sehr geeignet. Dann gilt
+\[
+    H_0=-\omega_0 S_z,
+    \qquad
+    H_1=A\vec S_1\cdot\vec S_2.
+\]
+Die Energie ist
+\[
+    E_{S,M}=-\hbar\omega_0 M
+    +\frac{A\hbar^2}{2}\left[S(S+1)-\frac32\right].
+\]
+Für das Triplett \(S=1\) gilt:
+\[
+    E_{1,M}=-\hbar\omega_0 M+\frac{A\hbar^2}{4},
+    \qquad M=1,0,-1.
+\]
+Für das Singulett \(S=0\) gilt:
+\[
+    E_{0,0}=-\frac{3A\hbar^2}{4}.
+\]
+
+\section{Magnetische Dipol-Dipol-Wechselwirkung}
+
+\subsection{Form des Hamiltonoperators}
+
+Für zwei magnetische Momente
+\[
+    \vec M^{(i)}=\gamma\vec S^{(i)}
+\]
+im Abstand \(r\) mit Richtungsvektor \(\vec n\) lautet die Dipol-Dipol-Wechselwirkung typischerweise
+\[
+    H_1=\frac{\mu_0}{4\pi}\frac{1}{r^3}
+    \left[
+        \vec M^{(1)}\cdot\vec M^{(2)}
+        -3(\vec M^{(1)}\cdot\vec n)(\vec M^{(2)}\cdot\vec n)
+    \right].
+\]
+Mit \(\vec M^{(i)}=\gamma\vec S^{(i)}\):
+\[
+    H_1=C\left[
+        \vec S_1\cdot\vec S_2
+        -3(\vec S_1\cdot\vec n)(\vec S_2\cdot\vec n)
+    \right],
+\]
+wobei
+\[
+    C=\frac{\mu_0\gamma^2}{4\pi r^3}.
+\]
+
+\begin{notebox}
+Der erste Term \(\vec S_1\cdot\vec S_2\) ist rotationsinvariant. Der zweite Term hängt von der Richtung \(\vec n\) ab und macht die Wechselwirkung anisotrop. Deshalb ist die Wahl der Quantisierungsachse wichtig.
+\end{notebox}
+
+\subsection{Erwartungswerte in Produktzuständen}
+
+Für Produktzustände \(\ket{++}\) und \(\ket{--}\) entlang der \(z\)-Achse sind Erwartungswerte von \(S_x\) und \(S_y\) null:
+\[
+    \mel{\pm}{S_x}{\pm}=0,
+    \qquad
+    \mel{\pm}{S_y}{\pm}=0,
+\]
+aber
+\[
+    \mel{+}{S_z}{+}=\frac\hbar2,
+    \qquad
+    \mel{-}{S_z}{-}=-\frac\hbar2.
+\]
+Für \(\ket{++}\) gilt daher
+\[
+    \mel{++}{\vec S_1\cdot\vec S_2}{++}
+    =\mel{+}{S_z}{+}\mel{+}{S_z}{+}
+    =\frac{\hbar^2}{4}.
+\]
+Wenn
+\[
+    \vec n=(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta),
+\]
+dann ist
+\[
+    \mel{+}{\vec S\cdot\vec n}{+}
+    =\frac\hbar2\cos\theta.
+\]
+Also
+\[
+    \mel{++}{(\vec S_1\cdot\vec n)(\vec S_2\cdot\vec n)}{++}
+    =\frac{\hbar^2}{4}\cos^2\theta.
+\]
+Damit folgt
+\[
+    \Delta E_{++}^{(1)}
+    =C\frac{\hbar^2}{4}(1-3\cos^2\theta).
+\]
+Analog gilt für \(\ket{--}\) derselbe Wert:
+\[
+    \Delta E_{--}^{(1)}
+    =C\frac{\hbar^2}{4}(1-3\cos^2\theta).
+\]
+
+\begin{examtipbox}
+Bei erster Ordnung Störungstheorie berechnet man zuerst Diagonalelemente
+\[
+    \Delta E_n^{(1)}=\mel{n}{H_1}{n}.
+\]
+Wenn der ungestörte Zustand entartet ist, muss man \(H_1\) im entarteten Unterraum diagonalieren. Das betrifft bei zwei Spins im Magnetfeld besonders den Unterraum \(\operatorname{span}\set{\ket{+-},\ket{-+}}\).
+\end{examtipbox}
+
+\section{Bahndrehimpuls-Spin-Kopplung}
+
+\subsection{Kopplung von \texorpdfstring{\(\vec L\)}{L} und \texorpdfstring{\(\vec S\)}{S}}
+
+Ein wichtiges Beispiel ist die Kopplung eines Bahndrehimpulses \(\vec L\) mit einem Spin \(\vec S\). Der Gesamtdrehimpuls ist
+\[
+    \vec J=\vec L+\vec S.
+\]
+Für ein Elektron gilt
+\[
+    s=\frac12.
+\]
+Die ungekoppelte Basis ist
+\[
+    \ket{l,m_l;\tfrac12,m_s}.
+\]
+Die gekoppelte Basis ist
+\[
+    \ket{l,\tfrac12;j,m}.
+\]
+
+Die möglichen Werte von \(j\) sind
+\[
+    j=l+\frac12
+    \qquad \text{oder} \qquad
+    j=l-\frac12
+\]
+für \(l\geq1\). Für \(l=0\) gibt es nur
+\[
+    j=\frac12.
+\]
+
+\begin{formulabox}
+Bei Kopplung von Bahndrehimpuls \(l\) mit Spin \(s=\frac12\) gilt
+\[
+    j=l\pm\frac12.
+\]
+Für \(l=0\) bleibt nur \(j=\frac12\).
+\end{formulabox}
+
+\subsection{Spektroskopische Notation}
+
+In der Atomphysik verwendet man häufig die Schreibweise
+\[
+    s_{1/2},
+    \quad
+    p_{1/2},p_{3/2},
+    \quad
+    d_{3/2},d_{5/2},
+    \quad \dots
+\]
+Dabei entspricht
+\[
+    l=0 \leftrightarrow s,
+    \qquad
+    l=1 \leftrightarrow p,
+    \qquad
+    l=2 \leftrightarrow d,
+    \qquad
+    l=3 \leftrightarrow f.
+\]
+Der Index ist der Gesamtdrehimpuls \(j\).
+
+\subsection{Hamiltonoperator \texorpdfstring{\(\vec L\cdot\vec S\)}{L dot S}}
+
+Die Spin-Bahn-Kopplung hat häufig die Form
+\[
+    H_{\mathrm{SO}}=\xi(r)\vec L\cdot\vec S
+\]
+oder in einem vereinfachten Modell
+\[
+    H_{\mathrm{SO}}=A\vec L\cdot\vec S.
+\]
+Mit
+\[
+    \vec J=\vec L+\vec S
+\]
+gilt
+\[
+    \vec L\cdot\vec S
+    =\frac12(\vec J^{\,2}-\vec L^{\,2}-\vec S^{\,2}).
+\]
+In der gekoppelten Basis ist das diagonal:
+\[
+    \vec L\cdot\vec S\ket{l,s;j,m}
+    =\frac{\hbar^2}{2}\left[j(j+1)-l(l+1)-s(s+1)\right]\ket{l,s;j,m}.
+\]
+Für \(s=\frac12\) ist
+\[
+    s(s+1)=\frac34.
+\]
+
+\subsection{Eigenwerte für \texorpdfstring{\(j=l\pm\frac12\)}{j=l±1/2}}
+
+Für
+\[
+    j=l+\frac12
+\]
+gilt
+\[
+    j(j+1)=\left(l+\frac12\right)\left(l+\frac32\right)
+    =l^2+2l+\frac34.
+\]
+Damit
+\begin{align*}
+    \frac12\left[j(j+1)-l(l+1)-\frac34\right]
+    &=\frac12\left[l^2+2l+\frac34-l^2-l-\frac34\right]\\
+    &=\frac l2.
+\end{align*}
+Also
+\[
+    \vec L\cdot\vec S = \frac{\hbar^2 l}{2}
+    \quad \text{für} \quad j=l+\frac12.
+\]
+
+Für
+\[
+    j=l-\frac12
+\]
+gilt
+\[
+    j(j+1)=\left(l-\frac12\right)\left(l+\frac12\right)=l^2-\frac14.
+\]
+Damit
+\begin{align*}
+    \frac12\left[j(j+1)-l(l+1)-\frac34\right]
+    &=\frac12\left[l^2-\frac14-l^2-l-\frac34\right]\\
+    &=-\frac{l+1}{2}.
+\end{align*}
+Also
+\[
+    \vec L\cdot\vec S = -\frac{\hbar^2(l+1)}{2}
+    \quad \text{für} \quad j=l-\frac12.
+\]
+
+\begin{formulabox}
+Für Spin-Bahn-Kopplung mit \(s=\frac12\):
+\[
+    \mel{l,\frac12;l+\frac12,m}{\vec L\cdot\vec S}{l,\frac12;l+\frac12,m}
+    =\frac{\hbar^2l}{2},
+\]
+\[
+    \mel{l,\frac12;l-\frac12,m}{\vec L\cdot\vec S}{l,\frac12;l-\frac12,m}
+    =-\frac{\hbar^2(l+1)}{2}.
+\]
+\end{formulabox}
+
+\section{Clebsch-Gordan-Koeffizienten für \texorpdfstring{\(l\otimes\frac12\)}{l tensor 1/2}}
+
+\subsection{Allgemeine Form}
+
+Bei Kopplung von \(l\) und \(s=\frac12\) gibt es für festes \(M\) höchstens zwei Produktzustände:
+\[
+    \ket{l,M-\frac12;\frac12,+\frac12},
+    \qquad
+    \ket{l,M+\frac12;\frac12,-\frac12}.
+\]
+Daher haben die gekoppelten Zustände die Form
+\[
+    \ket{l,\frac12;j,M}
+    =A\ket{l,M-\frac12;\frac12,+\frac12}
+    +B\ket{l,M+\frac12;\frac12,-\frac12}.
+\]
+
+Für \(j=l+\frac12\):
+\[
+    \ket{l,\frac12;l+\frac12,M}
+    =\sqrt{\frac{l+M+\frac12}{2l+1}}
+    \ket{l,M-\frac12;\frac12,+\frac12}
+    +\sqrt{\frac{l-M+\frac12}{2l+1}}
+    \ket{l,M+\frac12;\frac12,-\frac12}.
+\]
+
+Für \(j=l-\frac12\):
+\[
+    \ket{l,\frac12;l-\frac12,M}
+    =-\sqrt{\frac{l-M+\frac12}{2l+1}}
+    \ket{l,M-\frac12;\frac12,+\frac12}
+    +\sqrt{\frac{l+M+\frac12}{2l+1}}
+    \ket{l,M+\frac12;\frac12,-\frac12}.
+\]
+
+\begin{notebox}
+Das Vorzeichen ist eine Konvention. Die hier verwendete Konvention ist eine übliche Condon-Shortley-Phasenkonvention. Physikalische Wahrscheinlichkeiten hängen nur von Betragsquadraten ab; relative Vorzeichen werden aber bei Interferenz und weiteren Kopplungen wichtig.
+\end{notebox}
+
+\subsection{Beispiel: \texorpdfstring{\(l=1\)}{l=1} und \texorpdfstring{\(s=\frac12\)}{s=1/2}}
+
+Für \(l=1\) und \(s=\frac12\) sind möglich:
+\[
+    j=\frac32,
+    \qquad
+    j=\frac12.
+\]
+Die \(j=\frac32\)-Zustände sind
+\[
+    \ket{\frac32,\frac32}=\ket{1,1}\ket{+},
+\]
+\[
+    \ket{\frac32,\frac12}
+    =\sqrt{\frac23}\ket{1,0}\ket{+}
+    +\sqrt{\frac13}\ket{1,1}\ket{-},
+\]
+\[
+    \ket{\frac32,-\frac12}
+    =\sqrt{\frac13}\ket{1,-1}\ket{+}
+    +\sqrt{\frac23}\ket{1,0}\ket{-},
+\]
+\[
+    \ket{\frac32,-\frac32}=\ket{1,-1}\ket{-}.
+\]
+Die \(j=\frac12\)-Zustände sind
+\[
+    \ket{\frac12,\frac12}
+    =-\sqrt{\frac13}\ket{1,0}\ket{+}
+    +\sqrt{\frac23}\ket{1,1}\ket{-},
+\]
+\[
+    \ket{\frac12,-\frac12}
+    =-\sqrt{\frac23}\ket{1,-1}\ket{+}
+    +\sqrt{\frac13}\ket{1,0}\ket{-}.
+\]
+
+\section{Ein \texorpdfstring{\(l=1\)}{l=1}-System im Feldgradienten}
+
+\subsection{Basis und Leiteroperatoren}
+
+Für ein System mit \(l=1\) hat man die Basis
+\[
+    \ket{+1},
+    \qquad
+    \ket{0},
+    \qquad
+    \ket{-1},
+\]
+wobei
+\[
+    L_z\ket{m}=\hbar m\ket{m}.
+\]
+Die Leiteroperatoren wirken als
+\[
+    L_\pm\ket{m}=\hbar\sqrt{l(l+1)-m(m\pm1)}\ket{m\pm1}.
+\]
+Für \(l=1\) also
+\[
+    L_+\ket{-1}=\hbar\sqrt2\ket{0},
+    \qquad
+    L_+\ket{0}=\hbar\sqrt2\ket{+1},
+    \qquad
+    L_+\ket{+1}=0,
+\]
+und
+\[
+    L_-\ket{+1}=\hbar\sqrt2\ket{0},
+    \qquad
+    L_-\ket{0}=\hbar\sqrt2\ket{-1},
+    \qquad
+    L_-\ket{-1}=0.
+\]
+
+\subsection{Matrixdarstellung von \texorpdfstring{\(L_x,L_y,L_z\)}{Lx,Ly,Lz}}
+
+In der Basis
+\[
+    (\ket{+1},\ket{0},\ket{-1})
+\]
+gilt
+\[
+    L_z=\hbar
+    \begin{pmatrix}
+        1&0&0\\
+        0&0&0\\
+        0&0&-1
+    \end{pmatrix}.
+\]
+Mit
+\[
+    L_x=\frac12(L_++L_-),
+    \qquad
+    L_y=\frac{1}{2\ii}(L_+-L_-)
+\]
+erhält man
+\[
+    L_x=\frac{\hbar}{\sqrt2}
+    \begin{pmatrix}
+        0&1&0\\
+        1&0&1\\
+        0&1&0
+    \end{pmatrix},
+\]
+\[
+    L_y=\frac{\hbar}{\sqrt2}
+    \begin{pmatrix}
+        0&-\ii&0\\
+        \ii&0&-\ii\\
+        0&\ii&0
+    \end{pmatrix}.
+\]
+
+\subsection{Diagonalen in der \texorpdfstring{\(xz\)}{xz}-Ebene}
+
+Wenn \(u\) und \(v\) die Diagonalen in der \(xz\)-Ebene bezeichnen, kann man typischerweise
+\[
+    L_u=\frac{1}{\sqrt2}(L_x+L_z),
+    \qquad
+    L_v=\frac{1}{\sqrt2}(L_x-L_z)
+\]
+setzen. Dann ist
+\[
+    L_u^2-L_v^2
+    =\frac12\left[(L_x+L_z)^2-(L_x-L_z)^2\right].
+\]
+Ausmultiplizieren liefert
+\[
+    L_u^2-L_v^2
+    =L_xL_z+L_zL_x.
+\]
+Ein Hamiltonoperator der Form
+\[
+    H=\frac{\omega_0}{\hbar}(L_u^2-L_v^2)
+\]
+wird also zu
+\[
+    H=\frac{\omega_0}{\hbar}(L_xL_z+L_zL_x).
+\]
+
+\subsection{Matrix des Hamiltonoperators}
+
+Mit den obigen Matrizen berechnet man
+\[
+    L_xL_z+L_zL_x
+    =\frac{\hbar^2}{\sqrt2}
+    \begin{pmatrix}
+        0&1&0\\
+        1&0&-1\\
+        0&-1&0
+    \end{pmatrix}.
+\]
+Damit ist
+\[
+    H=\frac{\hbar\omega_0}{\sqrt2}
+    \begin{pmatrix}
+        0&1&0\\
+        1&0&-1\\
+        0&-1&0
+    \end{pmatrix}.
+\]
+
+\begin{calculationbox}
+Die Eigenwerte der Matrix
+\[
+    A=\begin{pmatrix}
+        0&1&0\\
+        1&0&-1\\
+        0&-1&0
+    \end{pmatrix}
+\]
+sind
+\[
+    \lambda=\sqrt2,0,-\sqrt2.
+\]
+Da
+\[
+    H=\frac{\hbar\omega_0}{\sqrt2}A,
+\]
+sind die Energieeigenwerte
+\[
+    E_1=\hbar\omega_0,
+    \qquad
+    E_2=0,
+    \qquad
+    E_3=-\hbar\omega_0.
+\]
+\end{calculationbox}
+
+Normierte Eigenzustände sind zum Beispiel
+\[
+    \ket{E_1}=\frac12\ket{+1}+\frac{1}{\sqrt2}\ket{0}-\frac12\ket{-1},
+\]
+\[
+    \ket{E_2}=\frac{1}{\sqrt2}(\ket{+1}+\ket{-1}),
+\]
+\[
+    \ket{E_3}=\frac12\ket{+1}-\frac{1}{\sqrt2}\ket{0}-\frac12\ket{-1}.
+\]
+
+\begin{notebox}
+Je nach Definition der Diagonalachsen \(u,v\) können Vorzeichen in der Matrix anders aussehen. Die Rechenmethode bleibt gleich: erst \(L_u,L_v\) durch \(L_x,L_y,L_z\) ausdrücken, dann Matrix bilden, dann diagonalieren.
+\end{notebox}
+
+\section{Zeitentwicklung in einem endlichen Spinraum}
+
+\subsection{Allgemeines Verfahren}
+
+Wenn ein Hamiltonoperator zeitunabhängig ist und seine Eigenzustände bekannt sind,
+\[
+    H\ket{E_n}=E_n\ket{E_n},
+\]
+dann entwickelt sich ein Anfangszustand
+\[
+    \ket{\psi(0)}=\sum_n c_n\ket{E_n}
+\]
+als
+\[
+    \ket{\psi(t)}=\sum_n c_n\e^{-\ii E_n t/\hbar}\ket{E_n}.
+\]
+
+\begin{examtipbox}
+Bei endlichen Spin-Systemen ist fast jede Zeitentwicklungsaufgabe ein Basiswechselproblem:
+\begin{enumerate}
+    \item Hamiltonoperator diagonalieren.
+    \item Anfangszustand in Energieeigenbasis schreiben.
+    \item Phasen \(\e^{-\ii E_nt/\hbar}\) anhängen.
+    \item Für Messwahrscheinlichkeiten zurück in Messbasis entwickeln.
+\end{enumerate}
+\end{examtipbox}
+
+\subsection{Beispiel mit \texorpdfstring{\(l=1\)}{l=1}}
+
+Nehmen wir den Anfangszustand
+\[
+    \ket{\psi(0)}=\frac{1}{\sqrt2}(\ket{+1}-\ket{-1}).
+\]
+Mit den oben angegebenen Energieeigenzuständen kann man ihn als
+\[
+    \ket{\psi(0)}=\frac{1}{\sqrt2}\ket{E_1}+\frac{1}{\sqrt2}\ket{E_3}
+\]
+schreiben. Dann gilt
+\[
+    \ket{\psi(t)}=\frac{1}{\sqrt2}\e^{-\ii\omega_0t}\ket{E_1}
+    +\frac{1}{\sqrt2}\e^{+\ii\omega_0t}\ket{E_3}.
+\]
+Setzt man die Eigenzustände wieder ein, erhält man
+\begin{align*}
+    \ket{\psi(t)}
+    &=\frac{1}{2\sqrt2}\left(\e^{-\ii\omega_0t}+\e^{+\ii\omega_0t}\right)\ket{+1}
+    +\frac12\left(\e^{-\ii\omega_0t}-\e^{+\ii\omega_0t}\right)\ket{0}\\
+    &\quad
+    +\frac{1}{2\sqrt2}\left(-\e^{-\ii\omega_0t}-\e^{+\ii\omega_0t}\right)\ket{-1}.
+\end{align*}
+Mit
+\[
+    \e^{-\ii a}+\e^{\ii a}=2\cos a,
+    \qquad
+    \e^{-\ii a}-\e^{\ii a}=-2\ii\sin a
+\]
+folgt
+\[
+    \ket{\psi(t)}=\frac{\cos(\omega_0t)}{\sqrt2}\ket{+1}
+    -\ii\sin(\omega_0t)\ket{0}
+    -\frac{\cos(\omega_0t)}{\sqrt2}\ket{-1}.
+\]
+
+\subsection{Messwahrscheinlichkeiten für \texorpdfstring{\(L_z\)}{Lz}}
+
+Bei einer Messung von \(L_z\) sind die möglichen Ergebnisse
+\[
+    +\hbar,
+    \quad
+    0,
+    \quad
+    -\hbar.
+\]
+Die Wahrscheinlichkeiten sind die Betragsquadrate der Koeffizienten:
+\[
+    P(+\hbar)=\frac12\cos^2(\omega_0t),
+\]
+\[
+    P(0)=\sin^2(\omega_0t),
+\]
+\[
+    P(-\hbar)=\frac12\cos^2(\omega_0t).
+\]
+Die Summe ist
+\[
+    P(+\hbar)+P(0)+P(-\hbar)=1.
+\]
+
+\section{Erwartungswerte in Spin- und Drehimpulssystemen}
+
+\subsection{Allgemeines Vorgehen}
+
+Für einen Zustand
+\[
+    \ket{\psi(t)}=\sum_m c_m(t)\ket{m}
+\]
+ist der Erwartungswert eines Operators \(A\)
+\[
+    \langle A\rangle(t)=\mel{\psi(t)}{A}{\psi(t)}.
+\]
+In Matrixschreibweise:
+\[
+    \langle A\rangle(t)=\vec c(t)^{\,\dagger}A\vec c(t).
+\]
+
+Für Drehimpulsoperatoren verwendet man häufig
+\[
+    L_x=\frac12(L_++L_-),
+    \qquad
+    L_y=\frac{1}{2\ii}(L_+-L_-),
+    \qquad
+    L_z\ket{m}=\hbar m\ket{m}.
+\]
+
+\subsection{Interpretation der Bewegung}
+
+Wenn \(\langle \vec L(t)\rangle\) berechnet wird, beschreibt dieser Vektor nicht eine klassische Bahn des Teilchens, sondern die zeitabhängigen Mittelwerte der Drehimpulskomponenten. Trotzdem kann \(\langle \vec L(t)\rangle\) oft wie ein klassisch präzedierender Vektor aussehen.
+
+\begin{conceptbox}
+Eine Zeitabhängigkeit von Erwartungswerten entsteht durch relative Phasen zwischen Energieeigenzuständen. Wenn ein Anfangszustand nur aus einem einzigen Energieeigenzustand besteht, sind alle Erwartungswerte zeitlich konstant, solange der Operator nicht explizit zeitabhängig ist.
+\end{conceptbox}
+
+\section{Messung in entarteten Unterräumen}
+
+\subsection{Projektive Messung}
+
+Wenn eine Observable \(A\) Eigenwerte \(a\) mit Projektoren \(P_a\) hat, dann ist die Wahrscheinlichkeit für das Ergebnis \(a\)
+\[
+    p(a)=\mel{\psi}{P_a}{\psi}.
+\]
+Nach der Messung ist der Zustand
+\[
+    \ket{\psi_a}=\frac{P_a\ket{\psi}}{\sqrt{p(a)}}.
+\]
+
+\subsection{Beispiel: Messung von \texorpdfstring{\(L_z^2\)}{Lz squared}}
+
+Für \(l=1\) gilt
+\[
+    L_z^2\ket{+1}=\hbar^2\ket{+1},
+    \qquad
+    L_z^2\ket{0}=0,
+    \qquad
+    L_z^2\ket{-1}=\hbar^2\ket{-1}.
+\]
+Der Eigenwert \(\hbar^2\) ist zweifach entartet. Sein Projektor ist
+\[
+    P_{\hbar^2}=\ket{+1}\bra{+1}+\ket{-1}\bra{-1}.
+\]
+Der Eigenwert \(0\) hat den Projektor
+\[
+    P_0=\ket{0}\bra{0}.
+\]
+
+Wenn
+\[
+    \ket{\psi}=a\ket{+1}+b\ket{0}+c\ket{-1},
+\]
+dann ist
+\[
+    p(\hbar^2)=|a|^2+|c|^2,
+    \qquad
+    p(0)=|b|^2.
+\]
+Falls das Ergebnis \(\hbar^2\) gemessen wird, ist der Zustand unmittelbar danach
+\[
+    \ket{\psi_{\hbar^2}}
+    =\frac{a\ket{+1}+c\ket{-1}}{\sqrt{|a|^2+|c|^2}}.
+\]
+
+\begin{notebox}
+Bei entarteten Messwerten kollabiert der Zustand nicht automatisch auf einen einzelnen Basisvektor, sondern auf den ganzen Eigenraum des gemessenen Eigenwerts. Man muss also mit Projektoren auf Unterräume rechnen.
+\end{notebox}
+
+\section{Gekoppelte Drehimpulse und identische Teilchen}
+
+\subsection{Symmetrie unter Teilchenaustausch}
+
+Bei identischen Teilchen ist nicht jede Produktwellenfunktion erlaubt. Die Gesamtwellenfunktion muss bei Vertauschung der Teilchen eine bestimmte Symmetrie haben:
+\begin{itemize}
+    \item Bosonen: symmetrisch,
+    \[
+        \Pi_{12}\Psi=+\Psi.
+    \]
+    \item Fermionen: antisymmetrisch,
+    \[
+        \Pi_{12}\Psi=-\Psi.
+    \]
+\end{itemize}
+
+Wenn die Gesamtwellenfunktion aus Ortsanteil und Spinanteil besteht,
+\[
+    \Psi=\psi_{\mathrm{Ort}}\chi_{\mathrm{Spin}},
+\]
+dann muss das Produkt der Symmetrien stimmen.
+
+\subsection{Zwei Spin-\texorpdfstring{\(\frac12\)}{1/2}-Fermionen}
+
+Für zwei Spin-\(\frac12\)-Teilchen gilt:
+\begin{itemize}
+    \item Triplett \(S=1\): Spinanteil symmetrisch.
+    \item Singulett \(S=0\): Spinanteil antisymmetrisch.
+\end{itemize}
+Für Fermionen muss die gesamte Wellenfunktion antisymmetrisch sein. Daher:
+\begin{itemize}
+    \item Spin-Triplett \(S=1\) symmetrisch \(\Rightarrow\) Ortsanteil antisymmetrisch.
+    \item Spin-Singulett \(S=0\) antisymmetrisch \(\Rightarrow\) Ortsanteil symmetrisch.
+\end{itemize}
+
+\subsection{Relativer Drehimpuls}
+
+Bei zwei Teilchen mit Relativkoordinate \(\vec r=\vec r_1-\vec r_2\) wirkt der Teilchenaustausch als
+\[
+    \vec r\mapsto -\vec r.
+\]
+Für Kugelflächenfunktionen gilt
+\[
+    Y_l^m(\pi-\theta,\varphi+\pi)=(-1)^lY_l^m(\theta,\varphi).
+\]
+Der Ortsanteil hat also Parität
+\[
+    (-1)^l.
+\]
+Gerades \(l\) bedeutet symmetrischer Ortsanteil, ungerades \(l\) bedeutet antisymmetrischer Ortsanteil.
+
+\begin{formulabox}
+Für zwei identische Spin-\(\frac12\)-Fermionen gilt:
+\[
+    S=0 \text{ Singulett} \Rightarrow l \text{ gerade},
+\]
+\[
+    S=1 \text{ Triplett} \Rightarrow l \text{ ungerade}.
+\]
+\end{formulabox}
+
+\subsection{Spin-0-Bosonen}
+
+Für zwei Spin-0-Bosonen ist der Spinanteil trivial und symmetrisch. Daher muss der Ortsanteil symmetrisch sein. Es sind also nur gerade Werte von \(l\) erlaubt:
+\[
+    l=0,2,4,\dots
+\]
+
+\subsection{Spin-1-Bosonen}
+
+Für zwei identische Spin-1-Bosonen kann der Gesamtspin
+\[
+    S=0,1,2
+\]
+sein. Die Austausch-Symmetrie der Spinzustände ist:
+\begin{itemize}
+    \item \(S=0\): symmetrisch,
+    \item \(S=1\): antisymmetrisch,
+    \item \(S=2\): symmetrisch.
+\end{itemize}
+Da Bosonen insgesamt symmetrisch sein müssen, folgt:
+\[
+    S=0,2 \Rightarrow l \text{ gerade},
+\]
+\[
+    S=1 \Rightarrow l \text{ ungerade}.
+\]
+
+\section{Typische Rechenmuster}
+
+\subsection{Muster 1: Hamiltonoperator enthält \texorpdfstring{\(\vec J_1\cdot\vec J_2\)}{J1 dot J2}}
+
+\begin{calculationbox}
+Gegeben:
+\[
+    H=A\vec J_1\cdot\vec J_2.
+\]
+Schreibe
+\[
+    \vec J_1\cdot\vec J_2
+    =\frac12(\vec J^{\,2}-\vec J_1^{\,2}-\vec J_2^{\,2}).
+\]
+Dann ist
+\[
+    E_{j}=\frac{A\hbar^2}{2}\left[j(j+1)-j_1(j_1+1)-j_2(j_2+1)\right].
+\]
+Die Energie hängt nicht von \(m\) ab, falls keine äußere Achse ausgezeichnet ist.
+\end{calculationbox}
+
+\subsection{Muster 2: Zustand in anderer Basis messen}
+
+Wenn der Zustand in der gekoppelten Basis gegeben ist, aber in der Produktbasis gemessen wird:
+\begin{enumerate}
+    \item Schreibe \(\ket{j_1,j_2;j,m}\) mit Clebsch-Gordan-Koeffizienten als Produktzustände.
+    \item Lies die Amplituden der Produktzustände ab.
+    \item Quadriere die Beträge für Wahrscheinlichkeiten.
+\end{enumerate}
+
+Beispiel:
+\[
+    \ket{1,0}=\frac{1}{\sqrt2}(\ket{+-}+\ket{-+}).
+\]
+Misst man beide Einzelspins entlang \(z\), dann sind möglich:
+\[
+    (+,-) \text{ mit Wahrscheinlichkeit } \frac12,
+    \qquad
+    (-,+) \text{ mit Wahrscheinlichkeit } \frac12.
+\]
+
+\subsection{Muster 3: Entartete Störungstheorie}
+
+Wenn \(H_0\) im Unterraum \(\mathcal U\) entartet ist und \(V\) als Störung wirkt:
+\begin{enumerate}
+    \item Wähle eine Basis \(\ket{u_i}\) des entarteten Unterraums.
+    \item Bilde die Matrix
+    \[
+        V_{ij}=\mel{u_i}{V}{u_j}.
+    \]
+    \item Diagonalisiere diese Matrix.
+    \item Die Eigenwerte sind die Energieverschiebungen erster Ordnung.
+    \item Die Eigenvektoren liefern die richtigen Linearkombinationen nullter Ordnung.
+\end{enumerate}
+
+Bei zwei Spins ist der entartete Unterraum oft
+\[
+    \operatorname{span}\set{\ket{+-},\ket{-+}}.
+\]
+Die richtigen Linearkombinationen sind häufig
+\[
+    \frac{1}{\sqrt2}(\ket{+-}+\ket{-+}),
+    \qquad
+    \frac{1}{\sqrt2}(\ket{+-}-\ket{-+}).
+\]
+
+\section{Zusammenfassung}
+
+\begin{answerbox}
+Die zentralen Resultate dieses Kapitels sind:
+\begin{itemize}
+    \item Zwei Drehimpulse werden im Tensorproduktraum beschrieben.
+    \item Die ungekoppelte Basis ist \(\ket{j_1,m_1;j_2,m_2}\).
+    \item Die gekoppelte Basis ist \(\ket{j_1,j_2;j,m}\).
+    \item Erlaubte Gesamtdrehimpulse sind
+    \[
+        j=|j_1-j_2|,\dots,j_1+j_2.
+    \]
+    \item Clebsch-Gordan-Koeffizienten vermitteln zwischen beiden Basen.
+    \item Für zwei Spin-\(\frac12\)-Teilchen gilt
+    \[
+        \frac12\otimes\frac12=1\oplus0.
+    \]
+    \item Das Triplett ist symmetrisch:
+    \[
+        \ket{1,1}=\ket{++},
+        \quad
+        \ket{1,0}=\frac{1}{\sqrt2}(\ket{+-}+\ket{-+}),
+        \quad
+        \ket{1,-1}=\ket{--}.
+    \]
+    \item Das Singulett ist antisymmetrisch:
+    \[
+        \ket{0,0}=\frac{1}{\sqrt2}(\ket{+-}-\ket{-+}).
+    \]
+    \item Skalarprodukt-Kopplungen löst man mit
+    \[
+        \vec J_1\cdot\vec J_2
+        =\frac12(\vec J^{\,2}-\vec J_1^{\,2}-\vec J_2^{\,2}).
+    \]
+    \item Für Spin-Bahn-Kopplung mit \(s=\frac12\) gilt
+    \[
+        j=l\pm\frac12.
+    \]
+    \item Bei identischen Teilchen entscheidet die Austausch-Symmetrie von Orts- und Spinanteil darüber, welche \(l\)-Werte erlaubt sind.
+\end{itemize}
+\end{answerbox}
+
+\section{Checkliste für Aufgaben}
+
+\begin{examtipbox}
+Wenn eine Aufgabe zu gekoppelten Drehimpulsen kommt, gehe systematisch so vor:
+\begin{enumerate}
+    \item Identifiziere die einzelnen Drehimpulse \(j_1,j_2\).
+    \item Bestimme die möglichen Werte von \(j\).
+    \item Entscheide, welche Basis den Hamiltonoperator diagonal macht.
+    \item Bei \(\vec J_1\cdot\vec J_2\): sofort auf \(\vec J^{\,2}\) umschreiben.
+    \item Bei Messungen einzelner Komponenten: in die ungekoppelte Basis wechseln.
+    \item Bei Messungen von Gesamtdrehimpuls: in die gekoppelte Basis wechseln.
+    \item Bei identischen Teilchen: Austausch-Symmetrie prüfen.
+    \item Bei Zeitentwicklung: zuerst Energieeigenbasis verwenden, danach zurücktransformieren.
+\end{enumerate}
+\end{examtipbox}

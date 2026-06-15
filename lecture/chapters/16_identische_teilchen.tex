@@ -1,3 +1,966 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\idop}{\mathbf{1}}
+\providecommand{\opH}{\hat H}
+\providecommand{\opP}{\hat P}
+\providecommand{\opPi}{\hat\Pi}
+\providecommand{\opS}{\hat S}
+\providecommand{\opA}{\hat A}
+\providecommand{\Rcm}{\vec R}
+\providecommand{\pcm}{\vec P}
+\providecommand{\rrel}{\vec r}
+\providecommand{\prel}{\vec p}
+
 \chapter{Identische Teilchen}
 
-% Inhalt wird später anhand der Stichwortliste und Quellen ergänzt.
+\section{Ziel dieses Kapitels}
+
+In der bisherigen Quantenmechanik wurden Teilchen meistens so behandelt, als könnte man sie nummerieren: Teilchen 1, Teilchen 2, Teilchen 3 usw. Für wirklich identische Teilchen ist diese Nummerierung aber keine beobachtbare physikalische Eigenschaft. Zwei Elektronen sind nicht nur sehr ähnlich, sondern prinzipiell ununterscheidbar. Es gibt keine Messung, die sagen könnte: Dieses Elektron ist genau das frühere Elektron 1 und jenes ist genau das frühere Elektron 2.
+
+\begin{conceptbox}
+Identische Teilchen sind Teilchen, die in allen inneren physikalischen Eigenschaften übereinstimmen, also insbesondere Masse, Ladung, Spin und alle weiteren Quantenzahlen besitzen. In der Quantenmechanik führt diese Ununterscheidbarkeit zu einer neuen Einschränkung an die erlaubten Zustände: Die Wellenfunktion muss bei Teilchenaustausch entweder symmetrisch oder antisymmetrisch sein.
+\end{conceptbox}
+
+Dieses Kapitel behandelt:
+\begin{itemize}
+    \item Mehrteilchen-Hilberträume für unterscheidbare und identische Teilchen,
+    \item den Permutationsoperator und seine Eigenwerte,
+    \item symmetrische und antisymmetrische Zustände,
+    \item Bosonen und Fermionen,
+    \item das Pauli-Prinzip,
+    \item die Kombination von Orts- und Spinanteil,
+    \item zwei identische Spin-\(\frac12\)-Teilchen im eindimensionalen Kasten,
+    \item eine kurzreichweitige Delta-Wechselwirkung,
+    \item Schwerpunkt- und Relativkoordinaten,
+    \item Auswahlregeln für den relativen Drehimpuls identischer Teilchen.
+\end{itemize}
+
+\section{Mehrteilchensysteme für unterscheidbare Teilchen}
+
+Zuerst betrachtet man Teilchen, die unterscheidbar sind. Das bedeutet: Es ist physikalisch sinnvoll zu fragen, wo Teilchen 1 ist und wo Teilchen 2 ist. Für zwei Teilchen lautet der Hilbertraum dann
+\[
+    \mathcal H = \mathcal H^{(1)}\otimes \mathcal H^{(2)}.
+\]
+Für \(N\) unterscheidbare Teilchen ist entsprechend
+\[
+    \mathcal H = \mathcal H^{(1)}\otimes\mathcal H^{(2)}\otimes\cdots\otimes\mathcal H^{(N)}.
+\]
+
+Ein Produktzustand zweier Teilchen hat die Form
+\[
+    \ket{\psi}=\ket{\phi}^{(1)}\otimes\ket{\chi}^{(2)}.
+\]
+In Ortsdarstellung schreibt man
+\[
+    \psi(\vec x_1,\vec x_2)
+    = \phi(\vec x_1)\chi(\vec x_2).
+\]
+Dabei bedeutet \(\vec x_1\): Ort von Teilchen 1, und \(\vec x_2\): Ort von Teilchen 2.
+
+\begin{definitionbox}
+Für unterscheidbare Teilchen ist die gemeinsame Wahrscheinlichkeitsdichte
+\[
+    |\psi(\vec x_1,\vec x_2)|^2\,d^3x_1\,d^3x_2.
+\]
+Sie gibt die Wahrscheinlichkeit an, Teilchen 1 im Volumenelement \(d^3x_1\) um \(\vec x_1\) und Teilchen 2 im Volumenelement \(d^3x_2\) um \(\vec x_2\) zu finden.
+\end{definitionbox}
+
+Für Teilchen mit Spin schreibt man zusätzlich die Spinprojektionen mit:
+\[
+    \psi(\vec x_1,m_{s1};\vec x_2,m_{s2}).
+\]
+Die Normierungsbedingung lautet dann
+\[
+    \sum_{m_{s1},m_{s2}}\int d^3x_1\,d^3x_2\,
+    |\psi(\vec x_1,m_{s1};\vec x_2,m_{s2})|^2=1.
+\]
+
+\section{Warum identische Teilchen anders sind}
+
+Bei identischen Teilchen ist die Aussage „Teilchen 1 ist an Ort \(\vec x_1\) und Teilchen 2 ist an Ort \(\vec x_2\)“ nicht direkt beobachtbar. Beobachtbar ist nur: Ein Teilchen ist an Ort \(\vec x_1\) und ein Teilchen ist an Ort \(\vec x_2\). Die Bezeichnung durch die Zahlen 1 und 2 ist nur eine Hilfsbeschriftung.
+
+\begin{notebox}
+Bei identischen Teilchen sind Fragen, die sich auf ein bestimmtes nummeriertes Teilchen beziehen, physikalisch sinnlos. Sinnvoll sind nur symmetrische Aussagen, die sich nicht ändern, wenn man die Teilchenlabels vertauscht.
+\end{notebox}
+
+Ein Einteilchenoperator \(B\), der auf Teilchen 1 wirkt, wird als \(B^{(1)}\) geschrieben. Entsprechend wirkt \(B^{(2)}\) auf Teilchen 2. Für identische Teilchen ist nicht \(B^{(1)}\) allein eine physikalisch sinnvolle Observable, sondern die symmetrische Kombination
+\[
+    B^{(1)}+B^{(2)}.
+\]
+Allgemein müssen Observable identischer Teilchen mit Teilchenaustausch verträglich sein.
+
+\section{Der Permutationsoperator für zwei Teilchen}
+
+Für zwei Teilchen definiert man den Austausch- oder Permutationsoperator \(\opPi_{12}\). Er vertauscht die beiden Teilchenlabels:
+\[
+    (\opPi_{12}\psi)(1,2)=\psi(2,1).
+\]
+Hier ist die Kurzschreibweise
+\[
+    1\equiv (\vec x_1,m_{s1}),
+    \qquad
+    2\equiv (\vec x_2,m_{s2})
+\]
+gemeint.
+
+\begin{formulabox}
+Für zwei Teilchen gilt
+\[
+    \opPi_{12}^2=\idop.
+\]
+Daraus folgen für Eigenzustände von \(\opPi_{12}\) nur die Eigenwerte
+\[
+    \pi=+1
+    \qquad\text{oder}\qquad
+    \pi=-1.
+\]
+\end{formulabox}
+
+Denn aus
+\[
+    \opPi_{12}\psi=\pi\psi
+\]
+folgt durch erneutes Anwenden von \(\opPi_{12}\)
+\[
+    \psi=\opPi_{12}^2\psi=\pi^2\psi.
+\]
+Für \(\psi\neq0\) muss also \(\pi^2=1\) gelten.
+
+\begin{definitionbox}
+Ein Zustand heißt symmetrisch, wenn
+\[
+    \psi(2,1)=+\psi(1,2).
+\]
+Ein Zustand heißt antisymmetrisch, wenn
+\[
+    \psi(2,1)=-\psi(1,2).
+\]
+\end{definitionbox}
+
+\section{Symmetrisierung und Antisymmetrisierung}
+
+Jede Zweiteilchen-Wellenfunktion kann formal in einen symmetrischen und einen antisymmetrischen Anteil zerlegt werden. Dazu definiert man die Projektoren
+\[
+    \opS = \frac{1+\opPi_{12}}{2},
+    \qquad
+    \opA = \frac{1-\opPi_{12}}{2}.
+\]
+Dann gilt
+\[
+    \psi_S = \opS\psi
+    = \frac{1}{2}\bigl(\psi(1,2)+\psi(2,1)\bigr),
+\]
+\[
+    \psi_A = \opA\psi
+    = \frac{1}{2}\bigl(\psi(1,2)-\psi(2,1)\bigr).
+\]
+Also
+\[
+    \psi = \psi_S + \psi_A.
+\]
+
+\begin{conceptbox}
+Die Operatoren \(\opS\) und \(\opA\) sind Projektoren:
+\[
+    \opS^2=\opS,
+    \qquad
+    \opA^2=\opA,
+    \qquad
+    \opS\opA=\opA\opS=0,
+    \qquad
+    \opS+\opA=\idop.
+\]
+\end{conceptbox}
+
+\begin{derivationbox}
+Da \(\opPi_{12}^2=\idop\), folgt
+\[
+    \opS^2
+    =\frac{1}{4}(1+\opPi_{12})(1+\opPi_{12})
+    =\frac{1}{4}(1+2\opPi_{12}+\opPi_{12}^2)
+    =\frac{1}{2}(1+\opPi_{12})
+    =\opS.
+\]
+Analog gilt
+\[
+    \opA^2
+    =\frac{1}{4}(1-2\opPi_{12}+\opPi_{12}^2)
+    =\frac{1}{2}(1-\opPi_{12})
+    =\opA.
+\]
+Außerdem
+\[
+    \opS\opA
+    =\frac{1}{4}(1+\opPi_{12})(1-\opPi_{12})
+    =\frac{1}{4}(1-\opPi_{12}^2)=0.
+\]
+\end{derivationbox}
+
+\section{Observable identischer Teilchen}
+
+Eine Observable \(\hat O\) eines Systems identischer Teilchen darf sich unter Teilchenaustausch nicht ändern. Mathematisch bedeutet das
+\[
+    [\hat O,\opPi_{12}]=0.
+\]
+
+\begin{conceptbox}
+Physikalische Observable identischer Teilchen sind symmetrisch unter Vertauschung der Teilchen. Deshalb können sie nicht zwischen \(\psi(1,2)\) und \(\psi(2,1)\) unterscheiden.
+\end{conceptbox}
+
+Ein typisches Beispiel ist der Hamiltonoperator zweier identischer Teilchen mit symmetrischer Wechselwirkung:
+\[
+    \opH
+    = \frac{\vec p_1^{\,2}}{2m}
+    + \frac{\vec p_2^{\,2}}{2m}
+    + V(|\vec r_1-\vec r_2|).
+\]
+Unter Austausch \(1\leftrightarrow2\) bleibt \(\opH\) unverändert. Daher gilt
+\[
+    [\opH,\opPi_{12}]=0.
+\]
+
+\begin{notebox}
+Wenn \([\opH,\opPi_{12}]=0\), dann bleibt die Austauschsymmetrie unter Zeitentwicklung erhalten. Ein symmetrischer Zustand bleibt symmetrisch, ein antisymmetrischer Zustand bleibt antisymmetrisch.
+\end{notebox}
+
+Denn mit
+\[
+    \hat U(t)=\exp\left(-\frac{\ii}{\hbar}\opH t\right)
+\]
+folgt aus \([\opH,\opPi_{12}]=0\) auch
+\[
+    [\hat U(t),\opPi_{12}]=0.
+\]
+Ist also \(\opPi_{12}\psi_S=+\psi_S\), dann
+\[
+    \opPi_{12}\hat U(t)\psi_S
+    =\hat U(t)\opPi_{12}\psi_S
+    =\hat U(t)\psi_S.
+\]
+Der Zustand \(\hat U(t)\psi_S\) ist wieder symmetrisch. Für antisymmetrische Zustände funktioniert die Rechnung entsprechend mit Minuszeichen.
+
+\section{Symmetriepostulat: Bosonen und Fermionen}
+
+Die reine Forderung, dass Observable symmetrisch sein müssen, würde noch nicht festlegen, ob die Zustände selbst symmetrisch oder antisymmetrisch sein müssen. In der Quantenmechanik kommt daher ein zusätzliches Postulat hinzu.
+
+\begin{conceptbox}
+Für identische Teilchen sind nur Zustände mit fester Austauschsymmetrie erlaubt:
+\begin{itemize}
+    \item Teilchen mit ganzzahligem Spin sind Bosonen. Ihre Zustände sind symmetrisch.
+    \item Teilchen mit halbzahligem Spin sind Fermionen. Ihre Zustände sind antisymmetrisch.
+\end{itemize}
+\end{conceptbox}
+
+Für zwei Bosonen gilt also
+\[
+    \psi(2,1)=+\psi(1,2),
+\]
+für zwei Fermionen gilt
+\[
+    \psi(2,1)=-\psi(1,2).
+\]
+
+\begin{examplebox}
+Typische Bosonen sind Photonen, Helium-4-Atome und Spin-0-Mesonen. Typische Fermionen sind Elektronen, Protonen, Neutronen und Helium-3-Atome.
+\end{examplebox}
+
+\section{Produktzustände und korrekte Symmetrisierung}
+
+Nehmen wir zwei Einteilchenzustände \(\ket{a}\) und \(\ket{b}\). Für unterscheidbare Teilchen wäre
+\[
+    \ket{a}^{(1)}\ket{b}^{(2)}
+\]
+ein zulässiger Produktzustand. Für identische Teilchen ist dieser Zustand im Allgemeinen nicht erlaubt, weil er keine bestimmte Austauschsymmetrie besitzt.
+
+Für zwei Bosonen bildet man den symmetrisierten Zustand
+\[
+    \ket{a,b}_S
+    =\frac{1}{\sqrt{2}}
+    \left(\ket{a}^{(1)}\ket{b}^{(2)}+
+    \ket{b}^{(1)}\ket{a}^{(2)}\right),
+    \qquad a\neq b.
+\]
+Für zwei Fermionen bildet man den antisymmetrisierten Zustand
+\[
+    \ket{a,b}_A
+    =\frac{1}{\sqrt{2}}
+    \left(\ket{a}^{(1)}\ket{b}^{(2)}-
+    \ket{b}^{(1)}\ket{a}^{(2)}\right),
+    \qquad a\neq b.
+\]
+
+\begin{notebox}
+Die Normierungsfaktoren hängen davon ab, ob \(a=b\) oder \(a\neq b\) gilt. Für zwei Bosonen im gleichen Zustand \(a=b\) ist der korrekt normierte Zustand einfach
+\[
+    \ket{a}^{(1)}\ket{a}^{(2)}.
+\]
+Für zwei Fermionen ist dieser Zustand verboten, weil die antisymmetrische Kombination verschwindet.
+\end{notebox}
+
+\section{Pauli-Prinzip}
+
+Setzt man für zwei Fermionen \(a=b\), erhält man
+\[
+    \ket{a,a}_A
+    =\frac{1}{\sqrt{2}}
+    \left(\ket{a}^{(1)}\ket{a}^{(2)}-
+    \ket{a}^{(1)}\ket{a}^{(2)}\right)=0.
+\]
+Ein Nullvektor ist kein physikalischer Zustand.
+
+\begin{conceptbox}
+Pauli-Prinzip: Zwei identische Fermionen können nicht denselben vollständigen Einteilchenzustand besetzen.
+\end{conceptbox}
+
+Wichtig ist das Wort vollständig. Bei Elektronen umfasst ein vollständiger Einteilchenzustand nicht nur den Orts- oder Orbitalzustand, sondern auch den Spinzustand. Zwei Elektronen können also denselben räumlichen Orbitalzustand besetzen, wenn ihre Spinzustände verschieden sind und der Gesamtzustand insgesamt antisymmetrisch ist.
+
+\section{Slater-Determinante für Fermionen}
+
+Für \(N\) Fermionen erhält man die antisymmetrische Wellenfunktion aus einer Slater-Determinante. Für Einteilchenzustände \(\phi_1,\dots,\phi_N\) lautet
+\[
+    \Psi_A(1,\dots,N)
+    =\frac{1}{\sqrt{N!}}
+    \begin{vmatrix}
+    \phi_1(1) & \phi_2(1) & \cdots & \phi_N(1)\\
+    \phi_1(2) & \phi_2(2) & \cdots & \phi_N(2)\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \phi_1(N) & \phi_2(N) & \cdots & \phi_N(N)
+    \end{vmatrix}.
+\]
+
+\begin{conceptbox}
+Die Slater-Determinante ist automatisch antisymmetrisch: Wenn man zwei Teilchenlabels vertauscht, werden zwei Zeilen der Determinante vertauscht. Eine Determinante ändert dabei ihr Vorzeichen.
+\end{conceptbox}
+
+Falls zwei Einteilchenzustände gleich sind, hat die Determinante zwei identische Spalten und verschwindet. Das ist wieder das Pauli-Prinzip.
+
+\section{Symmetrie von Orts- und Spinanteil}
+
+Bei Teilchen mit Spin hängt die volle Wellenfunktion von Orts- und Spinvariablen ab. Oft kann man sie als Produkt schreiben:
+\[
+    \Psi(1,2)=\psi_{\text{Ort}}(\vec r_1,\vec r_2)\,\chi_{\text{Spin}}(m_{s1},m_{s2}).
+\]
+Unter Teilchenaustausch werden beide Anteile vertauscht. Die Symmetrie des Gesamtzustands ist das Produkt der Symmetrien von Orts- und Spinanteil.
+
+\begin{formulabox}
+Für zwei identische Fermionen muss gelten:
+\[
+    \text{Symmetrie(Ort)}\cdot\text{Symmetrie(Spin)}=-1.
+\]
+Für zwei identische Bosonen muss gelten:
+\[
+    \text{Symmetrie(Ort)}\cdot\text{Symmetrie(Spin)}=+1.
+\]
+\end{formulabox}
+
+Für zwei Spin-\(\frac12\)-Teilchen sind die Spinzustände besonders wichtig. Die Triplet-Zustände sind symmetrisch:
+\[
+    \ket{1,1}=\ket{\uparrow\uparrow},
+\]
+\[
+    \ket{1,0}=\frac{1}{\sqrt2}
+    \left(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow}\right),
+\]
+\[
+    \ket{1,-1}=\ket{\downarrow\downarrow}.
+\]
+Der Singulett-Zustand ist antisymmetrisch:
+\[
+    \ket{0,0}=\frac{1}{\sqrt2}
+    \left(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\right).
+\]
+
+\begin{examplebox}
+Für zwei identische Spin-\(\frac12\)-Fermionen gilt:
+\begin{itemize}
+    \item Triplet-Spinanteil symmetrisch \(\Rightarrow\) Ortsanteil antisymmetrisch.
+    \item Singulett-Spinanteil antisymmetrisch \(\Rightarrow\) Ortsanteil symmetrisch.
+\end{itemize}
+\end{examplebox}
+
+\section{Zwei identische Spin-\texorpdfstring{\(\frac12\)}{1/2}-Teilchen im eindimensionalen Kasten}
+
+Nun betrachten wir ein Standardbeispiel. Zwei identische Spin-\(\frac12\)-Teilchen bewegen sich in einem eindimensionalen unendlich hohen Kasten
+\[
+    V(x)=
+    \begin{cases}
+    0, & 0\le x\le L,\\
+    \infty, & x<0\text{ oder }x>L.
+    \end{cases}
+\]
+Die normierten Einteilchen-Eigenfunktionen lauten
+\[
+    \varphi_n(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right),
+    \qquad n=1,2,3,\dots
+\]
+mit Energien
+\[
+    E_n=\frac{\hbar^2\pi^2n^2}{2mL^2}.
+\]
+Für zwei nichtwechselwirkende Teilchen ist die Energie eines Produktzustands
+\[
+    E_{n_1,n_2}=E_{n_1}+E_{n_2}.
+\]
+
+\subsection{Räumliche Zwei-Teilchen-Zustände}
+
+Für \(n_1\neq n_2\) definiert man
+\[
+    \psi^{(+)}_{n_1n_2}(x_1,x_2)
+    =\frac{1}{\sqrt2}
+    \left[\varphi_{n_1}(x_1)\varphi_{n_2}(x_2)
+    +\varphi_{n_2}(x_1)\varphi_{n_1}(x_2)\right],
+\]
+\[
+    \psi^{(-)}_{n_1n_2}(x_1,x_2)
+    =\frac{1}{\sqrt2}
+    \left[\varphi_{n_1}(x_1)\varphi_{n_2}(x_2)
+    -\varphi_{n_2}(x_1)\varphi_{n_1}(x_2)\right].
+\]
+Dabei ist \(\psi^{(+)}\) räumlich symmetrisch und \(\psi^{(-)}\) räumlich antisymmetrisch.
+
+Für \(n_1=n_2=n\) gibt es nur den symmetrischen räumlichen Zustand
+\[
+    \psi^{(+)}_{nn}(x_1,x_2)
+    =\varphi_n(x_1)\varphi_n(x_2).
+\]
+Der antisymmetrische Zustand verschwindet.
+
+\subsection{Grundzustand bei Triplet-Spin}
+
+Für zwei identische Spin-\(\frac12\)-Fermionen ist der Triplet-Spinanteil symmetrisch. Daher muss der räumliche Anteil antisymmetrisch sein. Die niedrigste Möglichkeit ist dann nicht \(n_1=n_2=1\), weil dieser Zustand räumlich symmetrisch wäre. Man muss die beiden niedrigsten verschiedenen räumlichen Zustände nehmen:
+\[
+    n_1=1,
+    \qquad
+    n_2=2.
+\]
+Der räumliche Grundzustand im Triplet-Sektor ist
+\[
+    \psi_T(x_1,x_2)
+    =\frac{1}{\sqrt2}
+    \left[\varphi_1(x_1)\varphi_2(x_2)-\varphi_2(x_1)\varphi_1(x_2)\right].
+\]
+Die Energie ist
+\[
+    E_T=E_1+E_2
+    =\frac{\hbar^2\pi^2}{2mL^2}(1^2+2^2)
+    =\frac{5\hbar^2\pi^2}{2mL^2}.
+\]
+
+\begin{answerbox}
+Für den Triplet-Sektor zweier identischer Spin-\(\frac12\)-Fermionen ist der Spinanteil symmetrisch, also muss der Ortsanteil antisymmetrisch sein. Deshalb besetzen die Teilchen im Grundzustand die Niveaus \(n=1\) und \(n=2\).
+\end{answerbox}
+
+\subsection{Grundzustand bei Singulett-Spin}
+
+Der Singulett-Spinanteil ist antisymmetrisch. Daher muss der räumliche Anteil symmetrisch sein. Dann dürfen beide Teilchen denselben räumlichen Grundzustand \(n=1\) besetzen:
+\[
+    \psi_S(x_1,x_2)=\varphi_1(x_1)\varphi_1(x_2).
+\]
+Die Energie ist
+\[
+    E_S=2E_1
+    =\frac{\hbar^2\pi^2}{mL^2}.
+\]
+
+\begin{answerbox}
+Für den Singulett-Sektor ist der Spinanteil antisymmetrisch, also muss der Ortsanteil symmetrisch sein. Der räumliche Grundzustand ist daher \(\varphi_1(x_1)\varphi_1(x_2)\) mit Energie \(2E_1\).
+\end{answerbox}
+
+\begin{notebox}
+Manche Aufgabenblätter verwenden für Singulett/Triplet zusätzlich die Begriffe Para- und Ortho-Zustand. Entscheidend für die Rechnung ist nicht der Name, sondern die Symmetrie: Triplet ist symmetrisch im Spin, Singulett ist antisymmetrisch im Spin.
+\end{notebox}
+
+\section{Kurzreichweitige Delta-Wechselwirkung im Kasten}
+
+Nun wird zusätzlich eine attraktive Wechselwirkung angenommen:
+\[
+    \hat V = -\lambda\delta(x_1-x_2),
+    \qquad \lambda>0.
+\]
+In erster Ordnung Störungstheorie ist die Energieverschiebung
+\[
+    \Delta E^{(1)}
+    =\mel{\psi}{\hat V}{\psi}
+    =-\lambda\int_0^L dx_1\int_0^L dx_2\,
+    |\psi(x_1,x_2)|^2\delta(x_1-x_2).
+\]
+Mit der Delta-Distribution folgt
+\[
+    \Delta E^{(1)}
+    =-\lambda\int_0^L dx\,|\psi(x,x)|^2.
+\]
+
+\subsection{Triplet-Sektor}
+
+Für eine antisymmetrische räumliche Wellenfunktion gilt
+\[
+    \psi_T(x,x)=0.
+\]
+Denn
+\[
+    \psi_T(x,x)=-\psi_T(x,x)
+\]
+und damit muss \(\psi_T(x,x)=0\) sein. Also
+\[
+    \Delta E_T^{(1)}=0.
+\]
+
+\begin{conceptbox}
+Eine Kontaktwechselwirkung \(\delta(x_1-x_2)\) wirkt nur dort, wo beide Teilchen am selben Ort sind. Antisymmetrische räumliche Zustände verschwinden aber genau bei \(x_1=x_2\). Deshalb gibt es im Triplet-Sektor keine Energieverschiebung erster Ordnung.
+\end{conceptbox}
+
+\subsection{Singulett-Sektor}
+
+Für den symmetrischen räumlichen Grundzustand gilt
+\[
+    \psi_S(x_1,x_2)=\varphi_1(x_1)\varphi_1(x_2).
+\]
+Damit
+\[
+    \psi_S(x,x)=\varphi_1(x)^2.
+\]
+Die Energieverschiebung ist
+\[
+    \Delta E_S^{(1)}
+    =-\lambda\int_0^L dx\,|\varphi_1(x)|^4.
+\]
+Mit
+\[
+    \varphi_1(x)=\sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)
+\]
+folgt
+\[
+    |\varphi_1(x)|^4
+    =\frac{4}{L^2}\sin^4\left(\frac{\pi x}{L}\right).
+\]
+Da
+\[
+    \int_0^L dx\,\sin^4\left(\frac{\pi x}{L}\right)=\frac{3L}{8},
+\]
+erhält man
+\[
+    \int_0^L dx\,|\varphi_1(x)|^4
+    =\frac{4}{L^2}\frac{3L}{8}
+    =\frac{3}{2L}.
+\]
+Also
+\[
+    \Delta E_S^{(1)}=-\frac{3\lambda}{2L}.
+\]
+
+\begin{answerbox}
+Die attraktive Kontaktwechselwirkung senkt in erster Ordnung nur den räumlich symmetrischen Singulett-Grundzustand:
+\[
+    \Delta E_S^{(1)}=-\frac{3\lambda}{2L},
+    \qquad
+    \Delta E_T^{(1)}=0.
+\]
+\end{answerbox}
+
+\section{Schwerpunkt- und Relativkoordinaten}
+
+Für zwei Teilchen gleicher Masse \(m\) mit Wechselwirkung
+\[
+    V(|\vec r_1-\vec r_2|)
+\]
+ist es natürlich, Schwerpunkt- und Relativkoordinaten einzuführen:
+\[
+    \Rcm = \frac{1}{2}(\vec r_1+\vec r_2),
+    \qquad
+    \rrel=\vec r_1-\vec r_2.
+\]
+Die zugehörigen Impulse sind
+\[
+    \pcm=\vec p_1+\vec p_2,
+    \qquad
+    \prel=\frac{1}{2}(\vec p_1-\vec p_2).
+\]
+Umgekehrt gilt
+\[
+    \vec r_1=\Rcm+\frac{\rrel}{2},
+    \qquad
+    \vec r_2=\Rcm-\frac{\rrel}{2},
+\]
+\[
+    \vec p_1=\frac{\pcm}{2}+\prel,
+    \qquad
+    \vec p_2=\frac{\pcm}{2}-\prel.
+\]
+
+Für den Hamiltonoperator
+\[
+    \opH=\frac{\vec p_1^{\,2}}{2m}+\frac{\vec p_2^{\,2}}{2m}+V(|\vec r_1-\vec r_2|)
+\]
+ergibt sich
+\[
+    \opH=\frac{\pcm^{\,2}}{4m}+\frac{\prel^{\,2}}{m}+V(r).
+\]
+Mit Gesamtmasse \(M=2m\) und reduzierter Masse \(\mu=m/2\) schreibt man äquivalent
+\[
+    \opH=\frac{\pcm^{\,2}}{2M}+\frac{\prel^{\,2}}{2\mu}+V(r).
+\]
+
+\begin{formulabox}
+Für zwei gleiche Massen gilt
+\[
+    M=2m,
+    \qquad
+    \mu=\frac{m}{2}.
+\]
+Daher
+\[
+    \frac{\pcm^{\,2}}{2M}=\frac{\pcm^{\,2}}{4m},
+    \qquad
+    \frac{\prel^{\,2}}{2\mu}=\frac{\prel^{\,2}}{m}.
+\]
+\end{formulabox}
+
+\section{Separation der Bewegung}
+
+Da das Potential nur vom relativen Abstand \(r=|\rrel|\) abhängt, hängt der Hamiltonoperator nicht explizit vom Schwerpunktort \(\Rcm\) ab. Deshalb ist der Gesamtimpuls \(\pcm\) erhalten:
+\[
+    [\opH,\pcm]=0.
+\]
+Außerdem ist das Relativpotential rotationssymmetrisch. Daher kommutiert \(\opH\) mit dem relativen Drehimpuls
+\[
+    \vec L=\rrel\times\prel.
+\]
+Also
+\[
+    [\opH,\vec L^{\,2}]=0,
+    \qquad
+    [\opH,L_z]=0.
+\]
+
+Die gemeinsamen Eigenfunktionen können in der Form
+\[
+    \Psi_{\vec P,n,l,m}(\Rcm,\rrel)
+    =\frac{1}{(2\pi\hbar)^{3/2}}
+    \e^{\frac{\ii}{\hbar}\vec P\cdot\Rcm}
+    R_{n,l}(r)Y_l^m(\theta,\varphi)
+\]
+geschrieben werden.
+
+\begin{conceptbox}
+Die Schwerpunktbewegung ist eine freie Bewegung. Die nichttriviale Physik der Wechselwirkung steckt in der Relativbewegung.
+\end{conceptbox}
+
+\section{Radialgleichung der Relativbewegung}
+
+Für die Relativbewegung gilt das Eigenwertproblem
+\[
+    \left[-\frac{\hbar^2}{2\mu}\Delta_r+V(r)\right]
+    \phi(\rrel)=\varepsilon\phi(\rrel),
+\]
+wobei
+\[
+    \phi(\rrel)=R_{n,l}(r)Y_l^m(\theta,\varphi).
+\]
+Setzt man
+\[
+    u_{n,l}(r)=rR_{n,l}(r),
+\]
+erhält man die reduzierte Radialgleichung
+\[
+    \left[-\frac{\hbar^2}{2\mu}\frac{d^2}{dr^2}
+    +\frac{\hbar^2 l(l+1)}{2\mu r^2}+V(r)\right]u_{n,l}(r)
+    =\varepsilon_{n,l}u_{n,l}(r).
+\]
+Die Gesamtenergie ist
+\[
+    E=\frac{P^2}{2M}+\varepsilon_{n,l}.
+\]
+
+\section{Teilchenaustausch in Relativkoordinaten}
+
+Beim Austausch der beiden Teilchen gilt
+\[
+    \vec r_1\leftrightarrow\vec r_2.
+\]
+Daraus folgt
+\[
+    \Rcm\to\Rcm,
+    \qquad
+    \rrel=\vec r_1-\vec r_2\to -(\vec r_1-\vec r_2)=-\rrel.
+\]
+Der Schwerpunktanteil bleibt also unverändert. Der Relativanteil wird unter \(\rrel\to-\rrel\) transformiert.
+
+In Kugelkoordinaten entspricht \(\rrel\to-\rrel\) der Transformation
+\[
+    (r,\theta,\varphi)\to(r,\pi-\theta,\varphi+\pi).
+\]
+Für Kugelflächenfunktionen gilt
+\[
+    Y_l^m(\pi-\theta,\varphi+\pi)=(-1)^lY_l^m(\theta,\varphi).
+\]
+Daher hat der räumliche Relativzustand die Austauschparität
+\[
+    \psi_{\text{rel}}(-\rrel)=(-1)^l\psi_{\text{rel}}(\rrel).
+\]
+
+\begin{formulabox}
+Gerades \(l\) bedeutet symmetrischer Ortsanteil:
+\[
+    (-1)^l=+1.
+\]
+Ungerades \(l\) bedeutet antisymmetrischer Ortsanteil:
+\[
+    (-1)^l=-1.
+\]
+\end{formulabox}
+
+\section{Bosonen mit Spin 0}
+
+Für zwei identische Spin-0-Bosonen gibt es keinen nichttrivialen Spinanteil. Der Spinanteil ist symmetrisch. Daher muss auch der räumliche Anteil symmetrisch sein.
+
+Aus
+\[
+    \psi_{\text{rel}}(-\rrel)=(-1)^l\psi_{\text{rel}}(\rrel)
+\]
+folgt dann
+\[
+    (-1)^l=+1.
+\]
+Also sind nur gerade Werte von \(l\) erlaubt:
+\[
+    l=0,2,4,\dots
+\]
+
+\begin{answerbox}
+Für zwei identische Spin-0-Bosonen sind nur gerade relative Drehimpulse erlaubt.
+\end{answerbox}
+
+\section{Fermionen mit Spin \texorpdfstring{\(\frac12\)}{1/2}}
+
+Für zwei identische Spin-\(\frac12\)-Fermionen muss der Gesamtzustand antisymmetrisch sein. Der Gesamtzustand ist
+\[
+    \Psi=\psi_{\text{Ort}}\chi_{\text{Spin}}.
+\]
+Der Spinanteil ist entweder Triplet oder Singulett.
+
+\subsection{Singulett}
+
+Der Singulett-Zustand ist antisymmetrisch:
+\[
+    \chi_S=\frac{1}{\sqrt2}
+    \left(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\right).
+\]
+Damit der Gesamtzustand antisymmetrisch ist, muss der Ortsanteil symmetrisch sein:
+\[
+    (-1)^l=+1.
+\]
+Also
+\[
+    l=0,2,4,\dots
+\]
+
+\subsection{Triplet}
+
+Die Triplet-Zustände sind symmetrisch. Damit der Gesamtzustand antisymmetrisch ist, muss der Ortsanteil antisymmetrisch sein:
+\[
+    (-1)^l=-1.
+\]
+Also
+\[
+    l=1,3,5,\dots
+\]
+
+\begin{formulabox}
+Für zwei identische Spin-\(\frac12\)-Fermionen gilt:
+\[
+\begin{array}{c|c|c}
+\text{Spinanteil} & \text{Spinsymmetrie} & \text{erlaubte }l\\
+\hline
+\text{Singulett }(S=0) & \text{antisymmetrisch} & l\text{ gerade}\\
+\text{Triplet }(S=1) & \text{symmetrisch} & l\text{ ungerade}
+\end{array}
+\]
+\end{formulabox}
+
+\section{Allgemeiner Fall mit \texorpdfstring{\(N\)}{N} identischen Teilchen}
+
+Für \(N\) identische Teilchen betrachtet man allgemeine Permutationen \(\pi\) der Teilchenlabels. Eine Permutation ordnet
+\[
+    (1,2,\dots,N)
+\]
+in eine neue Reihenfolge
+\[
+    (i_1,i_2,
+    \dots,i_N)
+\]
+um. Der zugehörige Permutationsoperator wirkt auf die Wellenfunktion durch
+\[
+    (\opPi_\pi\psi)(1,2,\dots,N)
+    =\psi(i_1,i_2,\dots,i_N).
+\]
+
+Für Bosonen gilt
+\[
+    \opPi_\pi\psi=+\psi
+    \qquad\text{für alle Permutationen }\pi.
+\]
+Für Fermionen gilt
+\[
+    \opPi_\pi\psi=\operatorname{sgn}(\pi)\psi.
+\]
+Dabei ist
+\[
+    \operatorname{sgn}(\pi)=
+    \begin{cases}
+    +1, & \pi\text{ gerade},\\
+    -1, & \pi\text{ ungerade}.
+    \end{cases}
+\]
+Eine gerade Permutation kann durch eine gerade Anzahl von Vertauschungen zweier Teilchen dargestellt werden, eine ungerade Permutation durch eine ungerade Anzahl.
+
+\begin{notebox}
+Für Fermionen genügt es praktisch oft, die Antisymmetrie unter jeder einzelnen Transposition zu prüfen. Jede Permutation kann als Produkt von Transpositionen geschrieben werden.
+\end{notebox}
+
+\section{Symmetrisierte Mehrbosonen-Zustände}
+
+Für \(N\) Bosonen in Einteilchenzuständen \(\phi_1,
+\dots,
+\phi_N\) erhält man den symmetrisierten Zustand durch Summe über alle Permutationen:
+\[
+    \Psi_S(1,
+\dots,N)
+    \propto
+    \sum_{\pi\in S_N}
+    \phi_1(i_1)\phi_2(i_2)\cdots\phi_N(i_N).
+\]
+Der genaue Normierungsfaktor hängt davon ab, ob manche Einteilchenzustände mehrfach vorkommen.
+
+\begin{conceptbox}
+Bosonen können denselben Einteilchenzustand mehrfach besetzen. Das ist der mathematische Ursprung vieler bosonischer Effekte, zum Beispiel Bose-Einstein-Kondensation.
+\end{conceptbox}
+
+\section{Antisymmetrisierte Mehrfermionen-Zustände}
+
+Für \(N\) Fermionen verwendet man die Slater-Determinante. Sie ist die systematische Verallgemeinerung der antisymmetrischen Zweiteilchen-Kombination.
+
+Für \(N=3\) lautet sie explizit
+\[
+    \Psi_A(1,2,3)
+    =\frac{1}{\sqrt{3!}}
+    \begin{vmatrix}
+    \phi_1(1) & \phi_2(1) & \phi_3(1)\\
+    \phi_1(2) & \phi_2(2) & \phi_3(2)\\
+    \phi_1(3) & \phi_2(3) & \phi_3(3)
+    \end{vmatrix}.
+\]
+Für allgemeines \(N\):
+\[
+    \Psi_A(1,\dots,N)
+    =\frac{1}{\sqrt{N!}}
+    \det\bigl(\phi_j(i)\bigr)_{i,j=1}^{N}.
+\]
+
+\section{Typische Aufgabenstrategie}
+
+Bei Aufgaben zu identischen Teilchen geht man fast immer nach demselben Schema vor.
+
+\begin{examtipbox}
+Rechenschema:
+\begin{enumerate}
+    \item Bestimme, ob die Teilchen Bosonen oder Fermionen sind.
+    \item Bestimme die Symmetrie des Spinanteils.
+    \item Fordere die passende Gesamtsymmetrie:
+    \[
+        \text{Bosonen: symmetrisch},
+        \qquad
+        \text{Fermionen: antisymmetrisch}.
+    \]
+    \item Leite daraus die notwendige Symmetrie des Ortsanteils ab.
+    \item Baue die Wellenfunktion mit \(+\) oder \(-\)-Kombinationen.
+    \item Berechne Energien aus den besetzten Einteilchenzuständen.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Typische Fehler}
+
+\begin{notebox}
+Häufige Fehler:
+\begin{itemize}
+    \item Man antisymmetrisiert nur den Ortsanteil, obwohl der Spinanteil berücksichtigt werden muss.
+    \item Man vergisst, dass Fermionen nur im vollständigen Einteilchenzustand nicht gleich sein dürfen.
+    \item Man setzt beim Triplet-Zustand fälschlich beide Teilchen in denselben räumlichen Grundzustand.
+    \item Man vergisst den Normierungsfaktor \(1/\sqrt2\) bei symmetrisierten oder antisymmetrisierten Zuständen mit verschiedenen Einteilchenzuständen.
+    \item Man verwechselt die Symmetrie unter Teilchenaustausch mit Parität unter \(\vec r\to-\vec r\). Bei Relativkoordinaten hängen beide zusammen, aber nur weil der Austausch \(\rrel\to-\rrel\) bewirkt.
+\end{itemize}
+\end{notebox}
+
+\section{Zusammenfassung}
+
+\begin{formulabox}
+Permutationsoperator für zwei Teilchen:
+\[
+    (\opPi_{12}\psi)(1,2)=\psi(2,1),
+    \qquad
+    \opPi_{12}^2=\idop.
+\]
+Symmetrisierungs- und Antisymmetrisierungsprojektor:
+\[
+    \opS=\frac{1+\opPi_{12}}{2},
+    \qquad
+    \opA=\frac{1-\opPi_{12}}{2}.
+\]
+Bosonen:
+\[
+    \psi(2,1)=+\psi(1,2).
+\]
+Fermionen:
+\[
+    \psi(2,1)=-\psi(1,2).
+\]
+Pauli-Prinzip:
+\[
+    \text{Zwei identische Fermionen können nicht denselben vollständigen Einteilchenzustand besetzen.}
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Für zwei Spin-\(\frac12\)-Fermionen:
+\[
+\begin{array}{c|c|c}
+\text{Spinzustand} & \text{Spin-Symmetrie} & \text{Orts-Symmetrie}\\
+\hline
+\text{Singulett} & - & +\\
+\text{Triplet} & + & -
+\end{array}
+\]
+Im relativen Drehimpuls bedeutet das:
+\[
+\begin{array}{c|c}
+\text{Singulett} & l\text{ gerade}\\
+\text{Triplet} & l\text{ ungerade}
+\end{array}
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Zwei identische Spin-\(\frac12\)-Fermionen im eindimensionalen Kasten:
+\[
+    E_n=\frac{\hbar^2\pi^2n^2}{2mL^2}.
+\]
+Singulett-Grundzustand:
+\[
+    E_S=2E_1=\frac{\hbar^2\pi^2}{mL^2}.
+\]
+Triplet-Grundzustand:
+\[
+    E_T=E_1+E_2=\frac{5\hbar^2\pi^2}{2mL^2}.
+\]
+Kontaktwechselwirkung:
+\[
+    \Delta E_S^{(1)}=-\frac{3\lambda}{2L},
+    \qquad
+    \Delta E_T^{(1)}=0.
+\]
+\end{formulabox}
