@@ -1,0 +1,1088 @@
+\chapter{Kommutatoren und Unschärferelation}
+
+\section{Ziel dieses Kapitels}
+
+In diesem Kapitel geht es um eine der wichtigsten Strukturen der Quantenmechanik: Operatoren können im Allgemeinen nicht vertauscht werden. In der klassischen Mechanik ist für zwei gewöhnliche Zahlen oder Funktionen meist klar, dass
+\[
+    ab=ba
+\]
+gilt. In der Quantenmechanik wirken Observablen aber als Operatoren auf Zustände. Dann kann die Reihenfolge der Anwendung physikalisch relevant sein:
+\[
+    AB\psi \neq BA\psi.
+\]
+Der Unterschied zwischen beiden Reihenfolgen wird durch den Kommutator gemessen.
+
+\begin{conceptbox}
+Kommutatoren sind nicht nur ein Rechentrick. Sie sagen aus, ob zwei Observablen gleichzeitig scharf messbar sind, ob eine Größe eine Erhaltungsgröße ist und welche Unschärferelation zwischen zwei Observablen gilt.
+\end{conceptbox}
+
+Die zentralen Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Was ist ein Kommutator und wie rechnet man mit ihm?
+    \item Warum gilt für Ort und Impuls die fundamentale Relation $[X_j,P_k]=i\hbar\delta_{jk}$?
+    \item Wie berechnet man Kommutatoren mit Funktionen von Operatoren?
+    \item Wie hängen Kommutatoren mit simultaner Messbarkeit zusammen?
+    \item Wie folgt die Heisenbergsche Unschärferelation aus der Hilbertraumstruktur?
+    \item Welche Zustände minimieren die Orts-Impuls-Unschärfe?
+    \item Wie entstehen Ehrenfest-Gleichungen aus Kommutatoren mit dem Hamiltonoperator?
+\end{itemize}
+
+\section{Definition des Kommutators}
+
+\begin{definitionbox}
+Für zwei lineare Operatoren $A$ und $B$ ist der Kommutator definiert durch
+\[
+    [A,B] := AB-BA.
+\]
+Man sagt, $A$ und $B$ kommutieren, wenn
+\[
+    [A,B]=0
+\]
+gilt.
+\end{definitionbox}
+
+Der Kommutator misst also, ob die Reihenfolge der Operatoren egal ist. Wirkt man auf einen Zustand $\psi$, so ist
+\[
+    [A,B]\psi = A(B\psi)-B(A\psi).
+\]
+Wenn dieser Ausdruck für alle Zustände verschwindet, dann sind $A$ und $B$ vertauschbar.
+
+\begin{notebox}
+Die Gleichung $[A,B]=0$ bedeutet nicht nur, dass bei einer einzelnen Rechnung zufällig dasselbe herauskommt. Sie bedeutet, dass die beiden Operatoren als Operatoren identisch vertauschbar sind, also auf ihrem gemeinsamen Definitionsbereich dieselbe Wirkung haben.
+\end{notebox}
+
+\subsection{Elementare Eigenschaften}
+
+Kommutatoren erfüllen einige Rechenregeln, die man ständig verwendet.
+
+\begin{formulabox}
+Für Operatoren $A,B,C$ und Zahlen $\alpha,\beta\in\mathbb C$ gilt:
+\[
+    [A,B]=-[B,A],
+\]
+\[
+    [A,\alpha B+\beta C]=\alpha[A,B]+\beta[A,C],
+\]
+\[
+    [\alpha A+\beta B,C]=\alpha[A,C]+\beta[B,C].
+\]
+Außerdem gelten die Produktregeln
+\[
+    [A,BC]=[A,B]C+B[A,C],
+\]
+\[
+    [AB,C]=A[B,C]+[A,C]B.
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Die Produktregel folgt direkt aus der Definition:
+\[
+\begin{aligned}
+    [A,BC]
+    &=ABC-BCA \\
+    &=ABC-BAC+BAC-BCA \\
+    &=(AB-BA)C+B(AC-CA) \\
+    &=[A,B]C+B[A,C].
+\end{aligned}
+\]
+Analog erhält man
+\[
+    [AB,C]=A[B,C]+[A,C]B.
+\]
+\end{derivationbox}
+
+\subsection{Kommutator und Antikommutator}
+
+Neben dem Kommutator verwendet man auch den Antikommutator.
+
+\begin{definitionbox}
+Der Antikommutator zweier Operatoren $A$ und $B$ ist
+\[
+    \{A,B\}:=AB+BA.
+\]
+\end{definitionbox}
+
+Jedes Produkt zweier Operatoren kann in einen symmetrischen und einen antisymmetrischen Anteil zerlegt werden:
+\[
+    AB=\frac12\{A,B\}+\frac12[A,B].
+\]
+Der Antikommutator ist besonders wichtig in der genauen Form der Robertson-Schrödinger-Unschärferelation. Für die einfache Heisenberg-Form reicht oft der Kommutatoranteil.
+
+\section{Der fundamentale Heisenberg-Kommutator}
+
+\subsection{Orts- und Impulsoperator in Ortsdarstellung}
+
+In Ortsdarstellung wirken Orts- und Impulsoperator auf eine Wellenfunktion $\psi(\vec x)$ durch
+\[
+    (X_j\psi)(\vec x)=x_j\psi(\vec x),
+    \qquad
+    (P_j\psi)(\vec x)=-i\hbar\frac{\partial}{\partial x_j}\psi(\vec x).
+\]
+Für den Kommutator $[X_j,P_k]$ müssen wir die beiden Reihenfolgen vergleichen.
+
+\begin{derivationbox}
+Wir lassen $[X_j,P_k]$ auf eine Testfunktion $\psi(\vec x)$ wirken:
+\[
+\begin{aligned}
+    (X_jP_k\psi)(\vec x)
+    &=x_j\left(-i\hbar\frac{\partial \psi}{\partial x_k}\right), \\
+    (P_kX_j\psi)(\vec x)
+    &=-i\hbar\frac{\partial}{\partial x_k}\left(x_j\psi(\vec x)\right) \\
+    &=-i\hbar\left(\delta_{jk}\psi(\vec x)+x_j\frac{\partial\psi}{\partial x_k}\right).
+\end{aligned}
+\]
+Daher ist
+\[
+\begin{aligned}
+    ([X_j,P_k]\psi)(\vec x)
+    &=x_j\left(-i\hbar\frac{\partial\psi}{\partial x_k}\right)
+    +i\hbar\left(\delta_{jk}\psi+x_j\frac{\partial\psi}{\partial x_k}\right) \\
+    &=i\hbar\delta_{jk}\psi(\vec x).
+\end{aligned}
+\]
+Da dies für alle geeigneten $\psi$ gilt, folgt
+\[
+    [X_j,P_k]=i\hbar\delta_{jk}\,\mathbb{1}.
+\]
+Wenn die Identität klar ist, schreibt man kurz
+\[
+    [X_j,P_k]=i\hbar\delta_{jk}.
+\]
+\end{derivationbox}
+
+Da verschiedene Ortskomponenten nur Multiplikation mit verschiedenen Koordinaten sind, gilt
+\[
+    [X_j,X_k]=0.
+\]
+Da partielle Ableitungen nach verschiedenen Koordinaten miteinander vertauschen, gilt außerdem
+\[
+    [P_j,P_k]=0.
+\]
+
+\begin{formulabox}
+Die kanonischen Kommutatorrelationen lauten
+\[
+    [X_j,X_k]=0,
+    \qquad
+    [P_j,P_k]=0,
+    \qquad
+    [X_j,P_k]=i\hbar\delta_{jk}.
+\]
+Sie bilden die mathematische Grundstruktur der nichtrelativistischen Quantenmechanik.
+\end{formulabox}
+
+\begin{notebox}
+Manchmal steht in Aufgaben $P_j=\frac{\hbar}{i}\partial_{x_j}$. Das ist dasselbe wie $P_j=-i\hbar\partial_{x_j}$, weil $1/i=-i$ gilt.
+\end{notebox}
+
+\section{Kommutatoren mit Potenzen und Funktionen}
+
+\subsection{Kommutator mit einer Potenz des Impulses}
+
+Aus
+\[
+    [X_j,P_j]=i\hbar
+\]
+folgt eine ganze Familie von Kommutatorrelationen. Besonders wichtig ist
+\[
+    [X_j,P_j^n]=i\hbar nP_j^{n-1}.
+\]
+
+\begin{derivationbox}
+Wir verwenden die Produktregel
+\[
+    [A,BC]=[A,B]C+B[A,C].
+\]
+Für $n=2$ gilt
+\[
+\begin{aligned}
+    [X_j,P_j^2]
+    &=[X_j,P_jP_j] \\
+    &=[X_j,P_j]P_j+P_j[X_j,P_j] \\
+    &=i\hbar P_j+P_j i\hbar \\
+    &=2i\hbar P_j.
+\end{aligned}
+\]
+Für allgemeines $n$ erhält man durch Induktion
+\[
+\begin{aligned}
+    [X_j,P_j^n]
+    &=[X_j,P_jP_j^{n-1}] \\
+    &=[X_j,P_j]P_j^{n-1}+P_j[X_j,P_j^{n-1}] \\
+    &=i\hbar P_j^{n-1}+P_j\,i\hbar(n-1)P_j^{n-2} \\
+    &=i\hbar nP_j^{n-1}.
+\end{aligned}
+\]
+\end{derivationbox}
+
+Analog gilt
+\[
+    [P_j,X_j^n]=-i\hbar nX_j^{n-1}.
+\]
+
+\subsection{Kommutatoren mit Funktionen}
+
+Wenn eine Funktion als Potenzreihe geschrieben werden kann,
+\[
+    G(P_j)=\sum_{n=0}^{\infty}a_nP_j^n,
+\]
+dann folgt aus Linearität des Kommutators
+\[
+\begin{aligned}
+    [X_j,G(P_j)]
+    &=\sum_{n=0}^{\infty}a_n[X_j,P_j^n] \\
+    &=\sum_{n=1}^{\infty}a_n i\hbar nP_j^{n-1} \\
+    &=i\hbar\frac{\partial G}{\partial P_j}.
+\end{aligned}
+\]
+Genauso gilt für eine Funktion $F(X_j)$:
+\[
+    [P_j,F(X_j)]=-i\hbar\frac{\partial F}{\partial X_j}.
+\]
+
+\begin{formulabox}
+Für hinreichend glatte beziehungsweise als Potenzreihe darstellbare Funktionen gilt
+\[
+    [X_j,G(P_j)]=i\hbar\frac{\partial G}{\partial P_j},
+    \qquad
+    [P_j,F(X_j)]=-i\hbar\frac{\partial F}{\partial X_j}.
+\]
+Insbesondere gilt in mehreren Dimensionen
+\[
+    [P_j,V(\vec X)]=-i\hbar\frac{\partial V}{\partial x_j}(\vec X).
+\]
+\end{formulabox}
+
+\begin{examplebox}
+Für $G(P)=P^2/(2m)$ erhält man
+\[
+    [X,G(P)]=i\hbar\frac{P}{m}.
+\]
+Für $F(X)=V(X)$ erhält man
+\[
+    [P,V(X)]=-i\hbar V'(X).
+\]
+Diese beiden Relationen sind genau die Bausteine des Ehrenfest-Theorems.
+\end{examplebox}
+
+\section{Hamiltonoperator, Erhaltungsgrößen und Ehrenfest-Theorem}
+
+\subsection{Zeitentwicklung eines Erwartungswertes}
+
+Sei $A$ eine Observable. Ihr Erwartungswert im Zustand $\psi(t)$ ist
+\[
+    \langle A\rangle_t=\langle\psi(t),A\psi(t)\rangle.
+\]
+Wenn $A$ eventuell explizit zeitabhängig ist, dann gilt
+\[
+    \frac{\dd}{\dd t}\langle A\rangle_t
+    =\left\langle\frac{\partial A}{\partial t}\right\rangle_t
+    +\frac{i}{\hbar}\langle[H,A]\rangle_t.
+\]
+
+\begin{derivationbox}
+Aus der Schrödingergleichung
+\[
+    i\hbar\frac{\partial}{\partial t}\psi=H\psi
+\]
+folgt
+\[
+    \dot\psi=-\frac{i}{\hbar}H\psi.
+\]
+Für den Bra gilt entsprechend
+\[
+    \frac{\dd}{\dd t}\langle\psi|=\frac{i}{\hbar}\langle\psi|H,
+\]
+sofern $H=H^\dagger$ gilt. Damit ist
+\[
+\begin{aligned}
+    \frac{\dd}{\dd t}\langle A\rangle
+    &=\frac{\dd}{\dd t}\langle\psi|A|\psi\rangle \\
+    &=\langle\dot\psi|A|\psi\rangle
+      +\left\langle\psi\left|\frac{\partial A}{\partial t}\right|\psi\right\rangle
+      +\langle\psi|A|\dot\psi\rangle \\
+    &=\frac{i}{\hbar}\langle\psi|HA|\psi\rangle
+      +\left\langle\frac{\partial A}{\partial t}\right\rangle
+      -\frac{i}{\hbar}\langle\psi|AH|\psi\rangle \\
+    &=\left\langle\frac{\partial A}{\partial t}\right\rangle
+      +\frac{i}{\hbar}\langle[H,A]\rangle.
+\end{aligned}
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Eine Observable $A$ ohne explizite Zeitabhängigkeit ist eine Erhaltungsgröße, wenn
+\[
+    [H,A]=0
+\]
+gilt. Dann ist
+\[
+    \frac{\dd}{\dd t}\langle A\rangle_t=0.
+\]
+\end{formulabox}
+
+\subsection{Ehrenfest-Theorem}
+
+Für den Standard-Hamiltonoperator
+\[
+    H=\frac{\vec P^{\,2}}{2m}+V(\vec X)
+\]
+ergeben sich aus den Kommutatoren direkt die quantenmechanischen Bewegungsgleichungen für Erwartungswerte.
+
+\begin{derivationbox}
+Zuerst berechnen wir $[H,X_j]$:
+\[
+\begin{aligned}
+    [H,X_j]
+    &=\left[\sum_{k=1}^3\frac{P_k^2}{2m}+V(\vec X),X_j\right] \\
+    &=\sum_{k=1}^3\frac{1}{2m}[P_k^2,X_j]+[V(\vec X),X_j].
+\end{aligned}
+\]
+Da $V(\vec X)$ nur eine Funktion der Ortsoperatoren ist, gilt $[V(\vec X),X_j]=0$. Weiter ist
+\[
+    [P_k^2,X_j]=P_k[P_k,X_j]+[P_k,X_j]P_k.
+\]
+Aus $[X_j,P_k]=i\hbar\delta_{jk}$ folgt $[P_k,X_j]=-i\hbar\delta_{jk}$. Also
+\[
+    [P_k^2,X_j]=-2i\hbar\delta_{jk}P_k.
+\]
+Damit folgt
+\[
+    [H,X_j]=-\frac{i\hbar}{m}P_j.
+\]
+Somit ist
+\[
+    \frac{\dd}{\dd t}\langle X_j\rangle
+    =\frac{i}{\hbar}\langle[H,X_j]\rangle
+    =\frac{1}{m}\langle P_j\rangle.
+\]
+\end{derivationbox}
+
+\begin{derivationbox}
+Nun berechnen wir $[H,P_j]$:
+\[
+\begin{aligned}
+    [H,P_j]
+    &=\left[\sum_{k=1}^3\frac{P_k^2}{2m}+V(\vec X),P_j\right] \\
+    &=\sum_{k=1}^3\frac{1}{2m}[P_k^2,P_j]+[V(\vec X),P_j].
+\end{aligned}
+\]
+Da die Impulskomponenten miteinander kommutieren, ist der erste Term null. Außerdem gilt
+\[
+    [P_j,V(\vec X)]=-i\hbar\frac{\partial V}{\partial x_j},
+\]
+also
+\[
+    [V(\vec X),P_j]=i\hbar\frac{\partial V}{\partial x_j}.
+\]
+Damit folgt
+\[
+    \frac{\dd}{\dd t}\langle P_j\rangle
+    =\frac{i}{\hbar}\langle[H,P_j]\rangle
+    =-\left\langle\frac{\partial V}{\partial x_j}\right\rangle.
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Das Ehrenfest-Theorem lautet
+\[
+    \frac{\dd}{\dd t}\langle X_j\rangle=\frac{1}{m}\langle P_j\rangle,
+    \qquad
+    \frac{\dd}{\dd t}\langle P_j\rangle=-\left\langle\frac{\partial V}{\partial x_j}\right\rangle.
+\]
+Es ist die quantenmechanische Entsprechung der klassischen Gleichungen
+\[
+    \dot x_j=\frac{p_j}{m},
+    \qquad
+    \dot p_j=-\frac{\partial V}{\partial x_j}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Wichtig ist der Unterschied zwischen
+\[
+    -\left\langle\frac{\partial V}{\partial x_j}\right\rangle
+    \quad\text{und}\quad
+    -\frac{\partial V}{\partial x_j}(\langle X\rangle).
+\]
+Diese Ausdrücke sind im Allgemeinen nicht gleich. Sie werden näherungsweise gleich, wenn das Wellenpaket schmal ist oder das Potential höchstens quadratisch ist.
+\end{notebox}
+
+\section{Kommutatoren und simultane Messbarkeit}
+
+\subsection{Gemeinsame Eigenzustände}
+
+Zwei Observablen $A$ und $B$ sind gleichzeitig scharf messbar, wenn der Zustand gleichzeitig Eigenzustand beider Operatoren ist:
+\[
+    A\psi=a\psi,
+    \qquad
+    B\psi=b\psi.
+\]
+Dann sind beide Messwerte in diesem Zustand sicher bestimmt.
+
+Wenn $A$ und $B$ kommutieren, können sie unter geeigneten Bedingungen gemeinsam diagonalisiert werden. Das bedeutet, es gibt eine Basis aus gemeinsamen Eigenzuständen.
+
+\begin{conceptbox}
+Kommutierende Observablen sind die mathematische Formulierung simultaner Schärfe. Nichtkommutierende Observablen besitzen im Allgemeinen keine gemeinsame vollständige Eigenbasis und können daher nicht in allen Zuständen gleichzeitig scharf sein.
+\end{conceptbox}
+
+\subsection{Warum Kommutatoren gemeinsame Eigenzustände erzwingen können}
+
+Angenommen, $A$ und $B$ haben einen gemeinsamen Eigenzustand $\psi$:
+\[
+    A\psi=a\psi,
+    \qquad
+    B\psi=b\psi.
+\]
+Dann gilt auf diesem Zustand
+\[
+\begin{aligned}
+    [A,B]\psi
+    &=AB\psi-BA\psi \\
+    &=A(b\psi)-B(a\psi) \\
+    &=bA\psi-aB\psi \\
+    &=ba\psi-ab\psi=0.
+\end{aligned}
+\]
+Ein gemeinsamer Eigenzustand liegt also im Kern des Kommutators.
+
+\begin{notebox}
+Aus $[A,B]\psi=0$ für einen einzelnen Zustand folgt noch nicht automatisch $[A,B]=0$ als Operatorgleichung. Die Operatorgleichung ist stärker: Sie muss auf allen Zuständen gelten.
+\end{notebox}
+
+\subsection{Entartung und vollständiger Satz kommutierender Observablen}
+
+Wenn $A$ entartete Eigenwerte besitzt, kann es innerhalb eines entarteten Eigenraums mehrere unabhängige Eigenzustände geben. Dann reicht $A$ allein nicht aus, um den Zustand eindeutig zu charakterisieren. Eine weitere Observable $B$, die mit $A$ kommutiert, kann diese Entartung auflösen.
+
+\begin{definitionbox}
+Ein vollständiger Satz kommutierender Observablen, kurz VSKO, ist eine Menge von Observablen
+\[
+    A_1,A_2,\dots,A_n,
+\]
+die paarweise kommutieren und deren gemeinsame Eigenwerte die gemeinsamen Eigenzustände eindeutig festlegen.
+\end{definitionbox}
+
+Beispielhaft kann ein Hamiltonoperator $H$ mit einer weiteren Observable $B$ kommutieren. Wenn $H$ entartet ist, kann $B$ helfen, die Zustände innerhalb der entarteten Energieniveaus zu unterscheiden. Falls aber auch $H$ und $B$ zusammen noch Entartungen übrig lassen, sind sie kein vollständiger Satz.
+
+\section{Drehimpuls-Kommutatoren}
+
+\subsection{Definition des Bahndrehimpulses}
+
+Der Bahndrehimpuls ist
+\[
+    \vec L=\vec X\times\vec P.
+\]
+In Komponenten schreibt man
+\[
+    L_j=\sum_{k,\ell=1}^3\varepsilon_{jk\ell}X_kP_\ell,
+\]
+wobei $\varepsilon_{jk\ell}$ das Levi-Civita-Symbol ist.
+
+\begin{notebox}
+Die Definition sieht fast genauso aus wie klassisch. Der Unterschied ist, dass $X_k$ und $P_\ell$ Operatoren sind. Deshalb entstehen beim Vertauschen Kommutatoren.
+\end{notebox}
+
+\subsection{Drehimpuls mit Ort und Impuls}
+
+Die Drehimpulskomponenten erzeugen Rotationen. Mathematisch sieht man das an ihren Kommutatoren mit Ort und Impuls:
+\[
+    [L_j,X_k]=i\hbar\sum_{\ell=1}^3\varepsilon_{jk\ell}X_\ell,
+\]
+\[
+    [L_j,P_k]=i\hbar\sum_{\ell=1}^3\varepsilon_{jk\ell}P_\ell.
+\]
+
+\begin{examplebox}
+Für $L_z=L_3=XP_y-YP_x$ gilt
+\[
+\begin{aligned}
+    [L_z,X]
+    &=[XP_y-YP_x,X] \\
+    &=X[P_y,X]+[X,X]P_y-Y[P_x,X]-[Y,X]P_x \\
+    &=0+0-Y(-i\hbar)-0 \\
+    &=i\hbar Y.
+\end{aligned}
+\]
+Genauso erhält man
+\[
+    [L_z,Y]=-i\hbar X.
+\]
+Das entspricht einer infinitesimalen Rotation in der $xy$-Ebene.
+\end{examplebox}
+
+\subsection{Drehimpulsalgebra}
+
+Die Drehimpulskomponenten kommutieren nicht miteinander. Es gilt
+\[
+    [L_j,L_k]=i\hbar\sum_{\ell=1}^3\varepsilon_{jk\ell}L_\ell.
+\]
+Konkret:
+\[
+    [L_x,L_y]=i\hbar L_z,
+    \qquad
+    [L_y,L_z]=i\hbar L_x,
+    \qquad
+    [L_z,L_x]=i\hbar L_y.
+\]
+
+\begin{formulabox}
+Für den Gesamtdrehimpuls
+\[
+    L^2=L_x^2+L_y^2+L_z^2
+\]
+gilt
+\[
+    [L^2,L_j]=0
+\]
+für $j=1,2,3$.
+\end{formulabox}
+
+Das ist physikalisch entscheidend: Man kann den Betrag des Drehimpulses, also $L^2$, und eine Komponente, meistens $L_z$, gleichzeitig scharf messen. Man kann aber nicht alle drei Komponenten $L_x,L_y,L_z$ gleichzeitig scharf messen, weil sie nicht miteinander kommutieren.
+
+\section{Zentralpotentiale und Drehimpulserhaltung}
+
+Betrachten wir den Hamiltonoperator
+\[
+    H=\frac{\vec P^{\,2}}{2m}+V(r),
+    \qquad
+    r=\sqrt{X_1^2+X_2^2+X_3^2}.
+\]
+Das Potential hängt nur vom Abstand zum Ursprung ab. Es ist also rotationssymmetrisch.
+
+\begin{conceptbox}
+Eine Symmetrie des Hamiltonoperators führt zu einer Erhaltungsgröße. Rotationssymmetrie bedeutet Drehimpulserhaltung.
+\end{conceptbox}
+
+Für ein Zentralpotential gilt
+\[
+    [H,L_j]=0
+\]
+für alle $j$. Daher gilt auch
+\[
+    [H,L^2]=0.
+\]
+Damit können Eigenzustände von $H$ gleichzeitig als Eigenzustände von $L^2$ und $L_z$ gewählt werden. Das ist die Grundlage der Behandlung von Kugelkoordinaten, Kugelflächenfunktionen und Zentralpotentialen.
+
+\begin{examtipbox}
+Wenn in einer Aufgabe $V(r)$ gegeben ist, solltest du sofort an Rotationssymmetrie denken. Typische Konsequenzen sind:
+\[
+    [H,L^2]=0,
+    \qquad
+    [H,L_z]=0,
+\]
+und Zustände können mit Quantenzahlen $l,m$ klassifiziert werden.
+\end{examtipbox}
+
+\section{Varianz und Unschärfe}
+
+\subsection{Erwartungswert und Varianz}
+
+Sei $A$ eine Observable und $\psi$ ein normierter Zustand. Der Erwartungswert ist
+\[
+    \langle A\rangle=\langle\psi,A\psi\rangle.
+\]
+Die Varianz ist
+\[
+    (\Delta A)^2=\langle A^2\rangle-\langle A\rangle^2.
+\]
+Die Standardabweichung oder Unschärfe ist
+\[
+    \Delta A=\sqrt{\langle A^2\rangle-\langle A\rangle^2}.
+\]
+
+\begin{definitionbox}
+Für eine Observable $A$ definiert man den zentrierten Operator
+\[
+    A' := A-\langle A\rangle.
+\]
+Dann gilt
+\[
+    (\Delta A)^2=\langle (A')^2\rangle=\norm{A'\psi}^2.
+\]
+\end{definitionbox}
+
+\begin{derivationbox}
+Da $\langle A\rangle$ eine Zahl ist, gilt
+\[
+\begin{aligned}
+    \langle(A-\langle A\rangle)^2\rangle
+    &=\langle A^2-2\langle A\rangle A+\langle A\rangle^2\rangle \\
+    &=\langle A^2\rangle-2\langle A\rangle^2+\langle A\rangle^2 \\
+    &=\langle A^2\rangle-\langle A\rangle^2.
+\end{aligned}
+\]
+Für hermitesches $A$ ist $A'$ ebenfalls hermitesch, daher
+\[
+    \langle(A')^2\rangle=\langle A'\psi,A'\psi\rangle=\norm{A'\psi}^2\ge0.
+\]
+\end{derivationbox}
+
+\subsection{Wann ist die Unschärfe null?}
+
+Wenn $\Delta A=0$, dann gilt
+\[
+    \norm{(A-\langle A\rangle)\psi}^2=0.
+\]
+Also
+\[
+    (A-\langle A\rangle)\psi=0
+\]
+und damit
+\[
+    A\psi=\langle A\rangle\psi.
+\]
+Der Zustand ist also Eigenzustand von $A$.
+
+\begin{conceptbox}
+Eine Observable ist genau dann in einem Zustand scharf bestimmt, wenn der Zustand ein Eigenzustand der Observable ist. Dann ist die Varianz null.
+\end{conceptbox}
+
+\section{Allgemeine Unschärferelation}
+
+\subsection{Aussage der Robertson-Unschärferelation}
+
+\begin{formulabox}
+Für zwei hermitesche Operatoren $A$ und $B$ gilt in jedem normierten Zustand
+\[
+    \Delta A\,\Delta B
+    \ge
+    \frac12\left|\langle[A,B]\rangle\right|.
+\]
+Diese Beziehung heißt Robertson-Unschärferelation. Für Ort und Impuls wird sie zur Heisenbergschen Unschärferelation.
+\end{formulabox}
+
+Die allgemeine Aussage ist: Wenn der Erwartungswert des Kommutators ungleich null ist, dann können beide Unschärfen nicht gleichzeitig beliebig klein sein.
+
+\subsection{Beweis mit der Cauchy-Schwarz-Ungleichung}
+
+Wir setzen
+\[
+    A'=A-\langle A\rangle,
+    \qquad
+    B'=B-\langle B\rangle.
+\]
+Dann ist
+\[
+    \Delta A=\norm{A'\psi},
+    \qquad
+    \Delta B=\norm{B'\psi}.
+\]
+Die Cauchy-Schwarz-Ungleichung liefert
+\[
+    \norm{A'\psi}^2\norm{B'\psi}^2
+    \ge
+    |\langle A'\psi,B'\psi\rangle|^2.
+\]
+Also
+\[
+    (\Delta A)^2(\Delta B)^2
+    \ge
+    |\langle A'\psi,B'\psi\rangle|^2.
+\]
+
+Jetzt ist
+\[
+    \langle A'\psi,B'\psi\rangle
+    =\langle\psi,A'B'\psi\rangle
+    =\langle A'B'\rangle.
+\]
+Wir zerlegen
+\[
+    A'B'=\frac12\{A',B'\}+\frac12[A',B'].
+\]
+Für hermitesche $A'$ und $B'$ ist der Erwartungswert des Antikommutators reell und der Erwartungswert des Kommutators rein imaginär. Daher ist
+\[
+    |\langle A'B'\rangle|^2
+    \ge
+    \left|\frac12\langle[A',B']\rangle\right|^2.
+\]
+Da Konstanten mit allem kommutieren, gilt
+\[
+    [A',B']=[A,B].
+\]
+Somit folgt
+\[
+    (\Delta A)^2(\Delta B)^2
+    \ge
+    \frac14|\langle[A,B]\rangle|^2.
+\]
+Wurzelziehen liefert
+\[
+    \Delta A\,\Delta B\ge\frac12|\langle[A,B]\rangle|.
+\]
+
+\begin{notebox}
+Die noch stärkere Robertson-Schrödinger-Relation enthält zusätzlich den Antikommutatoranteil. Für viele Standardaufgaben reicht aber die schwächere, aber sehr wichtige Form
+\[
+    \Delta A\,\Delta B\ge\frac12|\langle[A,B]\rangle|.
+\]
+\end{notebox}
+
+\section{Heisenbergsche Orts-Impuls-Unschärferelation}
+
+Setzen wir
+\[
+    A=X,
+    \qquad
+    B=P,
+\]
+dann ist
+\[
+    [X,P]=i\hbar.
+\]
+Damit gilt
+\[
+    \langle[X,P]\rangle=i\hbar.
+\]
+Also folgt
+\[
+    \Delta X\,\Delta P
+    \ge
+    \frac12|i\hbar|.
+\]
+Da $|i\hbar|=\hbar$, erhält man
+\[
+    \Delta X\,\Delta P\ge\frac{\hbar}{2}.
+\]
+
+\begin{formulabox}
+Die Heisenbergsche Unschärferelation für Ort und Impuls lautet
+\[
+    \Delta X\,\Delta P\ge\frac{\hbar}{2}.
+\]
+In drei Dimensionen gilt komponentenweise
+\[
+    \Delta X_j\,\Delta P_j\ge\frac{\hbar}{2}.
+\]
+Für verschiedene Komponenten gilt dagegen wegen $[X_j,P_k]=0$ für $j\ne k$ keine solche untere Schranke aus diesem Kommutator.
+\end{formulabox}
+
+\begin{conceptbox}
+Die Unschärferelation ist keine Aussage über Messfehler eines schlechten Messgeräts. Sie ist eine Aussage über die Struktur quantenmechanischer Zustände: Es gibt keinen Zustand, der gleichzeitig beliebig scharf in Ort und Impuls lokalisiert ist.
+\end{conceptbox}
+
+\section{Beweis der Orts-Impuls-Unschärfe mit quadratischer Positivität}
+
+In vielen Übungsaufgaben wird die Heisenbergsche Unschärferelation direkt über einen Hilfszustand gezeigt. Sei
+\[
+    X'=X-\langle X\rangle,
+    \qquad
+    P'=P-\langle P\rangle.
+\]
+Für einen reellen Parameter $\lambda$ betrachten wir
+\[
+    |\varphi\rangle=(X'+i\lambda P')|\psi\rangle.
+\]
+Da Normen nichtnegativ sind, gilt
+\[
+    \langle\varphi|\varphi\rangle\ge0
+\]
+für alle $\lambda\in\mathbb R$.
+
+\begin{derivationbox}
+Wir berechnen die Norm:
+\[
+\begin{aligned}
+    \langle\varphi|\varphi\rangle
+    &=\langle\psi|(X'-i\lambda P')(X'+i\lambda P')|\psi\rangle \\
+    &=\langle (X')^2\rangle
+      +i\lambda\langle X'P'\rangle
+      -i\lambda\langle P'X'\rangle
+      +\lambda^2\langle (P')^2\rangle \\
+    &=(\Delta X)^2+\\lambda^2(\Delta P)^2+i\lambda\langle[X',P']\rangle.
+\end{aligned}
+\]
+Da
+\[
+    [X',P']=[X,P]=i\hbar
+\]
+gilt, folgt
+\[
+    i\lambda\langle[X',P']\rangle
+    =i\lambda i\hbar
+    =-\lambda\hbar.
+\]
+Damit ist
+\[
+    \langle\varphi|\varphi\rangle
+    =(\Delta X)^2+\lambda^2(\Delta P)^2-\lambda\hbar.
+\]
+Dieser Ausdruck muss für alle reellen $\lambda$ nichtnegativ sein:
+\[
+    (\Delta P)^2\lambda^2-\hbar\lambda+(\Delta X)^2\ge0.
+\]
+Ein quadratisches Polynom mit positivem Leitkoeffizienten ist genau dann für alle $\lambda$ nichtnegativ, wenn seine Diskriminante nicht positiv ist:
+\[
+    \hbar^2-4(\Delta P)^2(\Delta X)^2\le0.
+\]
+Daraus folgt
+\[
+    \Delta X\Delta P\ge\frac{\hbar}{2}.
+\]
+\end{derivationbox}
+
+\begin{examtipbox}
+Dieser Beweis ist klausurtypisch. Der zentrale Trick ist, einen Zustand der Form
+\[
+    (X'+i\lambda P')|\psi\rangle
+\]
+zu betrachten und seine Norm als quadratisches Polynom in $\lambda$ auszuwerten.
+\end{examtipbox}
+
+\section{Zustände minimaler Unschärfe}
+
+\subsection{Bedingung für Gleichheit}
+
+Die Heisenbergsche Schranke
+\[
+    \Delta X\Delta P\ge\frac{\hbar}{2}
+\]
+wird genau dann erreicht, wenn die verwendete Norm für ein bestimmtes $\lambda_0$ verschwindet:
+\[
+    (X'+i\lambda_0P')|\psi\rangle=0.
+\]
+Aus der quadratischen Minimierung ergibt sich
+\[
+    \lambda_0=\frac{\hbar}{2(\Delta P)^2}
+    =\frac{2(\Delta X)^2}{\hbar}.
+\]
+
+\begin{formulabox}
+Ein Zustand minimaler Orts-Impuls-Unschärfe erfüllt
+\[
+    (X-\langle X\rangle+i\lambda_0(P-\langle P\rangle))\psi=0,
+\]
+mit
+\[
+    \lambda_0=\frac{\hbar}{2(\Delta P)^2}
+    =\frac{2(\Delta X)^2}{\hbar}.
+\]
+\end{formulabox}
+
+\subsection{Lösung in Ortsdarstellung}
+
+Wir lösen die Gleichung
+\[
+    (X'+i\lambda_0P')\psi=0
+\]
+in Ortsdarstellung. Setze
+\[
+    x_0=\langle X\rangle,
+    \qquad
+    p_0=\langle P\rangle.
+\]
+Dann ist
+\[
+    X'=x-x_0,
+    \qquad
+    P'=-i\hbar\frac{\dd}{\dd x}-p_0.
+\]
+Die Gleichung lautet
+\[
+    \left[(x-x_0)+i\lambda_0\left(-i\hbar\frac{\dd}{\dd x}-p_0\right)\right]\psi(x)=0.
+\]
+Also
+\[
+    \left[(x-x_0)+\lambda_0\hbar\frac{\dd}{\dd x}-i\lambda_0p_0\right]\psi(x)=0.
+\]
+Damit
+\[
+    \lambda_0\hbar\frac{\dd\psi}{\dd x}
+    =-\left(x-x_0-i\lambda_0p_0\right)\psi.
+\]
+Also
+\[
+    \frac{1}{\psi}\frac{\dd\psi}{\dd x}
+    =-\frac{x-x_0}{\lambda_0\hbar}+i\frac{p_0}{\hbar}.
+\]
+Integration liefert
+\[
+    \ln\psi(x)
+    =-\frac{(x-x_0)^2}{2\lambda_0\hbar}+i\frac{p_0x}{\hbar}+C.
+\]
+Somit ist
+\[
+    \psi(x)=N\exp\left(-\frac{(x-x_0)^2}{2\lambda_0\hbar}\right)
+    \exp\left(i\frac{p_0x}{\hbar}\right).
+\]
+
+\begin{formulabox}
+Die Zustände minimaler Orts-Impuls-Unschärfe sind Gaußfunktionen:
+\[
+    \psi(x)=N\exp\left(-\frac{(x-x_0)^2}{4(\Delta X)^2}\right)
+    \exp\left(i\frac{p_0x}{\hbar}\right),
+\]
+mit
+\[
+    \Delta X\Delta P=\frac{\hbar}{2}.
+\]
+\end{formulabox}
+
+Hier wurde verwendet, dass
+\[
+    \lambda_0=\frac{2(\Delta X)^2}{\hbar}
+\]
+gilt. Dann ist
+\[
+    2\lambda_0\hbar=4(\Delta X)^2.
+\]
+
+\begin{conceptbox}
+Gaußsche Wellenpakete sind keine zufällige bequeme Wahl. Sie sind genau die Zustände, die Ort und Impuls so gut wie quantenmechanisch möglich gleichzeitig lokalisieren.
+\end{conceptbox}
+
+\section{Typische Rechenaufgaben}
+
+\subsection{Aufgabe: Kommutator von $H$ und $X_j$}
+
+\begin{examplebox}
+Gegeben sei
+\[
+    H=\sum_{k=1}^3\frac{P_k^2}{2m}+V(\vec X).
+\]
+Berechne $[H,X_j]$.
+\end{examplebox}
+
+\begin{calculationbox}
+Da $V(\vec X)$ mit $X_j$ kommutiert, gilt
+\[
+    [H,X_j]=\sum_{k=1}^3\frac{1}{2m}[P_k^2,X_j].
+\]
+Mit
+\[
+    [P_k,X_j]=-i\hbar\delta_{jk}
+\]
+folgt
+\[
+\begin{aligned}
+    [P_k^2,X_j]
+    &=P_k[P_k,X_j]+[P_k,X_j]P_k \\
+    &=P_k(-i\hbar\delta_{jk})+(-i\hbar\delta_{jk})P_k \\
+    &=-2i\hbar\delta_{jk}P_k.
+\end{aligned}
+\]
+Damit
+\[
+    [H,X_j]
+    =\sum_{k=1}^3\frac{1}{2m}(-2i\hbar\delta_{jk}P_k)
+    =-\frac{i\hbar}{m}P_j.
+\]
+\end{calculationbox}
+
+\subsection{Aufgabe: Kommutator von $H$ und $P_j$}
+
+\begin{examplebox}
+Gegeben sei wieder
+\[
+    H=\sum_{k=1}^3\frac{P_k^2}{2m}+V(\vec X).
+\]
+Berechne $[H,P_j]$.
+\end{examplebox}
+
+\begin{calculationbox}
+Da alle Impulskomponenten miteinander kommutieren, gilt
+\[
+    \left[\sum_{k=1}^3\frac{P_k^2}{2m},P_j\right]=0.
+\]
+Also
+\[
+    [H,P_j]=[V(\vec X),P_j].
+\]
+Aus
+\[
+    [P_j,V(\vec X)]=-i\hbar\frac{\partial V}{\partial x_j}
+\]
+folgt
+\[
+    [V(\vec X),P_j]=i\hbar\frac{\partial V}{\partial x_j}.
+\]
+Daher
+\[
+    [H,P_j]=i\hbar\frac{\partial V}{\partial x_j}.
+\]
+\end{calculationbox}
+
+\subsection{Aufgabe: Heisenberg-Unschärfe prüfen}
+
+\begin{examplebox}
+Ein Zustand habe
+\[
+    \Delta x=\frac{1}{\sqrt{2}\rho},
+    \qquad
+    \Delta p=\hbar\rho.
+\]
+Prüfe die Heisenbergsche Unschärferelation.
+\end{examplebox}
+
+\begin{calculationbox}
+Das Produkt ist
+\[
+    \Delta x\Delta p
+    =\frac{1}{\sqrt{2}\rho}\cdot\hbar\rho
+    =\frac{\hbar}{\sqrt{2}}.
+\]
+Da
+\[
+    \frac{1}{\sqrt{2}}>\frac12
+\]
+gilt,
+\[
+    \Delta x\Delta p=\frac{\hbar}{\sqrt{2}}>\frac{\hbar}{2}.
+\]
+Die Heisenbergsche Unschärferelation ist erfüllt. Das Minimum wird aber nicht erreicht.
+\end{calculationbox}
+
+\begin{notebox}
+Wenn das Produkt größer als $\hbar/2$ ist, ist der Zustand erlaubt. Nur Produkte kleiner als $\hbar/2$ sind unmöglich. Das Minimum wird nur von speziellen Gaußzuständen erreicht.
+\end{notebox}
+
+\section{Häufige Fehler}
+
+\begin{itemize}
+    \item Man vergisst, dass $[A,B]=-[B,A]$ gilt. Das Vorzeichen ist bei $[X,P]$ und $[P,X]$ entscheidend.
+    \item Man schreibt $[X,P]=\hbar$ statt $[X,P]=i\hbar$. Der Faktor $i$ ist wichtig, weil der Kommutator zweier hermitescher Operatoren antihermitesch ist.
+    \item Man behandelt Operatoren wie gewöhnliche Zahlen und vertauscht sie ohne Prüfung.
+    \item Man verwechselt $\Delta A$ mit $\langle A\rangle$. Die Unschärfe ist eine Standardabweichung, kein Mittelwert.
+    \item Man interpretiert die Unschärferelation als technischen Messfehler statt als Zustandsaussage.
+    \item Man schließt aus $[A,B]\ne0$, dass es gar keine gemeinsamen Eigenzustände geben kann. Richtig ist: Im Allgemeinen gibt es keine vollständige gemeinsame Eigenbasis. Einzelne gemeinsame Eigenzustände können trotzdem vorkommen.
+\end{itemize}
+
+\section{Zusammenfassung}
+
+\begin{conceptbox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Der Kommutator ist $[A,B]=AB-BA$.
+    \item Ort und Impuls erfüllen $[X_j,P_k]=i\hbar\delta_{jk}$.
+    \item Aus den kanonischen Kommutatoren folgen Rechenregeln wie
+    \[
+        [X_j,G(P_j)]=i\hbar\frac{\partial G}{\partial P_j},
+        \qquad
+        [P_j,F(X_j)]=-i\hbar\frac{\partial F}{\partial X_j}.
+    \]
+    \item Wenn $[H,A]=0$ und $A$ nicht explizit zeitabhängig ist, ist $A$ erhalten.
+    \item Aus $[H,X_j]$ und $[H,P_j]$ folgen die Ehrenfest-Gleichungen.
+    \item Kommutierende Observablen können simultan scharf messbar sein und gemeinsame Eigenbasen besitzen.
+    \item Nichtverschwindende Kommutatoren erzwingen Unschärferelationen.
+    \item Allgemein gilt $\Delta A\Delta B\ge\frac12|\langle[A,B]\rangle|$.
+    \item Für Ort und Impuls gilt $\Delta X\Delta P\ge\hbar/2$.
+    \item Minimale Orts-Impuls-Unschärfe wird durch Gaußzustände erreicht.
+\end{itemize}
+\end{conceptbox}
+
+\section{Was du für Aufgaben sicher können solltest}
+
+Nach diesem Kapitel solltest du folgende Standardaufgaben lösen können:
+\begin{itemize}
+    \item $[X_j,P_k]$ direkt in Ortsdarstellung berechnen.
+    \item Produktregeln für Kommutatoren anwenden.
+    \item $[X,P^n]$ und $[P,X^n]$ berechnen.
+    \item $[X,G(P)]$ und $[P,F(X)]$ herleiten.
+    \item $[H,X_j]$ und $[H,P_j]$ für $H=P^2/2m+V(X)$ berechnen.
+    \item Das Ehrenfest-Theorem aus Kommutatoren erklären.
+    \item Aus $[H,A]=0$ auf eine Erhaltungsgröße schließen.
+    \item Die Heisenbergsche Unschärferelation beweisen.
+    \item Zustände minimaler Unschärfe als Gaußfunktionen herleiten.
+    \item Für Drehimpulse die Relationen $[L_i,L_j]=i\hbar\varepsilon_{ijk}L_k$ verwenden.
+\end{itemize}

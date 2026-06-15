@@ -1,0 +1,1332 @@
+\chapter{Mathematische Grundlagen}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel sammelt die mathematischen Werkzeuge, die in der Quantentheorie immer wieder gebraucht werden. Es ist bewusst nicht als kurze Formelsammlung geschrieben, sondern als Lernkapitel. Die Idee ist: Wenn später von Zuständen, Observablen, Eigenwerten, Fouriertransformationen oder Delta-Distributionen gesprochen wird, soll klar sein, welche mathematische Struktur dahintersteht.
+
+Die Quantentheorie verwendet im Kern folgende Sprache:
+\begin{itemize}
+    \item Zustände sind Vektoren in einem komplexen Vektorraum, genauer in einem Hilbertraum.
+    \item Messgrößen werden durch lineare Operatoren beschrieben.
+    \item Messwerte sind Eigenwerte dieser Operatoren.
+    \item Wahrscheinlichkeiten entstehen aus Skalarprodukten und Normen.
+    \item Orts- und Impulsdarstellung hängen durch Fouriertransformation zusammen.
+    \item Idealisierte Objekte wie punktförmige Quellen oder Ortszustände werden mit der Dirac-Delta-Distribution beschrieben.
+\end{itemize}
+
+\begin{conceptbox}
+Der wichtigste Perspektivwechsel gegenüber der klassischen Mechanik ist folgender: In der klassischen Mechanik rechnet man oft direkt mit Zahlenwerten wie Ort und Impuls. In der Quantentheorie rechnet man mit Zuständen und Operatoren. Zahlenwerte entstehen erst als Eigenwerte, Erwartungswerte oder Messergebnisse.
+\end{conceptbox}
+
+\section{Komplexe Zahlen}
+
+\subsection{Definition und Grundrechenarten}
+
+In der Quantenmechanik sind Zustände im Allgemeinen komplexwertig. Deshalb braucht man komplexe Zahlen von Anfang an.
+
+\begin{definitionbox}
+Eine komplexe Zahl ist eine Zahl der Form
+\[
+    z = a + ib,
+\]
+wobei $a,b\in\mathbb{R}$ und $i$ die imaginäre Einheit mit
+\[
+    i^2=-1
+\]
+ist. Man nennt
+\[
+    \operatorname{Re}(z)=a,\qquad \operatorname{Im}(z)=b
+\]
+den Realteil und Imaginärteil von $z$.
+\end{definitionbox}
+
+Zwei komplexe Zahlen werden komponentenweise addiert:
+\[
+    (a+ib)+(c+id)=(a+c)+i(b+d).
+\]
+Die Multiplikation folgt aus Ausmultiplizieren und $i^2=-1$:
+\[
+    (a+ib)(c+id)=ac+iad+ibc+i^2bd=(ac-bd)+i(ad+bc).
+\]
+
+\subsection{Komplexe Konjugation und Betrag}
+
+\begin{definitionbox}
+Die komplex konjugierte Zahl zu $z=a+ib$ ist
+\[
+    z^* = a-ib.
+\]
+Der Betrag von $z$ ist
+\[
+    |z| = \sqrt{z^*z}=\sqrt{a^2+b^2}.
+\]
+\end{definitionbox}
+
+Die komplexe Konjugation erfüllt
+\[
+    (z+w)^*=z^*+w^*,\qquad (zw)^*=z^*w^*,\qquad (z^*)^*=z.
+\]
+Besonders wichtig ist
+\[
+    z^*z = |z|^2\in\mathbb{R}_{\ge 0}.
+\]
+Das ist der mathematische Grund dafür, dass in der Quantenmechanik Wahrscheinlichkeitsdichten von der Form $|\psi(x)|^2$ auftreten: Diese Größe ist reell und nichtnegativ.
+
+\subsection{Polardarstellung und Euler-Formel}
+
+\begin{formulabox}
+Für jeden Winkel $\varphi\in\mathbb{R}$ gilt die Euler-Formel
+\[
+    e^{i\varphi}=\cos\varphi+i\sin\varphi.
+\]
+\end{formulabox}
+
+Damit kann man jede komplexe Zahl $z\ne 0$ als
+\[
+    z = r e^{i\varphi}
+\]
+schreiben, wobei
+\[
+    r=|z|,\qquad \varphi=\arg(z)
+\]
+ist. Der Betrag $r$ beschreibt die Länge des komplexen Zeigers, der Winkel $\varphi$ seine Phase.
+
+\begin{conceptbox}
+In der Quantenmechanik ist die Phase einer Wellenfunktion zentral. Die absolute Phase eines einzelnen Zustands ist nicht direkt messbar, aber relative Phasen zwischen überlagerten Anteilen sind physikalisch relevant. Interferenz ist genau ein Effekt solcher relativer Phasen.
+\end{conceptbox}
+
+\section{Vektoren und Matrizen}
+
+\subsection{Vektoren als Spalten}
+
+Ein Vektor in $\mathbb{C}^n$ wird meist als Spaltenvektor geschrieben:
+\[
+    v=
+    \begin{pmatrix}
+        v_1\\
+        v_2\\
+        \vdots\\
+        v_n
+    \end{pmatrix},
+    \qquad v_j\in\mathbb{C}.
+\]
+Die Einträge $v_j$ heißen Komponenten des Vektors.
+
+\begin{examplebox}
+Ein Spin-$\frac12$-Zustand wird später oft als Vektor in $\mathbb{C}^2$ geschrieben:
+\[
+    v=\begin{pmatrix}a\\ b\end{pmatrix}.
+\]
+Dabei sind $a,b\in\mathbb{C}$. Physikalisch können $|a|^2$ und $|b|^2$ als Wahrscheinlichkeiten auftreten, wenn der Vektor normiert ist.
+\end{examplebox}
+
+\subsection{Matrizen als lineare Abbildungen}
+
+Eine Matrix $A\in\mathbb{C}^{m\times n}$ hat $m$ Zeilen und $n$ Spalten:
+\[
+    A=
+    \begin{pmatrix}
+        A_{11} & A_{12} & \cdots & A_{1n}\\
+        A_{21} & A_{22} & \cdots & A_{2n}\\
+        \vdots & \vdots & \ddots & \vdots\\
+        A_{m1} & A_{m2} & \cdots & A_{mn}
+    \end{pmatrix}.
+\]
+Sie wirkt auf einen Vektor $v\in\mathbb{C}^n$ durch
+\[
+    (Av)_i = \sum_{j=1}^{n} A_{ij}v_j.
+\]
+Wenn $A\in\mathbb{C}^{n\times n}$ quadratisch ist, bildet $A$ den Raum $\mathbb{C}^n$ wieder in sich selbst ab.
+
+\subsection{Transponierte, komplex konjugierte und adjungierte Matrix}
+
+\begin{definitionbox}
+Die transponierte Matrix $A^T$ entsteht durch Vertauschen von Zeilen und Spalten:
+\[
+    (A^T)_{ij}=A_{ji}.
+\]
+Die komplex konjugierte Matrix $A^*$ entsteht durch komplexe Konjugation jedes Eintrags:
+\[
+    (A^*)_{ij}=A_{ij}^*.
+\]
+Die adjungierte Matrix oder hermitesch konjugierte Matrix ist
+\[
+    A^\dagger=(A^*)^T,
+    \qquad (A^\dagger)_{ij}=A_{ji}^*.
+\]
+\end{definitionbox}
+
+Für einen Spaltenvektor $v$ ist
+\[
+    v^\dagger = (v^*)^T
+\]
+ein Zeilenvektor. Zum Beispiel:
+\[
+    v=\begin{pmatrix}1+i\\ 2-i\end{pmatrix}
+    \quad\Rightarrow\quad
+    v^\dagger=\begin{pmatrix}1-i & 2+i\end{pmatrix}.
+\]
+
+\begin{examplebox}
+Für
+\[
+    A=\begin{pmatrix}
+        1+i & 2-i\\
+        3 & 4i
+    \end{pmatrix}
+\]
+gilt
+\[
+    A^*=
+    \begin{pmatrix}
+        1-i & 2+i\\
+        3 & -4i
+    \end{pmatrix},
+    \qquad
+    A^\dagger=
+    \begin{pmatrix}
+        1-i & 3\\
+        2+i & -4i
+    \end{pmatrix}.
+\]
+\end{examplebox}
+
+\subsection{Skalarprodukt in $\mathbb{C}^n$}
+
+\begin{definitionbox}
+Für $v,w\in\mathbb{C}^n$ ist das komplexe Skalarprodukt
+\[
+    \langle v,w\rangle = v^\dagger w
+    = \sum_{j=1}^{n} v_j^*w_j.
+\]
+\end{definitionbox}
+
+Das Skalarprodukt ist im zweiten Argument linear und im ersten Argument antilinear:
+\[
+    \langle v,\alpha w_1+\beta w_2\rangle
+    =\alpha\langle v,w_1\rangle+\beta\langle v,w_2\rangle,
+\]
+aber
+\[
+    \langle \alpha v_1+\beta v_2,w\rangle
+    =\alpha^*\langle v_1,w\rangle+\beta^*\langle v_2,w\rangle.
+\]
+Außerdem gilt
+\[
+    \langle v,w\rangle = \langle w,v\rangle^*.
+\]
+
+\subsection{Normierung und Orthogonalität}
+
+\begin{definitionbox}
+Die Norm eines Vektors $v$ ist
+\[
+    \|v\| = \sqrt{\langle v,v\rangle}
+    = \sqrt{\sum_{j=1}^{n}|v_j|^2}.
+\]
+Ein Vektor heißt normiert, wenn $\|v\|=1$ gilt.
+Zwei Vektoren heißen orthogonal, wenn
+\[
+    \langle v,w\rangle=0
+\]
+gilt.
+\end{definitionbox}
+
+Ist $v\ne 0$, dann erhält man den normierten Vektor
+\[
+    v_{\mathrm{norm}}=\frac{v}{\|v\|}.
+\]
+
+\begin{examplebox}
+Sei
+\[
+    v=\begin{pmatrix}1\\ i\end{pmatrix}.
+\]
+Dann ist
+\[
+    \|v\|^2 = |1|^2+|i|^2=1+1=2,
+    \qquad \|v\|=\sqrt2.
+\]
+Der normierte Vektor ist
+\[
+    \frac{1}{\sqrt2}\begin{pmatrix}1\\ i\end{pmatrix}.
+\]
+\end{examplebox}
+
+\section{Determinante, Spur und Invertierbarkeit}
+
+\subsection{Determinante}
+
+Die Determinante ist eine Zahl, die einer quadratischen Matrix zugeordnet wird. Für eine $2\times2$-Matrix gilt
+\[
+    \det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc.
+\]
+Für größere Matrizen kann man die Determinante zum Beispiel mit Laplace-Entwicklung berechnen.
+
+\begin{formulabox}
+Die Laplace-Entwicklung nach der $i$-ten Zeile lautet
+\[
+    \det(A)=\sum_{j=1}^{n}(-1)^{i+j}A_{ij}M_{ij},
+\]
+wobei $M_{ij}$ der Minor ist, also die Determinante der Matrix, die entsteht, wenn man die $i$-te Zeile und $j$-te Spalte streicht.
+\end{formulabox}
+
+\subsection{Spur}
+
+\begin{definitionbox}
+Die Spur einer quadratischen Matrix $A\in\mathbb{C}^{n\times n}$ ist die Summe ihrer Diagonalelemente:
+\[
+    \operatorname{tr}(A)=\sum_{j=1}^{n}A_{jj}.
+\]
+\end{definitionbox}
+
+Die Spur ist besonders nützlich, weil sie mit Eigenwerten zusammenhängt. Hat $A$ die Eigenwerte $\lambda_1,\dots,\lambda_n$, dann gilt
+\[
+    \operatorname{tr}(A)=\sum_{j=1}^{n}\lambda_j.
+\]
+Außerdem gilt
+\[
+    \det(A)=\prod_{j=1}^{n}\lambda_j.
+\]
+
+\subsection{Invertierbarkeit}
+
+Eine quadratische Matrix $A$ heißt invertierbar, wenn eine Matrix $A^{-1}$ existiert mit
+\[
+    A^{-1}A=AA^{-1}=I.
+\]
+Dabei ist $I$ die Einheitsmatrix. Eine Matrix ist genau dann invertierbar, wenn
+\[
+    \det(A)\ne 0
+\]
+gilt.
+
+\begin{examtipbox}
+Wenn du ein homogenes Gleichungssystem
+\[
+    Av=0
+\]
+betrachtest, gibt es genau dann eine nichttriviale Lösung $v\ne 0$, wenn $A$ nicht invertierbar ist. Das heißt:
+\[
+    \det(A)=0.
+\]
+Genau diese Idee steckt hinter der Eigenwertgleichung.
+\end{examtipbox}
+
+\section{Eigenwerte und Eigenvektoren}
+
+\subsection{Definition}
+
+\begin{definitionbox}
+Sei $A\in\mathbb{C}^{n\times n}$. Ein Vektor $v\ne 0$ heißt Eigenvektor von $A$ zum Eigenwert $\lambda\in\mathbb{C}$, wenn
+\[
+    Av=\lambda v
+\]
+gilt.
+\end{definitionbox}
+
+Die Gleichung bedeutet: Die Wirkung von $A$ auf $v$ ändert nur die Länge und Phase von $v$, aber nicht seine Richtung im Vektorraum.
+
+\subsection{Charakteristisches Polynom}
+
+Die Eigenwertgleichung lässt sich umschreiben:
+\[
+    Av=\lambda v
+    \quad\Longleftrightarrow\quad
+    (A-\lambda I)v=0.
+\]
+Da $v\ne0$ gefordert ist, muss $A-\lambda I$ nicht invertierbar sein. Daher gilt
+\[
+    \det(A-\lambda I)=0.
+\]
+
+\begin{formulabox}
+Die Eigenwerte von $A$ findet man durch Lösen der charakteristischen Gleichung
+\[
+    \det(A-\lambda I)=0.
+\]
+Danach findet man die Eigenvektoren durch Lösen von
+\[
+    (A-\lambda I)v=0
+\]
+für jeden Eigenwert $\lambda$.
+\end{formulabox}
+
+\subsection{Warum Eigenwerte in der Quantenmechanik wichtig sind}
+
+In der Quantentheorie werden Observablen durch Operatoren beschrieben. Die möglichen Messergebnisse einer Observablen sind die Eigenwerte des zugehörigen Operators. Die zugehörigen Eigenvektoren oder Eigenfunktionen beschreiben Zustände, in denen die Messgröße einen scharfen Wert besitzt.
+
+\begin{conceptbox}
+Wenn $A$ eine Observable ist und
+\[
+    A\psi=a\psi
+\]
+gilt, dann ist $\psi$ ein Zustand mit eindeutigem Messwert $a$ für die Observable $A$. In diesem Zustand ist die Messung von $A$ nicht zufällig, sondern liefert sicher $a$.
+\end{conceptbox}
+
+\subsection{Ausführliches Beispiel: Eigenwerte einer $3\times3$-Matrix}
+
+Wir betrachten
+\[
+    A=
+    \begin{pmatrix}
+        5&6&3\\
+        -1&0&1\\
+        1&2&-1
+    \end{pmatrix}.
+\]
+Gesucht sind die Eigenwerte und Eigenvektoren.
+
+\begin{calculationbox}
+Zuerst berechnen wir
+\[
+    A-\lambda I=
+    \begin{pmatrix}
+        5-\lambda&6&3\\
+        -1&-\lambda&1\\
+        1&2&-1-\lambda
+    \end{pmatrix}.
+\]
+Die Eigenwerte erfüllen
+\[
+    \det(A-\lambda I)=0.
+\]
+Laplace-Entwicklung nach der ersten Zeile ergibt
+\[
+\begin{aligned}
+\det(A-\lambda I)
+&=(5-\lambda)
+\begin{vmatrix}
+-\lambda&1\\
+2&-1-\lambda
+\end{vmatrix}
+-6
+\begin{vmatrix}
+-1&1\\
+1&-1-\lambda
+\end{vmatrix}
++3
+\begin{vmatrix}
+-1&-\lambda\\
+1&2
+\end{vmatrix}.
+\end{aligned}
+\]
+Die drei $2\times2$-Determinanten sind
+\[
+\begin{aligned}
+\begin{vmatrix}
+-\lambda&1\\
+2&-1-\lambda
+\end{vmatrix}
+&=(-\lambda)(-1-\lambda)-2
+=\lambda^2+\lambda-2,\\
+\begin{vmatrix}
+-1&1\\
+1&-1-\lambda
+\end{vmatrix}
+&=(-1)(-1-\lambda)-1
+=\lambda,\\
+\begin{vmatrix}
+-1&-\lambda\\
+1&2
+\end{vmatrix}
+&=-2+\lambda.
+\end{aligned}
+\]
+Damit folgt
+\[
+\begin{aligned}
+0&=(5-\lambda)(\lambda^2+\lambda-2)-6\lambda+3(-2+\lambda)\\
+&=-\lambda^3+4\lambda^2+4\lambda-16.
+\end{aligned}
+\]
+Die Lösungen sind
+\[
+    \lambda_1=4,
+    \qquad \lambda_2=2,
+    \qquad \lambda_3=-2.
+\]
+\end{calculationbox}
+
+Jetzt werden die Eigenvektoren berechnet.
+
+\begin{calculationbox}
+Für $\lambda_1=4$ lösen wir
+\[
+    (A-4I)v=0,
+\]
+also
+\[
+    \begin{pmatrix}
+        1&6&3\\
+        -1&-4&1\\
+        1&2&-5
+    \end{pmatrix}
+    \begin{pmatrix}x\\y\\z\end{pmatrix}=0.
+\]
+Eine nichttriviale Lösung ist
+\[
+    v_1=\begin{pmatrix}9\\-2\\1\end{pmatrix}.
+\]
+Für $\lambda_2=2$ lösen wir
+\[
+    \begin{pmatrix}
+        3&6&3\\
+        -1&-2&1\\
+        1&2&-3
+    \end{pmatrix}
+    \begin{pmatrix}x\\y\\z\end{pmatrix}=0,
+\]
+und erhalten zum Beispiel
+\[
+    v_2=\begin{pmatrix}2\\-1\\0\end{pmatrix}.
+\]
+Für $\lambda_3=-2$ lösen wir
+\[
+    \begin{pmatrix}
+        7&6&3\\
+        -1&2&1\\
+        1&2&1
+    \end{pmatrix}
+    \begin{pmatrix}x\\y\\z\end{pmatrix}=0,
+\]
+und erhalten zum Beispiel
+\[
+    v_3=\begin{pmatrix}0\\1\\-2\end{pmatrix}.
+\]
+\end{calculationbox}
+
+\begin{answerbox}
+Die Eigenwerte sind
+\[
+    4,\\quad 2,\quad -2.
+\]
+Zugehörige Eigenvektoren sind beispielsweise
+\[
+    v_1=\begin{pmatrix}9\\-2\\1\end{pmatrix},
+    \qquad
+    v_2=\begin{pmatrix}2\\-1\\0\end{pmatrix},
+    \qquad
+    v_3=\begin{pmatrix}0\\1\\-2\end{pmatrix}.
+\]
+Eigenvektoren sind nicht eindeutig normiert: Jedes von Null verschiedene Vielfache eines Eigenvektors ist wieder ein Eigenvektor zum gleichen Eigenwert.
+\end{answerbox}
+
+\subsection{Entartung}
+
+Ein Eigenwert heißt entartet, wenn er zu mehr als einem linear unabhängigen Eigenvektor gehört. Die Dimension des Eigenraums
+\[
+    E_\lambda=\ker(A-\lambda I)
+\]
+heißt geometrische Vielfachheit des Eigenwerts.
+
+\begin{conceptbox}
+Entartung ist in der Quantenmechanik besonders wichtig, weil bei entarteten Eigenwerten ein Messwert nicht eindeutig festlegt, in welchem Zustand sich das System nach der Messung befindet. Man muss dann den gesamten Eigenraum zum Messwert betrachten.
+\end{conceptbox}
+
+\section{Spezielle Operatoren und Matrizen}
+
+\subsection{Hermitesche Operatoren}
+
+\begin{definitionbox}
+Eine Matrix oder ein Operator $A$ heißt hermitesch oder selbstadjungiert, wenn
+\[
+    A^\dagger=A
+\]
+gilt.
+\end{definitionbox}
+
+Für Matrizen bedeutet das
+\[
+    A_{ij}=A_{ji}^*.
+\]
+Die Diagonalelemente einer hermiteschen Matrix sind daher reell.
+
+\begin{formulabox}
+Hermitesche Operatoren haben zwei zentrale Eigenschaften:
+\begin{enumerate}[label=\arabic*)]
+    \item Alle Eigenwerte sind reell.
+    \item Eigenvektoren zu verschiedenen Eigenwerten sind orthogonal.
+\end{enumerate}
+\end{formulabox}
+
+\begin{derivationbox}
+Sei $A=A^\dagger$ und $Av=\lambda v$ mit $v\ne0$. Dann gilt
+\[
+    \langle v,Av\rangle = \langle v,\lambda v\rangle=\lambda\langle v,v\rangle.
+\]
+Andererseits gilt wegen $A=A^\dagger$
+\[
+    \langle v,Av\rangle = \langle A v,v\rangle = \langle \lambda v,v\rangle = \lambda^*\langle v,v\rangle.
+\]
+Also
+\[
+    \lambda\langle v,v\rangle=\lambda^*\langle v,v\rangle.
+\]
+Da $v\ne0$ ist, gilt $\langle v,v\rangle>0$. Daher folgt
+\[
+    \lambda=\lambda^*.
+\]
+Somit ist $\lambda$ reell.
+\end{derivationbox}
+
+\begin{examtipbox}
+In der Quantenmechanik müssen Observablen durch selbstadjungierte Operatoren beschrieben werden, weil Messergebnisse reell sein müssen. Mathematisch ist das genau die Aussage: Eigenwerte selbstadjungierter Operatoren sind reell.
+\end{examtipbox}
+
+\subsection{Unitäre Operatoren}
+
+\begin{definitionbox}
+Ein Operator $U$ heißt unitär, wenn
+\[
+    U^\dagger U=UU^\dagger=I
+\]
+gilt. Äquivalent dazu ist
+\[
+    U^{-1}=U^\dagger.
+\]
+\end{definitionbox}
+
+Unitäre Operatoren erhalten Skalarprodukte:
+\[
+    \langle Uv,Uw\rangle
+    = (Uv)^\dagger(Uw)
+    = v^\dagger U^\dagger U w
+    = v^\dagger w
+    = \langle v,w\rangle.
+\]
+Insbesondere erhalten sie Normen:
+\[
+    \|Uv\|=\|v\|.
+\]
+
+\begin{conceptbox}
+Zeitentwicklung in der Quantenmechanik ist unitär. Das bedeutet mathematisch, dass die Norm eines Zustands erhalten bleibt. Physikalisch bedeutet das, dass Gesamtwahrscheinlichkeit nicht verloren geht.
+\end{conceptbox}
+
+\subsection{Projektoren}
+
+\begin{definitionbox}
+Ein Operator $P$ heißt Projektor, wenn
+\[
+    P^2=P
+\]
+gilt. Ist zusätzlich
+\[
+    P^\dagger=P,
+\]
+dann heißt $P$ orthogonaler Projektor.
+\end{definitionbox}
+
+Ein normierter Vektor $v$ definiert den Projektor auf die von $v$ aufgespannte Gerade:
+\[
+    P_v = vv^\dagger.
+\]
+In Bra-Ket-Schreibweise wird später dafür geschrieben:
+\[
+    P_v = |v\rangle\langle v|.
+\]
+Hier verwenden wir diese Schreibweise nur als Ausblick.
+
+\begin{calculationbox}
+Sei $\|v\|=1$. Dann gilt
+\[
+    P_v^2=(vv^\dagger)(vv^\dagger)
+    =v(v^\dagger v)v^\dagger
+    =v\cdot 1\cdot v^\dagger
+    =P_v.
+\]
+Außerdem
+\[
+    P_v^\dagger=(vv^\dagger)^\dagger=vv^\dagger=P_v.
+\]
+Also ist $P_v$ ein orthogonaler Projektor.
+\end{calculationbox}
+
+\section{Vektorräume und Hilberträume}
+
+\subsection{Komplexer Vektorraum}
+
+Ein komplexer Vektorraum ist eine Menge von Objekten, die man addieren und mit komplexen Zahlen multiplizieren kann. Für die Quantentheorie sind zwei Beispiele zentral:
+\begin{itemize}
+    \item endliche Räume $\mathbb{C}^n$, zum Beispiel für Spin-Systeme;
+    \item Funktionenräume wie $L^2(\mathbb{R}^3)$, zum Beispiel für Wellenfunktionen im Ortsraum.
+\end{itemize}
+
+\begin{definitionbox}
+Ein Hilbertraum ist ein komplexer Vektorraum mit einem Skalarprodukt, der bezüglich der dadurch definierten Norm vollständig ist.
+\end{definitionbox}
+
+Für die meisten Rechnungen in der einführenden Quantentheorie bedeutet das praktisch: Wir haben einen Raum von Zuständen, ein Skalarprodukt, Normen, Orthogonalität und Grenzwerte von Zustandsfolgen.
+
+\subsection{Der Raum $L^2(\mathbb{R}^3)$}
+
+\begin{definitionbox}
+Der Raum $L^2(\mathbb{R}^3)$ besteht aus quadratintegrierbaren komplexwertigen Funktionen:
+\[
+    L^2(\mathbb{R}^3)=
+    \left\{
+    \psi:\mathbb{R}^3\to\mathbb{C}
+    \;\middle|\;
+    \int_{\mathbb{R}^3}\dd^3x\, |\psi(\vec x)|^2<\infty
+    \right\}.
+\]
+\end{definitionbox}
+
+Das Skalarprodukt ist
+\[
+    (\varphi,\psi)=\int_{\mathbb{R}^3}\dd^3x\,\varphi^*(\vec x)\psi(\vec x).
+\]
+Die Norm ist
+\[
+    \|\psi\|^2=(\psi,\psi)=\int_{\mathbb{R}^3}\dd^3x\,|\psi(\vec x)|^2.
+\]
+
+\begin{conceptbox}
+Eine Wellenfunktion $\psi$ ist nur dann als normierter Zustand eines Teilchens interpretierbar, wenn
+\[
+    \int_{\mathbb{R}^3}\dd^3x\,|\psi(\vec x)|^2=1
+\]
+gilt. Dann kann $|\psi(\vec x)|^2\dd^3x$ als Wahrscheinlichkeit interpretiert werden, das Teilchen im Volumenelement $\dd^3x$ um $\vec x$ zu finden.
+\end{conceptbox}
+
+\subsection{Linearität und Superposition}
+
+Wenn $\psi_1,\psi_2\in L^2(\mathbb{R}^3)$ sind und $\alpha,\beta\in\mathbb{C}$, dann ist auch
+\[
+    \psi=\alpha\psi_1+\beta\psi_2
+\]
+in $L^2(\mathbb{R}^3)$. Diese mathematische Eigenschaft ist die Grundlage des Superpositionsprinzips.
+
+\begin{derivationbox}
+Mit
+\[
+    \psi=\alpha\psi_1+\beta\psi_2
+\]
+gilt punktweise
+\[
+\begin{aligned}
+|\psi|^2
+&=(\alpha\psi_1+\beta\psi_2)^*(\alpha\psi_1+\beta\psi_2)\\
+&=|\alpha|^2|\psi_1|^2+|\beta|^2|\psi_2|^2
++\alpha^*\beta\psi_1^*\psi_2+\beta^*\alpha\psi_2^*\psi_1.
+\end{aligned}
+\]
+Die gemischten Terme kann man mit
+\[
+    2|ab|\le |a|^2+|b|^2
+\]
+abschätzen. Daher bleibt die Quadratintegrierbarkeit erhalten, wenn $\psi_1$ und $\psi_2$ quadratintegrierbar sind.
+\end{derivationbox}
+
+\subsection{Cauchy-Schwarz-Ungleichung}
+
+\begin{formulabox}
+Für alle Zustände $\varphi,\psi$ in einem Hilbertraum gilt
+\[
+    |(\varphi,\psi)|^2\le (\varphi,\varphi)(\psi,\psi).
+\]
+Äquivalent:
+\[
+    |(\varphi,\psi)|\le \|\varphi\|\,\|\psi\|.
+\]
+\end{formulabox}
+
+Diese Ungleichung ist eine mathematische Basis vieler Abschätzungen in der Quantenmechanik. Die Heisenbergsche Unschärferelation kann zum Beispiel über eine Variante dieser Ungleichung bewiesen werden.
+
+\section{Basen, Orthonormalbasen und Entwicklung von Zuständen}
+
+\subsection{Basis in endlicher Dimension}
+
+Eine Basis eines Vektorraums ist eine Menge von Vektoren, mit denen man jeden Vektor eindeutig als Linearkombination schreiben kann. In $\mathbb{C}^n$ ist die Standardbasis
+\[
+    e_1=\begin{pmatrix}1\\0\\\vdots\\0\end{pmatrix},
+    \quad
+    e_2=\begin{pmatrix}0\\1\\\vdots\\0\end{pmatrix},
+    \quad \dots \quad,
+    e_n=\begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix}.
+\]
+Jeder Vektor $v$ lässt sich schreiben als
+\[
+    v=\sum_{j=1}^{n}v_j e_j.
+\]
+
+\subsection{Orthonormalbasis}
+
+\begin{definitionbox}
+Eine Basis $\{e_1,\dots,e_n\}$ heißt Orthonormalbasis, wenn
+\[
+    \langle e_i,e_j\rangle=\delta_{ij}
+\]
+gilt. Dabei ist
+\[
+    \delta_{ij}=\begin{cases}
+    1,& i=j,\\
+    0,& i\ne j.
+    \end{cases}
+\]
+\end{definitionbox}
+
+Ist $\{e_j\}$ eine Orthonormalbasis, dann hat jeder Vektor die Darstellung
+\[
+    v=\sum_{j=1}^{n} c_j e_j,
+    \qquad c_j=\langle e_j,v\rangle.
+\]
+Die Norm ist dann
+\[
+    \|v\|^2=\sum_{j=1}^{n}|c_j|^2.
+\]
+
+\begin{conceptbox}
+In der Quantenmechanik bedeuten die Koeffizienten $c_j$ in einer Eigenbasis: Wenn $v$ normiert ist, dann ist $|c_j|^2$ die Wahrscheinlichkeit, bei einer Messung den Eigenwert zum Eigenvektor $e_j$ zu erhalten.
+\end{conceptbox}
+
+\subsection{Vollständigkeitsrelation}
+
+Für eine Orthonormalbasis gilt die Vollständigkeitsrelation
+\[
+    I=\sum_{j=1}^{n} e_j e_j^\dagger.
+\]
+Denn für jeden Vektor $v$ gilt
+\[
+    \left(\sum_{j=1}^{n} e_j e_j^\dagger\right)v
+    =\sum_{j=1}^{n} e_j\langle e_j,v\rangle
+    =v.
+\]
+In Bra-Ket-Schreibweise wird das später zu
+\[
+    I=\sum_j |e_j\rangle\langle e_j|.
+\]
+
+\section{Lineare Operatoren auf Funktionen}
+
+\subsection{Operatoren als Abbildungen}
+
+Ein linearer Operator $A$ auf einem Funktionenraum ordnet einer Funktion $\psi$ eine neue Funktion $A\psi$ zu. Linearität bedeutet
+\[
+    A(\alpha\psi+\beta\varphi)=\alpha A\psi+\beta A\varphi.
+\]
+
+\begin{examplebox}
+Der Ortsoperator in einer Dimension wirkt durch Multiplikation mit $x$:
+\[
+    (X\psi)(x)=x\psi(x).
+\]
+Der Impulsoperator in Ortsdarstellung wirkt durch Ableitung:
+\[
+    (P\psi)(x)=\frac{\hbar}{i}\frac{\dd}{\dd x}\psi(x)
+    =-i\hbar\frac{\dd}{\dd x}\psi(x).
+\]
+Beide Operatoren sind linear.
+\end{examplebox}
+
+\subsection{Adjungierter Operator im Funktionenraum}
+
+\begin{definitionbox}
+Der adjungierte Operator $A^\dagger$ zu $A$ ist durch
+\[
+    (A^\dagger\varphi,\psi)=(\varphi,A\psi)
+\]
+für alle geeigneten Funktionen $\varphi,\psi$ definiert.
+\end{definitionbox}
+
+Ein Operator heißt selbstadjungiert, wenn
+\[
+    A^\dagger=A
+\]
+gilt. Für Observablen ist Selbstadjungiertheit die mathematische Idealbedingung.
+
+\subsection{Beispiel: Impulsoperator und partielle Integration}
+
+Wir betrachten den Impulsoperator in einer Dimension
+\[
+    P=-i\hbar\frac{\dd}{\dd x}.
+\]
+Für geeignete Funktionen, die am Rand schnell genug verschwinden, gilt
+\[
+\begin{aligned}
+(\varphi,P\psi)
+&=\int_{-\infty}^{\infty}\dd x\,\varphi^*(x)\left(-i\hbar\frac{\dd}{\dd x}\psi(x)\right)\\
+&=-i\hbar\int_{-\infty}^{\infty}\dd x\,\varphi^*(x)\psi'(x).
+\end{aligned}
+\]
+Partielle Integration liefert
+\[
+\begin{aligned}
+(\varphi,P\psi)
+&=-i\hbar\left[\varphi^*(x)\psi(x)\right]_{-\infty}^{\infty}
++i\hbar\int_{-\infty}^{\infty}\dd x\,\frac{\dd\varphi^*}{\dd x}\psi(x).
+\end{aligned}
+\]
+Wenn der Randterm verschwindet, dann gilt
+\[
+\begin{aligned}
+(\varphi,P\psi)
+&=\int_{-\infty}^{\infty}\dd x\,\left(-i\hbar\frac{\dd\varphi}{\dd x}\right)^*\psi(x)\\
+&=(P\varphi,\psi).
+\end{aligned}
+\]
+Damit ist $P$ unter passenden Randbedingungen selbstadjungiert.
+
+\begin{examtipbox}
+Bei Operatoren mit Ableitungen sind Randbedingungen nicht Nebensache. Selbstadjungiertheit hängt oft daran, dass Randterme bei partieller Integration verschwinden oder sich gegenseitig aufheben.
+\end{examtipbox}
+
+\section{Kommutatoren}
+
+\subsection{Definition}
+
+\begin{definitionbox}
+Der Kommutator zweier Operatoren $A$ und $B$ ist
+\[
+    [A,B]=AB-BA.
+\]
+\end{definitionbox}
+
+Wenn $[A,B]=0$ gilt, sagt man: $A$ und $B$ kommutieren. Wenn $[A,B]\ne0$, dann ist die Reihenfolge der Anwendung wichtig.
+
+\subsection{Rechenregeln}
+
+Für Operatoren $A,B,C$ und komplexe Zahlen $\alpha,\beta$ gilt
+\[
+    [A,B]=-[B,A],
+\]
+\[
+    [A,\alpha B+\beta C]=\alpha[A,B]+\beta[A,C],
+\]
+\[
+    [A,BC]=[A,B]C+B[A,C],
+\]
+\[
+    [AB,C]=A[B,C]+[A,C]B.
+\]
+
+\subsection{Kanonischer Kommutator}
+
+Für den Ortsoperator $X$ und Impulsoperator $P$ in einer Dimension gilt
+\[
+    [X,P]=i\hbar I.
+\]
+
+\begin{calculationbox}
+Wir wenden den Kommutator auf eine Testfunktion $\psi$ an:
+\[
+\begin{aligned}
+([X,P]\psi)(x)
+&=(XP\psi)(x)-(PX\psi)(x)\\
+&=x\left(-i\hbar\psi'(x)\right)
+-\left[-i\hbar\frac{\dd}{\dd x}(x\psi(x))\right]\\
+&=-i\hbar x\psi'(x)+i\hbar\left(\psi(x)+x\psi'(x)\right)\\
+&=i\hbar\psi(x).
+\end{aligned}
+\]
+Da dies für alle geeigneten $\psi$ gilt, folgt
+\[
+    [X,P]=i\hbar I.
+\]
+\end{calculationbox}
+
+\begin{conceptbox}
+Der kanonische Kommutator ist einer der zentralen mathematischen Unterschiede zwischen klassischer und quantenmechanischer Beschreibung. Er ist die algebraische Grundlage der Orts-Impuls-Unschärferelation.
+\end{conceptbox}
+
+\section{Dirac-Delta-Distribution}
+
+\subsection{Motivation}
+
+Die Dirac-Delta-Distribution $\delta(x)$ ist keine gewöhnliche Funktion. Sie beschreibt ein idealisiertes Objekt, das überall außer bei $x=0$ verschwindet, aber Integral $1$ besitzt. Mathematisch wird sie durch ihre Wirkung unter einem Integral definiert.
+
+\begin{definitionbox}
+Die Dirac-Delta-Distribution ist durch
+\[
+    \int_{-\infty}^{\infty}\dd x\,\delta(x)f(x)=f(0)
+\]
+für geeignete Testfunktionen $f$ definiert.
+\end{definitionbox}
+
+Allgemeiner gilt
+\[
+    \int_{-\infty}^{\infty}\dd x\,\delta(x-a)f(x)=f(a).
+\]
+Diese Eigenschaft heißt Ausblendeigenschaft oder Siebeigenschaft.
+
+\subsection{Wichtige Eigenschaften}
+
+\begin{formulabox}
+Für die Delta-Distribution gelten
+\[
+    \delta(-x)=\delta(x),
+\]
+\[
+    \delta(ax)=\frac{1}{|a|}\delta(x)\qquad (a\ne0),
+\]
+\[
+    \int_{-\infty}^{\infty}\dd x\,\delta'(x)f(x)=-f'(0).
+\]
+Außerdem gilt in drei Dimensionen
+\[
+    \int_{\mathbb{R}^3}\dd^3x\,\delta^{(3)}(\vec x-\vec a)f(\vec x)=f(\vec a).
+\]
+\end{formulabox}
+
+\subsection{Heaviside-Funktion}
+
+Die Heaviside-Stufenfunktion $\Theta(x)$ ist definiert durch
+\[
+    \Theta(x)=
+    \begin{cases}
+        0, & x<0,\\
+        1, & x>0.
+    \end{cases}
+\]
+Der Wert bei $x=0$ wird je nach Konvention als $0$, $1/2$ oder $1$ gewählt. Für physikalische Integrale ist dieser Einzelpunkt meistens irrelevant.
+
+Die Delta-Distribution ist die Ableitung der Heaviside-Funktion im distributionellen Sinn:
+\[
+    \frac{\dd}{\dd x}\Theta(x)=\delta(x).
+\]
+Umgekehrt kann man schreiben
+\[
+    \Theta(x)=\int_{-\infty}^{x}\dd t\,\delta(t).
+\]
+
+\subsection{Delta-Distribution in Potentialen}
+
+In der Quantenmechanik tritt $\delta(x)$ zum Beispiel im eindimensionalen Delta-Potential auf:
+\[
+    V(x)=-\alpha\delta(x).
+\]
+Da $V(x)$ die Einheit einer Energie haben muss und $\delta(x)$ die Einheit einer inversen Länge hat, folgt
+\[
+    [\delta(x)]=\frac{1}{\mathrm{L}},
+    \qquad [\alpha]=\mathrm{E}\cdot \mathrm{L}.
+\]
+
+\begin{examtipbox}
+Bei Delta-Potentialen ist die Wellenfunktion meistens stetig, aber ihre Ableitung hat einen Sprung. Dieser Sprung entsteht durch Integration der Schrödingergleichung über ein kleines Intervall um die Stelle der Delta-Distribution.
+\end{examtipbox}
+
+\section{Fouriertransformation}
+
+\subsection{Grundidee}
+
+Die Fouriertransformation zerlegt eine Funktion in ebene Wellen. In der Quantenmechanik ist das besonders wichtig, weil ebene Wellen Eigenfunktionen des Impulsoperators sind. Deshalb verbindet die Fouriertransformation die Ortsdarstellung mit der Impulsdarstellung.
+
+\begin{definitionbox}
+Für eine Funktion $f(x)$ definieren wir die Fouriertransformierte $F(k)$ durch
+\[
+    F(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd x\,f(x)e^{-ikx}.
+\]
+Die inverse Fouriertransformation ist
+\[
+    f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd k\,F(k)e^{ikx}.
+\]
+\end{definitionbox}
+
+Es gibt mehrere Normierungskonventionen. Wichtig ist nur, innerhalb einer Rechnung konsequent bei einer Konvention zu bleiben.
+
+\subsection{Wichtige Eigenschaften}
+
+\begin{formulabox}
+Für die Fouriertransformation gelten:
+\[
+    \mathcal{F}[af+bg]=a\mathcal{F}[f]+b\mathcal{F}[g],
+\]
+\[
+    \mathcal{F}[f(x-a)](k)=e^{-ika}F(k),
+\]
+\[
+    \mathcal{F}[f'(x)](k)=ikF(k),
+\]
+\[
+    \mathcal{F}[\delta(x)](k)=\frac{1}{\sqrt{2\pi}}
+\]
+bei der symmetrischen Konvention dieses Kapitels.
+\end{formulabox}
+
+\subsection{Fouriertransformation in der Quantenmechanik}
+
+In der Quantenmechanik verwendet man oft die Impulsvariable $p=\hbar k$. Dann lautet die Transformation in einer Dimension häufig
+\[
+    \psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\dd p\,\widetilde\psi(p)e^{ipx/\hbar},
+\]
+\[
+    \widetilde\psi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\dd x\,\psi(x)e^{-ipx/\hbar}.
+\]
+In drei Dimensionen entsprechend
+\[
+    \psi(\vec x)=\frac{1}{(2\pi\hbar)^{3/2}}\int_{\mathbb{R}^3}\dd^3p\,\widetilde\psi(\vec p)e^{i\vec p\cdot\vec x/\hbar},
+\]
+\[
+    \widetilde\psi(\vec p)=\frac{1}{(2\pi\hbar)^{3/2}}\int_{\mathbb{R}^3}\dd^3x\,\psi(\vec x)e^{-i\vec p\cdot\vec x/\hbar}.
+\]
+
+\begin{conceptbox}
+$\psi(x)$ beschreibt den Zustand in Ortsdarstellung. $\widetilde\psi(p)$ beschreibt denselben Zustand in Impulsdarstellung. Es sind nicht zwei verschiedene Zustände, sondern zwei verschiedene Darstellungen desselben Zustands.
+\end{conceptbox}
+
+\subsection{Parseval-Identität und Normerhaltung}
+
+Bei geeigneter Normierung gilt
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x)|^2
+    =
+    \int_{-\infty}^{\infty}\dd p\,|\widetilde\psi(p)|^2.
+\]
+Das bedeutet: Die Gesamtwahrscheinlichkeit ist in Orts- und Impulsdarstellung gleich.
+
+\section{Gaussiane Integrale}
+
+\subsection{Standardintegral}
+
+Gaussiane Funktionen treten in der Quantenmechanik häufig auf, besonders beim harmonischen Oszillator und bei Wellenpaketen.
+
+\begin{formulabox}
+Für $a>0$ gilt
+\[
+    \int_{-\infty}^{\infty}\dd x\,e^{-a x^2}=\sqrt{\frac{\pi}{a}}.
+\]
+Weiter gilt
+\[
+    \int_{-\infty}^{\infty}\dd x\,x e^{-a x^2}=0,
+\]
+weil der Integrand ungerade ist, und
+\[
+    \int_{-\infty}^{\infty}\dd x\,x^2e^{-a x^2}=\frac{\sqrt\pi}{2a^{3/2}}.
+\]
+\end{formulabox}
+
+\subsection{Normierung einer Gauß-Funktion}
+
+Betrachte
+\[
+    \psi(x)=N e^{-x^2/a^2}.
+\]
+Wir wollen $N$ so wählen, dass $\psi$ normiert ist.
+
+\begin{calculationbox}
+Die Normierungsbedingung lautet
+\[
+    1=\int_{-\infty}^{\infty}\dd x\,|\psi(x)|^2
+    =|N|^2\int_{-\infty}^{\infty}\dd x\,e^{-2x^2/a^2}.
+\]
+Mit
+\[
+    \int_{-\infty}^{\infty}\dd x\,e^{-2x^2/a^2}
+    =\sqrt{\frac{\pi}{2/a^2}}
+    =a\sqrt{\frac{\pi}{2}}
+\]
+folgt
+\[
+    |N|^2 a\sqrt{\frac{\pi}{2}}=1.
+\]
+Also
+\[
+    |N|^2=\sqrt{\frac{2}{\pi a^2}},
+    \qquad
+    N=\left(\frac{2}{\pi a^2}\right)^{1/4}
+\]
+bei reell positiv gewähltem $N$.
+\end{calculationbox}
+
+\section{Taylorentwicklung}
+
+\subsection{Allgemeine Taylorreihe}
+
+\begin{formulabox}
+Ist $f$ hinreichend oft differenzierbar, dann lautet die Taylorentwicklung um $x=a$
+\[
+    f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n.
+\]
+Für $a=0$ spricht man von der Maclaurin-Reihe.
+\end{formulabox}
+
+\subsection{Wichtige Reihen}
+
+Die wichtigsten Reihen sind
+\[
+    e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}
+    =1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\dots,
+\]
+\[
+    \sin x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!}
+    =x-\frac{x^3}{3!}+\frac{x^5}{5!}-\dots,
+\]
+\[
+    \cos x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}
+    =1-\frac{x^2}{2!}+\frac{x^4}{4!}-\dots.
+\]
+Für $|x|<1$ gilt
+\[
+    \ln(1+x)=\sum_{n=1}^{\infty}(-1)^{n+1}\frac{x^n}{n}
+    =x-\frac{x^2}{2}+\frac{x^3}{3}-\dots.
+\]
+
+\begin{conceptbox}
+Taylorreihen sind in der Quantentheorie besonders wichtig, weil Operatorfunktionen wie $e^{-iHt/\hbar}$, $e^{i\theta\sigma_x}$ oder Störungsentwicklungen über Potenzreihen verstanden werden.
+\end{conceptbox}
+
+\section{Exponentialfunktion von Matrizen und Operatoren}
+
+\subsection{Definition über Potenzreihe}
+
+Für eine Matrix oder einen Operator $A$ definiert man
+\[
+    e^A=\sum_{n=0}^{\infty}\frac{A^n}{n!}
+    =I+A+\frac{A^2}{2!}+\frac{A^3}{3!}+\dots.
+\]
+Diese Definition ist direkt aus der Taylorreihe der Exponentialfunktion übernommen.
+
+\subsection{Spezialfall: $A^2=I$}
+
+Wenn ein Operator $A$ die Eigenschaft
+\[
+    A^2=I
+\]
+hat, dann kann man $e^{-i\alpha A}$ explizit vereinfachen.
+
+\begin{derivationbox}
+Wir schreiben
+\[
+    e^{-i\alpha A}
+    =\sum_{n=0}^{\infty}\frac{(-i\alpha A)^n}{n!}.
+\]
+Gerade Potenzen liefern $A^{2k}=I$, ungerade Potenzen liefern $A^{2k+1}=A$. Also
+\[
+\begin{aligned}
+    e^{-i\alpha A}
+    &= I\sum_{k=0}^{\infty}\frac{(-1)^k\alpha^{2k}}{(2k)!}
+    -iA\sum_{k=0}^{\infty}\frac{(-1)^k\alpha^{2k+1}}{(2k+1)!}\\
+    &=I\cos\alpha-iA\sin\alpha.
+\end{aligned}
+\]
+\end{derivationbox}
+
+\begin{examplebox}
+Für Pauli-Matrizen gilt später
+\[
+    \sigma_x^2=\sigma_y^2=\sigma_z^2=I.
+\]
+Daher kann man Zeitentwicklungsoperatoren für Spin-$\frac12$-Systeme oft mit
+\[
+    e^{-i\alpha\sigma_j}=I\cos\alpha-i\sigma_j\sin\alpha
+\]
+berechnen.
+\end{examplebox}
+
+\section{Wahrscheinlichkeiten, Erwartungswerte und Varianz}
+
+\subsection{Diskrete Wahrscheinlichkeiten}
+
+Für eine diskrete Zufallsvariable $X$ mit Werten $x_j$ und Wahrscheinlichkeiten $p_j$ gilt
+\[
+    p_j\ge0,
+    \qquad
+    \sum_j p_j=1.
+\]
+Der Erwartungswert ist
+\[
+    \langle X\rangle=\sum_j x_jp_j.
+\]
+Die Varianz ist
+\[
+    \operatorname{Var}(X)=\langle (X-\langle X\rangle)^2\rangle
+    =\langle X^2\rangle-\langle X\rangle^2.
+\]
+
+\subsection{Kontinuierliche Wahrscheinlichkeiten}
+
+Für eine Wahrscheinlichkeitsdichte $\rho(x)$ gilt
+\[
+    \rho(x)\ge0,
+    \qquad
+    \int_{-\infty}^{\infty}\dd x\,\rho(x)=1.
+\]
+Der Erwartungswert ist
+\[
+    \langle X\rangle=\int_{-\infty}^{\infty}\dd x\,x\rho(x),
+\]
+die Varianz
+\[
+    (\Delta X)^2=\int_{-\infty}^{\infty}\dd x\,(x-\langle X\rangle)^2\rho(x)
+    =\langle X^2\rangle-\langle X\rangle^2.
+\]
+
+\subsection{Quantenmechanische Schreibweise}
+
+Ist $\psi(x)$ normiert, dann ist
+\[
+    \rho(x)=|\psi(x)|^2
+\]
+die Ortswahrscheinlichkeitsdichte. Daher gilt
+\[
+    \langle X\rangle=\int_{-\infty}^{\infty}\dd x\,x|\psi(x)|^2.
+\]
+Für einen Operator $A$ lautet der Erwartungswert allgemein
+\[
+    \langle A\rangle_\psi=(\psi,A\psi).
+\]
+In Ortsdarstellung heißt das
+\[
+    \langle A\rangle_\psi
+    =\int\dd x\,\psi^*(x)(A\psi)(x).
+\]
+
+\begin{formulabox}
+Die quantenmechanische Varianz einer Observablen $A$ im Zustand $\psi$ ist
+\[
+    (\Delta A)^2
+    =\langle (A-\langle A\rangle)^2\rangle
+    =\langle A^2\rangle-\langle A\rangle^2.
+\]
+\end{formulabox}
+
+\section{Zusammenfassung der wichtigsten Werkzeuge}
+
+\begin{notebox}
+Für die folgenden Kapitel solltest du besonders sicher beherrschen:
+\begin{enumerate}[label=\arabic*)]
+    \item Komplexe Konjugation: $z^*z=|z|^2$.
+    \item Skalarprodukt: $\langle v,w\rangle=v^\dagger w$ und $(\varphi,\psi)=\int \varphi^*\psi$.
+    \item Normierung: $\|\psi\|^2=1$ bedeutet Gesamtwahrscheinlichkeit $1$.
+    \item Eigenwertgleichung: $Av=\lambda v$ und $\det(A-\lambda I)=0$.
+    \item Hermitesche Operatoren: $A^\dagger=A$ und reelle Eigenwerte.
+    \item Unitäre Operatoren: $U^\dagger U=I$ und Normerhaltung.
+    \item Projektoren: $P^2=P$, bei orthogonalen Projektoren zusätzlich $P^\dagger=P$.
+    \item Kommutator: $[A,B]=AB-BA$.
+    \item Kanonischer Kommutator: $[X,P]=i\hbar I$.
+    \item Delta-Distribution: $\int \delta(x-a)f(x)\dd x=f(a)$.
+    \item Fouriertransformation: Wechsel zwischen Orts- und Impulsdarstellung.
+    \item Erwartungswert: $\langle A\rangle=(\psi,A\psi)$.
+\end{enumerate}
+\end{notebox}
+
+\section{Typische Fehler}
+
+\begin{examtipbox}
+\begin{itemize}
+    \item Bei komplexen Skalarprodukten darf die komplexe Konjugation im ersten Faktor nicht vergessen werden.
+    \item Eigenvektoren dürfen nicht der Nullvektor sein.
+    \item Ein Eigenvektor ist nie eindeutig normiert; jedes nichtverschwindende Vielfache ist wieder ein Eigenvektor.
+    \item Bei hermiteschen Matrizen wird nicht nur transponiert, sondern zusätzlich komplex konjugiert.
+    \item Bei Ableitungsoperatoren müssen Randbedingungen beachtet werden.
+    \item Die Delta-Distribution darf nicht wie eine gewöhnliche Funktion behandelt werden. Ihre Bedeutung liegt in Integralen.
+    \item Bei Fouriertransformationen muss man die Normierungskonvention konsistent halten.
+    \item $|\psi|^2$ ist nicht dasselbe wie $\psi^2$, falls $\psi$ komplex ist. Es gilt $|\psi|^2=\psi^*\psi$.
+\end{itemize}
+\end{examtipbox}
+
+\section{Mini-Checkliste zum Üben}
+
+\begin{enumerate}[label=\arabic*)]
+    \item Kannst du zu einer $2\times2$-Matrix die Eigenwerte und Eigenvektoren berechnen?
+    \item Kannst du einen komplexen Vektor normieren?
+    \item Kannst du prüfen, ob eine Matrix hermitesch oder unitär ist?
+    \item Kannst du den Kommutator $[X,P]$ ausrechnen?
+    \item Kannst du mit $\delta(x-a)$ unter einem Integral rechnen?
+    \item Kannst du erklären, warum Fouriertransformation zur Impulsdarstellung führt?
+    \item Kannst du einen Erwartungswert in Matrixform und in Integralform schreiben?
+\end{enumerate}
+
+Wenn diese Punkte sicher sind, ist die mathematische Basis für die ersten Kapitel der Quantentheorie gelegt.

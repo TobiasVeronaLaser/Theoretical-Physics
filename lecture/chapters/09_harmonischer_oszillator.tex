@@ -1,0 +1,1311 @@
+% Local Dirac notation commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+
+\chapter{Harmonischer Oszillator}
+
+\section{Ziel dieses Kapitels}
+
+Der harmonische Oszillator ist eines der wichtigsten exakt lösbaren Modelle der Quantenmechanik. Er beschreibt nicht nur eine Masse an einer Feder, sondern tritt immer dann näherungsweise auf, wenn ein Teilchen sich in der Nähe eines stabilen Gleichgewichtspunktes befindet. Ist ein Potential $V(x)$ bei $x_0$ minimal, dann gilt näherungsweise
+\[
+    V(x)\approx V(x_0)+\frac{1}{2}V''(x_0)(x-x_0)^2.
+\]
+Damit ist der harmonische Oszillator das Standardmodell für kleine Schwingungen, Molekülschwingungen, Phononen und viele quantisierte Feldmoden.
+
+\begin{conceptbox}
+Der eindimensionale harmonische Oszillator hat den Hamiltonoperator
+\[
+    H=\frac{P^2}{2m}+\frac{1}{2}m\omega^2X^2.
+\]
+Seine Energieeigenwerte sind nicht kontinuierlich, sondern
+\[
+    E_n=\hbar\omega\left(n+\frac12\right),\qquad n=0,1,2,\dots.
+\]
+Die Energieabstände sind konstant:
+\[
+    E_{n+1}-E_n=\hbar\omega.
+\]
+Der Grundzustand besitzt trotzdem die nichtverschwindende Nullpunktsenergie
+\[
+    E_0=\frac12\hbar\omega.
+\]
+\end{conceptbox}
+
+Die zentralen Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Wie löst man den harmonischen Oszillator mit Auf- und Absteigeoperatoren?
+    \item Warum gibt es eine Nullpunktsenergie?
+    \item Wie sehen die Energieeigenfunktionen in Ortsdarstellung aus?
+    \item Wie berechnet man Matrixelemente von $X$ und $P$?
+    \item Wie verhalten sich Zustände unter Zeitentwicklung?
+    \item Wie behandelt man verschobene Oszillatoren und Oszillatoren in mehreren Dimensionen?
+    \item Warum sind mehrdimensionale Oszillatoren entartet und wie beschreibt man diese Entartung?
+\end{itemize}
+
+\section{Klassischer harmonischer Oszillator als Motivation}
+
+Klassisch beschreibt der eindimensionale harmonische Oszillator ein Teilchen der Masse $m$ im Potential
+\[
+    V(x)=\frac12 m\omega^2x^2.
+\]
+Die Kraft ist
+\[
+    F(x)=-\frac{\dd V}{\dd x}=-m\omega^2x.
+\]
+Mit Newtons Gleichung $m\ddot x=F(x)$ folgt
+\[
+    \ddot x+\omega^2x=0.
+\]
+Die allgemeine Lösung ist
+\[
+    x(t)=A\cos(\omega t)+B\sin(\omega t).
+\]
+Die Gesamtenergie lautet
+\[
+    E=\frac{p^2}{2m}+\frac12m\omega^2x^2.
+\]
+Klassisch kann $E$ jeden nichtnegativen Wert annehmen. Quantenmechanisch wird daraus ein Operatorproblem, und die erlaubten Energien werden diskret.
+
+\begin{notebox}
+Der harmonische Oszillator ist deshalb so wichtig, weil jedes glatte Potential nahe einem stabilen Minimum quadratisch aussieht. Ist $V'(x_0)=0$ und $V''(x_0)>0$, dann gilt
+\[
+    V(x)=V(x_0)+\frac12V''(x_0)(x-x_0)^2+\text{höhere Ordnungen}.
+\]
+Vergleicht man mit $\frac12m\omega^2(x-x_0)^2$, erhält man
+\[
+    \omega=\sqrt{\frac{V''(x_0)}{m}}.
+\]
+\end{notebox}
+
+\section{Quantisierung des eindimensionalen Oszillators}
+
+\subsection{Hamiltonoperator}
+
+In der Quantenmechanik werden Ort und Impuls zu Operatoren $X$ und $P$ mit der kanonischen Kommutatorrelation
+\[
+    [X,P]=i\hbar.
+\]
+Der Hamiltonoperator lautet
+\[
+    H=\frac{P^2}{2m}+\frac12m\omega^2X^2.
+\]
+In Ortsdarstellung gilt
+\[
+    (X\psi)(x)=x\psi(x),\qquad (P\psi)(x)=-i\hbar\frac{\dd}{\dd x}\psi(x),
+\]
+also
+\[
+    H\psi(x)=\left[-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}+\frac12m\omega^2x^2\right]\psi(x).
+\]
+Die stationäre Schrödingergleichung ist
+\[
+    \left[-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}+\frac12m\omega^2x^2\right]\psi(x)=E\psi(x).
+\]
+
+\begin{definitionbox}
+Die Energieeigenzustände des harmonischen Oszillators sind Zustände $\ket{n}$ mit
+\[
+    H\ket{n}=E_n\ket{n}.
+\]
+In Ortsdarstellung heißen die Eigenfunktionen
+\[
+    \psi_n(x)=\langle x|n\rangle.
+\]
+\end{definitionbox}
+
+\subsection{Natürliche Längen- und Impulsskala}
+
+Im harmonischen Oszillator treten die Größen $m$, $\omega$ und $\hbar$ immer in charakteristischen Kombinationen auf. Eine natürliche Längenskala ist
+\[
+    x_0=\sqrt{\frac{\hbar}{m\omega}}.
+\]
+Eine natürliche Impulsskala ist
+\[
+    p_0=\sqrt{m\hbar\omega}.
+\]
+Diese Skalen erfüllen
+\[
+    x_0p_0=\hbar.
+\]
+
+\begin{notebox}
+Die Größe $x_0$ gibt die typische quantenmechanische Ausdehnung des Grundzustands an. Eine große Masse oder eine große Frequenz machen den Oszillator stärker lokalisiert. Ein großes $\hbar$ macht die Quantenschwankungen größer.
+\end{notebox}
+
+\section{Auf- und Absteigeoperatoren}
+
+\subsection{Definition}
+
+Die direkte Lösung der Differentialgleichung ist möglich, aber algebraisch aufwendiger. Die elegante Methode besteht darin, Linearkombinationen von $X$ und $P$ zu definieren.
+
+\begin{definitionbox}
+Der Absteigeoperator $a$ und der Aufsteigeoperator $a^\dagger$ des eindimensionalen harmonischen Oszillators sind
+\[
+    a=\sqrt{\frac{m\omega}{2\hbar}}\,X+\frac{i}{\sqrt{2m\hbar\omega}}\,P,
+\]
+\[
+    a^\dagger=\sqrt{\frac{m\omega}{2\hbar}}\,X-\frac{i}{\sqrt{2m\hbar\omega}}\,P.
+\]
+Äquivalent kann man schreiben
+\[
+    a=\sqrt{\frac{m\omega}{2\hbar}}\left(X+\frac{i}{m\omega}P\right),
+    \qquad
+    a^\dagger=\sqrt{\frac{m\omega}{2\hbar}}\left(X-\frac{i}{m\omega}P\right).
+\]
+\end{definitionbox}
+
+Aus diesen Definitionen folgen die Umkehrformeln
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger),
+\]
+\[
+    P=-i\sqrt{\frac{m\hbar\omega}{2}}(a-a^\dagger)
+    =i\sqrt{\frac{m\hbar\omega}{2}}(a^\dagger-a).
+\]
+
+\subsection{Kommutator von $a$ und $a^\dagger$}
+
+\begin{derivationbox}
+Setze
+\[
+    \alpha=\sqrt{\frac{m\omega}{2\hbar}},\qquad
+    \beta=\frac{1}{\sqrt{2m\hbar\omega}}.
+\]
+Dann gilt
+\[
+    a=\alpha X+i\beta P,
+    \qquad
+    a^\dagger=\alpha X-i\beta P.
+\]
+Der Kommutator ist
+\begin{align*}
+    [a,a^\dagger]
+    &= [\alpha X+i\beta P,\alpha X-i\beta P] \\
+    &= -i\alpha\beta[X,P]+i\alpha\beta[P,X].
+\end{align*}
+Mit $[X,P]=i\hbar$ und $[P,X]=-i\hbar$ folgt
+\[
+    [a,a^\dagger]=\alpha\beta\hbar+\alpha\beta\hbar=2\alpha\beta\hbar.
+\]
+Da
+\[
+    \alpha\beta=\frac{1}{2\hbar},
+\]
+ergibt sich
+\[
+    [a,a^\dagger]=1.
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Für den harmonischen Oszillator gilt
+\[
+    [a,a^\dagger]=1.
+\]
+Dieser Kommutator ist die zentrale algebraische Relation des Oszillators.
+\end{formulabox}
+
+\subsection{Hamiltonoperator in Leiteroperatorform}
+
+Wir berechnen zunächst $a^\dagger a$:
+\begin{align*}
+    a^\dagger a
+    &=\left(\sqrt{\frac{m\omega}{2\hbar}}X-\frac{i}{\sqrt{2m\hbar\omega}}P\right)
+      \left(\sqrt{\frac{m\omega}{2\hbar}}X+\frac{i}{\sqrt{2m\hbar\omega}}P\right) \\
+    &=\frac{m\omega}{2\hbar}X^2+\frac{1}{2m\hbar\omega}P^2
+      +\frac{i}{2\hbar}XP-\frac{i}{2\hbar}PX \\
+    &=\frac{m\omega}{2\hbar}X^2+\frac{1}{2m\hbar\omega}P^2
+      +\frac{i}{2\hbar}[X,P] \\
+    &=\frac{m\omega}{2\hbar}X^2+\frac{1}{2m\hbar\omega}P^2-\frac12.
+\end{align*}
+Daher ist
+\[
+    \hbar\omega\left(a^\dagger a+\frac12\right)
+    =\frac{P^2}{2m}+\frac12m\omega^2X^2.
+\]
+
+\begin{formulabox}
+Der Hamiltonoperator des eindimensionalen harmonischen Oszillators lautet
+\[
+    H=\hbar\omega\left(a^\dagger a+\frac12\right).
+\]
+Man definiert den Zahloperator
+\[
+    N=a^\dagger a.
+\]
+Dann ist
+\[
+    H=\hbar\omega\left(N+\frac12\right).
+\]
+\end{formulabox}
+
+\section{Zahloperator und Spektrum}
+
+\subsection{Eigenschaften des Zahloperators}
+
+Der Zahloperator ist
+\[
+    N=a^\dagger a.
+\]
+Er ist hermitesch:
+\[
+    N^\dagger=(a^\dagger a)^\dagger=a^\dagger a=N.
+\]
+Außerdem gilt für jeden Zustand $\ket{\psi}$
+\[
+    \mel{\psi}{N}{\psi}=\mel{\psi}{a^\dagger a}{\psi}
+    =\norm{a\ket{\psi}}^2\ge 0.
+\]
+Daher sind die Eigenwerte von $N$ nichtnegativ.
+
+\begin{definitionbox}
+Ein Eigenzustand des Zahloperators ist ein Zustand $\ket{n}$ mit
+\[
+    N\ket{n}=n\ket{n}.
+\]
+Da $H=\hbar\omega(N+1/2)$ gilt, ist $\ket{n}$ zugleich Energieeigenzustand mit
+\[
+    H\ket{n}=\hbar\omega\left(n+\frac12\right)\ket{n}.
+\]
+\end{definitionbox}
+
+\subsection{Kommutatoren mit dem Zahloperator}
+
+Aus $[a,a^\dagger]=1$ folgen
+\[
+    [N,a]=[a^\dagger a,a]=-a,
+\]
+\[
+    [N,a^\dagger]=[a^\dagger a,a^\dagger]=a^\dagger.
+\]
+
+\begin{derivationbox}
+Für $[N,a]$ gilt
+\begin{align*}
+    [N,a]
+    &=a^\dagger aa-aa^\dagger a \\
+    &=a^\dagger a^2-(aa^\dagger)a.
+\end{align*}
+Mit $aa^\dagger=a^\dagger a+1$ folgt
+\[
+    [N,a]=a^\dagger a^2-(a^\dagger a+1)a=-a.
+\]
+Analog gilt
+\begin{align*}
+    [N,a^\dagger]
+    &=a^\dagger aa^\dagger-a^\dagger a^\dagger a \\
+    &=a^\dagger(a^\dagger a+1)-a^\dagger a^\dagger a \\
+    &=a^\dagger.
+\end{align*}
+\end{derivationbox}
+
+\subsection{Wirkung von $a$ und $a^\dagger$}
+
+Sei $\ket{n}$ ein Eigenzustand von $N$:
+\[
+    N\ket{n}=n\ket{n}.
+\]
+Dann gilt
+\[
+    N(a\ket{n})=(aN-a)\ket{n}=(n-1)a\ket{n}.
+\]
+Also ist $a\ket{n}$ entweder null oder ein Eigenzustand mit Eigenwert $n-1$.
+Analog gilt
+\[
+    N(a^\dagger\ket{n})=(a^\dagger N+a^\dagger)\ket{n}=(n+1)a^\dagger\ket{n}.
+\]
+Also ist $a^\dagger\ket{n}$ ein Eigenzustand mit Eigenwert $n+1$.
+
+\begin{conceptbox}
+Der Operator $a$ senkt die Quantenzahl um eins, daher heißt er Absteigeoperator. Der Operator $a^\dagger$ erhöht die Quantenzahl um eins, daher heißt er Aufsteigeoperator.
+\end{conceptbox}
+
+Die Normen bestimmen die Vorfaktoren. Für normierte Zustände gilt
+\[
+    \norm{a\ket{n}}^2=\mel{n}{a^\dagger a}{n}=\mel{n}{N}{n}=n.
+\]
+Daher
+\[
+    a\ket{n}=\sqrt n\ket{n-1}.
+\]
+Außerdem
+\[
+    \norm{a^\dagger\ket{n}}^2=\mel{n}{aa^\dagger}{n}=\mel{n}{N+1}{n}=n+1,
+\]
+also
+\[
+    a^\dagger\ket{n}=\sqrt{n+1}\ket{n+1}.
+\]
+
+\begin{formulabox}
+Für normierte Oszillatorzustände gilt
+\[
+    a\ket{n}=\sqrt n\ket{n-1},
+\]
+\[
+    a^\dagger\ket{n}=\sqrt{n+1}\ket{n+1},
+\]
+\[
+    N\ket{n}=n\ket{n},
+\]
+\[
+    H\ket{n}=\hbar\omega\left(n+\frac12\right)\ket{n}.
+\]
+\end{formulabox}
+
+\subsection{Warum $n$ eine natürliche Zahl ist}
+
+Da $N$ positive Erwartungswerte hat, kann es keine negativen Eigenwerte geben. Wenn $n$ ein Eigenwert wäre, der nicht durch wiederholtes Absteigen auf null endet, könnte man durch wiederholtes Anwenden von $a$ Zustände mit beliebig kleinen Eigenwerten erzeugen:
+\[
+    n,
+    n-1,
+    n-2,
+    \dots.
+\]
+Irgendwann wäre der Eigenwert negativ. Das ist unmöglich. Daher muss die Absteigekette abbrechen. Es gibt also einen Zustand $\ket{0}$ mit
+\[
+    a\ket{0}=0.
+\]
+Dieser Zustand hat
+\[
+    N\ket{0}=0.
+\]
+Durch wiederholtes Anwenden von $a^\dagger$ erhält man alle Zustände
+\[
+    \ket{n}=\frac{(a^\dagger)^n}{\sqrt{n!}}\ket{0},
+    \qquad n=0,1,2,\dots.
+\]
+
+\begin{formulabox}
+Das Spektrum des harmonischen Oszillators ist
+\[
+    E_n=\hbar\omega\left(n+\frac12\right),
+    \qquad n\in\N_0.
+\]
+\end{formulabox}
+
+\section{Grundzustand und Nullpunktsenergie}
+
+\subsection{Grundzustand aus $a\ket{0}=0$}
+
+Der Grundzustand ist der niedrigste Energiezustand. Er erfüllt
+\[
+    a\ket{0}=0.
+\]
+In Ortsdarstellung wird daraus eine Differentialgleichung. Mit
+\[
+    a=\sqrt{\frac{m\omega}{2\hbar}}X+\frac{i}{\sqrt{2m\hbar\omega}}P
+\]
+und $P=-i\hbar\frac{\dd}{\dd x}$ folgt
+\[
+    a\psi_0(x)=\left(\sqrt{\frac{m\omega}{2\hbar}}x+\sqrt{\frac{\hbar}{2m\omega}}\frac{\dd}{\dd x}\right)\psi_0(x)=0.
+\]
+Multipliziert man mit $\sqrt{2m\omega/\hbar}$, erhält man
+\[
+    \left(\frac{\dd}{\dd x}+\frac{m\omega}{\hbar}x\right)\psi_0(x)=0.
+\]
+Also
+\[
+    \frac{\psi_0'(x)}{\psi_0(x)}=-\frac{m\omega}{\hbar}x.
+\]
+Integration liefert
+\[
+    \psi_0(x)=C\exp\left(-\frac{m\omega}{2\hbar}x^2\right).
+\]
+Normierung bestimmt $C$:
+\[
+    1=\int_{-\infty}^{\infty}\abs{\psi_0(x)}^2\dd x
+    =\abs{C}^2\int_{-\infty}^{\infty}e^{-m\omega x^2/\hbar}\dd x.
+\]
+Mit
+\[
+    \int_{-\infty}^{\infty}e^{-\alpha x^2}\dd x=\sqrt{\frac{\pi}{\alpha}}
+\]
+folgt
+\[
+    C=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+\]
+bis auf eine globale Phase.
+
+\begin{formulabox}
+Die normierte Grundzustandswellenfunktion des eindimensionalen harmonischen Oszillators ist
+\[
+    \psi_0(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    \exp\left(-\frac{m\omega}{2\hbar}x^2\right).
+\]
+\end{formulabox}
+
+\subsection{Nullpunktsenergie}
+
+Da
+\[
+    H=\hbar\omega\left(N+\frac12\right)
+\]
+und $N\ket{0}=0$, hat der Grundzustand die Energie
+\[
+    E_0=\frac12\hbar\omega.
+\]
+Diese Energie ist nicht null.
+
+\begin{conceptbox}
+Die Nullpunktsenergie entsteht nicht aus technischer Ungenauigkeit, sondern aus der Nichtvertauschbarkeit von Ort und Impuls. Ein Zustand mit exakt $X=0$ und $P=0$ wäre mit der Unschärferelation unvereinbar. Der Oszillator kann daher nicht gleichzeitig am Potentialminimum ruhen und verschwindenden Impuls besitzen.
+\end{conceptbox}
+
+\subsection{Unschärfe im Grundzustand}
+
+Im Grundzustand gilt wegen der Symmetrie
+\[
+    \langle X\rangle_0=0,
+    \qquad
+    \langle P\rangle_0=0.
+\]
+Mit
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger)
+\]
+folgt
+\begin{align*}
+    \langle X^2\rangle_0
+    &=\frac{\hbar}{2m\omega}
+      \mel{0}{(a+a^\dagger)^2}{0} \\
+    &=\frac{\hbar}{2m\omega}
+      \mel{0}{aa+aa^\dagger+a^\dagger a+a^\dagger a^\dagger}{0} \\
+    &=\frac{\hbar}{2m\omega}.
+\end{align*}
+Ebenso folgt
+\[
+    \langle P^2\rangle_0=\frac{m\hbar\omega}{2}.
+\]
+Damit
+\[
+    \Delta X_0=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P_0=\sqrt{\frac{m\hbar\omega}{2}}.
+\]
+Das Produkt ist
+\[
+    \Delta X_0\Delta P_0=\frac{\hbar}{2}.
+\]
+
+\begin{formulabox}
+Der Grundzustand des harmonischen Oszillators ist ein Zustand minimaler Unschärfe:
+\[
+    \Delta X_0\Delta P_0=\frac{\hbar}{2}.
+\]
+\end{formulabox}
+
+\section{Angeregte Zustände und Hermite-Polynome}
+
+\subsection{Konstruktion aus dem Grundzustand}
+
+Die angeregten Zustände entstehen durch wiederholtes Anwenden des Aufsteigeoperators:
+\[
+    \ket{n}=\frac{(a^\dagger)^n}{\sqrt{n!}}\ket{0}.
+\]
+In Ortsdarstellung erhält man
+\[
+    \psi_n(x)=\langle x|n\rangle.
+\]
+Dazu führt man die dimensionslose Variable
+\[
+    \xi=\sqrt{\frac{m\omega}{\hbar}}x
+\]
+ein. Dann lautet die normierte Eigenfunktion
+\[
+    \psi_n(x)=\frac{1}{\sqrt{2^n n!}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    H_n(\xi)e^{-\xi^2/2},
+\]
+wobei $H_n$ die Hermite-Polynome sind.
+
+\begin{formulabox}
+Die normierten Ortswellenfunktionen des eindimensionalen harmonischen Oszillators sind
+\[
+    \psi_n(x)=\frac{1}{\sqrt{2^n n!}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    H_n\left(\sqrt{\frac{m\omega}{\hbar}}x\right)
+    \exp\left(-\frac{m\omega}{2\hbar}x^2\right).
+\]
+\end{formulabox}
+
+\subsection{Die ersten Eigenfunktionen}
+
+Die ersten Hermite-Polynome sind
+\[
+    H_0(\xi)=1,
+\]
+\[
+    H_1(\xi)=2\xi,
+\]
+\[
+    H_2(\xi)=4\xi^2-2,
+\]
+\[
+    H_3(\xi)=8\xi^3-12\xi.
+\]
+Damit sind die ersten Eigenfunktionen
+\[
+    \psi_0(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}e^{-\xi^2/2},
+\]
+\[
+    \psi_1(x)=\sqrt2\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}\xi e^{-\xi^2/2},
+\]
+\[
+    \psi_2(x)=\frac{1}{\sqrt2}\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}(2\xi^2-1)e^{-\xi^2/2}.
+\]
+
+\begin{notebox}
+Die Eigenfunktion $\psi_n$ besitzt genau $n$ Knoten. Der Grundzustand hat keinen Knoten, der erste angeregte Zustand einen Knoten, der zweite angeregte Zustand zwei Knoten usw.
+\end{notebox}
+
+\subsection{Parität}
+
+Das Potential
+\[
+    V(x)=\frac12m\omega^2x^2
+\]
+ist gerade. Daher kommutiert der Hamiltonoperator mit dem Paritätsoperator $\Pi$, der $x\mapsto -x$ bewirkt. Die Eigenfunktionen können also mit bestimmter Parität gewählt werden.
+
+Da
+\[
+    H_n(-\xi)=(-1)^nH_n(\xi),
+\]
+gilt
+\[
+    \psi_n(-x)=(-1)^n\psi_n(x).
+\]
+
+\begin{formulabox}
+Die Oszillatorzustände haben alternierende Parität:
+\[
+    \psi_n(-x)=(-1)^n\psi_n(x).
+\]
+Gerade $n$ liefern gerade Wellenfunktionen, ungerade $n$ liefern ungerade Wellenfunktionen.
+\end{formulabox}
+
+\section{Matrixelemente von Ort und Impuls}
+
+\subsection{Ort und Impuls in der Energieeigenbasis}
+
+Die Darstellungen
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger),
+\]
+\[
+    P=i\sqrt{\frac{m\hbar\omega}{2}}(a^\dagger-a)
+\]
+sind besonders nützlich, weil $a$ und $a^\dagger$ einfache Wirkungen auf $\ket{n}$ haben.
+
+Für den Ortsoperator gilt
+\[
+    X\ket{n}=\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt n\ket{n-1}+\sqrt{n+1}\ket{n+1}\right).
+\]
+Damit
+\[
+    \mel{m}{X}{n}=\sqrt{\frac{\hbar}{2m\omega}}
+    \left(\sqrt n\,\delta_{m,n-1}+\sqrt{n+1}\,\delta_{m,n+1}\right).
+\]
+Für den Impulsoperator gilt
+\[
+    P\ket{n}=i\sqrt{\frac{m\hbar\omega}{2}}
+    \left(\sqrt{n+1}\ket{n+1}-\sqrt n\ket{n-1}\right),
+\]
+also
+\[
+    \mel{m}{P}{n}=i\sqrt{\frac{m\hbar\omega}{2}}
+    \left(\sqrt{n+1}\,\delta_{m,n+1}-\sqrt n\,\delta_{m,n-1}\right).
+\]
+
+\begin{formulabox}
+Die wichtigsten Matrixelemente sind
+\[
+    \mel{m}{X}{n}=\sqrt{\frac{\hbar}{2m\omega}}
+    \left(\sqrt n\,\delta_{m,n-1}+\sqrt{n+1}\,\delta_{m,n+1}\right),
+\]
+\[
+    \mel{m}{P}{n}=i\sqrt{\frac{m\hbar\omega}{2}}
+    \left(\sqrt{n+1}\,\delta_{m,n+1}-\sqrt n\,\delta_{m,n-1}\right).
+\]
+\end{formulabox}
+
+\subsection{Auswahlregeln}
+
+Aus den Matrixelementen sieht man sofort:
+\[
+    \mel{m}{X}{n}\neq0
+    \quad\Longrightarrow\quad
+    m=n\pm1.
+\]
+Dasselbe gilt für $P$. Der Ortsoperator verbindet im harmonischen Oszillator nur Zustände, deren Quantenzahlen sich um eins unterscheiden.
+
+\begin{conceptbox}
+Eine Auswahlregel sagt, welche Übergänge oder Matrixelemente aufgrund der Struktur der Operatoren verschwinden. Für den Ortsoperator $X$ im harmonischen Oszillator gilt die Auswahlregel
+\[
+    \Delta n=\pm1.
+\]
+\end{conceptbox}
+
+\subsection{Erwartungswerte in Energieeigenzuständen}
+
+Für Energieeigenzustände gilt
+\[
+    \langle X\rangle_n=0,
+    \qquad
+    \langle P\rangle_n=0.
+\]
+Die Quadrate sind
+\[
+    \langle X^2\rangle_n=\frac{\hbar}{2m\omega}(2n+1)
+    =\frac{\hbar}{m\omega}\left(n+\frac12\right),
+\]
+\[
+    \langle P^2\rangle_n=\frac{m\hbar\omega}{2}(2n+1)
+    =m\hbar\omega\left(n+\frac12\right).
+\]
+Damit
+\[
+    \Delta X_n=\sqrt{\frac{\hbar}{m\omega}\left(n+\frac12\right)},
+\]
+\[
+    \Delta P_n=\sqrt{m\hbar\omega\left(n+\frac12\right)}.
+\]
+Das Produkt ist
+\[
+    \Delta X_n\Delta P_n=\hbar\left(n+\frac12\right).
+\]
+Nur für $n=0$ ist das Minimum $\hbar/2$ erreicht.
+
+\section{Virialsatz und Aufteilung der Energie}
+
+Im harmonischen Oszillator sind kinetische und potentielle Energie in jedem Energieeigenzustand gleich groß. Definiere
+\[
+    T=\frac{P^2}{2m},
+    \qquad
+    V=\frac12m\omega^2X^2.
+\]
+Dann gilt
+\[
+    \langle T\rangle_n=\langle V\rangle_n=\frac12E_n.
+\]
+
+\begin{derivationbox}
+Mit
+\[
+    \langle P^2\rangle_n=m\hbar\omega\left(n+\frac12\right)
+\]
+folgt
+\[
+    \langle T\rangle_n=\frac{\langle P^2\rangle_n}{2m}
+    =\frac12\hbar\omega\left(n+\frac12\right).
+\]
+Mit
+\[
+    \langle X^2\rangle_n=\frac{\hbar}{m\omega}\left(n+\frac12\right)
+\]
+folgt
+\[
+    \langle V\rangle_n=\frac12m\omega^2\langle X^2\rangle_n
+    =\frac12\hbar\omega\left(n+\frac12\right).
+\]
+Also
+\[
+    \langle T\rangle_n=\langle V\rangle_n=\frac12E_n.
+\]
+\end{derivationbox}
+
+\begin{notebox}
+Dieses Ergebnis ist die quantenmechanische Version des Virialsatzes für ein quadratisches Potential. Obwohl $T$ und $V$ einzeln nicht mit $H$ kommutieren, sind ihre Erwartungswerte in stationären Zuständen gleich groß.
+\end{notebox}
+
+\section{Zeitentwicklung}
+
+\subsection{Zeitentwicklung eines Energieeigenzustands}
+
+Ist das System zum Zeitpunkt $t=0$ im Eigenzustand $\ket{n}$, dann gilt
+\[
+    \ket{\psi(0)}=\ket{n}.
+\]
+Die Zeitentwicklung ist
+\[
+    \ket{\psi(t)}=e^{-iHt/\hbar}\ket{n}
+    =e^{-iE_nt/\hbar}\ket{n}.
+\]
+Also
+\[
+    \ket{\psi(t)}=e^{-i\omega(n+1/2)t}\ket{n}.
+\]
+
+\begin{conceptbox}
+Ein Energieeigenzustand ändert sich zeitlich nur durch eine Phase. Alle Messwahrscheinlichkeiten für zeitunabhängige Observablen, die nur von $\abs{\psi}$ abhängen, bleiben deshalb in einem Energieeigenzustand konstant. Solche Zustände heißen stationäre Zustände.
+\end{conceptbox}
+
+\subsection{Zeitentwicklung einer Superposition}
+
+Für eine allgemeine Anfangssuperposition
+\[
+    \ket{\psi(0)}=\sum_{n=0}^{\infty}c_n\ket{n}
+\]
+folgt
+\[
+    \ket{\psi(t)}=\sum_{n=0}^{\infty}c_n e^{-i\omega(n+1/2)t}\ket{n}.
+\]
+Die Beträge $\abs{c_n}^2$ bleiben konstant. Daher bleiben die Wahrscheinlichkeiten für Energie-Messungen unverändert. Erwartungswerte anderer Observablen können aber zeitabhängig sein, weil relative Phasen zwischen den Komponenten entstehen.
+
+\begin{examplebox}
+Betrachte
+\[
+    \ket{\psi(0)}=\frac{1}{\sqrt2}(\ket{0}+\ket{1}).
+\]
+Dann ist
+\[
+    \ket{\psi(t)}=\frac{1}{\sqrt2}\left(e^{-i\omega t/2}\ket{0}+e^{-i3\omega t/2}\ket{1}\right).
+\]
+Bis auf eine globale Phase ist das
+\[
+    \ket{\psi(t)}=\frac{e^{-i\omega t/2}}{\sqrt2}\left(\ket{0}+e^{-i\omega t}\ket{1}\right).
+\]
+Die relative Phase $e^{-i\omega t}$ ist physikalisch relevant.
+\end{examplebox}
+
+\subsection{Erwartungswert der Energie in einer Superposition}
+
+Für
+\[
+    \ket{\psi}=\frac{1}{\sqrt2}(\ket{1}+\ket{2})
+\]
+sind die möglichen Energiewerte
+\[
+    E_1=\frac32\hbar\omega,
+    \qquad
+    E_2=\frac52\hbar\omega.
+\]
+Beide treten mit Wahrscheinlichkeit $1/2$ auf. Der Erwartungswert ist
+\[
+    \langle H\rangle=\frac12E_1+\frac12E_2=2\hbar\omega.
+\]
+Die Energieunschärfe ist
+\begin{align*}
+    (\Delta H)^2
+    &=\langle H^2\rangle-\langle H\rangle^2 \\
+    &=\frac12E_1^2+\frac12E_2^2-(2\hbar\omega)^2 \\
+    &=\frac14\hbar^2\omega^2.
+\end{align*}
+Also
+\[
+    \Delta H=\frac12\hbar\omega.
+\]
+Da $H$ zeitunabhängig ist und $[H,H]=0$, ist $\langle H\rangle$ zeitlich konstant.
+
+\section{Verschobener harmonischer Oszillator}
+
+\subsection{Motivation}
+
+Ein wichtiges Standardbeispiel ist ein harmonischer Oszillator in einem konstanten äußeren Feld. Das Potential ist dann nicht mehr um $x=0$ zentriert, sondern sein Minimum verschiebt sich.
+
+Betrachte
+\[
+    H(E)=\frac{P^2}{2m}+\frac12m\omega^2X^2-eEX.
+\]
+Das beschreibt ein Teilchen mit Ladung $e$ in einem harmonischen Potential und zusätzlich in einem konstanten elektrischen Feld $E$.
+
+\subsection{Quadratische Ergänzung}
+
+Wir ergänzen quadratisch:
+\begin{align*}
+    \frac12m\omega^2X^2-eEX
+    &=\frac12m\omega^2\left(X^2-2\frac{eE}{m\omega^2}X\right) \\
+    &=\frac12m\omega^2\left(X-\frac{eE}{m\omega^2}\right)^2
+      -\frac12m\omega^2\left(\frac{eE}{m\omega^2}\right)^2.
+\end{align*}
+Also
+\[
+    H(E)=\frac{P^2}{2m}+\frac12m\omega^2\left(X-x_E\right)^2
+    -\frac{e^2E^2}{2m\omega^2},
+\]
+mit
+\[
+    x_E=\frac{eE}{m\omega^2}.
+\]
+
+\begin{formulabox}
+Der konstante Feldterm verschiebt das Oszillatorzentrum um
+\[
+    x_E=\frac{eE}{m\omega^2}
+\]
+und verschiebt alle Energien um
+\[
+    -\frac{e^2E^2}{2m\omega^2}.
+\]
+\end{formulabox}
+
+\subsection{Energieeigenwerte und Eigenfunktionen}
+
+Setze
+\[
+    u=x-x_E.
+\]
+Dann ist der Hamiltonoperator in $u$ wieder ein normaler harmonischer Oszillator plus eine Konstante. Daher sind die Eigenwerte
+\[
+    E_n(E)=\hbar\omega\left(n+\frac12\right)-\frac{e^2E^2}{2m\omega^2}.
+\]
+Die Eigenfunktionen sind verschobene Oszillatorfunktionen:
+\[
+    \psi_n(x;E)=\psi_n^{(0)}(x-x_E).
+\]
+Explizit:
+\[
+    \psi_n(x;E)=\frac{1}{\sqrt{2^n n!}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    H_n\left(\sqrt{\frac{m\omega}{\hbar}}(x-x_E)\right)
+    \exp\left[-\frac{m\omega}{2\hbar}(x-x_E)^2\right].
+\]
+
+\subsection{Dipolmoment}
+
+Das elektrische Dipolmoment ist
+\[
+    D=eX.
+\]
+Für den verschobenen Oszillator gilt
+\[
+    X=u+x_E.
+\]
+Da in jedem Oszillator-Eigenzustand bezogen auf das neue Zentrum
+\[
+    \langle u\rangle_n=0
+\]
+gilt, folgt
+\[
+    \langle X\rangle_n=x_E=\frac{eE}{m\omega^2}.
+\]
+Daher
+\[
+    \langle D\rangle_n=e\langle X\rangle_n=\frac{e^2E}{m\omega^2}.
+\]
+
+\begin{conceptbox}
+Ein konstantes elektrisches Feld verschiebt den harmonischen Oszillator, ändert aber nicht den Abstand der Energieniveaus. Alle Zustände werden räumlich verschoben, und alle Energien werden um denselben konstanten Betrag abgesenkt.
+\end{conceptbox}
+
+\section{Zweidimensionaler harmonischer Oszillator}
+
+\subsection{Hamiltonoperator}
+
+Der isotrope zweidimensionale harmonische Oszillator hat
+\[
+    H=\frac{P_x^2}{2m}+\frac{P_y^2}{2m}
+    +\frac12m\omega^2(X^2+Y^2).
+\]
+Man kann ihn als Summe zweier unabhängiger eindimensionaler Oszillatoren schreiben:
+\[
+    H=H_x+H_y,
+\]
+mit
+\[
+    H_x=\frac{P_x^2}{2m}+\frac12m\omega^2X^2,
+    \qquad
+    H_y=\frac{P_y^2}{2m}+\frac12m\omega^2Y^2.
+\]
+Für jede Richtung definiert man eigene Leiteroperatoren:
+\[
+    a_x=\sqrt{\frac{m\omega}{2\hbar}}X+\frac{i}{\sqrt{2m\hbar\omega}}P_x,
+\]
+\[
+    a_y=\sqrt{\frac{m\omega}{2\hbar}}Y+\frac{i}{\sqrt{2m\hbar\omega}}P_y.
+\]
+Sie erfüllen
+\[
+    [a_i,a_j^\dagger]=\delta_{ij},
+    \qquad
+    [a_i,a_j]=[a_i^\dagger,a_j^\dagger]=0,
+    \qquad i,j\in\{x,y\}.
+\]
+
+\begin{formulabox}
+Der zweidimensionale Oszillator hat
+\[
+    H=\hbar\omega\left(a_x^\dagger a_x+a_y^\dagger a_y+1\right).
+\]
+Die Energieeigenwerte sind
+\[
+    E_{n_x,n_y}=\hbar\omega(n_x+n_y+1).
+\]
+\end{formulabox}
+
+\subsection{Eigenzustände und Entartung}
+
+Die Eigenzustände sind Produktzustände
+\[
+    \ket{n_x,n_y}=\ket{n_x}_x\otimes\ket{n_y}_y.
+\]
+Sie entstehen aus dem Grundzustand durch
+\[
+    \ket{n_x,n_y}=\frac{(a_x^\dagger)^{n_x}(a_y^\dagger)^{n_y}}{\sqrt{n_x!n_y!}}\ket{0,0}.
+\]
+Die Energie hängt nur von
+\[
+    N=n_x+n_y
+\]
+ab:
+\[
+    E_N=\hbar\omega(N+1).
+\]
+Für ein festes $N$ gibt es die Zustände
+\[
+    (n_x,n_y)=(0,N),(1,N-1),\dots,(N,0).
+\]
+Also ist der Entartungsgrad
+\[
+    g_N=N+1.
+\]
+
+\begin{notebox}
+Der Hamiltonoperator allein bildet im isotropen zweidimensionalen Oszillator keinen vollständigen Satz kommutierender Observablen, weil ein Energieeigenwert im Allgemeinen mehrere linear unabhängige Eigenzustände besitzt. Man braucht eine zusätzliche Observable, zum Beispiel $L_z$, um die Zustände eindeutig zu unterscheiden.
+\end{notebox}
+
+\subsection{Drehimpuls im zweidimensionalen Oszillator}
+
+Der Drehimpuls um die $z$-Achse ist
+\[
+    L_z=XP_y-YP_x.
+\]
+Da das Potential rotationssymmetrisch ist, gilt
+\[
+    [H,L_z]=0.
+\]
+Das bedeutet: Energie und $z$-Drehimpuls können gemeinsam diagonalisiert werden.
+
+Man definiert zirkulare Leiteroperatoren
+\[
+    a_r=\frac{1}{\sqrt2}(a_x-ia_y),
+    \qquad
+    a_l=\frac{1}{\sqrt2}(a_x+ia_y).
+\]
+Die adjungierten Operatoren sind
+\[
+    a_r^\dagger=\frac{1}{\sqrt2}(a_x^\dagger+ia_y^\dagger),
+    \qquad
+    a_l^\dagger=\frac{1}{\sqrt2}(a_x^\dagger-ia_y^\dagger).
+\]
+Sie erfüllen
+\[
+    [a_r,a_r^\dagger]=1,
+    \qquad
+    [a_l,a_l^\dagger]=1,
+    \qquad
+    [a_r,a_l^\dagger]=[a_l,a_r^\dagger]=0.
+\]
+In dieser Basis gilt
+\[
+    H=\hbar\omega\left(a_r^\dagger a_r+a_l^\dagger a_l+1\right).
+\]
+Bis auf Konventionszeichen schreibt man den Drehimpuls als Differenz der Besetzungszahlen:
+\[
+    L_z=\hbar\left(a_r^\dagger a_r-a_l^\dagger a_l\right).
+\]
+Je nach Definition von $a_r$ und $a_l$ kann das Vorzeichen vertauscht sein; wichtig ist, dass $L_z$ die Differenz der beiden zirkularen Anregungszahlen misst.
+
+\begin{conceptbox}
+Im isotropen zweidimensionalen Oszillator ist die Entartung eine Folge der Rotationssymmetrie. Die kartesische Basis $\ket{n_x,n_y}$ diagonalisiert $H$, aber nicht unbedingt $L_z$. Die zirkulare Basis diagonalisiert gleichzeitig $H$ und $L_z$.
+\end{conceptbox}
+
+\section{Dreidimensionaler harmonischer Oszillator}
+
+\subsection{Hamiltonoperator und Eigenwerte}
+
+Der isotrope dreidimensionale harmonische Oszillator hat
+\[
+    H_{3D}=\frac{P_x^2+P_y^2+P_z^2}{2m}
+    +\frac12m\omega^2(X^2+Y^2+Z^2).
+\]
+Er zerfällt in drei unabhängige eindimensionale Oszillatoren:
+\[
+    H_{3D}=H_x+H_y+H_z.
+\]
+Mit Leiteroperatoren $a_x,a_y,a_z$ gilt
+\[
+    H_{3D}=\hbar\omega\left(a_x^\dagger a_x+a_y^\dagger a_y+a_z^\dagger a_z+\frac32\right).
+\]
+Die Eigenzustände sind
+\[
+    \ket{n_x,n_y,n_z}
+    =\frac{(a_x^\dagger)^{n_x}(a_y^\dagger)^{n_y}(a_z^\dagger)^{n_z}}{\sqrt{n_x!n_y!n_z!}}\ket{0,0,0}.
+\]
+Die Energieeigenwerte sind
+\[
+    E_{n_x,n_y,n_z}=\hbar\omega\left(n_x+n_y+n_z+\frac32\right).
+\]
+Setzt man
+\[
+    N=n_x+n_y+n_z,
+\]
+dann
+\[
+    E_N=\hbar\omega\left(N+\frac32\right).
+\]
+
+\begin{formulabox}
+Für den isotropen dreidimensionalen harmonischen Oszillator gilt
+\[
+    E_N=\hbar\omega\left(N+\frac32\right),
+    \qquad N=0,1,2,\dots.
+\]
+Der Entartungsgrad ist
+\[
+    g_N=\frac{(N+1)(N+2)}{2}.
+\]
+\end{formulabox}
+
+\subsection{Herleitung des Entartungsgrades}
+
+Der Entartungsgrad ist die Anzahl nichtnegativer ganzzahliger Lösungen von
+\[
+    n_x+n_y+n_z=N.
+\]
+Für jedes $n_x=0,1,\dots,N$ bleiben $N-n_x$ Quanten auf $y$ und $z$ zu verteilen. Dafür gibt es $N-n_x+1$ Möglichkeiten. Also
+\[
+    g_N=\sum_{n_x=0}^{N}(N-n_x+1)=\sum_{k=1}^{N+1}k=\frac{(N+1)(N+2)}{2}.
+\]
+
+\begin{examplebox}
+Die ersten Niveaus sind:
+\[
+\begin{array}{c|c|c}
+N & E_N & g_N \\
+\hline
+0 & \frac32\hbar\omega & 1 \\
+1 & \frac52\hbar\omega & 3 \\
+2 & \frac72\hbar\omega & 6 \\
+3 & \frac92\hbar\omega & 10
+\end{array}
+\]
+\end{examplebox}
+
+\subsection{Rotationssymmetrie}
+
+Der isotrope dreidimensionale Oszillator besitzt ein rotationssymmetrisches Potential
+\[
+    V(r)=\frac12m\omega^2r^2.
+\]
+Daher gilt
+\[
+    [H,L^2]=0,
+    \qquad
+    [H,L_z]=0.
+\]
+Man kann Energieeigenzustände also auch nach Drehimpulsquantenzahlen klassifizieren. Die kartesische Basis $\ket{n_x,n_y,n_z}$ ist für viele Rechnungen einfach, während die Kugelkoordinatenbasis besser zur Rotationssymmetrie passt.
+
+\begin{notebox}
+Die ausführliche Behandlung von $L^2$, $L_z$, Kugelflächenfunktionen und Zentralpotentialen folgt in den Kapiteln über Drehimpuls und Zentralpotentiale. Für dieses Kapitel ist wichtig: Der dreidimensionale Oszillator besitzt Entartungen, weil die Energie nur von der Gesamtzahl $N=n_x+n_y+n_z$ abhängt.
+\end{notebox}
+
+\section{Der harmonische Oszillator als Rechenwerkzeug}
+
+\subsection{Matrixelemente von Potenzen von $X$}
+
+In vielen Aufgaben, besonders in der Störungstheorie, braucht man Matrixelemente wie
+\[
+    \mel{m}{X^k}{n}.
+\]
+Man berechnet sie am einfachsten mit
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger).
+\]
+Für $X^2$ gilt
+\[
+    X^2=\frac{\hbar}{2m\omega}(a+a^\dagger)^2
+    =\frac{\hbar}{2m\omega}\left(a^2+(a^\dagger)^2+aa^\dagger+a^\dagger a\right).
+\]
+Mit $aa^\dagger=N+1$ und $a^\dagger a=N$ folgt
+\[
+    X^2=\frac{\hbar}{2m\omega}\left(a^2+(a^\dagger)^2+2N+1\right).
+\]
+Daher
+\[
+    \mel{n}{X^2}{n}=\frac{\hbar}{2m\omega}(2n+1).
+\]
+
+\subsection{Beispiel: quartische Störung}
+
+Betrachte einen gestörten Oszillator
+\[
+    H=H_0+\lambda X^4.
+\]
+In erster Ordnung der zeitunabhängigen Störungstheorie ist
+\[
+    E_n^{(1)}=\lambda\mel{n}{X^4}{n}.
+\]
+Für den Grundzustand kann man das direkt aus der Gaußverteilung berechnen:
+\[
+    \mel{0}{X^4}{0}=3\left(\frac{\hbar}{2m\omega}\right)^2.
+\]
+Damit
+\[
+    E_0^{(1)}=3\lambda\left(\frac{\hbar}{2m\omega}\right)^2.
+\]
+
+\begin{notebox}
+Potenzen von $X$ werden im Oszillator fast immer mit Leiteroperatoren berechnet. Das ist schneller als direkte Integrale mit Hermite-Polynomen und reduziert viele Aufgaben auf Algebra mit $a$, $a^\dagger$ und $[a,a^\dagger]=1$.
+\end{notebox}
+
+\subsection{Beispiel: kubische Störung und Parität}
+
+Für eine kubische Störung
+\[
+    H_1=X^3
+\]
+ist die erste Ordnung im Grundzustand
+\[
+    E_0^{(1)}=\lambda\mel{0}{X^3}{0}=0.
+\]
+Der Grund ist Parität: $\psi_0(x)$ ist gerade, $x^3$ ist ungerade. Daher ist
+\[
+    \psi_0^*(x)x^3\psi_0(x)
+\]
+eine ungerade Funktion, deren Integral über $\R$ verschwindet.
+
+\begin{examtipbox}
+Bei Oszillatoraufgaben immer zuerst auf Parität achten. Matrixelemente
+\[
+    \mel{m}{X^k}{n}
+\]
+verschwinden, wenn das Produkt aus den Paritäten von $\psi_m$, $x^k$ und $\psi_n$ ungerade ist. Das spart oft viel Rechnung.
+\end{examtipbox}
+
+\section{Typische Messfragen beim harmonischen Oszillator}
+
+\subsection{Energiemessung}
+
+Ist
+\[
+    \ket{\psi}=\sum_{n=0}^{\infty}c_n\ket{n},
+\]
+dann liefert eine Energiemessung den Wert
+\[
+    E_n=\hbar\omega\left(n+\frac12\right)
+\]
+mit Wahrscheinlichkeit
+\[
+    P(E_n)=\abs{c_n}^2.
+\]
+Nach der Messung befindet sich das System im Zustand $\ket{n}$, falls der Messwert $E_n$ erhalten wurde.
+
+\subsection{Ortsmessung nach einer Energiemessung}
+
+Wurde die Energie $E_n$ gemessen, ist der Zustand danach $\ket{n}$. Die Wahrscheinlichkeit, das Teilchen bei einer anschließenden Ortsmessung in einem Intervall $[a,b]$ zu finden, ist
+\[
+    P(a\le X\le b)=\int_a^b\abs{\psi_n(x)}^2\dd x.
+\]
+Für symmetrische Oszillatorzustände gilt
+\[
+    \abs{\psi_n(x)}^2=\abs{\psi_n(-x)}^2.
+\]
+Daher ist für jeden Energieeigenzustand
+\[
+    P(X>0)=\frac12.
+\]
+
+\begin{examplebox}
+Wird bei einem Oszillator die Energie $E_1=3\hbar\omega/2$ gemessen, dann kollabiert der Zustand auf $\ket{1}$. Die Wellenfunktion $\psi_1(x)$ ist ungerade, aber die Wahrscheinlichkeitsdichte $\abs{\psi_1(x)}^2$ ist gerade. Daher gilt
+\[
+    P(X>0)=\frac12.
+\]
+\end{examplebox}
+
+\subsection{Sind $X$ und $P$ ein VSKO?}
+
+Ein vollständiger Satz kommutierender Observablen muss aus miteinander kommutierenden Observablen bestehen. Für Ort und Impuls gilt jedoch
+\[
+    [X,P]=i\hbar\neq0.
+\]
+Daher können $X$ und $P$ nicht gleichzeitig scharf gemessen werden und bilden keinen Satz kommutierender Observablen.
+
+\begin{notebox}
+Auch wenn $X$ und $P$ zusammen klassisch den Zustand eines Teilchens im Phasenraum festlegen würden, ist das quantenmechanisch nicht erlaubt. Ort und Impuls sind nicht kommutierende Observablen.
+\end{notebox}
+
+\section{Zusammenfassung}
+
+\begin{conceptbox}
+Die wichtigsten Ergebnisse des Kapitels sind:
+\begin{itemize}
+    \item Der harmonische Oszillator hat
+    \[
+        H=\frac{P^2}{2m}+\frac12m\omega^2X^2.
+    \]
+    \item Mit
+    \[
+        a=\sqrt{\frac{m\omega}{2\hbar}}X+\frac{i}{\sqrt{2m\hbar\omega}}P,
+        \qquad
+        a^\dagger=\sqrt{\frac{m\omega}{2\hbar}}X-\frac{i}{\sqrt{2m\hbar\omega}}P
+    \]
+    gilt
+    \[
+        [a,a^\dagger]=1.
+    \]
+    \item Der Hamiltonoperator ist
+    \[
+        H=\hbar\omega\left(a^\dagger a+\frac12\right).
+    \]
+    \item Die Energieeigenwerte sind
+    \[
+        E_n=\hbar\omega\left(n+\frac12\right),\qquad n=0,1,2,\dots.
+    \]
+    \item Die Leiteroperatoren wirken als
+    \[
+        a\ket{n}=\sqrt n\ket{n-1},
+        \qquad
+        a^\dagger\ket{n}=\sqrt{n+1}\ket{n+1}.
+    \]
+    \item Der Grundzustand ist eine Gaußfunktion:
+    \[
+        \psi_0(x)=\left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+        e^{-m\omega x^2/(2\hbar)}.
+    \]
+    \item Die angeregten Zustände enthalten Hermite-Polynome:
+    \[
+        \psi_n(x)=\frac{1}{\sqrt{2^n n!}}
+        \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+        H_n\left(\sqrt{\frac{m\omega}{\hbar}}x\right)e^{-m\omega x^2/(2\hbar)}.
+    \]
+    \item Der isotrope $d$-dimensionale Oszillator zerfällt in $d$ unabhängige eindimensionale Oszillatoren.
+\end{itemize}
+\end{conceptbox}
+
+\section{Typische Klausuraufgaben}
+
+\begin{examtipbox}
+Für Aufgaben zum harmonischen Oszillator sollte man folgende Rechnungen sicher können:
+\begin{itemize}
+    \item Aus $[X,P]=i\hbar$ den Kommutator $[a,a^\dagger]=1$ herleiten.
+    \item $H$ in der Form $\hbar\omega(a^\dagger a+1/2)$ schreiben.
+    \item Die Wirkung von $a$ und $a^\dagger$ auf $\ket{n}$ verwenden.
+    \item Den Grundzustand aus $a\ket{0}=0$ in Ortsdarstellung berechnen.
+    \item Erwartungswerte und Matrixelemente mit Leiteroperatoren berechnen.
+    \item Eine Superposition von Energieeigenzuständen zeitentwickeln.
+    \item Beim verschobenen Oszillator quadratisch ergänzen.
+    \item Beim mehrdimensionalen Oszillator die Entartung zählen.
+\end{itemize}
+\end{examtipbox}
+
+\subsection*{Mini-Check}
+
+\begin{enumerate}
+    \item Warum kann der Grundzustand nicht die Energie $0$ haben?
+    \item Warum ist $a\ket{0}=0$ und nicht $a^\dagger\ket{0}=0$ die Grundzustandsbedingung?
+    \item Welche Energie hat der Zustand $\ket{3}$?
+    \item Welche Zustände werden durch $X\ket{n}$ erreicht?
+    \item Wie groß ist die Entartung des Niveaus $N=2$ im dreidimensionalen isotropen Oszillator?
+\end{enumerate}
+
+\begin{answerbox}
+\begin{enumerate}
+    \item Wegen der Unschärferelation und der nichtverschwindenden Nullpunktsenergie $E_0=\hbar\omega/2$.
+    \item Weil $a$ die Quantenzahl senkt. Die Senkkette muss beim niedrigsten Zustand abbrechen.
+    \item $E_3=\hbar\omega(3+1/2)=\frac72\hbar\omega$.
+    \item Nur $\ket{n-1}$ und $\ket{n+1}$, da $X\propto a+a^\dagger$.
+    \item $g_2=(2+1)(2+2)/2=6$.
+\end{enumerate}
+\end{answerbox}

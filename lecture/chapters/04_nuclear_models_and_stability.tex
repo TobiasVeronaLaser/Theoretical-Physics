@@ -1,0 +1,702 @@
+\chapter{Kernmodelle und Stabilitaet}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt Modelle, mit denen man Atomkerne beschreibt.
+Kapitel 3 hat die Bindungsenergie und die Weizsaecker-Massenformel behandelt.
+Diese Formel erklaert globale Massentrends sehr gut, aber sie erklaert nicht alle
+Details der Kernstabilitaet.
+
+Insbesondere erklaert sie nicht vollstaendig, warum bestimmte Protonen- und
+Neutronenzahlen besonders stabil sind.
+Dafuer braucht man Kernmodelle.
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item Kernmodelle,
+    \item Troepfchenmodell,
+    \item Fermigasmodell,
+    \item Potentialtopfmodell,
+    \item Schalenmodell,
+    \item magische Zahlen,
+    \item Spin-Bahn-Kopplung,
+    \item Separationsenergie,
+    \item Paarungseffekte,
+    \item Kerndeformation,
+    \item Quadrupolmoment,
+    \item kollektive Modelle,
+    \item Stabilitaetsinsel.
+\end{itemize}
+\end{notebox}
+
+\section{Warum braucht man Kernmodelle?}
+
+Ein Atomkern ist ein quantenmechanisches Vielteilchensystem.
+Er besteht aus Protonen und Neutronen, die ueber die starke Wechselwirkung
+miteinander wechselwirken.
+
+\begin{conceptbox}
+Ein vollstaendig exaktes Modell eines schweren Kerns waere extrem kompliziert,
+weil viele Nukleonen gleichzeitig miteinander wechselwirken.
+
+Deshalb verwendet man Modelle.
+Ein Modell beschreibt nicht jedes Detail exakt, sondern erklaert bestimmte
+Eigenschaften besonders gut.
+\end{conceptbox}
+
+\begin{notebox}
+Wichtige Fragen an Kernmodelle sind:
+\begin{itemize}
+    \item Warum sind Kerne gebunden?
+    \item Warum gibt es stabile und instabile Kerne?
+    \item Warum sind bestimmte Protonen- oder Neutronenzahlen besonders stabil?
+    \item Warum besitzen Kerne diskrete Anregungszustaende?
+    \item Warum sind manche Kerne kugelfoermig und andere deformiert?
+\end{itemize}
+\end{notebox}
+
+\section{Globale und mikroskopische Modelle}
+
+\begin{definitionbox}
+Ein \emph{globales Kernmodell} beschreibt allgemeine Trends ueber viele Kerne hinweg.
+
+Ein \emph{mikroskopisches Kernmodell} versucht staerker zu beschreiben, wie einzelne
+Nukleonen quantenmechanische Zustaende besetzen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Das Troepfchenmodell beziehungsweise die Weizsaecker-Massenformel ist ein globales
+Modell.
+Es beschreibt mittlere Trends der Bindungsenergie.
+
+Das Schalenmodell ist mikroskopischer.
+Es erklaert, warum bestimmte Nukleonenzahlen besonders stabil sind.
+\end{conceptbox}
+
+\begin{examtipbox}
+Typische Pruefungsfrage:
+
+Warum reicht die Weizsaecker-Massenformel allein nicht aus?
+
+Antwort:
+Die Weizsaecker-Massenformel erklaert globale Trends der Bindungsenergie.
+Sie erklaert aber nicht die besondere Stabilitaet bei magischen Zahlen und nicht die
+detaillierte Struktur einzelner Kernzustaende.
+\end{examtipbox}
+
+\section{Das Troepfchenmodell}
+
+Das Troepfchenmodell beschreibt den Kern aehnlich wie einen Tropfen einer Fluessigkeit.
+Es ist die anschauliche Grundlage der Weizsaecker-Massenformel.
+
+\begin{definitionbox}
+Das \emph{Troepfchenmodell} behandelt den Atomkern als annahernd inkompressiblen
+Tropfen aus Kernmaterie.
+\end{definitionbox}
+
+\begin{conceptbox}
+Die Analogie zu einem Fluessigkeitstropfen erklaert mehrere Beitraege zur
+Bindungsenergie:
+\begin{itemize}
+    \item Volumenenergie: Nukleonen im Inneren sind gebunden.
+    \item Oberflaechenenergie: Nukleonen an der Oberflaeche haben weniger Nachbarn.
+    \item Coulombenergie: Protonen stossen sich elektrisch ab.
+    \item Asymmetrieenergie: ein starkes Ungleichgewicht zwischen $N$ und $Z$ kostet Energie.
+    \item Paarungsenergie: gepaarte Nukleonen sind energetisch guenstiger.
+\end{itemize}
+\end{conceptbox}
+
+\begin{formulabox}
+Eine uebliche Form der Weizsaecker-Bindungsenergie ist:
+\begin{equation*}
+    B(A,Z)
+    =
+    a_V A
+    - a_S A^{2/3}
+    - a_C \frac{Z(Z-1)}{A^{1/3}}
+    - a_A \frac{(N-Z)^2}{A}
+    + \delta(A,Z).
+\end{equation*}
+\end{formulabox}
+
+\begin{notebox}
+Das Troepfchenmodell erklaert gut:
+\begin{itemize}
+    \item den groben Verlauf der Bindungsenergie pro Nukleon,
+    \item die ungefaehre Lage stabiler Kerne,
+    \item Massenparabeln bei Isobaren,
+    \item qualitative Aspekte der Kernspaltung.
+\end{itemize}
+
+Es erklaert aber nicht die magischen Zahlen.
+\end{notebox}
+
+\section{Das Fermigasmodell}
+
+Das Fermigasmodell betrachtet Protonen und Neutronen als Fermionen, die Zustaende
+in einem effektiven Kernvolumen besetzen.
+
+\begin{definitionbox}
+Im \emph{Fermigasmodell} werden die Nukleonen als Fermionen in einem gemeinsamen
+Kernvolumen behandelt.
+
+Protonen und Neutronen fuellen quantenmechanische Zustaende bis zu einer
+Fermi-Energie.
+\end{definitionbox}
+
+\begin{conceptbox}
+Protonen und Neutronen haben Spin
+\begin{equation*}
+    s=\frac{1}{2}.
+\end{equation*}
+Sie sind daher Fermionen und unterliegen dem Pauli-Prinzip.
+
+Das Pauli-Prinzip besagt:
+Zwei identische Fermionen koennen nicht denselben quantenmechanischen Zustand besetzen.
+\end{conceptbox}
+
+\begin{definitionbox}
+Die \emph{Fermi-Energie} $E_F$ ist die Energie des hoechsten besetzten Zustands
+bei Temperatur nahe null.
+\end{definitionbox}
+
+\begin{conceptbox}
+Im Kern gibt es getrennte Fermi-Niveaus fuer Protonen und Neutronen.
+
+Wenn sehr viel mehr Neutronen als Protonen vorhanden sind, muessen die Neutronen
+hoehere Zustaende besetzen.
+Das erhoeht die kinetische Energie.
+
+Diese Idee fuehrt zum Asymmetrieterm der Weizsaecker-Massenformel:
+\begin{equation*}
+    -a_A\frac{(N-Z)^2}{A}.
+\end{equation*}
+\end{conceptbox}
+
+\begin{examtipbox}
+Das Fermigasmodell liefert eine anschauliche Begruendung fuer den Asymmetrieterm:
+
+Wenn $N\neq Z$ gilt, sind die Fermi-Niveaus von Neutronen und Protonen ungleich
+gefuellt.
+Das erhoeht die kinetische Energie und verringert dadurch die Bindung.
+\end{examtipbox}
+
+\section{Potentialtopfmodell}
+
+Im Potentialtopfmodell bewegt sich jedes Nukleon in einem mittleren Potential,
+das durch alle anderen Nukleonen erzeugt wird.
+
+\begin{definitionbox}
+Das \emph{Potentialtopfmodell} beschreibt ein Nukleon so, als bewege es sich in
+einem effektiven Potentialtopf des Kerns.
+\end{definitionbox}
+
+\begin{conceptbox}
+Obwohl Nukleonen miteinander wechselwirken, kann man naeherungsweise annehmen:
+Jedes einzelne Nukleon bewegt sich in einem mittleren Potential, das von allen
+anderen Nukleonen erzeugt wird.
+
+Diese Naeherung fuehrt auf diskrete Energieniveaus.
+\end{conceptbox}
+
+\begin{notebox}
+In den Vorlesungsabbildungen werden Protonen und Neutronen durch getrennte
+Potentialtoepfe dargestellt.
+
+Fuer Protonen ist das Potential wegen der Coulomb-Abstossung veraendert.
+Deshalb unterscheiden sich Protonen- und Neutronenpotentiale.
+\end{notebox}
+
+\begin{conceptbox}
+Fuer Neutronen wirkt im Wesentlichen das Kernpotential.
+
+Fuer Protonen wirkt zusaetzlich das Coulomb-Potential.
+Dadurch liegt das Protonenpotential effektiv hoeher beziehungsweise wird am Rand
+anders geformt.
+\end{conceptbox}
+
+\section{Stehende Wellen im Kasten}
+
+Ein einfaches quantenmechanisches Bild fuer gebundene Nukleonen ist das Teilchen
+im Kasten.
+
+\begin{conceptbox}
+Ein gebundenes Teilchen kann nicht beliebige Energien besitzen.
+Es bildet stehende Wellen im Potential.
+
+Nur Wellenfunktionen, die zu den Randbedingungen passen, sind erlaubt.
+Daraus entstehen diskrete Energieniveaus.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer ein einfaches Teilchen im eindimensionalen Kasten der Laenge $L$ sind die
+erlaubten Wellenzahlen:
+\begin{equation*}
+    k_n = \frac{n\pi}{L},
+    \qquad
+    n=1,2,3,\ldots
+\end{equation*}
+Die Energien sind proportional zu
+\begin{equation*}
+    E_n \propto k_n^2.
+\end{equation*}
+\end{formulabox}
+
+\begin{conceptbox}
+Im dreidimensionalen Kasten gibt es Zustaende mit Quantenzahlen
+\begin{equation*}
+    n_x,\qquad n_y,\qquad n_z.
+\end{equation*}
+
+Die Zustaende koennen als Gitterpunkte im Impuls- beziehungsweise $k$-Raum gezaehlt
+werden.
+Dieses Bild ist wichtig fuer das Fermigasmodell.
+\end{conceptbox}
+
+\begin{examtipbox}
+Die zentrale Aussage ist:
+
+Raeumliche Begrenzung fuehrt zu stehenden Wellen.
+Stehende Wellen fuehren zu diskreten Energieniveaus.
+\end{examtipbox}
+
+\section{Vom Potentialtopf zum Schalenmodell}
+
+Das Schalenmodell entsteht aus der Idee, dass Nukleonen diskrete Einteilchenzustaende
+in einem mittleren Kernpotential besetzen.
+
+\begin{definitionbox}
+Das \emph{Schalenmodell} beschreibt Atomkerne durch die Besetzung diskreter
+Energiezustaende durch Protonen und Neutronen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Das Schalenmodell ist analog zur Elektronenhuelle in der Atomphysik.
+
+In der Atomphysik erklaeren abgeschlossene Elektronenschalen die besondere Stabilitaet
+der Edelgase.
+
+In der Kernphysik erklaeren abgeschlossene Protonen- oder Neutronenschalen die
+besondere Stabilitaet bestimmter Kerne.
+\end{conceptbox}
+
+\begin{conceptbox}
+Protonen und Neutronen besetzen getrennte Schalen.
+
+Eine abgeschlossene Protonenschale bedeutet:
+\begin{equation*}
+    Z = \text{magische Zahl}.
+\end{equation*}
+
+Eine abgeschlossene Neutronenschale bedeutet:
+\begin{equation*}
+    N = \text{magische Zahl}.
+\end{equation*}
+\end{conceptbox}
+
+\section{Magische Zahlen}
+
+Bestimmte Protonen- und Neutronenzahlen fuehren zu besonders stabilen Kernen.
+Diese Zahlen heissen magische Zahlen.
+
+\begin{definitionbox}
+\emph{Magische Zahlen} sind Protonen- oder Neutronenzahlen, bei denen eine Kernschale
+abgeschlossen ist.
+
+Kerne mit magischer Protonen- oder Neutronenzahl sind besonders stabil.
+\end{definitionbox}
+
+\begin{formulabox}
+Die wichtigsten magischen Zahlen sind:
+\begin{equation*}
+    2,\quad 8,\quad 20,\quad 28,\quad 50,\quad 82,\quad 126.
+\end{equation*}
+\end{formulabox}
+
+\begin{conceptbox}
+Wenn $Z$ magisch ist, ist die Protonenschale abgeschlossen.
+
+Wenn $N$ magisch ist, ist die Neutronenschale abgeschlossen.
+
+Wenn sowohl $Z$ als auch $N$ magisch sind, spricht man von einem doppelt magischen
+Kern.
+\end{conceptbox}
+
+\begin{examplebox}
+Beispiele fuer doppelt magische Kerne sind:
+\begin{equation*}
+    {}^{4}_{2}\mathrm{He}
+    \qquad
+    (Z=2,\;N=2),
+\end{equation*}
+\begin{equation*}
+    {}^{16}_{8}\mathrm{O}
+    \qquad
+    (Z=8,\;N=8),
+\end{equation*}
+\begin{equation*}
+    {}^{40}_{20}\mathrm{Ca}
+    \qquad
+    (Z=20,\;N=20),
+\end{equation*}
+\begin{equation*}
+    {}^{208}_{82}\mathrm{Pb}
+    \qquad
+    (Z=82,\;N=126).
+\end{equation*}
+\end{examplebox}
+
+\begin{examtipbox}
+Magische Zahlen sind Pruefungswissen.
+Man sollte mindestens die Liste kennen:
+\begin{equation*}
+    2,\;8,\;20,\;28,\;50,\;82,\;126.
+\end{equation*}
+
+Ausserdem sollte man erklaeren koennen:
+Eine magische Zahl bedeutet eine abgeschlossene Schale.
+Eine abgeschlossene Schale bedeutet besondere Stabilitaet.
+\end{examtipbox}
+
+\section{Warum einfache Potentiale nicht ausreichen}
+
+Ein einfacher dreidimensionaler harmonischer Oszillator liefert zwar Schalen,
+aber nicht die experimentell richtigen magischen Zahlen.
+
+\begin{conceptbox}
+Einfache Potentiale wie der harmonische Oszillator erklaeren einen Teil der
+Schalenstruktur.
+Sie liefern aber nicht alle beobachteten magischen Zahlen.
+
+Insbesondere die magischen Zahlen
+\begin{equation*}
+    28,\quad 50,\quad 82,\quad 126
+\end{equation*}
+benoetigen eine zusaetzliche wichtige Wechselwirkung:
+die Spin-Bahn-Kopplung.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildungen zu Oszillatorniveaus zeigen Schalenstrukturen.
+Fuer die tatsaechlich beobachteten magischen Zahlen muss das Modell aber durch
+Spin-Bahn-Kopplung verbessert werden.
+\end{notebox}
+
+\section{Spin-Bahn-Kopplung}
+
+Die Spin-Bahn-Kopplung koppelt den Spin eines Nukleons an seinen Bahndrehimpuls.
+
+\begin{definitionbox}
+Die \emph{Spin-Bahn-Kopplung} ist eine Wechselwirkung zwischen dem Spin $\vec{s}$
+eines Nukleons und seinem Bahndrehimpuls $\vec{l}$.
+
+Sie ist proportional zu
+\begin{equation*}
+    \vec{l}\cdot\vec{s}.
+\end{equation*}
+\end{definitionbox}
+
+\begin{conceptbox}
+Der Gesamtdrehimpuls eines einzelnen Nukleons ist
+\begin{equation*}
+    \vec{j}=\vec{l}+\vec{s}.
+\end{equation*}
+
+Da Nukleonen Spin
+\begin{equation*}
+    s=\frac{1}{2}
+\end{equation*}
+haben, kann fuer gegebenes $l$ gelten:
+\begin{equation*}
+    j=l+\frac{1}{2}
+\end{equation*}
+oder
+\begin{equation*}
+    j=l-\frac{1}{2}.
+\end{equation*}
+\end{conceptbox}
+
+\begin{conceptbox}
+Die Spin-Bahn-Kopplung spaltet Energieniveaus auf.
+
+Diese Aufspaltung verschiebt die Schalenabschluesse so, dass die experimentellen
+magischen Zahlen erklaert werden koennen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Ohne Spin-Bahn-Kopplung erhaelt man nicht die richtige Folge der magischen Zahlen.
+
+Die Spin-Bahn-Kopplung ist daher ein zentrales Element des Kernschalenmodells.
+\end{examtipbox}
+
+\section{Schalenabschluesse und Stabilitaet}
+
+Ein Schalenabschluss bedeutet, dass eine Gruppe von Zustaenden vollstaendig besetzt ist.
+Danach kommt eine Energieluecke zum naechsten Zustand.
+
+\begin{conceptbox}
+Wenn eine Schale abgeschlossen ist, ist der Kern besonders stabil.
+
+Der Grund ist:
+Um ein weiteres Nukleon hinzuzufuegen oder ein Nukleon anzuregen, muss man eine
+groessere Energieluecke ueberwinden.
+\end{conceptbox}
+
+\begin{definitionbox}
+Die \emph{Separationsenergie} ist die Energie, die benoetigt wird, um ein Nukleon
+aus dem Kern zu entfernen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Bei magischen Zahlen treten oft besonders grosse Separationsenergien auf.
+Das ist ein experimentelles Signal fuer Schalenabschluesse.
+\end{conceptbox}
+
+\begin{examtipbox}
+Wenn eine Aufgabe fragt, woran man magische Zahlen erkennt, sind typische Hinweise:
+\begin{itemize}
+    \item hohe Stabilitaet,
+    \item grosse Separationsenergie,
+    \item viele stabile Isotope oder Isotone,
+    \item niedrige Anregbarkeit,
+    \item abgeschlossene Schale.
+\end{itemize}
+\end{examtipbox}
+
+\section{Gerade-gerade, gerade-ungerade und ungerade-ungerade Kerne}
+
+Neben Schalenabschluessen spielen Paarungseffekte eine wichtige Rolle.
+
+\begin{definitionbox}
+Ein \emph{gerade-gerade Kern} hat gerade Protonenzahl $Z$ und gerade Neutronenzahl $N$.
+
+Ein \emph{ungerade-ungerade Kern} hat ungerade Protonenzahl $Z$ und ungerade
+Neutronenzahl $N$.
+\end{definitionbox}
+
+\begin{conceptbox}
+Nukleonen bilden bevorzugt Paare mit entgegengesetztem Spin.
+
+Daher sind gerade-gerade Kerne besonders stabil.
+Ungerade-ungerade Kerne sind meistens weniger stabil.
+\end{conceptbox}
+
+\begin{notebox}
+Dieser Effekt steckt in der Weizsaecker-Massenformel im Paarungsterm
+\begin{equation*}
+    \delta(A,Z).
+\end{equation*}
+\end{notebox}
+
+\begin{examtipbox}
+Gerade-gerade Kerne sind besonders stabil.
+
+Ungerade-ungerade Kerne sind meist weniger stabil.
+\end{examtipbox}
+
+\section{Kernformen und Deformation}
+
+Nicht alle Kerne sind kugelfoermig.
+Manche Kerne sind deformiert.
+
+\begin{definitionbox}
+Eine \emph{Kerndeformation} liegt vor, wenn die Form des Kerns von einer Kugel
+abweicht.
+\end{definitionbox}
+
+\begin{conceptbox}
+Kerne in der Naehe magischer Zahlen sind haeufig eher kugelfoermig, weil
+abgeschlossene Schalen besonders symmetrisch und stabil sind.
+
+Kerne weit weg von Schalenabschluessen koennen deformiert sein.
+Typische Formen sind:
+\begin{itemize}
+    \item prolat, also laenglich,
+    \item oblat, also abgeflacht.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+In den Vorlesungsabbildungen zu Kernmodellen treten Deformationsparameter und
+Quadrupolmomente auf.
+Diese Groessen beschreiben, wie stark ein Kern von der Kugelform abweicht.
+\end{notebox}
+
+\section{Quadrupolmoment}
+
+Ein wichtiges Mass fuer Kernverformung ist das Quadrupolmoment.
+
+\begin{definitionbox}
+Das \emph{Quadrupolmoment} beschreibt die Abweichung einer Ladungsverteilung von
+Kugelsymmetrie.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein kugelsymmetrischer Kern hat kein intrinsisches Quadrupolmoment.
+
+Ein deformierter Kern besitzt ein Quadrupolmoment.
+Das Vorzeichen und die Groesse geben Hinweise auf die Form des Kerns.
+\end{conceptbox}
+
+\begin{notebox}
+Eine genaue Berechnung von Quadrupolmomenten ist modellabhaengig.
+Fuer dieses Kapitel ist wichtig:
+Quadrupolmomente sind experimentelle Hinweise auf Deformation.
+\end{notebox}
+
+\section{Kollektive Modelle}
+
+Das Schalenmodell beschreibt einzelne Nukleonen in einem mittleren Potential.
+Manche Eigenschaften von Kernen sind aber kollektive Bewegungen vieler Nukleonen.
+
+\begin{definitionbox}
+Ein \emph{kollektives Modell} beschreibt Bewegungen, an denen viele Nukleonen
+gemeinsam beteiligt sind.
+\end{definitionbox}
+
+\begin{conceptbox}
+Wichtige kollektive Bewegungen sind:
+\begin{itemize}
+    \item Rotation deformierter Kerne,
+    \item Vibrationen der Kernoberflaeche,
+    \item kollektive Deformationen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Kollektive Modelle sind besonders wichtig fuer deformierte Kerne.
+Das Schalenmodell ist besonders stark bei der Erklaerung magischer Zahlen und
+Einteilchenzustaende.
+\end{notebox}
+
+\section{Zusammenhang der Modelle}
+
+Kein einzelnes Modell erklaert alle Eigenschaften aller Kerne perfekt.
+Die Modelle ergaenzen sich.
+
+\begin{conceptbox}
+Die wichtigsten Modelle haben unterschiedliche Staerken:
+\begin{itemize}
+    \item Das Troepfchenmodell erklaert globale Bindungsenergien und Massen.
+    \item Das Fermigasmodell erklaert den Asymmetrieterm und Fermi-Energie-Ideen.
+    \item Das Potentialtopfmodell erklaert diskrete Einteilchenzustaende.
+    \item Das Schalenmodell erklaert magische Zahlen.
+    \item Kollektive Modelle erklaeren Rotationen, Vibrationen und Deformationen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Wenn gefragt wird, welches Modell wofuer geeignet ist:
+\begin{itemize}
+    \item Bindungsenergie global: Troepfchenmodell und Weizsaecker-Massenformel.
+    \item Magische Zahlen: Schalenmodell mit Spin-Bahn-Kopplung.
+    \item Asymmetrieterm: Fermigasmodell.
+    \item Deformation und Rotation: kollektive Modelle.
+\end{itemize}
+\end{examtipbox}
+
+\section{Stabilitaet im Massental}
+
+Das Massental beschreibt, welche Kerne energetisch bevorzugt sind.
+
+\begin{definitionbox}
+Das \emph{Massental} ist die Darstellung der Kernmassen beziehungsweise
+Bindungsenergien als Funktion von Protonenzahl $Z$ und Neutronenzahl $N$.
+
+Stabile Kerne liegen im Tal der niedrigsten Massen beziehungsweise hoechsten Bindungen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Die Weizsaecker-Massenformel beschreibt die grobe Form des Massentals.
+
+Das Schalenmodell erklaert zusaetzliche lokale Stabilitaeten bei magischen Zahlen.
+\end{conceptbox}
+
+\begin{notebox}
+Kernstabilitaet ergibt sich daher aus mehreren Beitraegen:
+\begin{itemize}
+    \item globale Massentrends,
+    \item Coulombenergie,
+    \item Asymmetrieenergie,
+    \item Paarung,
+    \item Schalenabschluesse,
+    \item Deformation.
+\end{itemize}
+\end{notebox}
+
+\section{Stabilitaetsinsel}
+
+Bei sehr schweren Kernen erwartet man, dass Schalenabschluesse trotz grosser
+Coulomb-Abstossung zusaetzliche Stabilitaet erzeugen koennen.
+
+\begin{definitionbox}
+Die \emph{Stabilitaetsinsel} ist ein theoretisch erwarteter Bereich superschwerer
+Kerne, in dem Schalenabschluesse zu vergleichsweise laengeren Lebensdauern fuehren.
+\end{definitionbox}
+
+\begin{conceptbox}
+Sehr schwere Kerne sind wegen der starken Coulomb-Abstossung normalerweise instabil.
+
+Wenn jedoch Protonen- und Neutronenzahlen in die Naehe magischer Zahlen kommen,
+koennen Schalenabschluesse zusaetzliche Stabilitaet liefern.
+
+Dadurch entsteht die Idee einer Stabilitaetsinsel.
+\end{conceptbox}
+
+\begin{notebox}
+Die Stabilitaetsinsel zeigt, warum das Troepfchenmodell allein nicht ausreicht.
+Ohne Schalenmodell wuerde man die zusaetzliche Stabilisierung durch Schalenabschluesse
+nicht verstehen.
+\end{notebox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Kernmodelle erklaeren unterschiedliche Aspekte des Atomkerns.
+    \item Das Troepfchenmodell beschreibt globale Bindungsenergien.
+    \item Das Fermigasmodell erklaert die Rolle des Pauli-Prinzips und den Asymmetrieterm.
+    \item Das Potentialtopfmodell fuehrt auf diskrete Einteilchenzustaende.
+    \item Das Schalenmodell erklaert magische Zahlen.
+    \item Magische Zahlen sind:
+    \begin{equation*}
+        2,\quad 8,\quad 20,\quad 28,\quad 50,\quad 82,\quad 126.
+    \end{equation*}
+    \item Spin-Bahn-Kopplung ist noetig, um die richtigen magischen Zahlen zu erhalten.
+    \item Gerade-gerade Kerne sind besonders stabil.
+    \item Kerne koennen kugelfoermig oder deformiert sein.
+    \item Quadrupolmomente geben Hinweise auf Deformation.
+    \item Kollektive Modelle beschreiben gemeinsame Bewegungen vieler Nukleonen.
+    \item Kernstabilitaet ergibt sich aus globalen Massentrends plus Schalen- und Paarungseffekten.
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Warum braucht man verschiedene Kernmodelle?
+    \item Was beschreibt das Troepfchenmodell?
+    \item Was erklaert das Fermigasmodell?
+    \item Was ist die Fermi-Energie?
+    \item Warum fuehrt $N\neq Z$ zu einem Energiebeitrag?
+    \item Was ist das Potentialtopfmodell?
+    \item Warum entstehen diskrete Energieniveaus?
+    \item Was ist das Schalenmodell?
+    \item Was sind magische Zahlen?
+    \item Welche magischen Zahlen sollte man kennen?
+    \item Was ist ein doppelt magischer Kern?
+    \item Warum braucht man Spin-Bahn-Kopplung?
+    \item Warum sind Schalenabschluesse besonders stabil?
+    \item Was ist Separationsenergie?
+    \item Warum sind gerade-gerade Kerne besonders stabil?
+    \item Was bedeutet Kerndeformation?
+    \item Was beschreibt ein Quadrupolmoment?
+    \item Was sind kollektive Modelle?
+    \item Wie haengen Massental und Schalenmodell zusammen?
+    \item Was ist die Stabilitaetsinsel?
+\end{enumerate}
+\end{examtipbox}

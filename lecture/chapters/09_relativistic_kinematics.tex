@@ -1,0 +1,994 @@
+\chapter{Relativistische Kinematik}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt die relativistische Kinematik, die in der Kern- und
+Teilchenphysik benoetigt wird.
+
+Bei hohen Energien reicht die klassische Naeherung
+\[
+    E_{\mathrm{kin}}=\frac{1}{2}mv^2
+\]
+nicht mehr aus.
+Stattdessen muessen Energie und Impuls relativistisch behandelt werden.
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item relativistische Energie,
+    \item relativistischer Impuls,
+    \item Viererimpuls,
+    \item invariante Masse,
+    \item Schwerpunktsenergie,
+    \item Schwerpunktssystem,
+    \item Laborsystem,
+    \item Fixed-Target-Experiment,
+    \item Collider,
+    \item Schwellenenergie,
+    \item Resonanzen,
+    \item Luminositaet,
+    \item Ereignisrate.
+\end{itemize}
+\end{notebox}
+
+\section{Warum relativistische Kinematik?}
+
+In Teilchenbeschleunigern erreichen Teilchen Energien, die vergleichbar mit oder
+viel groesser als ihre Ruheenergie sind.
+Dann bewegen sie sich mit Geschwindigkeiten nahe der Lichtgeschwindigkeit.
+
+\begin{conceptbox}
+Bei hohen Energien wird die Geschwindigkeit eines massiven Teilchens nicht beliebig
+viel groesser.
+Sie naehert sich der Lichtgeschwindigkeit $c$ an.
+
+Zusaetzliche Energie erhoeht dann vor allem:
+\begin{itemize}
+    \item den Impuls,
+    \item die Gesamtenergie,
+    \item die im Schwerpunktsystem verfuegbare Energie.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Bei relativistischen Teilchen gilt:
+
+Mehr Energie bedeutet nicht wesentlich mehr Geschwindigkeit.
+
+Mehr Energie bedeutet vor allem mehr Impuls und mehr moegliche Energie fuer neue
+Teilchen im Schwerpunktsystem.
+\end{examtipbox}
+
+\section{Lorentzfaktor}
+
+\begin{definitionbox}
+Der \emph{Lorentzfaktor} ist definiert als
+\[
+    \gamma
+    =
+    \frac{1}{\sqrt{1-\beta^2}},
+\]
+wobei
+\[
+    \beta=\frac{v}{c}
+\]
+ist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Wenn
+\[
+    v \ll c
+\]
+ist, dann gilt
+\[
+    \beta \ll 1
+\]
+und
+\[
+    \gamma \approx 1.
+\]
+Dann ist die klassische Mechanik oft eine gute Naeherung.
+
+Wenn
+\[
+    v \approx c
+\]
+ist, wird
+\[
+    \gamma
+\]
+gross.
+Dann muss man relativistisch rechnen.
+\end{conceptbox}
+
+\begin{formulabox}
+\[
+    \beta=\frac{v}{c},
+    \qquad
+    \gamma=\frac{1}{\sqrt{1-\beta^2}}.
+\]
+\end{formulabox}
+
+\section{Relativistische Energie}
+
+\begin{definitionbox}
+Die \emph{Ruheenergie} eines Teilchens mit Masse $m$ ist
+\[
+    E_0=mc^2.
+\]
+\end{definitionbox}
+
+\begin{definitionbox}
+Die \emph{relativistische Gesamtenergie} ist
+\[
+    E=\gamma mc^2.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+Die kinetische Energie ist die Differenz zwischen Gesamtenergie und Ruheenergie:
+\[
+    E_{\mathrm{kin}}
+    =
+    E-E_0
+    =
+    (\gamma-1)mc^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die Gesamtenergie besteht aus Ruheenergie und kinetischer Energie:
+\[
+    E = mc^2 + E_{\mathrm{kin}}.
+\]
+
+Bei kleinen Geschwindigkeiten geht die relativistische Formel in die klassische
+Formel ueber:
+\[
+    E_{\mathrm{kin}}\approx \frac{1}{2}mv^2.
+\]
+\end{conceptbox}
+
+\section{Relativistischer Impuls}
+
+\begin{definitionbox}
+Der relativistische Impuls eines Teilchens ist
+\[
+    \vec p = \gamma m \vec v.
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+Bei kleinen Geschwindigkeiten gilt:
+\[
+    \gamma\approx 1.
+\]
+Dann wird
+\[
+    \vec p\approx m\vec v.
+\]
+Das ist der klassische Impuls.
+
+Bei relativistischen Geschwindigkeiten wird der Impuls deutlich groesser als
+klassisch erwartet.
+\end{conceptbox}
+
+\begin{formulabox}
+\[
+    \vec p = \gamma m\vec v.
+\]
+\end{formulabox}
+
+\section{Energie-Impuls-Beziehung}
+
+Die wichtigste relativistische Beziehung zwischen Energie, Impuls und Masse lautet:
+
+\begin{formulabox}
+\[
+    E^2
+    =
+    p^2c^2 + m^2c^4.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Diese Gleichung gilt fuer freie Teilchen.
+
+Spezialfaelle:
+\begin{itemize}
+    \item Teilchen in Ruhe:
+    \[
+        p=0
+        \quad\Rightarrow\quad
+        E=mc^2.
+    \]
+    \item Masseloses Teilchen:
+    \[
+        m=0
+        \quad\Rightarrow\quad
+        E=pc.
+    \]
+\end{itemize}
+\end{conceptbox}
+
+\begin{examplebox}
+Fuer ein Photon gilt:
+\[
+    m=0.
+\]
+Damit folgt aus
+\[
+    E^2=p^2c^2
+\]
+direkt
+\[
+    E=pc.
+\]
+\end{examplebox}
+
+\begin{examtipbox}
+Diese Formel ist zentral:
+\[
+    E^2=p^2c^2+m^2c^4.
+\]
+Sie verbindet die messbaren Groessen Energie und Impuls mit der Masse des Teilchens.
+\end{examtipbox}
+
+\section{Natuerliche Einheiten}
+
+In der Teilchenphysik verwendet man oft natuerliche Einheiten mit
+\[
+    c=1.
+\]
+
+\begin{conceptbox}
+Wenn man
+\[
+    c=1
+\]
+setzt, werden Formeln kuerzer.
+
+Dann wird aus
+\[
+    E^2=p^2c^2+m^2c^4
+\]
+einfach:
+\[
+    E^2=p^2+m^2.
+\]
+\end{conceptbox}
+
+\begin{notebox}
+In diesem Skript werden beide Schreibweisen verwendet.
+
+Mit explizitem $c$:
+\[
+    E^2=p^2c^2+m^2c^4.
+\]
+
+In natuerlichen Einheiten:
+\[
+    E^2=p^2+m^2.
+\]
+\end{notebox}
+
+\begin{examtipbox}
+Wenn Massen in
+\[
+    \mathrm{MeV}/c^2
+\]
+und Impulse in
+\[
+    \mathrm{MeV}/c
+\]
+gegeben sind, ist die Schreibweise mit explizitem $c$ sinnvoll.
+
+Wenn alle Groessen in
+\[
+    \mathrm{GeV}
+\]
+angegeben werden, wird haeufig stillschweigend $c=1$ verwendet.
+\end{examtipbox}
+
+\section{Viererimpuls}
+
+In der speziellen Relativitaet fasst man Energie und Impuls zu einem Vierervektor
+zusammen.
+
+\begin{definitionbox}
+Der \emph{Viererimpuls} ist
+\[
+    p^\mu
+    =
+    \left(
+        \frac{E}{c},
+        \vec p
+    \right).
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+Der Viererimpuls kombiniert Energie und Impuls in einer Groesse, die sich unter
+Lorentztransformationen einfach verhaelt.
+
+Das ist besonders nuetzlich, weil Energie und Impuls in relativistischen Rechnungen
+nicht getrennt betrachtet werden sollten.
+\end{conceptbox}
+
+\begin{formulabox}
+Das Quadrat des Viererimpulses ist invariant:
+\[
+    p^\mu p_\mu
+    =
+    \frac{E^2}{c^2}
+    -
+    \vec p^{\,2}
+    =
+    m^2c^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Invariant bedeutet:
+Der Wert ist in allen Inertialsystemen gleich.
+
+Energie und Impuls einzeln haengen vom Bezugssystem ab.
+Die Kombination
+\[
+    E^2-p^2c^2
+\]
+ist aber invariant.
+\end{conceptbox}
+
+\section{Invariante Masse}
+
+Die invariante Masse ist eine zentrale Groesse fuer Teilchenreaktionen.
+Sie ist besonders wichtig, wenn ein kurzlebiges Teilchen zerfaellt und man es aus
+seinen Zerfallsprodukten rekonstruieren will.
+
+\begin{definitionbox}
+Die \emph{invariante Masse} eines Systems ist die Masse, die sich aus der gesamten
+Energie und dem gesamten Impuls des Systems ergibt.
+\end{definitionbox}
+
+\begin{formulabox}
+Fuer ein System mit Gesamtenergie
+\[
+    E_{\mathrm{ges}}
+\]
+und Gesamtimpuls
+\[
+    \vec p_{\mathrm{ges}}
+\]
+gilt:
+\[
+    M^2c^4
+    =
+    E_{\mathrm{ges}}^2
+    -
+    p_{\mathrm{ges}}^2c^2.
+\]
+\end{formulabox}
+
+\begin{formulabox}
+In natuerlichen Einheiten gilt:
+\[
+    M^2
+    =
+    E_{\mathrm{ges}}^2
+    -
+    p_{\mathrm{ges}}^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die invariante Masse ist gleich in allen Inertialsystemen.
+Deshalb kann man sie aus den gemessenen Energien und Impulsen der Endteilchen
+berechnen.
+
+Wenn ein Teilchen in mehrere Teilchen zerfaellt, ergibt die invariante Masse der
+Zerfallsprodukte die Masse des urspruenglichen Teilchens.
+\end{conceptbox}
+
+\begin{examtipbox}
+Typische Anwendung:
+Ein kurzlebiges Teilchen wird nicht direkt gesehen.
+Man misst seine Zerfallsprodukte und berechnet deren invariante Masse.
+
+Ein Peak in der invarianten-Masse-Verteilung zeigt eine Resonanz oder ein neues
+Teilchen.
+\end{examtipbox}
+
+\section{Invariante Masse von zwei Teilchen}
+
+Betrachte zwei Teilchen mit Energien
+\[
+    E_1,\qquad E_2
+\]
+und Impulsen
+\[
+    \vec p_1,\qquad \vec p_2.
+\]
+
+\begin{formulabox}
+Die invariante Masse des Zweiteilchensystems ist:
+\[
+    M^2c^4
+    =
+    (E_1+E_2)^2
+    -
+    \left|\vec p_1+\vec p_2\right|^2c^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Wenn zwei Teilchen aus dem Zerfall eines Mutterteilchens stammen, dann ist
+\[
+    M
+\]
+die rekonstruierte Masse des Mutterteilchens.
+
+Bei vielen Ereignissen erhaelt man eine Verteilung.
+Eine Resonanz erscheint als Maximum in dieser Verteilung.
+\end{conceptbox}
+
+\begin{examplebox}
+Bei der Suche nach einem Teilchen, das in ein Elektron-Positron-Paar zerfaellt,
+misst man
+\[
+    e^-,
+    \qquad
+    e^+.
+\]
+Dann berechnet man:
+\[
+    M_{e^+e^-}^2c^4
+    =
+    (E_{e^+}+E_{e^-})^2
+    -
+    \left|\vec p_{e^+}+\vec p_{e^-}\right|^2c^2.
+\]
+Ein Peak in der Verteilung von
+\[
+    M_{e^+e^-}
+\]
+zeigt ein Teilchen, das in
+\[
+    e^+e^-
+\]
+zerfallen ist.
+\end{examplebox}
+
+\section{Schwerpunktssystem}
+
+Das Schwerpunktssystem ist das Bezugssystem, in dem der Gesamtimpuls verschwindet.
+
+\begin{definitionbox}
+Das \emph{Schwerpunktssystem} ist das Bezugssystem, in dem der gesamte Impuls des
+Systems null ist:
+\[
+    \vec p_{\mathrm{ges}}=0.
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+Im Schwerpunktssystem ist die gesamte Energie besonders einfach:
+\[
+    E_{\mathrm{CM}} = Mc^2.
+\]
+
+Hier ist $M$ die invariante Masse des gesamten Systems.
+\end{conceptbox}
+
+\begin{formulabox}
+Im Schwerpunktssystem gilt:
+\[
+    E_{\mathrm{CM}}^2
+    =
+    M^2c^4.
+\]
+Allgemein gilt:
+\[
+    E_{\mathrm{CM}}^2
+    =
+    E_{\mathrm{ges}}^2
+    -
+    p_{\mathrm{ges}}^2c^2.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Das Schwerpunktssystem ist wichtig, weil dort die Energie
+\[
+    E_{\mathrm{CM}}
+\]
+direkt die fuer neue Teilchen verfuegbare Energie beschreibt.
+\end{examtipbox}
+
+\section{Mandelstam-Variable s}
+
+In der Teilchenphysik verwendet man haeufig die Variable $s$.
+
+\begin{definitionbox}
+Die Mandelstam-Variable $s$ ist das Quadrat der gesamten Schwerpunktsenergie in
+natuerlichen Einheiten:
+\[
+    s = E_{\mathrm{CM}}^2.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+Mit Viererimpulsen gilt:
+\[
+    s
+    =
+    (p_1+p_2)^2.
+\]
+In natuerlichen Einheiten schreibt man:
+\[
+    E_{\mathrm{CM}}=\sqrt{s}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+$s$ ist invariant.
+Das bedeutet:
+Man kann $s$ in jedem Bezugssystem berechnen und erhaelt denselben Wert.
+
+Das ist praktisch, weil manche Rechnungen im Laborsystem einfacher sind, waehrend
+die physikalische Interpretation im Schwerpunktssystem einfacher ist.
+\end{conceptbox}
+
+\section{Fixed-Target-Experiment}
+
+Bei einem Fixed-Target-Experiment trifft ein bewegtes Teilchen auf ein ruhendes
+Target.
+
+\begin{definitionbox}
+Ein \emph{Fixed-Target-Experiment} ist ein Experiment, bei dem ein beschleunigter
+Strahl auf ein ruhendes Target trifft.
+\end{definitionbox}
+
+\begin{conceptbox}
+Im Laborsystem hat das Target vor der Kollision keinen Impuls.
+Ein grosser Teil der Energie des einfallenden Teilchens steckt nach der Kollision
+in der Bewegung des Schwerpunktsystems.
+
+Deshalb steht nicht die gesamte Strahlenergie fuer die Erzeugung neuer Teilchen zur
+Verfuegung.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer ein Projektil mit Gesamtenergie $E_1$ und Masse $m_1$, das auf ein ruhendes
+Target der Masse $m_2$ trifft, gilt in natuerlichen Einheiten:
+\[
+    s
+    =
+    m_1^2
+    +
+    m_2^2
+    +
+    2m_2E_1.
+\]
+Damit:
+\[
+    E_{\mathrm{CM}}
+    =
+    \sqrt{s}.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Bei Fixed-Target-Experimenten waechst die Schwerpunktsenergie fuer grosse
+Strahlenergie nur ungefaehr wie:
+\[
+    E_{\mathrm{CM}}\propto \sqrt{E_1}.
+\]
+
+Das ist viel langsamer als beim Collider.
+\end{examtipbox}
+
+\section{Collider}
+
+Bei einem Collider treffen zwei Teilchenstrahlen frontal aufeinander.
+
+\begin{definitionbox}
+Ein \emph{Collider} ist ein Beschleunigerexperiment, bei dem zwei gegenlaeufige
+Teilchenstrahlen zur Kollision gebracht werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Der Vorteil eines Colliders ist:
+Der Gesamtimpuls der beiden Strahlen kann im Idealfall verschwinden.
+
+Dann ist das Laborsystem gleichzeitig das Schwerpunktssystem.
+Die Strahlenergie steht direkt als Schwerpunktsenergie zur Verfuegung.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer zwei frontal kollidierende Teilchen gleicher Masse und gleicher Energie $E$
+gilt bei hohen Energien naeherungsweise:
+\[
+    E_{\mathrm{CM}}
+    \approx
+    2E.
+\]
+\end{formulabox}
+
+\begin{examplebox}
+Beim LHC koennen zwei Protonenstrahlen mit je
+\[
+    E=\SI{7}{TeV}
+\]
+frontal kollidieren.
+
+Dann ist die Schwerpunktsenergie:
+\[
+    E_{\mathrm{CM}}
+    =
+    \SI{14}{TeV}.
+\]
+\end{examplebox}
+
+\begin{examtipbox}
+Collider sind fuer Hochenergie-Teilchenphysik besonders effizient, weil die
+Schwerpunktsenergie naeherungsweise linear mit der Strahlenergie waechst.
+\end{examtipbox}
+
+\section{Vergleich: Fixed Target und Collider}
+
+\begin{center}
+\begin{tabular}{|p{4.2cm}|p{5.3cm}|p{5.3cm}|}
+\hline
+Eigenschaft & Fixed Target & Collider \\
+\hline
+Geometrie & Strahl trifft ruhendes Target & Zwei Strahlen kollidieren frontal \\
+\hline
+Target & ruhend & zweiter Strahl \\
+\hline
+Schwerpunktsenergie & waechst langsam mit Strahlenergie & waechst naeherungsweise linear mit Strahlenergie \\
+\hline
+Vorteil & hohe Targetdichte moeglich & hohe Schwerpunktsenergie moeglich \\
+\hline
+Nachteil & viel Energie steckt in Schwerpunktsbewegung & technisch schwierige Strahlueberlappung \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{conceptbox}
+Fixed-Target-Experimente sind oft gut fuer hohe Intensitaet und Praezisionsmessungen.
+
+Collider sind besonders gut, wenn man moeglichst hohe Schwerpunktsenergie erreichen
+will.
+\end{conceptbox}
+
+\begin{examtipbox}
+Wenn nach dem Grund gefragt wird, warum Collider gebaut werden:
+
+Ein Collider macht viel mehr der Strahlenergie im Schwerpunktssystem nutzbar.
+Dadurch koennen schwerere Teilchen erzeugt werden.
+\end{examtipbox}
+
+\section{Schwellenenergie fuer Teilchenerzeugung}
+
+Neue Teilchen koennen nur erzeugt werden, wenn genug Schwerpunktsenergie vorhanden ist.
+
+\begin{definitionbox}
+Die \emph{Schwellenenergie} ist die minimale Energie, die fuer eine Reaktion oder
+Teilchenerzeugung erforderlich ist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Im Schwerpunktssystem ist die Schwelle besonders einfach:
+Die Schwerpunktsenergie muss mindestens der Summe der Ruheenergien der Endteilchen
+entsprechen.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer eine Reaktion mit Endteilchenmassen
+\[
+    m_1,\quad m_2,\quad \ldots,\quad m_n
+\]
+gilt an der Schwelle:
+\[
+    E_{\mathrm{CM,thr}}
+    =
+    \left(
+        m_1+m_2+\ldots+m_n
+    \right)c^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+An der Schwelle haben die Endteilchen im Schwerpunktssystem keine zusaetzliche
+kinetische Energie.
+Die gesamte Energie steckt in ihren Ruhemassen.
+\end{conceptbox}
+
+\section{Resonanzen und invariante Masse}
+
+Kurzlebige Teilchen erscheinen in Experimenten oft als Resonanzen.
+
+\begin{definitionbox}
+Eine \emph{Resonanz} ist ein kurzlebiger angeregter Zustand oder ein kurzlebiges
+Teilchen, das in einer invarianten-Masse-Verteilung als Peak erscheint.
+\end{definitionbox}
+
+\begin{conceptbox}
+Man misst die Endprodukte eines Zerfalls und berechnet ihre invariante Masse.
+Wenn viele Ereignisse bei derselben invarianten Masse auftreten, spricht man von
+einem Resonanzpeak.
+
+Die Lage des Peaks gibt die Masse der Resonanz.
+Die Breite des Peaks haengt mit der Lebensdauer zusammen.
+\end{conceptbox}
+
+\begin{formulabox}
+Der Zusammenhang zwischen Breite $\Gamma$ und Lebensdauer $\tau$ ist grob:
+\[
+    \tau \sim \frac{\hbar}{\Gamma}.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Breite Resonanz bedeutet kurze Lebensdauer.
+
+Schmale Resonanz bedeutet lange Lebensdauer.
+\end{examtipbox}
+
+\section{Beispiel: Elektron-Positron-Annihilation}
+
+Elektron-Positron-Collider sind besonders sauber, weil Elektron und Positron
+punktfoermige Leptonen sind.
+
+\begin{conceptbox}
+Bei einer Elektron-Positron-Kollision kann die gesamte Schwerpunktsenergie in neue
+Teilchen gehen.
+
+Schematisch:
+\[
+    e^- + e^+ \rightarrow \gamma^* \rightarrow X.
+\]
+
+Bei geeigneter Schwerpunktsenergie kann auch ein schweres Boson oder eine Resonanz
+erzeugt werden.
+\end{conceptbox}
+
+\begin{examplebox}
+Wenn
+\[
+    E_{\mathrm{CM}}
+\]
+gleich der Ruheenergie eines Teilchens ist, kann dieses Teilchen resonant erzeugt
+werden.
+
+Zum Beispiel:
+\[
+    E_{\mathrm{CM}} \approx m_Zc^2
+\]
+fuer die Erzeugung eines $Z$-Bosons in
+\[
+    e^+e^-
+\]
+-Kollisionen.
+\end{examplebox}
+
+\section{Luminositaet}
+
+Hohe Schwerpunktsenergie allein reicht nicht.
+Man braucht auch genug Kollisionen.
+
+\begin{definitionbox}
+Die \emph{Luminositaet} $L$ beschreibt, wie intensiv zwei Teilchenstrahlen miteinander
+kollidieren.
+\end{definitionbox}
+
+\begin{formulabox}
+Die Ereignisrate $R$ eines Prozesses ist:
+\[
+    R = L\sigma.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $R$ die Ereignisrate,
+    \item $L$ die Luminositaet,
+    \item $\sigma$ der Wirkungsquerschnitt des Prozesses.
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+Ein Prozess mit kleinem Wirkungsquerschnitt ist selten.
+Um trotzdem genug Ereignisse zu messen, braucht man eine hohe Luminositaet.
+
+Deshalb optimieren Collider nicht nur Energie, sondern auch:
+\begin{itemize}
+    \item Strahlintensitaet,
+    \item Strahlfokussierung,
+    \item Bunchstruktur,
+    \item Kollisionsfrequenz.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Energie entscheidet, ob ein Prozess kinematisch moeglich ist.
+
+Luminositaet entscheidet, wie viele Ereignisse man pro Zeit beobachtet.
+\end{examtipbox}
+
+\section{Einheiten fuer Wirkungsquerschnitt und Luminositaet}
+
+\begin{definitionbox}
+Der Wirkungsquerschnitt hat die Dimension einer Flaeche.
+Eine wichtige Einheit ist das Barn:
+\[
+    1\,\mathrm{barn}=10^{-28}\,\mathrm{m^2}.
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+In der Teilchenphysik sind Wirkungsquerschnitte oft sehr klein.
+Daher verwendet man Untereinheiten:
+\[
+    \mathrm{mb},\quad \mu\mathrm{b},\quad \mathrm{nb},\quad \mathrm{pb},\quad \mathrm{fb}.
+\]
+\end{conceptbox}
+
+\begin{formulabox}
+Da
+\[
+    R=L\sigma
+\]
+die Einheit
+\[
+    \mathrm{s}^{-1}
+\]
+haben muss, hat die Luminositaet die Einheit:
+\[
+    \mathrm{cm}^{-2}\mathrm{s}^{-1}
+\]
+oder entsprechend
+\[
+    \mathrm{m}^{-2}\mathrm{s}^{-1}.
+\]
+\end{formulabox}
+
+\section{Integrierte Luminositaet}
+
+Neben der momentanen Luminositaet verwendet man die integrierte Luminositaet.
+
+\begin{definitionbox}
+Die \emph{integrierte Luminositaet} ist die ueber die Messzeit integrierte
+Luminositaet:
+\[
+    \mathcal{L}_{\mathrm{int}}
+    =
+    \int L(t)\,\dd t.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+Die erwartete Anzahl von Ereignissen ist:
+\[
+    N
+    =
+    \mathcal{L}_{\mathrm{int}}\sigma.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die integrierte Luminositaet misst die insgesamt gesammelte Datenmenge eines
+Experiments.
+
+Je groesser
+\[
+    \mathcal{L}_{\mathrm{int}}
+\]
+ist, desto mehr seltene Prozesse kann man untersuchen.
+\end{conceptbox}
+
+\section{Impuls- und Energieerhaltung in Zerfaellen}
+
+Relativistische Kinematik ist auch fuer Zerfaelle wichtig.
+
+\begin{conceptbox}
+Bei einem Zerfall muessen Energie und Impuls erhalten bleiben.
+Im Ruhesystem des Mutterteilchens ist der Gesamtimpuls vor dem Zerfall null.
+
+Daher muessen die Impulse der Zerfallsprodukte vektoriell zusammen null ergeben.
+\end{conceptbox}
+
+\begin{examplebox}
+Bei einem Zweikoerperzerfall
+\[
+    A \rightarrow 1+2
+\]
+im Ruhesystem von $A$ gilt:
+\[
+    \vec p_1 + \vec p_2 = 0.
+\]
+Also:
+\[
+    \vec p_1 = -\vec p_2.
+\]
+Die Teilchen fliegen ruecken an ruecken auseinander.
+\end{examplebox}
+
+\begin{conceptbox}
+Bei einem Dreikoerperzerfall verteilt sich die Energie variabel auf drei Teilchen.
+Deshalb entstehen kontinuierliche Energiespektren.
+
+Das ist wichtig fuer das Beta-Spektrum.
+\end{conceptbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Der Lorentzfaktor ist
+    \[
+        \gamma=\frac{1}{\sqrt{1-\beta^2}}.
+    \]
+    \item Die Gesamtenergie ist
+    \[
+        E=\gamma mc^2.
+    \]
+    \item Der relativistische Impuls ist
+    \[
+        \vec p=\gamma m\vec v.
+    \]
+    \item Die Energie-Impuls-Beziehung ist
+    \[
+        E^2=p^2c^2+m^2c^4.
+    \]
+    \item Die invariante Masse eines Systems ist durch
+    \[
+        M^2c^4=E_{\mathrm{ges}}^2-p_{\mathrm{ges}}^2c^2
+    \]
+    gegeben.
+    \item Im Schwerpunktssystem ist der Gesamtimpuls null.
+    \item Die Schwerpunktsenergie ist die Energie, die fuer Teilchenerzeugung relevant ist.
+    \item Fixed-Target-Experimente nutzen die Strahlenergie weniger effizient fuer Schwerpunktsenergie.
+    \item Collider machen viel mehr Strahlenergie im Schwerpunktsystem verfuegbar.
+    \item Luminositaet und Wirkungsquerschnitt bestimmen die Ereignisrate:
+    \[
+        R=L\sigma.
+    \]
+    \item Integrierte Luminositaet bestimmt die insgesamt erwartete Ereigniszahl:
+    \[
+        N=\mathcal{L}_{\mathrm{int}}\sigma.
+    \]
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Warum braucht man relativistische Kinematik in der Teilchenphysik?
+    \item Was ist der Lorentzfaktor?
+    \item Wie lautet die relativistische Gesamtenergie?
+    \item Wie lautet der relativistische Impuls?
+    \item Wie lautet die Energie-Impuls-Beziehung?
+    \item Was gilt fuer masselose Teilchen?
+    \item Was ist ein Viererimpuls?
+    \item Was bedeutet invariant?
+    \item Was ist die invariante Masse?
+    \item Wie rekonstruiert man die Masse eines zerfallenden Teilchens?
+    \item Was ist das Schwerpunktssystem?
+    \item Was ist die Schwerpunktsenergie?
+    \item Was ist die Mandelstam-Variable $s$?
+    \item Was ist ein Fixed-Target-Experiment?
+    \item Warum ist Fixed Target bei hohen Energien ineffizienter fuer Teilchenerzeugung?
+    \item Was ist ein Collider?
+    \item Warum erreicht ein Collider hoehere Schwerpunktsenergien?
+    \item Was ist eine Schwellenenergie?
+    \item Was ist eine Resonanz?
+    \item Wie haengt Resonanzbreite mit Lebensdauer zusammen?
+    \item Was ist Luminositaet?
+    \item Wie haengt die Ereignisrate mit Luminositaet und Wirkungsquerschnitt zusammen?
+    \item Was ist integrierte Luminositaet?
+\end{enumerate}
+\end{examtipbox}

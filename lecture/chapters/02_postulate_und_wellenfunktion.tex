@@ -1,0 +1,931 @@
+\chapter{Postulate und Wellenfunktion}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel führt die Grundidee der Quantenmechanik ein. Es geht noch nicht darum, möglichst viele konkrete Potentialprobleme zu lösen. Stattdessen soll klar werden, was ein quantenmechanischer Zustand ist, wie aus einer Wellenfunktion Wahrscheinlichkeiten berechnet werden, welche Rolle Messungen spielen und warum die Schrödingergleichung als Bewegungsgleichung auftritt.
+
+Die wichtigsten Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Was beschreibt die Wellenfunktion $\psi(\vec{x},t)$?
+    \item Warum ist $|\psi(\vec{x},t)|^2$ eine Wahrscheinlichkeitsdichte?
+    \item Was bedeutet Normierung?
+    \item Was ist ein Hilbertraum?
+    \item Wie werden Messgrößen durch Operatoren beschrieben?
+    \item Was passiert bei einer Messung?
+    \item Was ist der Unterschied zwischen deterministischer Zeitentwicklung und stochastischem Messergebnis?
+\end{itemize}
+
+\begin{conceptbox}
+Die Quantenmechanik ist keine Theorie, in der ein Teilchen zu jedem Zeitpunkt gleichzeitig einen scharf bestimmten Ort und Impuls besitzt. Stattdessen beschreibt ein Zustand die möglichen Messergebnisse und ihre Wahrscheinlichkeiten. Die Wellenfunktion ist also nicht einfach eine klassische Bahn, sondern eine komplexe Wahrscheinlichkeitsamplitude.
+\end{conceptbox}
+
+\section{Klassische Mechanik als Ausgangspunkt}
+
+In der klassischen Hamiltonschen Mechanik ist der Zustand eines Teilchens durch Ort und Impuls gegeben:
+\[
+    (\vec{x},\vec{p}).
+\]
+Dieser Punkt liegt im Phasenraum. Kennt man zu einer Anfangszeit $t_0$ den Zustand
+\[
+    (\vec{x}(t_0),\vec{p}(t_0)),
+\]
+dann bestimmt die Hamiltonfunktion $H(\vec{x},\vec{p})$ die weitere Bewegung durch die kanonischen Gleichungen
+\[
+    \dot{x}_j(t)=\frac{\partial H}{\partial p_j},
+    \qquad
+    \dot{p}_j(t)=-\frac{\partial H}{\partial x_j}.
+\]
+Für ein Teilchen im Potential $V(\vec{x})$ ist typischerweise
+\[
+    H(\vec{x},\vec{p})=\frac{\vec{p}^{\,2}}{2m}+V(\vec{x}).
+\]
+
+\begin{conceptbox}
+Klassisch ist der Zustand ein Punkt im Phasenraum. Quantenmechanisch ist der Zustand ein Vektor in einem Hilbertraum. Das ist der zentrale strukturelle Wechsel.
+\end{conceptbox}
+
+Physikalisch beobachtbare Größen heißen Observable. Klassisch sind das Funktionen auf dem Phasenraum, zum Beispiel
+\[
+    A(\vec{x},\vec{p},t),
+\]
+wie Energie, Impuls, Drehimpuls oder Ort. Quantenmechanisch werden solche Observablen nicht mehr durch gewöhnliche Funktionen beschrieben, sondern durch Operatoren.
+
+\section{Erstes Postulat: Zustand und Wellenfunktion}
+
+\subsection{Zustand eines Teilchens}
+
+\begin{definitionbox}
+Der Zustand eines quantenmechanischen Systems aus einem Teilchen zum Zeitpunkt $t$ wird durch eine komplexwertige Wellenfunktion
+\[
+    \psi(\vec{x},t)
+\]
+beschrieben. Für ein Teilchen im dreidimensionalen Raum gilt
+\[
+    \psi(\cdot,t)\in L^2(\R^3),
+\]
+das heißt
+\[
+    \int_{\R^3}\dd^3x\,|\psi(\vec{x},t)|^2<\infty.
+\]
+Der Raum $L^2(\R^3)$ ist ein Hilbertraum.
+\end{definitionbox}
+
+Die Wellenfunktion ordnet jedem Ort $\vec{x}$ und jeder Zeit $t$ eine komplexe Zahl zu:
+\[
+    \psi(\vec{x},t)\in\mathbb{C}.
+\]
+Die Wellenfunktion selbst ist also nicht direkt eine Wahrscheinlichkeit, denn sie kann komplex sein. Erst der Betrag zum Quadrat
+\[
+    |\psi(\vec{x},t)|^2=\psi^*(\vec{x},t)\psi(\vec{x},t)
+\]
+ist reell und nichtnegativ.
+
+\subsection{Warum quadratintegrierbar?}
+
+Für eine physikalische Interpretation muss die Gesamtwahrscheinlichkeit endlich sein. Das führt auf die Bedingung
+\[
+    \int_{\R^3}\dd^3x\,|\psi(\vec{x},t)|^2<\infty.
+\]
+Ist diese Bedingung erfüllt, kann man die Wellenfunktion meistens durch Multiplikation mit einer Konstanten so normieren, dass
+\[
+    \int_{\R^3}\dd^3x\,|\psi(\vec{x},t)|^2=1
+\]
+gilt.
+
+\begin{notebox}
+Nicht jede mathematische Lösung der Schrödingergleichung ist automatisch ein physikalisch zulässiger Zustand. Eine ebene Welle
+\[
+    \psi(x)=Ae^{ikx}
+\]
+ist zum Beispiel auf ganz $\R$ nicht quadratintegrierbar, weil $|\psi(x)|^2=|A|^2$ konstant ist und
+\[
+    \int_{-\infty}^{\infty}\dd x\,|A|^2=\infty
+\]
+gilt. Ebene Wellen sind trotzdem als idealisierte Bausteine wichtig, aber kein normalisierbarer einzelner Zustand auf ganz $\R$.
+\end{notebox}
+
+\subsection{Der Hilbertraum als Zustandsraum}
+
+Ein Hilbertraum ist ein komplexer Vektorraum mit Skalarprodukt, in dem Grenzwerte von Cauchy-Folgen wieder im Raum liegen. Für die Quantenmechanik ist vor allem wichtig:
+\begin{itemize}
+    \item Zustände können addiert werden.
+    \item Zustände können mit komplexen Zahlen multipliziert werden.
+    \item Es gibt ein Skalarprodukt.
+    \item Aus dem Skalarprodukt entstehen Normen, Wahrscheinlichkeiten und Erwartungswerte.
+\end{itemize}
+
+Für Wellenfunktionen $\varphi,\psi\in L^2(\R^3)$ lautet das Skalarprodukt
+\[
+    (\varphi,\psi)
+    =\int_{\R^3}\dd^3x\,\varphi^*(\vec{x})\psi(\vec{x}).
+\]
+Die Norm eines Zustands ist
+\[
+    \norm{\psi}=\sqrt{(\psi,\psi)}
+    =\sqrt{\int_{\R^3}\dd^3x\,|\psi(\vec{x})|^2}.
+\]
+Ein Zustand ist normiert, wenn
+\[
+    \norm{\psi}=1
+\]
+gilt.
+
+\begin{conceptbox}
+Ein Zustand ist mathematisch ein Vektor. Physikalisch relevant ist aber nicht die Länge dieses Vektors, sondern seine Richtung im Hilbertraum. Deshalb arbeitet man meistens mit normierten Zuständen.
+\end{conceptbox}
+
+\section{Bornsche Wahrscheinlichkeitsinterpretation}
+
+\subsection{Wahrscheinlichkeitsdichte im Ortsraum}
+
+\begin{definitionbox}
+Die Bornsche Wahrscheinlichkeitsinterpretation lautet:
+\[
+    \rho(\vec{x},t)=|\psi(\vec{x},t)|^2
+\]
+ist die Wahrscheinlichkeitsdichte dafür, das Teilchen zum Zeitpunkt $t$ am Ort $\vec{x}$ zu finden.
+\end{definitionbox}
+
+Genauer gilt:
+\[
+    |\psi(\vec{x},t)|^2\dd^3x
+\]
+ist die Wahrscheinlichkeit, das Teilchen zum Zeitpunkt $t$ im kleinen Volumenelement $\dd^3x$ um den Ort $\vec{x}$ zu finden.
+
+Für ein Gebiet $G\subseteq\R^3$ ist die Wahrscheinlichkeit, das Teilchen in $G$ zu finden,
+\[
+    P(\vec{x}\in G)=\int_G\dd^3x\,|\psi(\vec{x},t)|^2.
+\]
+
+\begin{formulabox}
+Für einen normierten Zustand gilt
+\[
+    \int_{\R^3}\dd^3x\,|\psi(\vec{x},t)|^2=1.
+\]
+Das bedeutet: Das Teilchen wird bei einer Ortsmessung irgendwo im Raum gefunden.
+\end{formulabox}
+
+\subsection{Eindimensionale Schreibweise}
+
+Für ein Teilchen in einer Dimension schreibt man statt $\vec{x}$ einfach $x$. Dann gilt
+\[
+    \rho(x,t)=|\psi(x,t)|^2
+\]
+und
+\[
+    P(a\le x\le b)=\int_a^b\dd x\,|\psi(x,t)|^2.
+\]
+Die Normierung lautet
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x,t)|^2=1.
+\]
+
+\begin{examplebox}
+Wenn $\psi(x,t)$ in einem bestimmten Bereich verschwindet, dann ist dort die Aufenthaltswahrscheinlichkeit null. Wenn $\psi(x,t)$ an zwei getrennten Orten ungleich null ist, bedeutet das nicht, dass das Teilchen klassisch an zwei Orten gleichzeitig als punktförmiges Objekt sitzt. Es bedeutet, dass beide Orte mögliche Messergebnisse mit nichtverschwindender Wahrscheinlichkeit sind.
+\end{examplebox}
+
+\section{Wellenfunktion und Ensemble-Interpretation}
+
+Die Wellenfunktion ist nicht einfach eine kleine materielle Wolke, die im Raum verteilt ist. Sie beschreibt die statistischen Vorhersagen für Messergebnisse.
+
+\begin{conceptbox}
+Die Wellenfunktion charakterisiert den Zustand einer quantenmechanischen Gesamtheit gleich präparierter Systeme. Eine einzelne Messung liefert ein konkretes Ergebnis. Erst viele Wiederholungen desselben Experiments zeigen die durch $|\psi|^2$ beschriebene Häufigkeitsverteilung.
+\end{conceptbox}
+
+Das bedeutet:
+\begin{itemize}
+    \item Aus $\psi$ folgt im Allgemeinen nicht, welchen Ort man in einem einzelnen Experiment messen wird.
+    \item Aus $\psi$ folgt aber, mit welcher Wahrscheinlichkeit verschiedene Ortsbereiche auftreten.
+    \item Die Theorie macht also präzise statistische Vorhersagen.
+\end{itemize}
+
+\subsection{Beispiel: Doppelspalt}
+
+Beim Doppelspaltexperiment kann ein Elektron oder Photon durch eine Anordnung mit zwei Spalten geschickt werden. Die Wellenfunktion hinter den Spalten besitzt Beiträge von beiden Spalten. Diese Beiträge können interferieren.
+
+Wenn man viele Teilchen nacheinander misst, entsteht auf dem Schirm ein Interferenzmuster. Dieses Muster wird durch $|\psi|^2$ vorhergesagt. Das einzelne Teilchen wird aber immer punktförmig an einer konkreten Stelle detektiert.
+
+\begin{conceptbox}
+Die Wellenfunktion liefert keine klassische Bahn. Sie liefert eine komplexe Amplitude, aus der sich die Verteilung vieler Messergebnisse ergibt.
+\end{conceptbox}
+
+\section{Normierung einer Wellenfunktion}
+
+\subsection{Allgemeines Vorgehen}
+
+Häufig erhält man eine Wellenfunktion zunächst bis auf eine Konstante:
+\[
+    \psi(x)=N f(x).
+\]
+Die Normierung bestimmt dann $N$ aus
+\[
+    1=\int\dd x\,|\psi(x)|^2
+    =|N|^2\int\dd x\,|f(x)|^2.
+\]
+Daraus folgt
+\[
+    |N|^2=\frac{1}{\int\dd x\,|f(x)|^2}.
+\]
+Ist $N$ reell und positiv gewählt, dann gilt
+\[
+    N=\frac{1}{\sqrt{\int\dd x\,|f(x)|^2}}.
+\]
+
+\begin{calculationbox}
+Sei
+\[
+    \psi(x)=N e^{-\alpha x^2},
+    \qquad \alpha>0.
+\]
+Dann ist
+\[
+    |\psi(x)|^2=|N|^2 e^{-2\alpha x^2}.
+\]
+Die Normierungsbedingung lautet
+\[
+    1=|N|^2\int_{-\infty}^{\infty}\dd x\,e^{-2\alpha x^2}.
+\]
+Mit dem Gaußintegral
+\[
+    \int_{-\infty}^{\infty}\dd x\,e^{-\beta x^2}
+    =\sqrt{\frac{\pi}{\beta}}
+    \qquad (\beta>0)
+\]
+folgt
+\[
+    1=|N|^2\sqrt{\frac{\pi}{2\alpha}}.
+\]
+Also
+\[
+    |N|^2=\sqrt{\frac{2\alpha}{\pi}},
+    \qquad
+    N=\left(\frac{2\alpha}{\pi}\right)^{1/4}.
+\]
+\end{calculationbox}
+
+\subsection{Dimension der Wellenfunktion}
+
+Die Wahrscheinlichkeit ist dimensionslos. In einer Dimension gilt
+\[
+    |\psi(x)|^2\dd x
+\]
+als Wahrscheinlichkeit. Da $\dd x$ die Dimension Länge hat, muss
+\[
+    [|\psi|^2]=\frac{1}{\text{Länge}}
+\]
+gelten. Also hat
+\[
+    [\psi]=\frac{1}{\sqrt{\text{Länge}}}.
+\]
+In drei Dimensionen gilt entsprechend
+\[
+    [\psi]=\frac{1}{\sqrt{\text{Volumen}}}=\text{Länge}^{-3/2}.
+\]
+
+\section{Superpositionsprinzip}
+
+\begin{definitionbox}
+Wenn $\psi_1$ und $\psi_2$ mögliche Zustände eines quantenmechanischen Systems sind, dann ist auch
+\[
+    \psi=\alpha\psi_1+\beta\psi_2,
+    \qquad \alpha,\beta\in\mathbb{C},
+\]
+ein möglicher Zustand, sofern er sinnvoll normiert werden kann. Dies nennt man Superpositionsprinzip.
+\end{definitionbox}
+
+Die Superposition ist nicht einfach eine klassische Mischung. Bei einer klassischen Mischung wäre das System entweder in Zustand $\psi_1$ oder in Zustand $\psi_2$, nur man weiß es nicht. Eine quantenmechanische Superposition enthält relative Phasen und kann Interferenz erzeugen.
+
+\subsection{Wahrscheinlichkeitsdichte einer Superposition}
+
+Sei
+\[
+    \psi=\alpha\psi_1+\beta\psi_2.
+\]
+Dann ist
+\begin{align*}
+    |\psi|^2
+    &= (\alpha\psi_1+\beta\psi_2)^*(\alpha\psi_1+\beta\psi_2)\\
+    &= |\alpha|^2|\psi_1|^2+|\beta|^2|\psi_2|^2
+    +\alpha^*\beta\psi_1^*\psi_2+\beta^*\alpha\psi_2^*\psi_1.
+\end{align*}
+Die letzten beiden Terme sind Interferenzterme. Sie hängen von der relativen Phase zwischen den beiden Anteilen ab.
+
+\begin{notebox}
+Im Allgemeinen gilt nicht
+\[
+    |\alpha\psi_1+\beta\psi_2|^2
+    =|\alpha|^2|\psi_1|^2+|\beta|^2|\psi_2|^2.
+\]
+Diese Gleichung wäre nur ohne Interferenzterme richtig, etwa wenn sich die Zustände nicht überlappen oder wenn man eine klassische Mischung statt einer kohärenten Superposition betrachtet.
+\end{notebox}
+
+\section{Globale Phase und physikalischer Zustand}
+
+Zwei Wellenfunktionen
+\[
+    \psi
+    \qquad\text{und}\qquad
+    e^{i\alpha}\psi
+\]
+mit konstantem $\alpha\in\R$ beschreiben denselben physikalischen Zustand. Denn
+\[
+    |e^{i\alpha}\psi(\vec{x},t)|^2
+    =e^{-i\alpha}e^{i\alpha}|\psi(\vec{x},t)|^2
+    =|\psi(\vec{x},t)|^2.
+\]
+Auch Skalarprodukt-Wahrscheinlichkeiten bleiben unverändert.
+
+\begin{conceptbox}
+Die absolute globale Phase eines Zustands ist nicht messbar. Relative Phasen zwischen verschiedenen Anteilen einer Superposition sind dagegen messbar, weil sie Interferenz beeinflussen.
+\end{conceptbox}
+
+\section{Erwartungswert und Varianz des Ortes}
+
+\subsection{Erwartungswert}
+
+Aus der Wahrscheinlichkeitsdichte kann man den Mittelwert vieler Ortsmessungen berechnen. In einer Dimension gilt:
+\[
+    \langle X\rangle_t
+    =\int_{-\infty}^{\infty}\dd x\,x|\psi(x,t)|^2.
+\]
+In drei Dimensionen gilt komponentenweise
+\[
+    \langle X_j\rangle_t
+    =\int_{\R^3}\dd^3x\,x_j|\psi(\vec{x},t)|^2.
+\]
+
+\begin{definitionbox}
+Der Erwartungswert $\langle X\rangle$ ist nicht zwingend ein Messergebnis. Er ist der statistische Mittelwert vieler gleich präparierter Messungen.
+\end{definitionbox}
+
+\subsection{Varianz und Unschärfe}
+
+Die Varianz des Ortes ist
+\[
+    (\Delta X)^2
+    =\langle (X-\langle X\rangle)^2\rangle.
+\]
+In Ortsdarstellung bedeutet das
+\[
+    (\Delta X)^2
+    =\int_{-\infty}^{\infty}\dd x\,(x-\langle X\rangle)^2|\psi(x,t)|^2.
+\]
+Äquivalent kann man schreiben:
+\[
+    (\Delta X)^2
+    =\langle X^2\rangle-\langle X\rangle^2.
+\]
+Dabei ist
+\[
+    \langle X^2\rangle
+    =\int_{-\infty}^{\infty}\dd x\,x^2|\psi(x,t)|^2.
+\]
+
+\begin{conceptbox}
+$\Delta X$ misst die Breite der Ortsverteilung. Ein kleines $\Delta X$ bedeutet: Die Ortsmessungen streuen wenig. Ein großes $\Delta X$ bedeutet: Die Ortsmessungen sind breit verteilt.
+\end{conceptbox}
+
+\section{Beispiel: Gaußsches Wellenpaket}
+
+Ein besonders wichtiges Beispiel ist das eindimensionale Gaußsche Wellenpaket zum Zeitpunkt $t=0$:
+\[
+    \psi(x,0)
+    =\left(\frac{2}{\pi a^2}\right)^{1/4}
+    e^{ik_0x}e^{-(x-x_0)^2/a^2},
+    \qquad a>0.
+\]
+
+\subsection{Wahrscheinlichkeitsdichte}
+
+Der Faktor $e^{ik_0x}$ ist eine reine Phase. Daher gilt
+\[
+    |e^{ik_0x}|^2=1.
+\]
+Somit ist
+\[
+    |\psi(x,0)|^2
+    =\sqrt{\frac{2}{\pi a^2}}\,e^{-2(x-x_0)^2/a^2}.
+\]
+Die Wahrscheinlichkeitsdichte ist also eine Gaußverteilung um $x_0$.
+
+\begin{conceptbox}
+Der Parameter $x_0$ gibt das Zentrum des Wellenpakets an. Der Parameter $a$ kontrolliert die Breite. Der Parameter $k_0$ steckt in der Phase und hängt mit dem mittleren Impuls zusammen.
+\end{conceptbox}
+
+\subsection{Normierung}
+
+\begin{calculationbox}
+Wir prüfen die Normierung:
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x,0)|^2
+    =\sqrt{\frac{2}{\pi a^2}}
+    \int_{-\infty}^{\infty}\dd x\,e^{-2(x-x_0)^2/a^2}.
+\]
+Mit $u=x-x_0$ folgt
+\[
+    \int_{-\infty}^{\infty}\dd x\,e^{-2(x-x_0)^2/a^2}
+    =\int_{-\infty}^{\infty}\dd u\,e^{-2u^2/a^2}.
+\]
+Das Gaußintegral liefert
+\[
+    \int_{-\infty}^{\infty}\dd u\,e^{-2u^2/a^2}
+    =\sqrt{\frac{\pi a^2}{2}}.
+\]
+Damit ist
+\[
+    \sqrt{\frac{2}{\pi a^2}}\sqrt{\frac{\pi a^2}{2}}=1.
+\]
+Die Wellenfunktion ist also normiert.
+\end{calculationbox}
+
+\subsection{Erwartungswert und Breite}
+
+Wegen der Symmetrie der Gaußverteilung um $x_0$ gilt
+\[
+    \langle X\rangle_{t=0}=x_0.
+\]
+Die Varianz ist
+\[
+    (\Delta X)^2_{t=0}=\frac{a^2}{4},
+\]
+also
+\[
+    \Delta X_{t=0}=\frac{a}{2}.
+\]
+
+\begin{answerbox}
+Für das Gaußsche Wellenpaket
+\[
+    \psi(x,0)
+    =\left(\frac{2}{\pi a^2}\right)^{1/4}e^{ik_0x}e^{-(x-x_0)^2/a^2}
+\]
+gilt:
+\[
+    |\psi(x,0)|^2
+    =\sqrt{\frac{2}{\pi a^2}}e^{-2(x-x_0)^2/a^2},
+    \qquad
+    \langle X\rangle_{t=0}=x_0,
+    \qquad
+    \Delta X_{t=0}=\frac{a}{2}.
+\]
+\end{answerbox}
+
+\section{Zweites Postulat: Observable als Operatoren}
+
+\subsection{Grundidee}
+
+Klassische Messgrößen wie Ort, Impuls und Energie werden in der Quantenmechanik durch lineare Operatoren dargestellt. Ein Operator wirkt auf Zustände.
+
+\begin{definitionbox}
+Eine Observable ist eine physikalisch messbare Größe. In der Quantenmechanik wird eine Observable durch einen selbstadjungierten Operator dargestellt.
+\end{definitionbox}
+
+Selbstadjungiert bedeutet im endlichdimensionalen Fall einfach hermitesch:
+\[
+    A^\dagger=A.
+\]
+Im unendlichdimensionalen Fall muss man zusätzlich Definitionsbereiche beachten. Für das Lernskript ist zunächst die Hauptidee entscheidend: Selbstadjungierte Operatoren haben reelle Eigenwerte und eignen sich deshalb als Messgrößen.
+
+\subsection{Ortsoperator}
+
+In Ortsdarstellung wirkt der Ortsoperator durch Multiplikation:
+\[
+    (X_j\psi)(\vec{x})=x_j\psi(\vec{x}).
+\]
+In einer Dimension:
+\[
+    (X\psi)(x)=x\psi(x).
+\]
+Der Erwartungswert des Ortsoperators ist
+\[
+    \langle X\rangle=(\psi,X\psi)
+    =\int\dd x\,\psi^*(x)x\psi(x)
+    =\int\dd x\,x|\psi(x)|^2.
+\]
+Das ist genau der Mittelwert der Ortswahrscheinlichkeitsverteilung.
+
+\subsection{Impulsoperator}
+
+In Ortsdarstellung lautet der Impulsoperator
+\[
+    P_j=\frac{\hbar}{i}\frac{\partial}{\partial x_j}
+    =-i\hbar\frac{\partial}{\partial x_j}.
+\]
+In einer Dimension:
+\[
+    P=-i\hbar\frac{\dd}{\dd x}.
+\]
+
+\begin{conceptbox}
+Der Impuls ist in Ortsdarstellung kein Multiplikationsoperator, sondern ein Differentialoperator. Genau daraus entstehen viele typisch quantenmechanische Effekte, zum Beispiel Nichtvertauschbarkeit von Ort und Impuls.
+\end{conceptbox}
+
+\subsection{Hamiltonoperator}
+
+Der Hamiltonoperator beschreibt die Energie und erzeugt die Zeitentwicklung. Für ein Teilchen im Potential $V(\vec{x})$ lautet er in Ortsdarstellung
+\[
+    H=-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x}).
+\]
+In einer Dimension:
+\[
+    H=-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}+V(x).
+\]
+
+Diese Form entsteht durch kanonische Quantisierung:
+\[
+    \vec{p}\mapsto -i\hbar\nabla,
+    \qquad
+    \frac{\vec{p}^{\,2}}{2m}+V(\vec{x})
+    \mapsto
+    -\frac{\hbar^2}{2m}\nabla^2+V(\vec{x}).
+\]
+
+\section{Drittes Postulat: Messwerte und Eigenwerte}
+
+\subsection{Eigenwertgleichung}
+
+Ist $A$ eine Observable, dann sind mögliche Messergebnisse die Eigenwerte von $A$. Die Eigenwertgleichung lautet
+\[
+    A\varphi_n=a_n\varphi_n.
+\]
+Dabei ist $a_n$ ein Eigenwert und $\varphi_n$ ein zugehöriger Eigenzustand.
+
+\begin{formulabox}
+Mögliche Messwerte einer Observablen $A$ sind die Eigenwerte $a_n$ des zugehörigen Operators:
+\[
+    A\varphi_n=a_n\varphi_n.
+\]
+\end{formulabox}
+
+Da Observablen durch selbstadjungierte Operatoren dargestellt werden, sind die Eigenwerte reell. Das ist notwendig, weil Messergebnisse reelle Zahlen sein müssen.
+
+\subsection{Messwahrscheinlichkeiten bei diskretem nicht entartetem Spektrum}
+
+Sei der Zustand normiert und in einer Orthonormalbasis von Eigenzuständen von $A$ entwickelt:
+\[
+    \psi=\sum_n c_n\varphi_n.
+\]
+Dann gilt
+\[
+    c_n=(\varphi_n,\psi).
+\]
+Die Wahrscheinlichkeit, bei einer Messung von $A$ den Wert $a_n$ zu erhalten, ist
+\[
+    P(a_n)=|c_n|^2=|(\varphi_n,\psi)|^2.
+\]
+
+\begin{formulabox}
+Für ein diskretes, nicht entartetes Spektrum gilt:
+\[
+    P(a_n)=|(\varphi_n,\psi)|^2.
+\]
+\end{formulabox}
+
+Die Normierung von $\psi$ bedeutet dann
+\[
+    1=\norm{\psi}^2=\sum_n |c_n|^2,
+\]
+also ist die Summe aller Messwahrscheinlichkeiten eins.
+
+\subsection{Entartete Messwerte}
+
+Ein Eigenwert heißt entartet, wenn mehrere linear unabhängige Eigenzustände denselben Eigenwert besitzen. Dann reicht es nicht, nur einen Eigenvektor zu betrachten. Man muss auf den gesamten Eigenraum projizieren.
+
+Sei $P_a$ der Projektor auf den Eigenraum zum Eigenwert $a$. Dann ist
+\[
+    P(a)=\norm{P_a\psi}^2.
+\]
+
+\begin{conceptbox}
+Bei Entartung sagt das Messergebnis nur, in welchem Eigenraum der Zustand liegt, aber nicht automatisch, welcher konkrete Basisvektor innerhalb dieses Eigenraums vorliegt.
+\end{conceptbox}
+
+\section{Viertes Postulat: Zustandsreduktion bei Messung}
+
+\subsection{Nicht entarteter Fall}
+
+Wenn eine Messung der Observablen $A$ den nicht entarteten Eigenwert $a_n$ ergibt, dann ist der Zustand unmittelbar nach der Messung der zugehörige normierte Eigenzustand $\varphi_n$.
+
+\begin{definitionbox}
+Bei einer Messung mit Ergebnis $a_n$ wird der Zustand auf den zugehörigen Eigenzustand reduziert:
+\[
+    \psi\longrightarrow \varphi_n.
+\]
+Dies nennt man Reduktion des Wellenpakets oder Kollaps des Zustands.
+\end{definitionbox}
+
+Vor der Messung kann der Zustand eine Superposition sein:
+\[
+    \psi=\sum_n c_n\varphi_n.
+\]
+Nach einer konkreten Messung mit Ergebnis $a_k$ ist der Zustand nicht mehr diese gesamte Superposition, sondern
+\[
+    \psi_{\text{nach}}=\varphi_k.
+\]
+
+\subsection{Projektionspostulat}
+
+Allgemeiner schreibt man die Zustandsänderung mit Projektoren. Wenn $P_a$ der Projektor auf den Eigenraum zum Messergebnis $a$ ist, dann gilt nach der Messung
+\[
+    \psi\longrightarrow \frac{P_a\psi}{\norm{P_a\psi}},
+\]
+sofern $P_a\psi\ne 0$.
+Die Wahrscheinlichkeit für dieses Ergebnis ist
+\[
+    P(a)=\norm{P_a\psi}^2.
+\]
+
+\begin{notebox}
+Die Zustandsreduktion ist nicht dieselbe Art von Zeitentwicklung wie die Schrödingergleichung. Die Schrödingergleichung ist deterministisch und reversibel. Eine Messung liefert ein zufälliges Ergebnis und verändert den Zustand sprunghaft.
+\end{notebox}
+
+\subsection{Unmittelbar wiederholte Messung}
+
+Wenn man direkt nach einer Messung dieselbe Observable erneut misst, erhält man dasselbe Ergebnis mit Wahrscheinlichkeit eins. Denn nach der ersten Messung befindet sich der Zustand bereits im entsprechenden Eigenzustand beziehungsweise Eigenraum.
+
+\begin{examplebox}
+Sei
+\[
+    A\varphi_n=a_n\varphi_n.
+\]
+Wenn eine Messung von $A$ den Wert $a_n$ liefert, dann ist der Zustand nach der Messung $\varphi_n$. Eine sofortige zweite Messung von $A$ liefert wieder $a_n$, denn
+\[
+    A\varphi_n=a_n\varphi_n.
+\]
+\end{examplebox}
+
+\section{Fünftes Postulat: Zeitentwicklung}
+
+\subsection{Schrödingergleichung}
+
+Zwischen Messungen entwickelt sich ein quantenmechanischer Zustand gemäß der Schrödingergleichung.
+
+\begin{definitionbox}
+Die zeitliche Entwicklung der Wellenfunktion wird durch
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)=H\psi(\vec{x},t)
+\]
+beschrieben.
+\end{definitionbox}
+
+Für ein Teilchen im Potential $V(\vec{x})$ ist
+\[
+    H=-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x}).
+\]
+Damit lautet die zeitabhängige Schrödingergleichung
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)
+    =\left(-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x})\right)\psi(\vec{x},t).
+\]
+
+\subsection{Deterministische Entwicklung}
+
+Ist der Zustand $\psi(t_0)$ bekannt und ist der Hamiltonoperator bekannt, dann bestimmt die Schrödingergleichung den Zustand zu späteren Zeiten. Formal schreibt man
+\[
+    \psi(t)=U(t,t_0)\psi(t_0),
+\]
+wobei $U(t,t_0)$ der Zeitentwicklungsoperator ist.
+
+Wenn $H$ zeitunabhängig ist, gilt
+\[
+    U(t,t_0)=\exp\left[-\frac{i}{\hbar}H(t-t_0)\right].
+\]
+
+\begin{formulabox}
+Für zeitunabhängiges $H$:
+\[
+    \psi(t)=e^{-\frac{i}{\hbar}H(t-t_0)}\psi(t_0).
+\]
+\end{formulabox}
+
+\subsection{Normerhaltung}
+
+Die Zeitentwicklung muss die Norm erhalten, weil die Gesamtwahrscheinlichkeit eins bleiben muss:
+\[
+    \norm{\psi(t)}^2=1.
+\]
+Dies ist gewährleistet, wenn $U$ unitär ist:
+\[
+    U^\dagger U=\mathbb{1}.
+\]
+Dann gilt
+\[
+    \norm{U\psi}^2=(U\psi,U\psi)=(\psi,U^\dagger U\psi)=(\psi,\psi)=\norm{\psi}^2.
+\]
+
+\begin{conceptbox}
+Die Schrödingergleichung erzeugt eine unitäre Zeitentwicklung. Das bedeutet: Ohne Messung geht keine Gesamtwahrscheinlichkeit verloren.
+\end{conceptbox}
+
+\section{Kontinuitätsgleichung und Wahrscheinlichkeitsstrom}
+
+Die Normerhaltung kann lokal als Kontinuitätsgleichung formuliert werden. Definiert man
+\[
+    \rho(\vec{x},t)=|\psi(\vec{x},t)|^2,
+\]
+dann gibt es einen Wahrscheinlichkeitsstrom $\vec{j}(\vec{x},t)$ mit
+\[
+    \frac{\partial \rho}{\partial t}+\nabla\cdot\vec{j}=0.
+\]
+Für ein Teilchen ohne elektromagnetisches Vektorpotential lautet der Strom
+\[
+    \vec{j}
+    =\frac{1}{2m}\left(
+        \psi^*\frac{\hbar}{i}\nabla\psi
+        -\left(\frac{\hbar}{i}\nabla\psi^*\right)\psi
+    \right).
+\]
+Äquivalent schreibt man oft
+\[
+    \vec{j}=\frac{\hbar}{2mi}\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right).
+\]
+
+\begin{conceptbox}
+Die Kontinuitätsgleichung sagt: Wahrscheinlichkeit entsteht nicht aus dem Nichts und verschwindet nicht ins Nichts. Sie kann nur durch den Raum strömen.
+\end{conceptbox}
+
+\section{Zwei Arten der Zeitentwicklung}
+
+Die Quantenmechanik enthält zwei verschiedene Regeln:
+
+\begin{enumerate}
+    \item \textbf{Ungestörte Zeitentwicklung:} Zwischen Messungen entwickelt sich der Zustand deterministisch nach der Schrödingergleichung.
+    \item \textbf{Messung:} Bei einer Messung tritt eines der möglichen Ergebnisse mit bestimmter Wahrscheinlichkeit ein, und der Zustand wird auf den passenden Eigenraum reduziert.
+\end{enumerate}
+
+\begin{conceptbox}
+Ohne Messung:
+\[
+    \psi(0)\longrightarrow \psi(t)=U(t)\psi(0)
+\]
+deterministisch und reversibel.
+
+Mit Messung von $A$ und Ergebnis $a_n$:
+\[
+    \psi\longrightarrow \varphi_n
+\]
+stochastisch und im Allgemeinen irreversibel.
+\end{conceptbox}
+
+Das ist einer der tiefsten Unterschiede zur klassischen Mechanik. Klassisch kann man Messungen im Idealfall als passives Ablesen verstehen. Quantenmechanisch ist eine Messung im Postulat selbst mit einer Zustandsänderung verbunden.
+
+\section{Ortsdarstellung und abstrakter Zustand}
+
+Man sollte zwischen dem abstrakten Zustand $\lvert\psi\rangle$ und seiner Darstellung als Wellenfunktion unterscheiden. In Ortsdarstellung schreibt man
+\[
+    \psi(\vec{x})=\langle \vec{x}\,|\psi\rangle.
+\]
+Die Funktion $\psi(\vec{x})$ ist also die Darstellung des Zustands im Ortsbasis-System.
+
+In einer anderen Darstellung, zum Beispiel Impulsdarstellung, beschreibt man denselben Zustand durch eine andere Funktion:
+\[
+    \varphi(\vec{p})=\langle \vec{p}\,|\psi\rangle.
+\]
+
+\begin{conceptbox}
+Der physikalische Zustand ist nicht identisch mit einer bestimmten Koordinatendarstellung. Die Wellenfunktion $\psi(x)$ ist die Ortsdarstellung des Zustands. In Impulsdarstellung sieht derselbe Zustand anders aus.
+\end{conceptbox}
+
+\section{Impulsdarstellung und Fouriertransformation}
+
+Orts- und Impulsdarstellung hängen durch Fouriertransformation zusammen. In einer üblichen Konvention gilt in einer Dimension
+\[
+    \psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\dd p\,\varphi(p)e^{ipx/\hbar},
+\]
+und
+\[
+    \varphi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\dd x\,\psi(x)e^{-ipx/\hbar}.
+\]
+Dann ist
+\[
+    |\varphi(p)|^2\dd p
+\]
+die Wahrscheinlichkeit, bei einer Impulsmessung einen Impuls im Intervall $[p,p+\dd p]$ zu erhalten.
+
+\begin{notebox}
+$|\psi(x)|^2$ ist eine Ortswahrscheinlichkeitsdichte. $|\varphi(p)|^2$ ist eine Impulswahrscheinlichkeitsdichte. Es sind nicht zwei verschiedene Zustände, sondern zwei Darstellungen desselben Zustands.
+\end{notebox}
+
+\section{Typische Denkfehler}
+
+\subsection{Die Wellenfunktion ist nicht die Wahrscheinlichkeit}
+
+Die Wellenfunktion $\psi$ ist eine komplexe Amplitude. Die Wahrscheinlichkeit entsteht durch Betragsquadrat:
+\[
+    \rho=|\psi|^2.
+\]
+Deshalb können sich Amplituden gegenseitig verstärken oder auslöschen, bevor man das Betragsquadrat bildet.
+
+\subsection{Der Erwartungswert ist nicht immer ein möglicher Messwert}
+
+Wenn ein Spin-$\frac12$-System bei einer Messung von $S_z$ nur die Werte $+\hbar/2$ und $-\hbar/2$ liefern kann, dann kann der Erwartungswert trotzdem $0$ sein. Der Wert $0$ ist dann der Mittelwert vieler Messungen, aber kein einzelnes Messergebnis von $S_z$.
+
+\subsection{Eine Messung ist keine normale Zeitentwicklung}
+
+Die Schrödingergleichung beschreibt die Entwicklung ohne Messung. Eine Messung wird durch ein eigenes Postulat beschrieben. Deshalb darf man den Kollaps nicht einfach als gewöhnliche Lösung der Schrödingergleichung behandeln.
+
+\subsection{Normierung ist keine Nebensache}
+
+Aus einer nicht normierten Wellenfunktion kann man relative Wahrscheinlichkeiten erkennen, aber keine korrekten absoluten Wahrscheinlichkeiten berechnen. Vor Wahrscheinlichkeitsrechnungen muss der Zustand normiert sein.
+
+\section{Mini-Beispiele zu Messwahrscheinlichkeiten}
+
+\subsection{Zweidimensionaler Zustandsraum}
+
+Sei eine Observable $A$ mit orthonormalen Eigenzuständen $\varphi_1,\varphi_2$ gegeben:
+\[
+    A\varphi_1=a_1\varphi_1,
+    \qquad
+    A\varphi_2=a_2\varphi_2.
+\]
+Ein Zustand sei
+\[
+    \psi=\frac{1}{\sqrt{2}}\varphi_1+\frac{i}{\sqrt{2}}\varphi_2.
+\]
+Dann sind die Koeffizienten
+\[
+    c_1=\frac{1}{\sqrt{2}},
+    \qquad
+    c_2=\frac{i}{\sqrt{2}}.
+\]
+Die Messwahrscheinlichkeiten sind
+\[
+    P(a_1)=|c_1|^2=\frac12,
+    \qquad
+    P(a_2)=|c_2|^2=\frac12.
+\]
+
+\begin{answerbox}
+Die Phase $i$ im zweiten Koeffizienten ändert in dieser Messbasis die Wahrscheinlichkeit nicht, weil
+\[
+    \left|\frac{i}{\sqrt{2}}\right|^2=\frac12.
+\]
+Sie kann aber bei Messung einer anderen Observablen relevant werden.
+\end{answerbox}
+
+\subsection{Messung und Zustand danach}
+
+Wenn im obigen Beispiel das Ergebnis $a_2$ gemessen wird, dann ist der Zustand unmittelbar nach der Messung
+\[
+    \psi_{\text{nach}}=\varphi_2.
+\]
+Eine direkt anschließende zweite Messung von $A$ liefert dann sicher wieder $a_2$.
+
+\section{Kompakte Postulatsübersicht}
+
+\begin{notebox}
+\textbf{Zustandspostulat:}
+Ein quantenmechanischer Zustand wird durch einen normierten Vektor $\psi$ in einem Hilbertraum beschrieben. In Ortsdarstellung ist dies eine Wellenfunktion $\psi(\vec{x},t)$.
+
+\textbf{Born-Regel:}
+$|\psi(\vec{x},t)|^2\dd^3x$ ist die Wahrscheinlichkeit, das Teilchen im Volumenelement $\dd^3x$ um $\vec{x}$ zu finden.
+
+\textbf{Observablenpostulat:}
+Messgrößen werden durch selbstadjungierte Operatoren dargestellt.
+
+\textbf{Messwertpostulat:}
+Mögliche Messwerte sind Eigenwerte des zugehörigen Operators.
+
+\textbf{Wahrscheinlichkeitspostulat:}
+Ist $A\varphi_n=a_n\varphi_n$, dann gilt bei nicht entartetem diskretem Spektrum
+\[
+    P(a_n)=|(\varphi_n,\psi)|^2.
+\]
+
+\textbf{Projektionspostulat:}
+Nach einer Messung mit Ergebnis $a$ ist der Zustand auf den entsprechenden Eigenraum projiziert:
+\[
+    \psi\mapsto \frac{P_a\psi}{\norm{P_a\psi}}.
+\]
+
+\textbf{Zeitentwicklungspostulat:}
+Zwischen Messungen gilt
+\[
+    i\hbar\frac{\partial}{\partial t}\psi=H\psi.
+\]
+\end{notebox}
+
+\section{Was man nach diesem Kapitel können soll}
+
+Nach diesem Kapitel solltest du Folgendes sicher beherrschen:
+\begin{itemize}
+    \item erklären, warum $\psi$ eine komplexe Amplitude und $|\psi|^2$ eine Wahrscheinlichkeitsdichte ist,
+    \item eine einfache Wellenfunktion normieren,
+    \item Wahrscheinlichkeiten als Integrale über $|\psi|^2$ berechnen,
+    \item Erwartungswert und Varianz des Ortes berechnen,
+    \item den Unterschied zwischen Zustand, Wellenfunktion und Darstellung erklären,
+    \item das Superpositionsprinzip erklären,
+    \item Messwahrscheinlichkeiten aus Entwicklungskoeffizienten berechnen,
+    \item erklären, was bei einer Messung mit dem Zustand passiert,
+    \item die Schrödingergleichung als deterministische Zeitentwicklung zwischen Messungen einordnen.
+\end{itemize}
+
+\begin{examtipbox}
+Für Prüfungs- und Übungsaufgaben ist besonders wichtig, sauber zwischen drei Dingen zu unterscheiden:
+\begin{enumerate}
+    \item Zustand vor der Messung,
+    \item Wahrscheinlichkeiten der möglichen Messergebnisse,
+    \item Zustand nach einer konkret erhaltenen Messung.
+\end{enumerate}
+Viele Fehler entstehen dadurch, dass man nur die Wahrscheinlichkeiten berechnet, aber den Zustand nach der Messung vergisst.
+\end{examtipbox}

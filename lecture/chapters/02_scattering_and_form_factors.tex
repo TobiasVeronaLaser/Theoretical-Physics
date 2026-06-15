@@ -1,0 +1,757 @@
+\chapter{Streuung und Formfaktoren}
+
+\section{Ziel dieses Kapitels}
+
+In diesem Kapitel geht es darum, wie man aus Streuexperimenten Informationen über
+Kerne und Teilchen gewinnt.
+
+Die zentrale Idee ist:
+\begin{center}
+\emph{Man schießt bekannte Teilchen auf ein Target und rekonstruiert aus der Ablenkung
+die Struktur des Targets.}
+\end{center}
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwörter:
+\begin{itemize}
+    \item Rutherfordstreuung,
+    \item Streupotentiale,
+    \item Wirkungsquerschnitt,
+    \item Impulsübertrag,
+    \item Mottstreuung,
+    \item Rutherfordradius,
+    \item Strukturauflösung von Kernen und Teilchen,
+    \item elektromagnetischer Radius,
+    \item Formfaktor.
+\end{itemize}
+\end{notebox}
+
+\section{Grundidee eines Streuexperiments}
+
+Bei einem Streuexperiment lässt man ein Projektil auf ein Target treffen.
+Das Projektil kann zum Beispiel ein Alpha-Teilchen, ein Elektron oder ein Proton sein.
+Das Target kann ein Atomkern, ein Proton oder ein anderes Teilchen sein.
+
+\begin{definitionbox}
+Ein \emph{Streuexperiment} ist ein Experiment, bei dem ein einfallendes Teilchen an
+einem Target abgelenkt wird.
+
+Aus der Winkelverteilung und Energieverteilung der gestreuten Teilchen schließt man
+auf die Wechselwirkung und die innere Struktur des Targets.
+\end{definitionbox}
+
+\begin{conceptbox}
+Streuung ist in der Kern- und Teilchenphysik eines der wichtigsten Werkzeuge.
+
+Der Grund ist:
+Sehr kleine Objekte kann man nicht direkt mit Lichtmikroskopen abbilden.
+Stattdessen verwendet man Teilchen mit kleiner de-Broglie-Wellenlänge als Sonden.
+\end{conceptbox}
+
+\begin{examtipbox}
+Eine typische Prüfungsfrage ist:
+\begin{center}
+\emph{Warum kann man mit höherer Teilchenenergie kleinere Strukturen auflösen?}
+\end{center}
+Die Antwort ist:
+Höhere Energie bedeutet größeren Impuls.
+Größerer Impuls bedeutet kleinere de-Broglie-Wellenlänge.
+Damit steigt die Strukturauflösung.
+\end{examtipbox}
+
+\section{Streupotentiale}
+
+Die Ablenkung eines Projektils hängt vom Potential ab, in dem es sich bewegt.
+
+\begin{definitionbox}
+Ein \emph{Streupotential} beschreibt die Wechselwirkung zwischen Projektil und Target
+als Funktion des Abstands $r$.
+\end{definitionbox}
+
+\begin{conceptbox}
+In der Kernphysik treten besonders zwei Potentialtypen auf:
+
+\begin{itemize}
+    \item das Coulomb-Potential,
+    \item das kurzreichweitige Kernpotential.
+\end{itemize}
+
+Das Coulomb-Potential ist langreichweitig.
+Das Kernpotential ist kurzreichweitig und wirkt nur auf Abständen der Größenordnung
+\[
+    r \sim \SI{1}{fm}.
+\]
+\end{conceptbox}
+
+\begin{formulabox}
+Für zwei Punktladungen mit Ladungen
+\[
+    Z_1e
+    \qquad\text{und}\qquad
+    Z_2e
+\]
+ist das Coulomb-Potential
+\[
+    V_{\mathrm{C}}(r)
+    =
+    \frac{1}{4\pi\varepsilon_0}
+    \frac{Z_1Z_2e^2}{r}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Bei großen Abständen dominiert die Coulomb-Wechselwirkung.
+
+Bei sehr kleinen Abständen kann zusätzlich die starke Wechselwirkung relevant werden.
+Dann weicht die gemessene Streuung von der reinen Coulomb- beziehungsweise
+Rutherfordstreuung ab.
+\end{conceptbox}
+
+\section{Wirkungsquerschnitt}
+
+In Streuexperimenten misst man nicht einzelne Bahnen, sondern Wahrscheinlichkeiten.
+Diese werden durch Wirkungsquerschnitte beschrieben.
+
+\begin{definitionbox}
+Der \emph{Wirkungsquerschnitt} $\sigma$ ist ein Maß für die Wahrscheinlichkeit,
+dass ein bestimmter Streu- oder Reaktionsprozess stattfindet.
+
+Er hat die Dimension einer Fläche.
+\end{definitionbox}
+
+\begin{definitionbox}
+Der \emph{differentielle Wirkungsquerschnitt}
+\[
+    \frac{\dd\sigma}{\dd\Omega}
+\]
+gibt an, wie stark in ein Raumwinkelelement $\dd\Omega$ gestreut wird.
+\end{definitionbox}
+
+\begin{formulabox}
+Das Raumwinkelelement in Kugelkoordinaten ist
+\[
+    \dd\Omega = \sin\theta\,\dd\theta\,\dd\varphi.
+\]
+Der totale Wirkungsquerschnitt ergibt sich durch Integration:
+\[
+    \sigma
+    =
+    \int \frac{\dd\sigma}{\dd\Omega}\,\dd\Omega.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Ein großer Wirkungsquerschnitt bedeutet:
+Der Prozess ist wahrscheinlich.
+
+Ein kleiner Wirkungsquerschnitt bedeutet:
+Der Prozess ist selten.
+
+Der Wirkungsquerschnitt ist aber keine geometrische Fläche im einfachen Sinn.
+Er ist eine effektive Fläche, die die Stärke eines Prozesses beschreibt.
+\end{conceptbox}
+
+\begin{examtipbox}
+Wenn in einer Aufgabe nach einer Winkelverteilung gefragt ist, ist meistens
+\[
+    \frac{\dd\sigma}{\dd\Omega}
+\]
+gemeint.
+
+Wenn nach der Gesamtwahrscheinlichkeit oder Gesamtfläche gefragt ist, muss man über
+den Raumwinkel integrieren:
+\[
+    \sigma
+    =
+    \int \frac{\dd\sigma}{\dd\Omega}\,\dd\Omega.
+\]
+\end{examtipbox}
+
+\section{Rutherfordstreuung}
+
+Die Rutherfordstreuung beschreibt die elastische Streuung geladener Teilchen an
+einem Coulomb-Potential.
+
+Historisch wurde sie wichtig, weil sie zeigte, dass die positive Ladung eines Atoms
+in einem sehr kleinen Kern konzentriert ist.
+
+\begin{definitionbox}
+\emph{Rutherfordstreuung} ist die elastische Streuung eines geladenen Projektils an
+einem schweren geladenen Target, wobei die Wechselwirkung durch das Coulomb-Potential
+beschrieben wird.
+\end{definitionbox}
+
+\begin{conceptbox}
+Für Alpha-Teilchen an einem schweren Kern gilt näherungsweise:
+\begin{itemize}
+    \item Das Target ist viel schwerer als das Projektil.
+    \item Die Streuung ist elastisch.
+    \item Die Wechselwirkung ist Coulomb-Abstoßung.
+    \item Der Kern wird zunächst als punktförmig behandelt.
+\end{itemize}
+\end{conceptbox}
+
+\begin{formulabox}
+Für die Rutherfordstreuung gilt näherungsweise:
+\[
+    \frac{\dd\sigma}{\dd\Omega}
+    =
+    \left(
+        \frac{1}{4\pi\varepsilon_0}
+        \frac{Z_1Z_2e^2}{4E}
+    \right)^2
+    \frac{1}{\sin^4(\theta/2)}.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $Z_1e$ die Ladung des Projektils,
+    \item $Z_2e$ die Ladung des Targets,
+    \item $E$ die kinetische Energie im Schwerpunktsystem beziehungsweise näherungsweise im Laborsystem bei schwerem Target,
+    \item $\theta$ der Streuwinkel.
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+Die wichtigste Winkelabhängigkeit ist:
+\[
+    \frac{\dd\sigma}{\dd\Omega}
+    \propto
+    \frac{1}{\sin^4(\theta/2)}.
+\]
+
+Für kleine Winkel gilt:
+\[
+    \sin(\theta/2)\approx \theta/2.
+\]
+Damit wird der Wirkungsquerschnitt bei kleinen Winkeln sehr groß.
+Die Rutherfordstreuung ist also stark vorwärtsgerichtet.
+\end{conceptbox}
+
+\begin{examtipbox}
+Typische qualitative Aussage:
+\[
+    \theta \to 0
+    \quad\Rightarrow\quad
+    \frac{\dd\sigma}{\dd\Omega}\to \infty.
+\]
+Das bedeutet nicht, dass unendlich viele Teilchen gestreut werden.
+Es zeigt, dass die Coulomb-Wechselwirkung langreichweitig ist und kleine Ablenkungen
+sehr häufig sind.
+\end{examtipbox}
+
+\section{Rutherfordstreuung und Kernradius}
+
+Die Rutherfordform gilt nur solange, wie das Projektil den Kern nicht als ausgedehntes
+Objekt erkennt.
+
+\begin{conceptbox}
+Bei niedrigen Energien oder großen Abständen folgt die Streuung der Coulomb-Kurve.
+
+Wenn die Projektilenergie groß genug wird, kann das Projektil näher an den Kern
+herankommen.
+Dann können Abweichungen von der Rutherfordstreuung auftreten.
+
+Solche Abweichungen sind ein experimenteller Hinweis auf:
+\begin{itemize}
+    \item die endliche Ausdehnung des Kerns,
+    \item die Ladungsverteilung im Kern,
+    \item zusätzliche starke Wechselwirkung bei kleinen Abständen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{definitionbox}
+Der \emph{Rutherfordradius} ist ein Radiusbegriff, der aus der kleinsten Annäherung
+eines geladenen Projektils an den Kern in einem Coulomb-Streuexperiment motiviert ist.
+\end{definitionbox}
+
+\begin{formulabox}
+Für eine zentrale Annäherung kann man die kleinste Entfernung grob aus Energieerhaltung
+abschätzen:
+\[
+    E
+    =
+    \frac{1}{4\pi\varepsilon_0}
+    \frac{Z_1Z_2e^2}{r_{\min}}.
+\]
+Daraus folgt:
+\[
+    r_{\min}
+    =
+    \frac{1}{4\pi\varepsilon_0}
+    \frac{Z_1Z_2e^2}{E}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Wenn
+\[
+    r_{\min}
+\]
+größer als der Kernradius ist, sieht das Projektil hauptsächlich das Coulombfeld.
+
+Wenn
+\[
+    r_{\min}
+\]
+in die Größenordnung des Kernradius kommt, kann die gemessene Streuung von der
+Rutherfordform abweichen.
+\end{conceptbox}
+
+\section{Impulsübertrag}
+
+Bei jeder Streuung ändert sich der Impuls des Projektils.
+Diese Änderung nennt man Impulsübertrag.
+
+\begin{definitionbox}
+Der \emph{Impulsübertrag} $\vec q$ ist die Differenz zwischen Endimpuls und Anfangsimpuls
+des gestreuten Teilchens:
+\[
+    \vec q = \vec p_{\mathrm{f}}-\vec p_{\mathrm{i}}.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+Für elastische Streuung mit
+\[
+    |\vec p_{\mathrm{i}}|=|\vec p_{\mathrm{f}}|=p
+\]
+gilt:
+\[
+    q = |\vec q|
+      =
+    2p\sin\left(\frac{\theta}{2}\right).
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Der Impulsübertrag ist die zentrale Größe für Strukturuntersuchungen.
+
+Kleine Streuwinkel bedeuten kleinen Impulsübertrag:
+\[
+    \theta \approx 0
+    \quad\Rightarrow\quad
+    q\approx 0.
+\]
+
+Große Streuwinkel bedeuten großen Impulsübertrag:
+\[
+    \theta \text{ groß}
+    \quad\Rightarrow\quad
+    q \text{ groß}.
+\]
+\end{conceptbox}
+
+\begin{derivationbox}
+Für elastische Streuung bilden Anfangsimpuls $\vec p_{\mathrm{i}}$ und Endimpuls
+$\vec p_{\mathrm{f}}$ einen Winkel $\theta$.
+Da beide denselben Betrag $p$ haben, gilt geometrisch:
+\[
+    q^2
+    =
+    |\vec p_{\mathrm{f}}-\vec p_{\mathrm{i}}|^2.
+\]
+Mit dem Kosinussatz:
+\[
+    q^2
+    =
+    p^2+p^2-2p^2\cos\theta
+    =
+    2p^2(1-\cos\theta).
+\]
+Mit
+\[
+    1-\cos\theta = 2\sin^2(\theta/2)
+\]
+folgt:
+\[
+    q^2 = 4p^2\sin^2(\theta/2).
+\]
+Damit:
+\[
+    q=2p\sin(\theta/2).
+\]
+\end{derivationbox}
+
+\section{Strukturauflösung}
+
+Die Auflösung eines Streuexperiments hängt von der Wellenlänge beziehungsweise vom
+Impulsübertrag ab.
+
+\begin{definitionbox}
+Die \emph{Strukturauflösung} ist die kleinste Längenskala, die ein Experiment noch
+unterscheiden kann.
+\end{definitionbox}
+
+\begin{formulabox}
+Die de-Broglie-Wellenlänge eines Teilchens ist
+\[
+    \lambda = \frac{h}{p}.
+\]
+Für Streuprozesse ist die relevante Auflösung grob
+\[
+    \Delta x \sim \frac{\hbar}{q}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Je größer der Impulsübertrag $q$ ist, desto kleinere Strukturen können aufgelöst werden:
+\[
+    q \text{ groß}
+    \quad\Rightarrow\quad
+    \Delta x \text{ klein}.
+\]
+
+Das ist der Grund, warum hochenergetische Streuexperimente zur Untersuchung kleiner
+Strukturen verwendet werden.
+\end{conceptbox}
+
+\begin{examtipbox}
+Merksatz:
+\[
+    \text{hohe Energie}
+    \Rightarrow
+    \text{großer Impuls}
+    \Rightarrow
+    \text{großer Impulsübertrag möglich}
+    \Rightarrow
+    \text{kleine Strukturen auflösbar}.
+\]
+\end{examtipbox}
+
+\section{Mottstreuung}
+
+Die Rutherfordform ist klassisch und behandelt die streuenden Teilchen ohne Spin.
+Für Elektronenstreuung an Kernen muss man relativistische Effekte und den Spin des
+Elektrons berücksichtigen.
+
+\begin{definitionbox}
+Die \emph{Mottstreuung} ist die relativistische Streuung von Elektronen an einem
+Coulombfeld unter Berücksichtigung des Elektronenspins.
+\end{definitionbox}
+
+\begin{conceptbox}
+Mottstreuung ist besonders wichtig für die Bestimmung von Kernladungsverteilungen,
+weil Elektronen punktförmig sind und elektromagnetisch wechselwirken.
+
+Elektronen spüren hauptsächlich die elektrische Ladungsverteilung des Kerns.
+Daher eignen sie sich als Sonden für den elektromagnetischen Radius.
+\end{conceptbox}
+
+\begin{formulabox}
+Für ein punktförmiges spinloses Coulombzentrum ergibt sich gegenüber der Rutherfordform
+eine relativistische/spinabhängige Korrektur.
+Qualitativ kann man schreiben:
+\[
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{Mott}}
+    =
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{Ruth}}
+    \left[
+        1-\beta^2\sin^2\left(\frac{\theta}{2}\right)
+    \right].
+\]
+Dabei ist
+\[
+    \beta=\frac{v}{c}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Je nach Konvention und Näherung erscheinen Mottformeln in leicht unterschiedlicher
+Schreibweise.
+Für dieses Kapitel ist die wichtigste Aussage:
+Mottstreuung ist die passendere Referenz für Elektronenstreuung als die rein klassische
+Rutherfordform.
+\end{notebox}
+
+\begin{examtipbox}
+Rutherfordstreuung:
+\begin{center}
+klassische Coulombstreuung geladener Teilchen.
+\end{center}
+
+Mottstreuung:
+\begin{center}
+relativistische Coulombstreuung von Elektronen mit Spin.
+\end{center}
+\end{examtipbox}
+
+\section{Formfaktor}
+
+Wenn das Target nicht punktförmig ist, ändert sich die Streuverteilung.
+Diese Änderung wird durch den Formfaktor beschrieben.
+
+\begin{definitionbox}
+Der \emph{Formfaktor} $F(q)$ beschreibt, wie die endliche räumliche Ausdehnung eines
+Targets den Streuquerschnitt verändert.
+\end{definitionbox}
+
+\begin{formulabox}
+Für ein ausgedehntes Target gilt häufig:
+\[
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{real}}
+    =
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{punkt}}
+    |F(q)|^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Der Punktquerschnitt beschreibt die Streuung an einem punktförmigen Objekt.
+
+Der Faktor
+\[
+    |F(q)|^2
+\]
+enthält die Information über die innere räumliche Struktur.
+
+Wenn das Target punktförmig ist, gilt:
+\[
+    F(q)=1.
+\]
+Dann ist
+\[
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{real}}
+    =
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{punkt}}.
+\]
+\end{conceptbox}
+
+\section{Formfaktor und Ladungsverteilung}
+
+Der Formfaktor ist eng mit der Ladungsverteilung verbunden.
+
+\begin{definitionbox}
+Die \emph{Ladungsverteilung} $\rho(\vec r)$ beschreibt, wie die elektrische Ladung
+räumlich im Target verteilt ist.
+\end{definitionbox}
+
+\begin{formulabox}
+Der Formfaktor ist im Wesentlichen die Fouriertransformierte der Ladungsverteilung:
+\[
+    F(\vec q)
+    =
+    \frac{1}{Q}
+    \int \rho(\vec r)
+    \exp\left(
+        \frac{i\vec q\cdot\vec r}{\hbar}
+    \right)
+    \dd^3 r.
+\]
+Dabei ist
+\[
+    Q=\int \rho(\vec r)\,\dd^3 r
+\]
+die Gesamtladung.
+\end{formulabox}
+
+\begin{conceptbox}
+Diese Formel bedeutet:
+Streuung misst nicht direkt ein Bild des Kerns im Ortsraum.
+Streuung misst zunächst Informationen im Impulsraum.
+
+Aus der $q$-Abhängigkeit des Formfaktors kann man auf die räumliche Ladungsverteilung
+zurückschließen.
+\end{conceptbox}
+
+\begin{notebox}
+In den Vorlesungsabbildungen werden verschiedene Ladungsverteilungen mit ihren
+Formfaktoren verglichen:
+\begin{itemize}
+    \item punktförmige Ladungsverteilung,
+    \item exponentielle Verteilung,
+    \item Gaußverteilung,
+    \item homogene Kugel,
+    \item Kugel mit diffuser Randzone.
+\end{itemize}
+Eine punktförmige Ladungsverteilung hat einen konstanten Formfaktor.
+Ausgedehnte Ladungsverteilungen führen zu einem $q$-abhängigen Formfaktor.
+\end{notebox}
+
+\section{Elektromagnetischer Radius aus dem Formfaktor}
+
+Bei kleinen Impulsüberträgen enthält der Formfaktor Information über den mittleren
+quadratischen Radius.
+
+\begin{definitionbox}
+Der \emph{elektromagnetische Radius} ist ein Maß für die räumliche Ausdehnung der
+elektrischen Ladungsverteilung.
+Er wird häufig über den mittleren quadratischen Radius beschrieben:
+\[
+    r_{\mathrm{em}}
+    =
+    \sqrt{\langle r^2\rangle}.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+Für kleine Impulsüberträge gilt näherungsweise:
+\[
+    F(q)
+    \approx
+    1
+    -
+    \frac{q^2\langle r^2\rangle}{6\hbar^2}
+    +\ldots
+\]
+Daraus kann man den mittleren quadratischen Radius bestimmen.
+\end{formulabox}
+
+\begin{conceptbox}
+Die Steigung des Formfaktors bei kleinen $q$ liefert den Radius.
+
+Ein punktförmiges Teilchen hat keinen ausgedehnten Ladungsradius und daher einen
+konstanten Formfaktor.
+
+Ein ausgedehntes Teilchen oder ein Kern hat einen Formfaktor, der mit $q$ variiert.
+\end{conceptbox}
+
+\begin{examtipbox}
+Typische Prüfungsfrage:
+\begin{center}
+\emph{Was bedeutet ein konstanter Formfaktor?}
+\end{center}
+
+Antwort:
+Ein konstanter Formfaktor ist ein Hinweis auf punktförmige Struktur auf der untersuchten
+Längenskala.
+\end{examtipbox}
+
+\section{Beispiele für Formfaktoren}
+
+\subsection{Punktförmiges Teilchen}
+
+\begin{conceptbox}
+Für ein punktförmiges Teilchen ist die Ladungsverteilung idealisiert:
+\[
+    \rho(\vec r)\propto \delta(\vec r).
+\]
+Dann ist der Formfaktor konstant:
+\[
+    F(q)=1.
+\]
+\end{conceptbox}
+
+\subsection{Ausgedehnter Kern}
+
+\begin{conceptbox}
+Für einen ausgedehnten Kern ist die Ladung über ein endliches Volumen verteilt.
+
+Dann interferieren die Streuamplituden von verschiedenen Raumpunkten.
+Das führt zu einer $q$-abhängigen Modifikation der Streuung:
+\[
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{real}}
+    =
+    \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{punkt}}
+    |F(q)|^2.
+\]
+\end{conceptbox}
+
+\subsection{Homogene Kugel}
+
+\begin{notebox}
+Für eine homogene Kugel zeigt der Formfaktor Oszillationen.
+Diese Oszillationen hängen mit Interferenzeffekten zusammen.
+
+Minima im Formfaktor entsprechen Impulsüberträgen, bei denen die Streuamplituden
+aus verschiedenen Bereichen der Kugel destruktiv interferieren.
+\end{notebox}
+
+\section{Experimentelle Bedeutung}
+
+\begin{conceptbox}
+Streuexperimente liefern Informationen über:
+\begin{itemize}
+    \item Kernradien,
+    \item Ladungsverteilungen,
+    \item Formfaktoren,
+    \item innere Struktur von Nukleonen,
+    \item mögliche Substruktur von Teilchen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+In den Vorlesungsfolien zur Proton-Substruktur wird gezeigt, dass bei hoher
+Schwerpunktsenergie beziehungsweise großem Impulsübertrag der Formfaktor Hinweise
+auf punktförmige Bestandteile liefert.
+
+Das ist die experimentelle Grundlage für die Aussage, dass Protonen eine innere
+Substruktur besitzen.
+\end{notebox}
+
+\section{Elastische und inelastische Streuung}
+
+\begin{definitionbox}
+Bei \emph{elastischer Streuung} bleiben die inneren Zustände der Teilchen unverändert.
+Es ändern sich nur Impulse und Bewegungsrichtungen.
+
+Bei \emph{inelastischer Streuung} wird zusätzlich innere Energie übertragen.
+Das Target kann angeregt oder aufgebrochen werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Elastische Streuung eignet sich besonders zur Untersuchung von Formfaktoren und
+Ladungsverteilungen.
+
+Inelastische Streuung kann tiefere Substruktur sichtbar machen.
+Ein Beispiel ist die inelastische Elektron-Proton-Streuung, mit der die Substruktur
+des Protons nachgewiesen wurde.
+\end{conceptbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Streuung ist eine Methode zur Untersuchung kleiner Strukturen.
+    \item Der differentielle Wirkungsquerschnitt beschreibt die Winkelverteilung.
+    \item Rutherfordstreuung beschreibt klassische Coulombstreuung.
+    \item Die Rutherfordform ist stark vorwärtsgerichtet:
+    \[
+        \frac{\dd\sigma}{\dd\Omega}
+        \propto
+        \frac{1}{\sin^4(\theta/2)}.
+    \]
+    \item Der Impulsübertrag ist bei elastischer Streuung
+    \[
+        q=2p\sin(\theta/2).
+    \]
+    \item Große Impulsüberträge erlauben kleine Strukturauflösung:
+    \[
+        \Delta x\sim \frac{\hbar}{q}.
+    \]
+    \item Mottstreuung ist die relativistische Elektronenstreuung mit Spin.
+    \item Für ausgedehnte Targets gilt:
+    \[
+        \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{real}}
+        =
+        \left(\frac{\dd\sigma}{\dd\Omega}\right)_{\mathrm{punkt}}
+        |F(q)|^2.
+    \]
+    \item Der Formfaktor enthält Information über die Ladungsverteilung.
+    \item Ein konstanter Formfaktor bedeutet punktförmige Struktur auf der untersuchten Skala.
+\end{itemize}
+\end{notebox}
+
+\section{Prüfungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten können:
+\begin{enumerate}
+    \item Was misst ein Streuexperiment?
+    \item Was ist ein differentieller Wirkungsquerschnitt?
+    \item Warum ist Rutherfordstreuung stark vorwärtsgerichtet?
+    \item Welche Annahmen stecken in der Rutherfordstreuung?
+    \item Was bedeutet eine Abweichung von der Rutherfordform?
+    \item Was ist der Rutherfordradius?
+    \item Was ist der Impulsübertrag?
+    \item Wie lautet $q$ bei elastischer Streuung?
+    \item Warum verbessert großer Impulsübertrag die Strukturauflösung?
+    \item Was ist Mottstreuung?
+    \item Was ist ein Formfaktor?
+    \item Warum gilt für ausgedehnte Targets ein Faktor $|F(q)|^2$?
+    \item Was ist der Zusammenhang zwischen Formfaktor und Ladungsverteilung?
+    \item Was bedeutet ein konstanter Formfaktor?
+    \item Wie erhält man aus dem Formfaktor den elektromagnetischen Radius?
+    \item Was ist der Unterschied zwischen elastischer und inelastischer Streuung?
+\end{enumerate}
+\end{examtipbox}

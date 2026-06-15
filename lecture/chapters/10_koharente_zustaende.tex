@@ -1,0 +1,1050 @@
+% Local Dirac notation commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\proj}[1]{\left|#1\right\rangle\left\langle#1\right|}
+
+\chapter{Kohärente Zustände}
+
+\section{Ziel dieses Kapitels}
+
+Kohärente Zustände sind spezielle Zustände des harmonischen Oszillators. Sie sind wichtig, weil sie in vieler Hinsicht die quantenmechanischen Zustände sind, die einem klassischen Oszillator am nächsten kommen. Ein Energieeigenzustand \(\ket{n}\) ist stationär: seine Aufenthaltswahrscheinlichkeit ändert sich zeitlich nicht. Ein kohärenter Zustand dagegen ist ein Wellenpaket, dessen Schwerpunkt im harmonischen Potential wie ein klassischer Oszillator hin und her schwingt.
+
+\begin{conceptbox}
+Ein kohärenter Zustand \(\ket{\alpha}\) ist ein Eigenzustand des Absteigeoperators \(a\):
+\[
+    a\ket{\alpha}=\alpha\ket{\alpha},
+    \qquad \alpha\in\mathbb{C}.
+\]
+Obwohl \(a\) kein hermitescher Operator ist, darf er komplexe Eigenwerte besitzen. Genau deshalb ist \(\alpha\) im Allgemeinen komplex. Der Realteil von \(\alpha\) bestimmt im Wesentlichen die mittlere Auslenkung, der Imaginärteil den mittleren Impuls.
+\end{conceptbox}
+
+Die zentralen Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Wie definiert man kohärente Zustände aus der Zahlbasis des harmonischen Oszillators?
+    \item Warum sind sie Eigenzustände von \(a\)?
+    \item Warum sind sie normiert, aber nicht orthogonal?
+    \item Wie berechnet man Erwartungswerte von \(X\), \(P\), \(N\) und \(H\)?
+    \item Warum haben kohärente Zustände minimale Orts-Impuls-Unschärfe?
+    \item Wie sehen sie in Ortsdarstellung aus?
+    \item Warum folgt ihr Schwerpunkt exakt der klassischen Bewegung?
+    \item Welche Rolle spielt die Poisson-Verteilung der Besetzungszahlen?
+\end{itemize}
+
+\section{Rückblick: harmonischer Oszillator und Leiteroperatoren}
+
+Der eindimensionale harmonische Oszillator hat den Hamiltonoperator
+\[
+    H=\frac{P^2}{2m}+\frac12m\omega^2X^2.
+\]
+Die Leiteroperatoren sind
+\[
+    a=\sqrt{\frac{m\omega}{2\hbar}}X+\frac{i}{\sqrt{2m\hbar\omega}}P,
+    \qquad
+    a^\dagger=\sqrt{\frac{m\omega}{2\hbar}}X-\frac{i}{\sqrt{2m\hbar\omega}}P.
+\]
+Umgekehrt gilt
+\begin{formulabox}
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}\,(a+a^\dagger),
+    \qquad
+    P=-i\sqrt{\frac{m\hbar\omega}{2}}\,(a-a^\dagger)
+    =i\sqrt{\frac{m\hbar\omega}{2}}\,(a^\dagger-a).
+\]
+\end{formulabox}
+
+Die Operatoren erfüllen
+\[
+    [a,a^\dagger]=1.
+\]
+Der Zahloperator ist
+\[
+    N=a^\dagger a.
+\]
+Damit lässt sich der Hamiltonoperator schreiben als
+\[
+    H=\hbar\omega\left(N+\frac12\right).
+\]
+Die Zahlzustände \(\ket{n}\) erfüllen
+\[
+    N\ket{n}=n\ket{n},
+    \qquad
+    H\ket{n}=\hbar\omega\left(n+\frac12\right)\ket{n},
+    \qquad n=0,1,2,\dots.
+\]
+Für die Wirkung der Leiteroperatoren gilt
+\begin{formulabox}
+\[
+    a\ket{n}=\sqrt{n}\ket{n-1},
+    \qquad
+    a^\dagger\ket{n}=\sqrt{n+1}\ket{n+1},
+    \qquad
+    a\ket{0}=0.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Die Zahlzustände \(\ket{n}\) sind Energieeigenzustände. Kohärente Zustände sind dagegen im Allgemeinen keine Energieeigenzustände. Sie sind Superpositionen aus vielen Zahlzuständen. Gerade dadurch können sie ein räumlich lokalisiertes Wellenpaket bilden.
+\end{notebox}
+
+\section{Definition kohärenter Zustände}
+
+\subsection{Definition über die Zahlbasis}
+
+\begin{definitionbox}
+Für jedes \(\alpha\in\mathbb{C}\) definiert man den kohärenten Zustand
+\[
+    \ket{\alpha}
+    :=e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}.
+\]
+Dabei ist \(\{\ket{n}\}_{n\in\mathbb{N}_0}\) die Orthonormalbasis der Energieeigenzustände des harmonischen Oszillators.
+\end{definitionbox}
+
+Diese Definition sieht zuerst wie eine formale Reihe aus. Physikalisch bedeutet sie:
+\begin{itemize}
+    \item Der Zustand enthält Komponenten mit allen Besetzungszahlen \(n=0,1,2,\dots\).
+    \item Die Amplitude des Zustands \(\ket{n}\) ist proportional zu \(\alpha^n/\sqrt{n!}\).
+    \item Der Faktor \(e^{-|\alpha|^2/2}\) sorgt für Normierung.
+\end{itemize}
+
+\begin{conceptbox}
+Die komplexe Zahl \(\alpha\) ist kein direktes Messergebnis einer Observablen, sondern ein Zustandsparameter. Sie kodiert die Lage des Wellenpakets im Phasenraum. Grob gilt:
+\[
+    \operatorname{Re}(\alpha) \leftrightarrow \text{Ort},
+    \qquad
+    \operatorname{Im}(\alpha) \leftrightarrow \text{Impuls}.
+\]
+\end{conceptbox}
+
+\subsection{Spezialfälle}
+
+Für \(\alpha=0\) ist
+\[
+    \ket{0}_{\text{koh}}=e^0\sum_{n=0}^{\infty}\frac{0^n}{\sqrt{n!}}\ket{n}=\ket{0}.
+\]
+Der kohärente Zustand mit \(\alpha=0\) ist also einfach der Grundzustand des harmonischen Oszillators.
+
+Für \(|\alpha|\gg 1\) enthält \(\ket{\alpha}\) viele angeregte Zahlzustände. Dann wird das Verhalten zunehmend klassisch, weil die mittlere Besetzungszahl groß ist.
+
+\section{Kohärente Zustände als Eigenzustände des Absteigeoperators}
+
+Die wichtigste Eigenschaft kohärenter Zustände ist
+\[
+    a\ket{\alpha}=\alpha\ket{\alpha}.
+\]
+Wir beweisen diese Aussage direkt aus der Definition.
+
+\begin{derivationbox}
+Ausgehend von
+\[
+    \ket{\alpha}=e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\]
+wirkt \(a\) wie folgt:
+\[
+    a\ket{\alpha}
+    =e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}a\ket{n}.
+\]
+Da \(a\ket{0}=0\), beginnt die Summe effektiv bei \(n=1\):
+\[
+    a\ket{\alpha}
+    =e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=1}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\sqrt{n}\ket{n-1}.
+\]
+Nun ist
+\[
+    \frac{\sqrt{n}}{\sqrt{n!}}=\frac{1}{\sqrt{(n-1)!}}.
+\]
+Also
+\[
+    a\ket{\alpha}
+    =e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=1}^{\infty}\frac{\alpha^n}{\sqrt{(n-1)!}}\ket{n-1}.
+\]
+Setze \(k=n-1\). Dann ist \(n=k+1\), und
+\[
+    a\ket{\alpha}
+    =e^{-\frac{|\alpha|^2}{2}}
+    \sum_{k=0}^{\infty}\frac{\alpha^{k+1}}{\sqrt{k!}}\ket{k}.
+\]
+Man zieht ein \(\alpha\) heraus:
+\[
+    a\ket{\alpha}
+    =\alpha e^{-\frac{|\alpha|^2}{2}}
+    \sum_{k=0}^{\infty}\frac{\alpha^k}{\sqrt{k!}}\ket{k}
+    =\alpha\ket{\alpha}.
+\]
+\end{derivationbox}
+
+\begin{notebox}
+Der Operator \(a\) ist nicht hermitesch, denn \(a^\dagger\neq a\). Deshalb widerspricht es keinem Messpostulat, dass die Eigenwerte \(\alpha\) komplex sind. Nur Eigenwerte hermitescher Operatoren, also Observablen, müssen reell sein.
+\end{notebox}
+
+\section{Normierung}
+
+Kohärente Zustände sind normiert. Das heißt
+\[
+    \braket{\alpha}{\alpha}=1.
+\]
+
+\begin{derivationbox}
+Mit
+\[
+    \ket{\alpha}=e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\]
+und
+\[
+    \bra{\alpha}=e^{-\frac{|\alpha|^2}{2}}
+    \sum_{m=0}^{\infty}\frac{(\alpha^*)^m}{\sqrt{m!}}\bra{m}
+\]
+folgt
+\[
+    \braket{\alpha}{\alpha}
+    =e^{-|\alpha|^2}
+    \sum_{m,n=0}^{\infty}
+    \frac{(\alpha^*)^m\alpha^n}{\sqrt{m!n!}}\braket{m}{n}.
+\]
+Da die Zahlzustände orthonormal sind, gilt \(\braket{m}{n}=\delta_{mn}\). Also bleibt
+\[
+    \braket{\alpha}{\alpha}
+    =e^{-|\alpha|^2}
+    \sum_{n=0}^{\infty}\frac{|\alpha|^{2n}}{n!}.
+\]
+Die Exponentialreihe liefert
+\[
+    \sum_{n=0}^{\infty}\frac{|\alpha|^{2n}}{n!}=e^{|\alpha|^2}.
+\]
+Damit
+\[
+    \braket{\alpha}{\alpha}=e^{-|\alpha|^2}e^{|\alpha|^2}=1.
+\]
+\end{derivationbox}
+
+\section{Überlapp zweier kohärenter Zustände}
+
+Kohärente Zustände mit verschiedenen Parametern sind im Allgemeinen nicht orthogonal. Für \(\alpha,\beta\in\mathbb{C}\) gilt
+\begin{formulabox}
+\[
+    \braket{\alpha}{\beta}
+    =\exp\left(-\frac{|\alpha|^2}{2}-\frac{|\beta|^2}{2}+\alpha^*\beta\right).
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Wir setzen beide Reihenentwicklungen ein:
+\[
+    \braket{\alpha}{\beta}
+    =e^{-\frac{|\alpha|^2}{2}}e^{-\frac{|\beta|^2}{2}}
+    \sum_{m,n=0}^{\infty}
+    \frac{(\alpha^*)^m\beta^n}{\sqrt{m!n!}}\braket{m}{n}.
+\]
+Wegen \(\braket{m}{n}=\delta_{mn}\) folgt
+\[
+    \braket{\alpha}{\beta}
+    =e^{-\frac{|\alpha|^2}{2}-\frac{|\beta|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{(\alpha^*\beta)^n}{n!}.
+\]
+Mit der Exponentialreihe erhält man
+\[
+    \braket{\alpha}{\beta}
+    =e^{-\frac{|\alpha|^2}{2}-\frac{|\beta|^2}{2}}e^{\alpha^*\beta}.
+\]
+\end{derivationbox}
+
+Der Betrag des Überlapps ist besonders anschaulich:
+\[
+    |\braket{\alpha}{\beta}|^2
+    =\exp\left(-|\alpha-\beta|^2\right).
+\]
+Das bedeutet: Kohärente Zustände, deren Parameter im komplexen \(\alpha\)-Raum weit auseinanderliegen, sind fast orthogonal. Exakt orthogonal sind sie für endliches \(\alpha-\beta\) aber nicht.
+
+\begin{warningbox}
+Kohärente Zustände sind normiert, aber nicht orthogonal. Deshalb bilden sie keine Orthonormalbasis. Trotzdem sind sie vollständig und sogar übervollständig. Das ist ein wichtiger Unterschied zur Zahlbasis \(\{\ket{n}\}\).
+\end{warningbox}
+
+\section{Vollständigkeit und Übervollständigkeit}
+
+Die Zahlzustände erfüllen die Vollständigkeitsrelation
+\[
+    \sum_{n=0}^{\infty}\ket{n}\bra{n}=\mathbb{1}.
+\]
+Kohärente Zustände erfüllen eine analoge Relation, allerdings mit einem Integral über die komplexe Ebene:
+\begin{formulabox}
+\[
+    \frac{1}{\pi}\int_{\mathbb{C}}\dd^2\alpha\,\ket{\alpha}\bra{\alpha}=\mathbb{1}.
+\]
+Hier bedeutet
+\[
+    \dd^2\alpha=\dd(\operatorname{Re}\alpha)\,\dd(\operatorname{Im}\alpha).
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Wir setzen
+\[
+    \ket{\alpha}\bra{\alpha}
+    =e^{-|\alpha|^2}\sum_{n,m=0}^{\infty}
+    \frac{\alpha^n(\alpha^*)^m}{\sqrt{n!m!}}\ket{n}\bra{m}
+\]
+in das Integral ein:
+\[
+    \frac{1}{\pi}\int_{\mathbb{C}}\dd^2\alpha\,\ket{\alpha}\bra{\alpha}
+    =\sum_{n,m=0}^{\infty}\frac{\ket{n}\bra{m}}{\sqrt{n!m!}}
+    \frac{1}{\pi}\int_{\mathbb{C}}\dd^2\alpha\,e^{-|\alpha|^2}\alpha^n(\alpha^*)^m.
+\]
+In Polarkoordinaten \(\alpha=re^{i\varphi}\) gilt \(\dd^2\alpha=r\dd r\dd\varphi\) und
+\[
+    \alpha^n(\alpha^*)^m=r^{n+m}e^{i(n-m)\varphi}.
+\]
+Das Winkelintegral liefert
+\[
+    \int_0^{2\pi}\dd\varphi\,e^{i(n-m)\varphi}=2\pi\delta_{nm}.
+\]
+Für \(n=m\) bleibt das Radialintegral
+\[
+    \frac{1}{\pi}2\pi\int_0^\infty r\dd r\,e^{-r^2}r^{2n}.
+\]
+Mit \(u=r^2\), \(\dd u=2r\dd r\), folgt
+\[
+    2\int_0^\infty r^{2n+1}e^{-r^2}\dd r
+    =\int_0^\infty u^n e^{-u}\dd u=n!.
+\]
+Damit gilt insgesamt
+\[
+    \frac{1}{\pi}\int_{\mathbb{C}}\dd^2\alpha\,e^{-|\alpha|^2}\alpha^n(\alpha^*)^m
+    =n!\delta_{nm}.
+\]
+Also
+\[
+    \frac{1}{\pi}\int_{\mathbb{C}}\dd^2\alpha\,\ket{\alpha}\bra{\alpha}
+    =\sum_{n=0}^{\infty}\ket{n}\bra{n}=\mathbb{1}.
+\]
+\end{derivationbox}
+
+\begin{notebox}
+Übervollständig bedeutet: Es gibt mehr kohärente Zustände als nötig, um den Hilbertraum aufzuspannen. Weil sie nicht orthogonal sind, ist die Darstellung eines allgemeinen Zustands durch kohärente Zustände nicht eindeutig wie bei einer Orthonormalbasis.
+\end{notebox}
+
+\section{Besetzungszahlverteilung}
+
+\subsection{Wahrscheinlichkeit für den Zahlzustand \texorpdfstring{\(\ket{n}\)}{|n>}}
+
+Die Amplitude, im kohärenten Zustand \(\ket{\alpha}\) bei einer Energiemessung den Zustand \(\ket{n}\) zu finden, ist
+\[
+    \braket{n}{\alpha}=e^{-\frac{|\alpha|^2}{2}}\frac{\alpha^n}{\sqrt{n!}}.
+\]
+Die zugehörige Wahrscheinlichkeit ist
+\begin{formulabox}
+\[
+    P_\alpha(n)=|\braket{n}{\alpha}|^2
+    =e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.
+\]
+\end{formulabox}
+
+Das ist eine Poisson-Verteilung mit Parameter
+\[
+    \lambda=|\alpha|^2.
+\]
+Also gilt
+\[
+    \langle N\rangle=|\alpha|^2,
+    \qquad
+    (\Delta N)^2=|\alpha|^2.
+\]
+
+\begin{conceptbox}
+Ein kohärenter Zustand hat keine feste Energie. Eine Energiemessung kann alle Werte
+\[
+    E_n=\hbar\omega\left(n+\frac12\right)
+\]
+liefern. Die Wahrscheinlichkeiten dieser Energien sind poissonverteilt:
+\[
+    P(E_n)=P_\alpha(n)=e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.
+\]
+\end{conceptbox}
+
+\subsection{Relative Schwankung}
+
+Da
+\[
+    \Delta N=\sqrt{|\alpha|^2}=|\alpha|,
+\]
+ist die relative Schwankung
+\[
+    \frac{\Delta N}{\langle N\rangle}=\frac{|\alpha|}{|\alpha|^2}=\frac{1}{|\alpha|}.
+\]
+Für große \(|\alpha|\) wird diese relative Schwankung klein. Das ist ein Grund, warum kohärente Zustände für große Amplituden klassisch wirken.
+
+\begin{notebox}
+Absolut wächst die Schwankung \(\Delta N\) mit \(|\alpha|\). Relativ zur mittleren Besetzungszahl wird sie aber kleiner. Klassisches Verhalten entsteht häufig genau in solchen Grenzfällen: Die absoluten Quanteneffekte verschwinden nicht, aber ihre relative Bedeutung wird klein.
+\end{notebox}
+
+\section{Erwartungswerte von \texorpdfstring{\(a\), \(a^\dagger\), \(N\) und \(H\)}{a, a†, N und H}}
+
+Da \(\ket{\alpha}\) Eigenzustand von \(a\) ist, gilt sofort
+\[
+    \langle a\rangle_\alpha
+    =\bra{\alpha}a\ket{\alpha}
+    =\alpha\braket{\alpha}{\alpha}
+    =\alpha.
+\]
+Für \(a^\dagger\) erhält man durch komplexe Konjugation
+\[
+    \langle a^\dagger\rangle_\alpha=\alpha^*.
+\]
+Für den Zahloperator \(N=a^\dagger a\) gilt
+\[
+    \langle N\rangle_\alpha
+    =\bra{\alpha}a^\dagger a\ket{\alpha}
+\]
+Sauberer geschrieben:
+\[
+    \langle N\rangle_\alpha
+    =\|a\ket{\alpha}\|^2
+    =\|\alpha\ket{\alpha}\|^2
+    =|\alpha|^2.
+\]
+
+Da
+\[
+    H=\hbar\omega\left(N+\frac12\right),
+\]
+folgt
+\begin{formulabox}
+\[
+    \langle H\rangle_\alpha
+    =\hbar\omega\left(|\alpha|^2+\frac12\right).
+\]
+\end{formulabox}
+
+\begin{notebox}
+Der Term \(\hbar\omega|\alpha|^2\) entspricht der Anregungsenergie. Der Term \(\frac12\hbar\omega\) ist die Nullpunktsenergie des harmonischen Oszillators.
+\end{notebox}
+
+\section{Erwartungswerte von Ort und Impuls}
+
+Mit
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger)
+\]
+folgt
+\[
+    \langle X\rangle_\alpha
+    =\sqrt{\frac{\hbar}{2m\omega}}(\langle a\rangle+\langle a^\dagger\rangle)
+    =\sqrt{\frac{\hbar}{2m\omega}}(\alpha+\alpha^*).
+\]
+Da \(\alpha+\alpha^*=2\operatorname{Re}\alpha\), erhält man
+\begin{formulabox}
+\[
+    \langle X\rangle_\alpha
+    =\sqrt{\frac{2\hbar}{m\omega}}\operatorname{Re}(\alpha).
+\]
+\end{formulabox}
+
+Für den Impuls verwenden wir
+\[
+    P=-i\sqrt{\frac{m\hbar\omega}{2}}(a-a^\dagger).
+\]
+Dann
+\[
+    \langle P\rangle_\alpha
+    =-i\sqrt{\frac{m\hbar\omega}{2}}(\alpha-
+    \alpha^*).
+\]
+Da \(\alpha-
+\alpha^*=2i\operatorname{Im}\alpha\), folgt
+\begin{formulabox}
+\[
+    \langle P\rangle_\alpha
+    =\sqrt{2m\hbar\omega}\operatorname{Im}(\alpha).
+\]
+\end{formulabox}
+
+Damit kann man \(\alpha\) auch über die Erwartungswerte ausdrücken:
+\begin{formulabox}
+\[
+    \alpha
+    =\sqrt{\frac{m\omega}{2\hbar}}\langle X\rangle_
+    \alpha
+    +\frac{i}{\sqrt{2m\hbar\omega}}\langle P\rangle_
+    \alpha.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Der Parameter \(\alpha\) ist eine dimensionslose Phasenraumkoordinate. Er enthält sowohl Ort als auch Impuls:
+\[
+    \alpha = \text{dimensionsloser Ort}+i\cdot\text{dimensionsloser Impuls}.
+\]
+\end{conceptbox}
+
+\section{Orts- und Impulsunschärfe}
+
+Kohärente Zustände haben dieselben Orts- und Impulsunschärfen wie der Grundzustand des harmonischen Oszillators. Wir berechnen dies explizit.
+
+\subsection{Ortsunschärfe}
+
+Es gilt
+\[
+    X=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger).
+\]
+Also
+\[
+    X^2=\frac{\hbar}{2m\omega}(a+a^\dagger)^2
+    =\frac{\hbar}{2m\omega}\left(a^2+aa^\dagger+a^\dagger a+(a^\dagger)^2\right).
+\]
+Wir benutzen
+\[
+    \langle a\rangle=\alpha,
+    \quad
+    \langle a^2\rangle=\alpha^2,
+    \quad
+    \langle (a^\dagger)^2\rangle=(\alpha^*)^2,
+    \quad
+    \langle a^\dagger a\rangle=|\alpha|^2.
+\]
+Außerdem gilt wegen \(aa^\dagger=a^\dagger a+1\)
+\[
+    \langle aa^\dagger\rangle=|\alpha|^2+1.
+\]
+Damit
+\[
+    \langle X^2\rangle
+    =\frac{\hbar}{2m\omega}\left(\alpha^2+(\alpha^*)^2+2|\alpha|^2+1\right).
+\]
+Andererseits
+\[
+    \langle X\rangle^2
+    =\frac{\hbar}{2m\omega}(\alpha+\alpha^*)^2
+    =\frac{\hbar}{2m\omega}\left(\alpha^2+(\alpha^*)^2+2|\alpha|^2\right).
+\]
+Somit
+\begin{formulabox}
+\[
+    (\Delta X)^2_\alpha
+    =\langle X^2\rangle_\alpha-\langle X\rangle_\alpha^2
+    =\frac{\hbar}{2m\omega}.
+\]
+\end{formulabox}
+
+\subsection{Impulsunschärfe}
+
+Analog erhält man
+\begin{formulabox}
+\[
+    (\Delta P)^2_\alpha
+    =\frac{m\hbar\omega}{2}.
+\]
+\end{formulabox}
+
+Damit ist
+\begin{formulabox}
+\[
+    \Delta X_\alpha\Delta P_\alpha
+    =\sqrt{\frac{\hbar}{2m\omega}}\sqrt{\frac{m\hbar\omega}{2}}
+    =\frac{\hbar}{2}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Kohärente Zustände sättigen die Heisenbergsche Unschärferelation:
+\[
+    \Delta X\Delta P\geq \frac{\hbar}{2}.
+\]
+Für kohärente Zustände gilt Gleichheit:
+\[
+    \Delta X\Delta P=\frac{\hbar}{2}.
+\]
+Sie sind daher Zustände minimaler Orts-Impuls-Unschärfe.
+\end{conceptbox}
+
+\begin{notebox}
+Nicht jeder Zustand minimaler Unschärfe ist automatisch ein kohärenter Zustand des harmonischen Oszillators in der engen Standardbedeutung. Kohärente Standardzustände haben zusätzlich genau die Grundzustandsbreiten des Oszillators:
+\[
+    \Delta X=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P=\sqrt{\frac{m\hbar\omega}{2}}.
+\]
+Gequetschte Zustände können ebenfalls \(\Delta X\Delta P=\hbar/2\) erfüllen, aber mit anderer Verteilung zwischen \(\Delta X\) und \(\Delta P\).
+\end{notebox}
+
+\section{Kohärente Zustände in Ortsdarstellung}
+
+\subsection{Differentialgleichung für die Wellenfunktion}
+
+Wir suchen
+\[
+    \psi_\alpha(x)=\langle x|\alpha\rangle.
+\]
+Die Eigenwertgleichung
+\[
+    a\ket{\alpha}=\alpha\ket{\alpha}
+\]
+wird in Ortsdarstellung zu einer Differentialgleichung. Da
+\[
+    a=\sqrt{\frac{m\omega}{2\hbar}}x+\frac{1}{\sqrt{2m\hbar\omega}}\hbar\frac{\dd}{\dd x}
+    =\sqrt{\frac{m\omega}{2\hbar}}x+\
+    \sqrt{\frac{\hbar}{2m\omega}}\frac{\dd}{\dd x},
+\]
+gilt
+\[
+    \left(\sqrt{\frac{m\omega}{2\hbar}}x+
+    \sqrt{\frac{\hbar}{2m\omega}}\frac{\dd}{\dd x}\right)\psi_\alpha(x)
+    =\alpha\psi_\alpha(x).
+\]
+Multipliziert man mit \(\sqrt{2m\omega/\hbar}\), erhält man
+\[
+    \left(\frac{m\omega}{\hbar}x+\frac{\dd}{\dd x}\right)\psi_\alpha(x)
+    =\sqrt{\frac{2m\omega}{\hbar}}\alpha\psi_\alpha(x).
+\]
+Also
+\[
+    \frac{\dd \psi_\alpha}{\dd x}
+    =\left(\sqrt{\frac{2m\omega}{\hbar}}\alpha-
+    \frac{m\omega}{\hbar}x\right)\psi_\alpha(x).
+\]
+
+\begin{derivationbox}
+Diese Differentialgleichung hat die Lösung
+\[
+    \psi_\alpha(x)=C\exp\left(\sqrt{\frac{2m\omega}{\hbar}}\alpha x-
+    \frac{m\omega}{2\hbar}x^2\right),
+\]
+wobei \(C\) eine Normierungs- und Phasenkonstante ist.
+\end{derivationbox}
+
+Um die physikalische Bedeutung zu sehen, schreibt man \(\alpha=\alpha_R+i\alpha_I\). Dann ist
+\[
+    \langle X\rangle_\alpha=\sqrt{\frac{2\hbar}{m\omega}}\alpha_R,
+    \qquad
+    \langle P\rangle_\alpha=\sqrt{2m\hbar\omega}\alpha_I.
+\]
+Damit lässt sich die Wellenfunktion als Gaußpaket schreiben:
+\begin{formulabox}
+\[
+    \psi_\alpha(x)
+    =e^{i\theta_\alpha}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+    \exp\left[-\frac{(x-\langle X\rangle_\alpha)^2}{4(\Delta X)^2}
+    +\frac{i}{\hbar}\langle P\rangle_\alpha x\right],
+\]
+mit
+\[
+    \Delta X=\sqrt{\frac{\hbar}{2m\omega}}.
+\]
+\end{formulabox}
+
+\subsection{Wahrscheinlichkeitsdichte}
+
+Der Phasenfaktor verschwindet im Betrag. Deshalb ist
+\begin{formulabox}
+\[
+    |\psi_\alpha(x)|^2
+    =\left(\frac{m\omega}{\pi\hbar}\right)^{1/2}
+    \exp\left[-\frac{(x-\langle X\rangle_\alpha)^2}{2(\Delta X)^2}\right].
+\]
+\end{formulabox}
+
+Das ist eine Gaußverteilung mit Zentrum \(\langle X\rangle_\alpha\) und Breite \(\Delta X\).
+
+\begin{conceptbox}
+In Ortsdarstellung ist ein kohärenter Zustand ein Gaußsches Wellenpaket mit fester Breite. Der Realteil von \(\alpha\) verschiebt das Paket im Ort, der Imaginärteil erzeugt eine Phasenrampe und damit einen mittleren Impuls.
+\end{conceptbox}
+
+\section{Zeitentwicklung kohärenter Zustände}
+
+\subsection{Zeitentwicklung in der Zahlbasis}
+
+Der Hamiltonoperator ist
+\[
+    H=\hbar\omega\left(N+\frac12\right).
+\]
+Die Zahlzustände entwickeln sich gemäß
+\[
+    e^{-\frac{i}{\hbar}Ht}\ket{n}
+    =e^{-i\omega(n+1/2)t}\ket{n}.
+\]
+Für den kohärenten Zustand bei \(t=0\)
+\[
+    \ket{\psi(0)}=\ket{\alpha_0}
+    =e^{-\frac{|\alpha_0|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha_0^n}{\sqrt{n!}}\ket{n}
+\]
+folgt
+\begin{derivationbox}
+\[
+    \ket{\psi(t)}
+    =e^{-\frac{i}{\hbar}Ht}\ket{\alpha_0}
+    =e^{-\frac{|\alpha_0|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha_0^n}{\sqrt{n!}}e^{-i\omega(n+1/2)t}\ket{n}.
+\]
+Man zieht den Faktor \(e^{-i\omega t/2}\) heraus:
+\[
+    \ket{\psi(t)}
+    =e^{-i\omega t/2}e^{-\frac{|\alpha_0|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{(\alpha_0e^{-i\omega t})^n}{\sqrt{n!}}\ket{n}.
+\]
+Da \(|\alpha_0e^{-i\omega t}|=|\alpha_0|\), ist dies wieder ein kohärenter Zustand:
+\[
+    \ket{\psi(t)}=e^{-i\omega t/2}\ket{\alpha(t)},
+    \qquad
+    \alpha(t)=\alpha_0e^{-i\omega t}.
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+\[
+    e^{-\frac{i}{\hbar}Ht}\ket{\alpha_0}
+    =e^{-i\omega t/2}\ket{\alpha_0e^{-i\omega t}}.
+\]
+\end{formulabox}
+
+Der Faktor \(e^{-i\omega t/2}\) ist eine globale Phase und beeinflusst Messwahrscheinlichkeiten nicht. Physikalisch rotiert der Parameter \(\alpha\) in der komplexen Ebene:
+\[
+    \alpha(t)=\alpha_0e^{-i\omega t}.
+\]
+
+\subsection{Klassische Bewegung der Erwartungswerte}
+
+Schreibe
+\[
+    \alpha_0=|\alpha_0|e^{i\varphi}.
+\]
+Dann
+\[
+    \alpha(t)=|\alpha_0|e^{i(\varphi-\omega t)}.
+\]
+Damit
+\[
+    \langle X\rangle_t
+    =\sqrt{\frac{2\hbar}{m\omega}}|\alpha_0|\cos(\varphi-\omega t)
+    =\sqrt{\frac{2\hbar}{m\omega}}|\alpha_0|\cos(\omega t-\varphi).
+\]
+Für den Impuls gilt
+\[
+    \langle P\rangle_t
+    =\sqrt{2m\hbar\omega}|\alpha_0|\sin(\varphi-\omega t)
+    =-\sqrt{2m\hbar\omega}|\alpha_0|\sin(\omega t-\varphi).
+\]
+Definiert man
+\[
+    A=\sqrt{\frac{2\hbar}{m\omega}}|\alpha_0|,
+\]
+so wird
+\begin{formulabox}
+\[
+    \langle X\rangle_t=A\cos(\omega t-\varphi),
+    \qquad
+    \langle P\rangle_t=-m\omega A\sin(\omega t-\varphi).
+\]
+\end{formulabox}
+
+Das ist genau die klassische Lösung des harmonischen Oszillators
+\[
+    x_{\text{cl}}(t)=A\cos(\omega t-\varphi),
+    \qquad
+    p_{\text{cl}}(t)=m\dot x_{\text{cl}}(t).
+\]
+
+\begin{conceptbox}
+Der Schwerpunkt eines kohärenten Zustands folgt exakt der klassischen Bewegung. Gleichzeitig bleiben die Unschärfen konstant:
+\[
+    \Delta X_t=\sqrt{\frac{\hbar}{2m\omega}},
+    \qquad
+    \Delta P_t=\sqrt{\frac{m\hbar\omega}{2}}.
+\]
+Das Wellenpaket schwingt also ohne Zerfließen im harmonischen Potential.
+\end{conceptbox}
+
+\section{Phasenrauminterpretation}
+
+Der harmonische Oszillator besitzt klassisch Ellipsenbahnen im Phasenraum \((x,p)\). In dimensionslosen Koordinaten werden diese Ellipsen zu Kreisen. Genau diese dimensionslose Kombination ist \(\alpha\):
+\[
+    \alpha=\sqrt{\frac{m\omega}{2\hbar}}x+\frac{i}{\sqrt{2m\hbar\omega}}p.
+\]
+Setzt man \(x=\langle X\rangle\) und \(p=\langle P\rangle\), beschreibt \(\alpha\) die Lage des Wellenpaketzentrums im Phasenraum.
+
+Unter Zeitentwicklung gilt
+\[
+    \alpha(t)=\alpha_0e^{-i\omega t}.
+\]
+Das ist eine Rotation in der komplexen \(\alpha\)-Ebene mit Winkelgeschwindigkeit \(\omega\).
+
+\begin{notebox}
+Die komplexe Ebene der Parameter \(\alpha\) ist eine dimensionslose Version des klassischen Phasenraums. Jeder kohärente Zustand ist dort ein Punkt, aber mit einer unvermeidlichen quantenmechanischen Mindestunschärfe um diesen Punkt.
+\end{notebox}
+
+\section{Verschiebungsoperator}
+
+\subsection{Definition}
+
+Kohärente Zustände können auch durch einen unitären Verschiebungsoperator erzeugt werden. Man definiert
+\begin{definitionbox}
+\[
+    D(\alpha):=\exp(\alpha a^\dagger-\alpha^*a).
+\]
+Der kohärente Zustand ist
+\[
+    \ket{\alpha}=D(\alpha)\ket{0}.
+\]
+\end{definitionbox}
+
+Der Operator \(D(\alpha)\) heißt Verschiebungsoperator, weil er den Grundzustand im Phasenraum verschiebt.
+
+\subsection{Unitärität}
+
+Der Exponent
+\[
+    \alpha a^\dagger-\alpha^*a
+\]
+ist antihermitesch:
+\[
+    (\alpha a^\dagger-\alpha^*a)^\dagger
+    =\alpha^* a-\alpha a^\dagger
+    =-(\alpha a^\dagger-\alpha^*a).
+\]
+Daher ist
+\[
+    D(\alpha)^\dagger D(\alpha)=\mathbb{1}.
+\]
+
+\begin{notebox}
+Unitäre Operatoren erhalten Normen. Deshalb ist \(D(\alpha)\ket{0}\) automatisch normiert, wenn \(\ket{0}\) normiert ist.
+\end{notebox}
+
+\subsection{Normalgeordnete Form}
+
+Mit der Baker-Campbell-Hausdorff-Formel erhält man
+\begin{formulabox}
+\[
+    D(\alpha)=e^{-\frac{|\alpha|^2}{2}}e^{\alpha a^\dagger}e^{-\alpha^*a}.
+\]
+\end{formulabox}
+
+Da \(a\ket{0}=0\), gilt
+\[
+    e^{-\alpha^*a}\ket{0}=\ket{0}.
+\]
+Also
+\[
+    D(\alpha)\ket{0}
+    =e^{-\frac{|\alpha|^2}{2}}e^{\alpha a^\dagger}\ket{0}.
+\]
+Nun
+\[
+    e^{\alpha a^\dagger}\ket{0}
+    =\sum_{n=0}^{\infty}\frac{\alpha^n}{n!}(a^\dagger)^n\ket{0}.
+\]
+Weil
+\[
+    (a^\dagger)^n\ket{0}=\sqrt{n!}\ket{n},
+\]
+folgt
+\[
+    e^{\alpha a^\dagger}\ket{0}
+    =\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}.
+\]
+Damit
+\[
+    D(\alpha)\ket{0}
+    =e^{-\frac{|\alpha|^2}{2}}
+    \sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+    =\ket{\alpha}.
+\]
+
+\begin{conceptbox}
+Der kohärente Zustand ist ein verschobener Grundzustand. Er hat dieselbe Gaußform und dieselbe Breite wie der Grundzustand, aber sein Zentrum liegt bei \(\langle X\rangle\) und sein mittlerer Impuls ist \(\langle P\rangle\).
+\end{conceptbox}
+
+\section{Klassischer Grenzfall}
+
+Ein klassischer harmonischer Oszillator kann eine beliebig große Amplitude besitzen. Der kohärente Zustand beschreibt diese Situation, wenn \(|\alpha|\) groß ist. Dann ist
+\[
+    \langle N\rangle=|\alpha|^2\gg 1.
+\]
+Die Energie ist näherungsweise
+\[
+    \langle H\rangle\approx \hbar\omega |\alpha|^2.
+\]
+Die relative Besetzungszahlschwankung ist
+\[
+    \frac{\Delta N}{\langle N\rangle}=\frac{1}{|\alpha|}\ll 1.
+\]
+
+\begin{conceptbox}
+Für \(|\alpha|\gg 1\) ist der kohärente Zustand klassisch im folgenden Sinn:
+\begin{itemize}
+    \item Der Schwerpunkt folgt der klassischen Bewegung.
+    \item Die relative Energie- beziehungsweise Besetzungszahlschwankung ist klein.
+    \item Die Unschärfen sind zwar absolut vorhanden, aber klein relativ zur makroskopischen Amplitude.
+\end{itemize}
+\end{conceptbox}
+
+\section{Vergleich: Zahlzustand, Grundzustand und kohärenter Zustand}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Zustand & Charakter & Zeitverhalten \\
+\midrule
+\(\ket{n}\) & Energieeigenzustand & nur Phase, stationäre Dichte \\
+\(\ket{0}\) & Grundzustand & stationär, minimale Unschärfe \\
+\(\ket{\alpha}\) & Superposition vieler \(\ket{n}\) & Wellenpaket schwingt klassisch \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{notebox}
+Der Grundzustand ist der kohärente Zustand \(\ket{\alpha=0}\). Ein allgemeiner kohärenter Zustand ist ein verschobener Grundzustand. Ein Zahlzustand \(\ket{n}\) mit \(n>0\) ist dagegen kein kohärenter Zustand, weil er kein Eigenzustand von \(a\) ist.
+\end{notebox}
+
+\section{Typische Rechenaufgaben}
+
+\subsection{Aufgabe 1: Eigenzustandseigenschaft zeigen}
+
+\begin{examplebox}
+\textbf{Aufgabe:} Zeige, dass
+\[
+    \ket{\alpha}=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\]
+ein Eigenzustand von \(a\) ist.
+
+\textbf{Lösungsidee:} Man wendet \(a\ket{n}=\sqrt{n}\ket{n-1}\) an, verschiebt den Summationsindex und zieht \(\alpha\) aus der Summe heraus. Am Ende erhält man
+\[
+    a\ket{\alpha}=\alpha\ket{\alpha}.
+\]
+\end{examplebox}
+
+\subsection{Aufgabe 2: Normierung zeigen}
+
+\begin{examplebox}
+\textbf{Aufgabe:} Zeige \(\braket{\alpha}{\alpha}=1\).
+
+\textbf{Lösungsidee:} Man setzt die Reihe ein und verwendet \(\braket{m}{n}=\delta_{mn}\). Dadurch entsteht die Exponentialreihe:
+\[
+    \braket{\alpha}{\alpha}=e^{-|\alpha|^2}\sum_{n=0}^{\infty}\frac{|\alpha|^{2n}}{n!}=1.
+\]
+\end{examplebox}
+
+\subsection{Aufgabe 3: Zeitentwicklung bestimmen}
+
+\begin{examplebox}
+\textbf{Aufgabe:} Ein Oszillator sei bei \(t=0\) im Zustand \(\ket{\alpha_0}\). Bestimme \(\ket{\psi(t)}\).
+
+\textbf{Lösung:}
+\[
+    \ket{\psi(t)}=e^{-\frac{i}{\hbar}Ht}\ket{\alpha_0}
+    =e^{-i\omega t/2}\ket{\alpha_0e^{-i\omega t}}.
+\]
+Bis auf eine globale Phase bleibt der Zustand kohärent, wobei der Parameter rotiert:
+\[
+    \alpha(t)=\alpha_0e^{-i\omega t}.
+\]
+\end{examplebox}
+
+\subsection{Aufgabe 4: Erwartungswerte bestimmen}
+
+\begin{examplebox}
+\textbf{Aufgabe:} Berechne \(\langle X\rangle\), \(\langle P\rangle\) und \(\langle H\rangle\) im Zustand \(\ket{\alpha}\).
+
+\textbf{Lösung:}
+\[
+    \langle X\rangle_\alpha=\sqrt{\frac{2\hbar}{m\omega}}\operatorname{Re}\alpha,
+\]
+\[
+    \langle P\rangle_\alpha=\sqrt{2m\hbar\omega}\operatorname{Im}\alpha,
+\]
+\[
+    \langle H\rangle_\alpha=\hbar\omega\left(|\alpha|^2+\frac12\right).
+\]
+\end{examplebox}
+
+\section{Häufige Fehler}
+
+\begin{warningbox}
+\textbf{Fehler 1:} Man behandelt \(a\) wie eine Observable. Das ist falsch, weil \(a\) nicht hermitesch ist. Der Eigenwert \(\alpha\) ist daher auch kein direktes Messergebnis einer Observablen.
+\end{warningbox}
+
+\begin{warningbox}
+\textbf{Fehler 2:} Man denkt, kohärente Zustände seien orthogonal, weil sie unterschiedliche Parameter haben. Das ist falsch. Für endliches \(\alpha-\beta\) gilt
+\[
+    \braket{\alpha}{\beta}\neq 0.
+\]
+Nur für weit getrennte Parameter wird der Überlapp sehr klein.
+\end{warningbox}
+
+\begin{warningbox}
+\textbf{Fehler 3:} Man vergisst die Nullpunktsenergie. Auch im kohärenten Zustand gilt
+\[
+    \langle H\rangle=\hbar\omega\left(|\alpha|^2+\frac12\right),
+\]
+nicht nur \(\hbar\omega|\alpha|^2\).
+\end{warningbox}
+
+\begin{warningbox}
+\textbf{Fehler 4:} Man verwechselt \(\Delta X\) mit \(\langle X\rangle\). Die Breite des kohärenten Zustands ist unabhängig von \(\alpha\), während das Zentrum von \(\operatorname{Re}\alpha\) abhängt.
+\end{warningbox}
+
+\section{Prüfungsrelevante Kernaussagen}
+
+\begin{examtipbox}
+Für kohärente Zustände sollte man sicher können:
+\begin{itemize}
+    \item Definition:
+    \[
+        \ket{\alpha}=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}.
+    \]
+    \item Eigenwertgleichung:
+    \[
+        a\ket{\alpha}=\alpha\ket{\alpha}.
+    \]
+    \item Normierung:
+    \[
+        \braket{\alpha}{\alpha}=1.
+    \]
+    \item Überlapp:
+    \[
+        \braket{\alpha}{\beta}=\exp\left(-\frac{|\alpha|^2}{2}-\frac{|\beta|^2}{2}+\alpha^*\beta\right).
+    \]
+    \item Besetzungszahlverteilung:
+    \[
+        P(n)=e^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.
+    \]
+    \item Erwartungswerte:
+    \[
+        \langle X\rangle=\sqrt{\frac{2\hbar}{m\omega}}\operatorname{Re}\alpha,
+        \qquad
+        \langle P\rangle=\sqrt{2m\hbar\omega}\operatorname{Im}\alpha.
+    \]
+    \item Unschärfen:
+    \[
+        \Delta X=\sqrt{\frac{\hbar}{2m\omega}},
+        \qquad
+        \Delta P=\sqrt{\frac{m\hbar\omega}{2}},
+        \qquad
+        \Delta X\Delta P=\frac{\hbar}{2}.
+    \]
+    \item Zeitentwicklung:
+    \[
+        \ket{\alpha_0,t}=e^{-i\omega t/2}\ket{\alpha_0e^{-i\omega t}}.
+    \]
+\end{itemize}
+\end{examtipbox}
+
+\section{Kurzzusammenfassung}
+
+\begin{answerbox}
+Kohärente Zustände sind Eigenzustände des Absteigeoperators \(a\). Sie werden durch
+\[
+    \ket{\alpha}=e^{-|\alpha|^2/2}\sum_{n=0}^{\infty}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\]
+definiert. Sie sind normiert, aber nicht orthogonal. Ihre Besetzungszahlen sind poissonverteilt mit Mittelwert \(|\alpha|^2\). In Ortsdarstellung sind sie Gaußpakete mit minimaler Orts-Impuls-Unschärfe. Unter der Zeitentwicklung des harmonischen Oszillators bleiben sie kohärent:
+\[
+    \alpha(t)=\alpha_0e^{-i\omega t}.
+\]
+Dadurch bewegen sich die Erwartungswerte \(\langle X\rangle_t\) und \(\langle P\rangle_t\) genau wie die klassischen Größen eines harmonischen Oszillators.
+\end{answerbox}

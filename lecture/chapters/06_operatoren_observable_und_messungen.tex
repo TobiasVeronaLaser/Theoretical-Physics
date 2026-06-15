@@ -1,0 +1,1200 @@
+\chapter{Operatoren, Observable und Messungen}
+
+\section{Ziel dieses Kapitels}
+
+In diesem Kapitel geht es um die mathematische Sprache, mit der Messungen in der Quantenmechanik beschrieben werden. In der klassischen Mechanik ist eine physikalische Größe meistens einfach eine Funktion auf dem Phasenraum, zum Beispiel
+\[
+    A(\vec x,\vec p,t).
+\]
+Wenn man den Zustand des Systems kennt, kann man im Prinzip den Wert dieser Größe bestimmen. In der Quantenmechanik ist das anders: Der Zustand liefert im Allgemeinen keine einzelnen Messwerte, sondern Wahrscheinlichkeiten für mögliche Messwerte. Die möglichen Messwerte werden durch Eigenwerte von Operatoren bestimmt.
+
+Die zentralen Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Was ist ein Operator auf einem Hilbertraum?
+    \item Warum werden Observablen durch hermitesche beziehungsweise selbstadjungierte Operatoren beschrieben?
+    \item Warum sind Messwerte Eigenwerte?
+    \item Wie berechnet man Erwartungswerte, Varianzen und Messwahrscheinlichkeiten?
+    \item Was passiert mit dem Zustand nach einer Messung?
+    \item Was bedeutet es, wenn zwei Observablen kommutieren?
+    \item Wann können Observablen gleichzeitig scharf gemessen werden?
+    \item Was ist ein vollständiger Satz kommutierender Observablen?
+\end{itemize}
+
+\begin{conceptbox}
+Der wichtigste Satz dieses Kapitels lautet: Einer physikalisch messbaren Größe entspricht ein hermitescher Operator. Die möglichen Messergebnisse sind seine Eigenwerte. Die Wahrscheinlichkeit für ein Messergebnis erhält man aus der Projektion des Zustands auf den zugehörigen Eigenraum.
+\end{conceptbox}
+
+\section{Von klassischen Größen zu quantenmechanischen Operatoren}
+
+\subsection{Klassische Observable}
+
+In der klassischen Mechanik beschreibt man den Zustand eines Teilchens durch Ort und Impuls,
+\[
+    (\vec x,\vec p).
+\]
+Eine beobachtbare Größe ist dann eine Funktion dieser Variablen. Beispiele sind:
+\[
+    H(\vec x,\vec p)=\frac{\vec p^{\,2}}{2m}+V(\vec x),
+    \qquad
+    \vec L=\vec x\times \vec p.
+\]
+Hier ist $H$ die Energie und $\vec L$ der Drehimpuls. Kennt man $\vec x$ und $\vec p$, dann kennt man auch $H$ und $\vec L$.
+
+\begin{notebox}
+In der Quantenmechanik kann man Ort und Impuls nicht gleichzeitig in beliebiger Genauigkeit festlegen. Deshalb kann eine Observable nicht mehr einfach nur als Funktion scharfer Zahlenwerte verstanden werden. Stattdessen wird sie zu einem Operator, der auf Zustände wirkt.
+\end{notebox}
+
+\subsection{Kanonische Quantisierung}
+
+Die kanonische Quantisierung übersetzt klassische Größen in Operatoren. Für ein Teilchen im Ortsraum gilt:
+\[
+    x_j \longmapsto X_j,
+    \qquad
+    p_j \longmapsto P_j.
+\]
+In Ortsdarstellung wirken diese Operatoren auf eine Wellenfunktion $\psi(\vec x)$ durch
+\[
+    (X_j\psi)(\vec x)=x_j\psi(\vec x),
+    \qquad
+    (P_j\psi)(\vec x)=\frac{\hbar}{i}\frac{\partial}{\partial x_j}\psi(\vec x)
+    =-i\hbar\frac{\partial}{\partial x_j}\psi(\vec x).
+\]
+
+\begin{formulabox}
+In Ortsdarstellung gilt
+\[
+    X_j=x_j,
+    \qquad
+    P_j=-i\hbar\frac{\partial}{\partial x_j}.
+\]
+Für ein Teilchen in einem Potential lautet der Hamiltonoperator
+\[
+    H=\frac{\vec P^{\,2}}{2m}+V(\vec X)
+    =-\frac{\hbar^2}{2m}\nabla^2+V(\vec x).
+\]
+\end{formulabox}
+
+\subsection{Operatorordnung}
+
+Bei einfachen Ausdrücken wie $p^2/2m+V(x)$ ist die Übersetzung eindeutig. Bei Produkten aus Ort und Impuls muss man vorsichtig sein, weil Operatoren im Allgemeinen nicht kommutieren.
+
+Klassisch ist
+\[
+    xp=px.
+\]
+Quantenmechanisch gilt aber im Allgemeinen
+\[
+    XP\ne PX.
+\]
+Deshalb ist die naive Ersetzung eines klassischen Produkts manchmal mehrdeutig.
+
+\begin{examplebox}
+Ein klassischer Ausdruck $xp$ kann quantenmechanisch nicht einfach eindeutig als $XP$ oder $PX$ übersetzt werden. Eine symmetrische, hermitesche Wahl ist
+\[
+    xp \longmapsto \frac{1}{2}(XP+PX).
+\]
+Diese Symmetrisierung stellt sicher, dass der entstehende Operator hermitesch ist, sofern $X$ und $P$ selbst hermitesch sind.
+\end{examplebox}
+
+\section{Operatoren auf einem Hilbertraum}
+
+\subsection{Lineare Operatoren}
+
+Der Zustandsraum eines quantenmechanischen Systems ist ein komplexer Hilbertraum $\mathcal H$. Ein Operator ist eine Abbildung, die einem Zustand einen neuen Zustand zuordnet:
+\[
+    A:\mathcal H\to\mathcal H,
+    \qquad
+    \psi\mapsto A\psi.
+\]
+
+\begin{definitionbox}
+Ein Operator $A$ heißt linear, wenn für alle Zustände $\psi,\varphi\in\mathcal H$ und alle komplexen Zahlen $\alpha,\beta\in\mathbb C$ gilt:
+\[
+    A(\alpha\psi+\beta\varphi)
+    =\alpha A\psi+\beta A\varphi.
+\]
+\end{definitionbox}
+
+Linearität ist in der Quantenmechanik grundlegend, weil auch die Schrödingergleichung linear ist. Wenn $\psi_1$ und $\psi_2$ mögliche Zustände sind, dann ist auch eine Superposition
+\[
+    \alpha\psi_1+\beta\psi_2
+\]
+ein möglicher Zustand, sofern sie normierbar ist.
+
+\subsection{Matrixdarstellung in endlicher Dimension}
+
+Ist der Hilbertraum endlichdimensional und besitzt eine Orthonormalbasis
+\[
+    \{e_1,e_2,\dots,e_n\},
+\]
+dann kann jeder Operator $A$ durch eine Matrix dargestellt werden. Die Matrixelemente sind
+\[
+    A_{ij}=\langle e_i,Ae_j\rangle.
+\]
+Für einen Zustand
+\[
+    \psi=\sum_{j=1}^n c_j e_j
+\]
+ist die Wirkung des Operators
+\[
+    A\psi=\sum_{i=1}^n \left(\sum_{j=1}^n A_{ij}c_j\right)e_i.
+\]
+
+\begin{conceptbox}
+Eine Matrix ist die Darstellung eines Operators in einer gewählten Basis. Der Operator selbst ist basisunabhängig, aber seine Matrixdarstellung hängt von der Basis ab.
+\end{conceptbox}
+
+\subsection{Unendliche Dimension und Differentialoperatoren}
+
+In der Wellenmechanik ist der Hilbertraum typischerweise
+\[
+    \mathcal H=L^2(\mathbb R^3).
+\]
+Zustände sind quadratintegrierbare Funktionen $\psi(\vec x)$. Operatoren können dann Differentialoperatoren sein, zum Beispiel
+\[
+    P_j=-i\hbar\frac{\partial}{\partial x_j},
+    \qquad
+    H=-\frac{\hbar^2}{2m}\nabla^2+V(\vec x).
+\]
+
+\begin{notebox}
+Bei Differentialoperatoren muss man immer auch an den Definitionsbereich denken. Ein Operator ist nicht nur eine Rechenvorschrift, sondern besteht aus Rechenvorschrift plus zulässigen Funktionen plus Randbedingungen. Das wird besonders wichtig bei Selbstadjungiertheit.
+\end{notebox}
+
+\section{Adjungierter Operator und Hermitizität}
+
+\subsection{Adjungierter Operator}
+
+Das Skalarprodukt im Hilbertraum erlaubt die Definition eines adjungierten Operators.
+
+\begin{definitionbox}
+Der adjungierte Operator $A^\dagger$ zu $A$ ist durch
+\[
+    \langle A^\dagger\varphi,\psi\rangle
+    =\langle \varphi,A\psi\rangle
+\]
+für alle geeigneten Zustände $\varphi,\psi$ definiert.
+\end{definitionbox}
+
+In endlicher Dimension entspricht $A^\dagger$ der komplex konjugierten transponierten Matrix:
+\[
+    (A^\dagger)_{ij}=A_{ji}^*.
+\]
+
+\subsection{Hermitesche Operatoren}
+
+\begin{definitionbox}
+Ein Operator $A$ heißt hermitesch oder selbstadjungiert, wenn
+\[
+    A^\dagger=A
+\]
+gilt. Äquivalent dazu ist
+\[
+    \langle \varphi,A\psi\rangle=\langle A\varphi,\psi\rangle
+\]
+für alle geeigneten Zustände $\varphi,\psi$.
+\end{definitionbox}
+
+Für Matrizen bedeutet Hermitizität
+\[
+    A_{ij}=A_{ji}^*.
+\]
+Insbesondere sind die Diagonaleinträge einer hermiteschen Matrix reell, denn
+\[
+    A_{ii}=A_{ii}^*.
+\]
+
+\subsection{Warum Observablen hermitesch sein müssen}
+
+Messwerte sind reelle Zahlen. Daher muss eine Observable einen Operator besitzen, dessen Eigenwerte reell sind. Genau das garantieren hermitesche Operatoren.
+
+\begin{derivationbox}
+Sei $A=A^\dagger$ und
+\[
+    A\psi=\lambda\psi,
+    \qquad \psi\ne0.
+\]
+Dann gilt
+\[
+    \langle \psi,A\psi\rangle
+    =\langle \psi,\lambda\psi\rangle
+    =\lambda\langle \psi,
+    \psi\rangle.
+\]
+Andererseits folgt wegen Hermitizität
+\[
+    \langle \psi,A\psi\rangle
+    =\langle A\psi,\psi\rangle
+    =\langle \lambda\psi,\psi\rangle
+    =\lambda^*\langle \psi,\psi\rangle.
+\]
+Da $\langle\psi,\psi\rangle>0$ ist, folgt
+\[
+    \lambda=\lambda^*.
+\]
+Also ist $\lambda$ reell.
+\end{derivationbox}
+
+\begin{formulabox}
+Postulat der Observablen:
+\[
+    \text{Physikalische Observable} \quad \longleftrightarrow \quad \text{hermitescher Operator } A=A^\dagger.
+\]
+Die möglichen Messergebnisse sind die Eigenwerte von $A$.
+\end{formulabox}
+
+\subsection{Orthogonalität verschiedener Eigenzustände}
+
+Eigenzustände hermitescher Operatoren zu verschiedenen Eigenwerten sind orthogonal.
+
+\begin{derivationbox}
+Seien
+\[
+    A\psi_m=a_m\psi_m,
+    \qquad
+    A\psi_n=a_n\psi_n,
+\]
+mit $a_m\ne a_n$ und $A=A^\dagger$. Dann gilt
+\[
+    \langle A\psi_m,\psi_n\rangle
+    =\langle \psi_m,A\psi_n\rangle.
+\]
+Einsetzen der Eigenwertgleichungen liefert
+\[
+    a_m\langle \psi_m,\psi_n\rangle
+    =a_n\langle \psi_m,\psi_n\rangle.
+\]
+Also
+\[
+    (a_m-a_n)\langle \psi_m,\psi_n\rangle=0.
+\]
+Da $a_m\ne a_n$, folgt
+\[
+    \langle \psi_m,\psi_n\rangle=0.
+\]
+\end{derivationbox}
+
+\begin{conceptbox}
+Hermitesche Operatoren sind deshalb so wichtig, weil sie genau die Struktur liefern, die man für Messungen braucht: reelle Eigenwerte, orthogonale Eigenzustände und eine Zerlegung des Hilbertraums in Messalternativen.
+\end{conceptbox}
+
+\section{Erwartungswerte und Unsicherheiten}
+
+\subsection{Erwartungswert einer Observablen}
+
+Ist $A$ eine Observable und $\psi$ ein normierter Zustand, dann ist der Erwartungswert von $A$ im Zustand $\psi$ definiert durch
+\[
+    \langle A\rangle_\psi=\langle \psi,A\psi\rangle.
+\]
+In Ortsdarstellung schreibt man
+\[
+    \langle A\rangle_\psi
+    =\int \dd^3x\,\psi^*(\vec x)(A\psi)(\vec x).
+\]
+
+\begin{formulabox}
+Für normierte Zustände gilt
+\[
+    \langle A\rangle=\langle \psi,A\psi\rangle.
+\]
+Für nicht normierte Zustände verwendet man
+\[
+    \langle A\rangle=\frac{\langle \psi,A\psi\rangle}{\langle\psi,\psi\rangle}.
+\]
+\end{formulabox}
+
+\subsection{Reellheit des Erwartungswerts}
+
+Für hermitesche Operatoren ist der Erwartungswert reell.
+
+\begin{derivationbox}
+Für $A=A^\dagger$ gilt
+\[
+    \langle A\rangle^*
+    =\langle \psi,A\psi\rangle^*
+    =\langle A\psi,\psi\rangle
+    =\langle \psi,A\psi\rangle
+    =\langle A\rangle.
+\]
+Also ist
+\[
+    \langle A\rangle\in\mathbb R.
+\]
+\end{derivationbox}
+
+\subsection{Varianz und Messunsicherheit}
+
+Der Erwartungswert ist nicht unbedingt ein möglicher Messwert. Er ist der Mittelwert vieler Messungen an identisch präparierten Systemen. Die Streuung der Messergebnisse beschreibt die Varianz.
+
+\begin{definitionbox}
+Die Varianz einer Observablen $A$ im Zustand $\psi$ ist
+\[
+    (\Delta A)^2
+    =\langle (A-\langle A\rangle)^2\rangle.
+\]
+Die Standardabweichung oder Unschärfe ist
+\[
+    \Delta A=\sqrt{\langle A^2\rangle-\langle A\rangle^2}.
+\]
+\end{definitionbox}
+
+\begin{derivationbox}
+Setze
+\[
+    A'=A-\langle A\rangle.
+\]
+Dann ist
+\[
+    (\Delta A)^2=\langle (A')^2\rangle
+    =\langle A^2-2\langle A\rangle A+\langle A\rangle^2\rangle.
+\]
+Da $\langle A\rangle$ eine Zahl ist, folgt
+\[
+    (\Delta A)^2=\langle A^2\rangle-2\langle A\rangle^2+\langle A\rangle^2
+    =\langle A^2\rangle-\langle A\rangle^2.
+\]
+\end{derivationbox}
+
+\begin{conceptbox}
+Wenn $\Delta A=0$ ist, dann ist der Zustand ein Eigenzustand von $A$. Dann ist das Messergebnis sicher. Wenn $\Delta A>0$ ist, dann liefert die Messung verschiedene mögliche Ergebnisse mit bestimmten Wahrscheinlichkeiten.
+\end{conceptbox}
+
+\section{Eigenwerte, Eigenzustände und Spektralzerlegung}
+
+\subsection{Eigenwertgleichung}
+
+Das Eigenwertproblem einer Observablen $A$ lautet
+\[
+    A\psi_n=a_n\psi_n.
+\]
+Dabei ist $a_n$ ein möglicher Messwert und $\psi_n$ ein Zustand, in dem die Messung von $A$ mit Sicherheit $a_n$ ergibt.
+
+\begin{definitionbox}
+Ein Zustand $\psi$ heißt Eigenzustand von $A$ zum Eigenwert $a$, wenn
+\[
+    A\psi=a\psi
+\]
+und $\psi\ne0$ gilt.
+\end{definitionbox}
+
+\subsection{Diskretes Spektrum}
+
+Wenn eine Observable eine diskrete Orthonormalbasis aus Eigenzuständen besitzt,
+\[
+    A\psi_n=a_n\psi_n,
+    \qquad
+    \langle\psi_m,\psi_n\rangle=\delta_{mn},
+\]
+dann kann jeder Zustand als
+\[
+    \psi=\sum_n c_n\psi_n
+\]
+geschrieben werden, wobei
+\[
+    c_n=\langle\psi_n,\psi\rangle.
+\]
+Ist $\psi$ normiert, dann gilt
+\[
+    \sum_n |c_n|^2=1.
+\]
+
+\begin{formulabox}
+Für diskrete, nicht entartete Eigenwerte gilt:
+\[
+    \psi=\sum_n c_n\psi_n,
+    \qquad
+    c_n=\langle\psi_n,\psi\rangle,
+    \qquad
+    P(a_n)=|c_n|^2.
+\]
+\end{formulabox}
+
+\subsection{Spektralzerlegung}
+
+Aus einer Orthonormalbasis von Eigenzuständen kann man den Operator rekonstruieren:
+\[
+    A=\sum_n a_n P_n,
+\]
+wobei
+\[
+    P_n=|\psi_n\rangle\langle\psi_n|
+\]
+der Projektor auf den Eigenzustand $\psi_n$ ist.
+
+In funktionaler Schreibweise bedeutet
+\[
+    P_n\varphi=\psi_n\langle\psi_n,\varphi\rangle.
+\]
+
+\begin{formulabox}
+Die Spektralzerlegung einer Observablen mit diskretem, nicht entartetem Spektrum lautet
+\[
+    A=\sum_n a_n |\psi_n\rangle\langle\psi_n|.
+\]
+Die Vollständigkeitsrelation lautet
+\[
+    I=\sum_n |\psi_n\rangle\langle\psi_n|.
+\]
+\end{formulabox}
+
+\subsection{Entartete Eigenwerte}
+
+Ein Eigenwert $a$ heißt entartet, wenn mehrere linear unabhängige Eigenzustände denselben Eigenwert besitzen:
+\[
+    A\psi_{a,1}=a\psi_{a,1},
+    \quad
+    A\psi_{a,2}=a\psi_{a,2},
+    \quad \dots
+\]
+Der zugehörige Eigenraum ist
+\[
+    \mathcal H_a=\{\psi\in\mathcal H\mid A\psi=a\psi\}.
+\]
+Der Projektor auf diesen Eigenraum ist
+\[
+    P_a=\sum_{\alpha=1}^{g_a}|\psi_{a,\alpha}\rangle\langle\psi_{a,\alpha}|,
+\]
+wobei $g_a$ der Entartungsgrad ist.
+
+\begin{notebox}
+Bei entarteten Eigenwerten bestimmt eine Messung von $A$ nicht unbedingt den Zustand eindeutig. Sie bestimmt nur den Eigenraum zum gemessenen Eigenwert. Innerhalb dieses Eigenraums kann noch Information fehlen.
+\end{notebox}
+
+\subsection{Kontinuierliches Spektrum}
+
+Bei Observablen wie Ort und Impuls ist das Spektrum kontinuierlich. Dann werden Summen formal durch Integrale ersetzt. Für den Ortsoperator gilt idealisiert
+\[
+    X|x\rangle=x|x\rangle,
+    \qquad
+    \langle x|x'\rangle=\delta(x-x'),
+    \qquad
+    I=\int_{-\infty}^{\infty}\dd x\,|x\rangle\langle x|.
+\]
+Ein Zustand besitzt in Ortsdarstellung die Wellenfunktion
+\[
+    \psi(x)=\langle x|\psi\rangle.
+\]
+Die Wahrscheinlichkeit, das Teilchen zwischen $x$ und $x+\dd x$ zu finden, ist
+\[
+    |\psi(x)|^2\dd x.
+\]
+
+Analog gilt im Impulsraum
+\[
+    P|p\rangle=p|p\rangle,
+    \qquad
+    \tilde\psi(p)=\langle p|\psi\rangle,
+    \qquad
+    |\tilde\psi(p)|^2\dd p
+\]
+als Impulswahrscheinlichkeit im Intervall $[p,p+\dd p]$.
+
+\section{Projektoren}
+
+\subsection{Definition}
+
+Projektoren beschreiben mathematisch die Alternative, ob ein Zustand in einem bestimmten Unterraum liegt oder nicht.
+
+\begin{definitionbox}
+Ein Operator $P$ heißt Projektor, wenn
+\[
+    P^2=P
+\]
+gilt. Ist zusätzlich
+\[
+    P^\dagger=P,
+\]
+dann heißt $P$ orthogonaler Projektor.
+\end{definitionbox}
+
+Für einen normierten Zustand $\varphi$ ist
+\[
+    P_\varphi=|\varphi\rangle\langle\varphi|
+\]
+der Projektor auf die von $\varphi$ aufgespannte Gerade.
+
+\begin{derivationbox}
+Wir zeigen $P_\varphi^2=P_\varphi$. Für einen beliebigen Zustand $\psi$ gilt
+\[
+    P_\varphi\psi=\varphi\langle\varphi,\psi\rangle.
+\]
+Dann ist
+\[
+    P_\varphi^2\psi
+    =P_\varphi\bigl(\varphi\langle\varphi,\psi\rangle\bigr)
+    =\varphi\langle\varphi,\varphi\langle\varphi,\psi\rangle\rangle.
+\]
+Da $\langle\varphi,\varphi\rangle=1$ ist, folgt
+\[
+    P_\varphi^2\psi=\varphi\langle\varphi,\psi\rangle=P_\varphi\psi.
+\]
+Also gilt
+\[
+    P_\varphi^2=P_\varphi.
+\]
+\end{derivationbox}
+
+\subsection{Projektoren und Wahrscheinlichkeiten}
+
+Ist $P$ der Projektor auf einen Unterraum, dann ist
+\[
+    \langle P\rangle_\psi=\langle\psi,P\psi\rangle
+\]
+die Wahrscheinlichkeit, dass der Zustand bei einer Messung in diesem Unterraum gefunden wird.
+
+Für einen eindimensionalen Projektor $P_\varphi=|\varphi\rangle\langle\varphi|$ gilt
+\[
+    \langle\psi,P_\varphi\psi\rangle
+    =\langle\psi,\varphi\rangle\langle\varphi,\psi\rangle
+    =|\langle\varphi,\psi\rangle|^2.
+\]
+
+\begin{formulabox}
+Die Wahrscheinlichkeit, im normierten Zustand $\psi$ den normierten Zustand $\varphi$ zu finden, ist
+\[
+    P(\varphi)=|\langle\varphi,\psi\rangle|^2.
+\]
+\end{formulabox}
+
+\section{Messpostulate}
+
+\subsection{Mögliche Messergebnisse}
+
+Sei $A$ eine Observable mit Spektralzerlegung
+\[
+    A=\sum_a a P_a.
+\]
+Dann sind die möglichen Messergebnisse die Eigenwerte $a$.
+
+\begin{formulabox}
+Messpostulat 1:
+Bei einer Messung der Observablen $A$ können nur Eigenwerte von $A$ als Messergebnisse auftreten.
+\end{formulabox}
+
+\subsection{Wahrscheinlichkeit eines Messergebnisses}
+
+Befindet sich das System vor der Messung im normierten Zustand $\psi$, dann ist die Wahrscheinlichkeit für das Messergebnis $a$
+\[
+    P(a)=\langle\psi,P_a\psi\rangle=\norm{P_a\psi}^2.
+\]
+Ist der Eigenwert nicht entartet und ist $\psi_a$ der normierte Eigenzustand, dann ist
+\[
+    P(a)=|\langle\psi_a,\psi\rangle|^2.
+\]
+
+\begin{formulabox}
+Messpostulat 2:
+Für die Observable $A=\sum_a aP_a$ gilt im Zustand $\psi$:
+\[
+    P(a)=\norm{P_a\psi}^2.
+\]
+\end{formulabox}
+
+\subsection{Zustand nach der Messung}
+
+Wenn bei der Messung der Eigenwert $a$ gefunden wird, dann wird der Zustand auf den zugehörigen Eigenraum projiziert. Nach Normierung ist der Zustand direkt nach der Messung
+\[
+    \psi\longmapsto \psi_a'=\frac{P_a\psi}{\norm{P_a\psi}}.
+\]
+
+\begin{formulabox}
+Messpostulat 3:
+Wenn bei der Messung von $A$ das Ergebnis $a$ erhalten wird, dann ist der Zustand direkt nach der Messung
+\[
+    \psi_a'=\frac{P_a\psi}{\sqrt{\langle\psi,P_a\psi\rangle}}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Eine Messung verändert den Zustand im Allgemeinen. Das ist kein technischer Messfehler, sondern Teil der Struktur der Quantenmechanik. Nach einer idealen Messung befindet sich das System in dem Eigenraum, der zum gemessenen Eigenwert gehört.
+\end{conceptbox}
+
+\subsection{Nicht entarteter Spezialfall}
+
+Wenn alle Eigenwerte nicht entartet sind, gilt
+\[
+    A\psi_n=a_n\psi_n,
+    \qquad
+    \psi=\sum_n c_n\psi_n.
+\]
+Dann ist
+\[
+    P(a_n)=|c_n|^2.
+\]
+Wird $a_n$ gemessen, dann ist der Zustand nach der Messung
+\[
+    \psi_n
+\]
+bis auf eine irrelevante Phase.
+
+\begin{examplebox}
+Sei
+\[
+    \psi=\frac{1}{\sqrt2}\psi_1+\frac{i}{\sqrt2}\psi_2,
+\]
+wobei $\psi_1,\psi_2$ normierte Eigenzustände von $A$ zu Eigenwerten $a_1,a_2$ sind. Dann gilt
+\[
+    P(a_1)=\left|\frac{1}{\sqrt2}\right|^2=\frac12,
+    \qquad
+    P(a_2)=\left|\frac{i}{\sqrt2}\right|^2=\frac12.
+\]
+Wird $a_2$ gemessen, dann ist der Zustand nach der Messung $\psi_2$.
+\end{examplebox}
+
+\subsection{Entarteter Spezialfall}
+
+Ist der Eigenwert $a$ entartet, dann ist der Zustand nach der Messung nicht notwendigerweise ein bestimmter einzelner Eigenvektor. Er ist die normierte Projektion auf den gesamten Eigenraum:
+\[
+    \psi_a'=\frac{P_a\psi}{\norm{P_a\psi}}.
+\]
+
+\begin{notebox}
+Entartung bedeutet physikalisch: Die Messung von $A$ reicht nicht aus, um alle Quantenzahlen des Zustands festzulegen. Um den Zustand eindeutig zu bestimmen, benötigt man zusätzliche kompatible Observablen.
+\end{notebox}
+
+\section{Kommutatoren und kompatible Observablen}
+
+\subsection{Definition des Kommutators}
+
+\begin{definitionbox}
+Der Kommutator zweier Operatoren $A$ und $B$ ist
+\[
+    [A,B]=AB-BA.
+\]
+Wenn
+\[
+    [A,B]=0
+\]
+gilt, sagt man, dass $A$ und $B$ kommutieren.
+\end{definitionbox}
+
+Der Kommutator misst, ob die Reihenfolge der Operatoranwendung wichtig ist. Wenn $AB=BA$ gilt, ist die Reihenfolge egal. Wenn $AB\ne BA$ gilt, ist die Reihenfolge relevant.
+
+\subsection{Gemeinsame Eigenzustände}
+
+Kommutierende hermitesche Operatoren besitzen unter geeigneten Voraussetzungen eine gemeinsame Eigenbasis.
+
+\begin{derivationbox}
+Sei
+\[
+    [A,B]=0
+\]
+und sei $\psi$ ein Eigenzustand von $A$:
+\[
+    A\psi=a\psi.
+\]
+Dann gilt
+\[
+    A(B\psi)=AB\psi=BA\psi=B(a\psi)=a(B\psi).
+\]
+Also ist $B\psi$ wieder ein Eigenvektor von $A$ zum selben Eigenwert $a$, sofern $B\psi\ne0$.
+
+Ist der Eigenwert $a$ nicht entartet, dann muss $B\psi$ proportional zu $\psi$ sein:
+\[
+    B\psi=b\psi.
+\]
+Dann ist $\psi$ gleichzeitig Eigenzustand von $A$ und $B$.
+\end{derivationbox}
+
+Bei entarteten Eigenwerten kann $B$ innerhalb des entarteten Eigenraums wirken. Dann diagonalisiert man $B$ zusätzlich in diesem Unterraum.
+
+\begin{formulabox}
+Wenn zwei Observablen $A$ und $B$ kommutieren,
+\[
+    [A,B]=0,
+\]
+dann können sie simultan scharf messbar sein. Nichtkommutierende Observablen besitzen im Allgemeinen keine vollständige gemeinsame Eigenbasis.
+\end{formulabox}
+
+\subsection{Simultan scharf messbar}
+
+Eine Observable $A$ ist in einem Zustand $\psi$ scharf, wenn $\psi$ ein Eigenzustand von $A$ ist. Zwei Observablen $A$ und $B$ sind simultan scharf, wenn $\psi$ ein gemeinsamer Eigenzustand ist:
+\[
+    A\psi=a\psi,
+    \qquad
+    B\psi=b\psi.
+\]
+
+\begin{conceptbox}
+Kompatible Observablen sind Observablen, deren Messungen sich nicht grundsätzlich gegenseitig ausschließen. Mathematisch wird diese Kompatibilität durch verschwindende Kommutatoren ausgedrückt.
+\end{conceptbox}
+
+\section{Vollständiger Satz kommutierender Observablen}
+
+\subsection{Motivation}
+
+Ein einzelner Operator kann entartete Eigenwerte besitzen. Dann reicht ein einzelnes Messergebnis nicht aus, um den Zustand eindeutig festzulegen. Ein zusätzlicher Operator, der mit dem ersten kommutiert, kann die Entartung aufheben.
+
+\begin{definitionbox}
+Ein vollständiger Satz kommutierender Observablen, kurz VSKO, ist eine Menge von Observablen
+\[
+    \{A,B,C,\dots\},
+\]
+die paarweise kommutieren und deren gemeinsame Eigenwerte den Zustand eindeutig festlegen.
+\end{definitionbox}
+
+Paarweise kommutieren bedeutet
+\[
+    [A,B]=[A,C]=[B,C]=\dots=0.
+\]
+Vollständig bedeutet: Wenn man alle Eigenwerte dieser Observablen kennt, bleibt keine Entartung mehr übrig.
+
+\subsection{Beispiel: Energie und Entartung}
+
+Beim zweidimensionalen harmonischen Oszillator treten Energieentartungen auf. Die Energie allein bestimmt den Zustand nicht eindeutig, weil verschiedene Kombinationen von Anregungszahlen dieselbe Gesamtenergie liefern können. Dann ist $H$ allein kein VSKO. Eine zusätzliche Observable, die mit $H$ kommutiert, kann die Zustände weiter unterscheiden.
+
+\begin{notebox}
+Die Frage \enquote{Ist $H$ ein VSKO?} bedeutet nicht nur \enquote{Ist $H$ eine Observable?}. Sie bedeutet: Bestimmt der Energieeigenwert den Zustand eindeutig? Falls Energieniveaus entartet sind, lautet die Antwort nein.
+\end{notebox}
+
+\subsection{Praktisches Vorgehen bei VSKO-Aufgaben}
+
+Um zu prüfen, ob eine Menge von Observablen ein VSKO bildet, geht man so vor:
+\begin{enumerate}
+    \item Prüfe, ob die Operatoren hermitesch sind.
+    \item Prüfe, ob sie paarweise kommutieren.
+    \item Bestimme die gemeinsamen Eigenwerte.
+    \item Prüfe, ob die gemeinsamen Eigenwerte jeden Eigenzustand eindeutig identifizieren.
+    \item Falls noch Entartung bleibt, ist die Menge nicht vollständig.
+\end{enumerate}
+
+\begin{examtipbox}
+In Klausuraufgaben reicht es oft nicht zu zeigen, dass $[A,B]=0$ gilt. Für einen VSKO muss zusätzlich geprüft werden, ob die gemeinsamen Quantenzahlen den Zustand eindeutig festlegen.
+\end{examtipbox}
+
+\section{Orts- und Impulsoperator}
+
+\subsection{Ortsoperator}
+
+In einer Dimension wirkt der Ortsoperator durch Multiplikation:
+\[
+    (X\psi)(x)=x\psi(x).
+\]
+Sein Erwartungswert ist
+\[
+    \langle X\rangle
+    =\int_{-\infty}^{\infty}\dd x\,\psi^*(x)x\psi(x)
+    =\int_{-\infty}^{\infty}\dd x\,x|\psi(x)|^2.
+\]
+Das entspricht genau dem Mittelwert einer Wahrscheinlichkeitsverteilung mit Dichte $|\psi(x)|^2$.
+
+\subsection{Impulsoperator}
+
+In Ortsdarstellung ist der Impulsoperator
+\[
+    P=-i\hbar\frac{\dd}{\dd x}.
+\]
+Sein Erwartungswert ist
+\[
+    \langle P\rangle
+    =\int_{-\infty}^{\infty}\dd x\,\psi^*(x)
+    \left(-i\hbar\frac{\dd}{\dd x}\psi(x)\right).
+\]
+
+\begin{derivationbox}
+Wir zeigen formal, dass $P$ hermitesch ist, wenn Randterme verschwinden. Es gilt
+\[
+    \langle \varphi,P\psi\rangle
+    =\int_{-\infty}^{\infty}\dd x\,\varphi^*(x)\left(-i\hbar\psi'(x)\right).
+\]
+Partielle Integration liefert
+\[
+    \langle \varphi,P\psi\rangle
+    =\left[-i\hbar\varphi^*(x)\psi(x)\right]_{-\infty}^{\infty}
+    +\int_{-\infty}^{\infty}\dd x\,i\hbar\varphi'^*(x)\psi(x).
+\]
+Wenn der Randterm verschwindet, ist
+\[
+    \langle \varphi,P\psi\rangle
+    =\int_{-\infty}^{\infty}\dd x\,\left(-i\hbar\varphi'(x)\right)^*\psi(x)
+    =\langle P\varphi,\psi\rangle.
+\]
+Also ist $P$ formal hermitesch.
+\end{derivationbox}
+
+\begin{notebox}
+Das Wort \enquote{formal} ist hier wichtig. Bei Differentialoperatoren hängt Selbstadjungiertheit von Randbedingungen und Definitionsbereich ab. Auf dem Ring benötigt man zum Beispiel periodische Randbedingungen.
+\end{notebox}
+
+\subsection{Kanonischer Kommutator}
+
+Für Ort und Impuls gilt
+\[
+    [X,P]=i\hbar.
+\]
+
+\begin{derivationbox}
+Wir wenden den Kommutator auf eine Testfunktion $\psi(x)$ an:
+\[
+    [X,P]\psi=XP\psi-PX\psi.
+\]
+Der erste Term ist
+\[
+    XP\psi=x\left(-i\hbar\psi'(x)\right).
+\]
+Der zweite Term ist
+\[
+    PX\psi=-i\hbar\frac{\dd}{\dd x}(x\psi(x))
+    =-i\hbar\bigl(\psi(x)+x\psi'(x)\bigr).
+\]
+Also folgt
+\[
+    [X,P]\psi
+    =-i\hbar x\psi'(x)+i\hbar\psi(x)+i\hbar x\psi'(x)
+    =i\hbar\psi(x).
+\]
+Damit gilt als Operatorgleichung
+\[
+    [X,P]=i\hbar I.
+\]
+\end{derivationbox}
+
+\begin{conceptbox}
+Der kanonische Kommutator $[X,P]=i\hbar$ ist der mathematische Kern der Unschärferelation. Er zeigt, dass Ort und Impuls nicht gleichzeitig eine vollständige gemeinsame Eigenbasis besitzen können.
+\end{conceptbox}
+
+\section{Orts- und Impulsdarstellung}
+
+\subsection{Darstellungen als verschiedene Basen}
+
+Ein Zustand kann in verschiedenen Basen dargestellt werden. In Ortsdarstellung beschreibt man ihn durch
+\[
+    \psi(x)=\langle x|\psi\rangle.
+\]
+In Impulsdarstellung beschreibt man ihn durch
+\[
+    \tilde\psi(p)=\langle p|\psi\rangle.
+\]
+Beide Funktionen beschreiben denselben abstrakten Zustand.
+
+\begin{formulabox}
+In einer Dimension hängen Orts- und Impulsdarstellung durch Fouriertransformation zusammen:
+\[
+    \psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\dd p\,
+    \tilde\psi(p)e^{ipx/\hbar},
+\]
+\[
+    \tilde\psi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\dd x\,
+    \psi(x)e^{-ipx/\hbar}.
+\]
+\end{formulabox}
+
+\subsection{Operatoren in beiden Darstellungen}
+
+In Ortsdarstellung gilt
+\[
+    X=x,
+    \qquad
+    P=-i\hbar\frac{\partial}{\partial x}.
+\]
+In Impulsdarstellung gilt dagegen
+\[
+    P=p,
+    \qquad
+    X=i\hbar\frac{\partial}{\partial p}.
+\]
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Objekt & Ortsdarstellung & Impulsdarstellung\\
+\midrule
+Zustand & $\psi(x)$ & $\tilde\psi(p)$\\
+Ortsoperator & $X=x$ & $X=i\hbar\partial_p$\\
+Impulsoperator & $P=-i\hbar\partial_x$ & $P=p$\\
+Normierung & $\int\dd x\,|\psi(x)|^2=1$ & $\int\dd p\,|\tilde\psi(p)|^2=1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{conceptbox}
+Orts- und Impulsdarstellung sind zwei Koordinatensysteme für denselben Hilbertraum. Was in der einen Darstellung Multiplikation ist, wird in der anderen Darstellung Ableitung.
+\end{conceptbox}
+
+\section{Unitäre Operatoren und Normerhaltung}
+
+\subsection{Definition}
+
+\begin{definitionbox}
+Ein Operator $U$ heißt unitär, wenn
+\[
+    U^\dagger U=UU^\dagger=I
+\]
+gilt. Äquivalent dazu ist
+\[
+    U^{-1}=U^\dagger.
+\]
+\end{definitionbox}
+
+Unitäre Operatoren erhalten Skalarprodukte:
+\[
+    \langle U\varphi,U\psi\rangle
+    =\langle \varphi,U^\dagger U\psi\rangle
+    =\langle\varphi,\psi\rangle.
+\]
+Insbesondere erhalten sie Normen:
+\[
+    \norm{U\psi}^2=\langle U\psi,U\psi\rangle=\langle\psi,\psi\rangle=\norm{\psi}^2.
+\]
+
+\begin{formulabox}
+Unitäre Operatoren erhalten Wahrscheinlichkeiten:
+\[
+    \norm{U\psi}=\norm{\psi}.
+\]
+Deshalb muss die Zeitentwicklung eines abgeschlossenen quantenmechanischen Systems unitär sein.
+\end{formulabox}
+
+\subsection{Zeitentwicklungsoperator}
+
+Für einen zeitunabhängigen Hamiltonoperator gilt
+\[
+    U(t)=e^{-iHt/\hbar}.
+\]
+Ist $H=H^\dagger$, dann ist $U(t)$ unitär.
+
+\begin{derivationbox}
+Aus $H=H^\dagger$ folgt
+\[
+    U(t)^\dagger=\left(e^{-iHt/\hbar}\right)^\dagger=e^{+iHt/\hbar}.
+\]
+Damit ist
+\[
+    U(t)^\dagger U(t)=e^{+iHt/\hbar}e^{-iHt/\hbar}=I.
+\]
+Also ist $U(t)$ unitär.
+\end{derivationbox}
+
+\section{Beispiel: Zwei Operatoren in einem zweidimensionalen Hilbertraum}
+
+Wir betrachten die Operatoren
+\[
+    A=\begin{pmatrix}0&2\\2&0\end{pmatrix},
+    \qquad
+    B=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+\]
+in der Orthonormalbasis $\{\psi_1,\psi_2\}$.
+
+\subsection{Hermitizität}
+
+Beide Matrizen sind reell symmetrisch. Daher gilt
+\[
+    A^\dagger=A,
+    \qquad
+    B^\dagger=B.
+\]
+Also sind beide Operatoren Observablen.
+
+\subsection{Kommutator}
+
+Wir berechnen
+\[
+    AB=\begin{pmatrix}0&2\\2&0\end{pmatrix}
+       \begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+    =\begin{pmatrix}-2&4\\4&-2\end{pmatrix},
+\]
+und
+\[
+    BA=\begin{pmatrix}2&-1\\-1&2\end{pmatrix}
+       \begin{pmatrix}0&2\\2&0\end{pmatrix}
+    =\begin{pmatrix}-2&4\\4&-2\end{pmatrix}.
+\]
+Also ist
+\[
+    [A,B]=AB-BA=0.
+\]
+
+\begin{answerbox}
+Die Operatoren $A$ und $B$ kommutieren. Daher existiert eine gemeinsame Eigenbasis und die Observablen sind kompatibel.
+\end{answerbox}
+
+\subsection{Eigenwerte von $A$}
+
+Die Eigenwerte von $A$ folgen aus
+\[
+    \det(A-\lambda I)
+    =\det\begin{pmatrix}-\lambda&2\\2&-\lambda\end{pmatrix}
+    =\lambda^2-4=0.
+\]
+Daher ist
+\[
+    \lambda_+=2,
+    \qquad
+    \lambda_-=-2.
+\]
+Die normierten Eigenzustände sind
+\[
+    \psi_+=\frac{1}{\sqrt2}(\psi_1+\psi_2),
+    \qquad
+    \]
+Korrigiert geschrieben:
+\[
+    \psi_- =\frac{1}{\sqrt2}(\psi_1-\psi_2).
+\]
+
+\subsection{Messwahrscheinlichkeit}
+
+Sei das System im Zustand $\psi_2$. Dann ist
+\[
+    \psi_2=\frac{1}{\sqrt2}\psi_+-\frac{1}{\sqrt2}\psi_-.
+\]
+Die Wahrscheinlichkeit, bei einer Messung von $A$ den Wert $2$ zu erhalten, ist
+\[
+    P(A=2)=|\langle\psi_+,\psi_2\rangle|^2=\frac12.
+\]
+Ebenso ist
+\[
+    P(A=-2)=\frac12.
+\]
+
+\begin{conceptbox}
+Dieses Beispiel zeigt das Standardverfahren bei Messaufgaben: Operator diagonalisieren, Zustand in Eigenbasis entwickeln, Betragsquadrate der Koeffizienten als Wahrscheinlichkeiten verwenden.
+\end{conceptbox}
+
+\section{Selbstadjungiertheit und Randbedingungen am Beispiel des Rings}
+
+\subsection{Hamiltonoperator auf dem Ring}
+
+Ein Teilchen auf einem Ring mit Radius $R$ kann durch den Winkel $\theta\in[0,2\pi)$ beschrieben werden. Der Hamiltonoperator ist
+\[
+    H=-\frac{\hbar^2}{2I}\frac{\dd^2}{\dd\theta^2},
+    \qquad
+    I=mR^2.
+\]
+Da $\theta=0$ und $\theta=2\pi$ denselben physikalischen Punkt beschreiben, verwendet man periodische Randbedingungen:
+\[
+    \psi(0)=\psi(2\pi),
+    \qquad
+    \psi'(0)=\psi'(2\pi).
+\]
+
+\subsection{Warum Randbedingungen wichtig sind}
+
+Wir prüfen formal die Hermitizität:
+\[
+    \langle\varphi,H\psi\rangle
+    =-\frac{\hbar^2}{2I}\int_0^{2\pi}\dd\theta\,\varphi^*(\theta)\psi''(\theta).
+\]
+Zweimalige partielle Integration liefert Randterme. Genau diese Randterme verschwinden bei periodischen Randbedingungen. Dann gilt
+\[
+    \langle\varphi,H\psi\rangle=\langle H\varphi,\psi\rangle.
+\]
+
+\begin{conceptbox}
+Selbstadjungiertheit ist nicht nur eine formale Eigenschaft der Differentialgleichung. Sie hängt auch davon ab, welche Randbedingungen physikalisch erlaubt sind. Nur mit passenden Randbedingungen erzeugt der Hamiltonoperator eine unitäre Zeitentwicklung und besitzt reelle Energiewerte.
+\end{conceptbox}
+
+\section{Typische Rechenrezepte}
+
+\subsection{Messwahrscheinlichkeiten in einer diskreten Basis}
+
+Gegeben sei eine Observable $A$ mit Eigenbasis $\{\psi_n\}$ und ein Zustand $\psi$.
+
+\begin{enumerate}
+    \item Normiere den Zustand $\psi$.
+    \item Löse das Eigenwertproblem
+    \[
+        A\psi_n=a_n\psi_n.
+    \]
+    \item Entwickle den Zustand in der Eigenbasis:
+    \[
+        \psi=\sum_n c_n\psi_n.
+    \]
+    \item Berechne die Koeffizienten:
+    \[
+        c_n=\langle\psi_n,\psi\rangle.
+    \]
+    \item Die Messwahrscheinlichkeit ist
+    \[
+        P(a_n)=|c_n|^2.
+    \]
+    \item Nach Messung von $a_n$ ist der Zustand $\psi_n$, falls $a_n$ nicht entartet ist.
+\end{enumerate}
+
+\subsection{Erwartungswert und Varianz}
+
+Für eine Observable $A$ und einen normierten Zustand $\psi$:
+\[
+    \langle A\rangle=\langle\psi,A\psi\rangle,
+\]
+\[
+    \langle A^2\rangle=\langle\psi,A^2\psi\rangle,
+\]
+\[
+    \Delta A=\sqrt{\langle A^2\rangle-\langle A\rangle^2}.
+\]
+
+\subsection{Prüfen, ob eine Observable vorliegt}
+
+Ein Operator beschreibt eine Observable, wenn er selbstadjungiert ist. In endlicher Dimension prüft man:
+\[
+    A^\dagger=A.
+\]
+Bei Differentialoperatoren muss man zusätzlich die Randbedingungen und den Definitionsbereich beachten.
+
+\subsection{Prüfen, ob zwei Observablen kompatibel sind}
+
+Berechne den Kommutator:
+\[
+    [A,B]=AB-BA.
+\]
+Wenn
+\[
+    [A,B]=0
+\]
+gilt, können gemeinsame Eigenzustände existieren. Wenn zusätzlich eine gemeinsame Eigenbasis existiert, sind die Observablen simultan scharf messbar.
+
+\section{Häufige Fehler}
+
+\begin{notebox}
+\textbf{Fehler 1: Erwartungswert mit Messergebnis verwechseln.}
+Der Erwartungswert $\langle A\rangle$ muss kein Eigenwert von $A$ sein. Er ist der Mittelwert vieler Messungen.
+\end{notebox}
+
+\begin{notebox}
+\textbf{Fehler 2: Hermitesch und unitär verwechseln.}
+Hermitesch bedeutet $A^\dagger=A$ und beschreibt Observablen. Unitär bedeutet $U^\dagger U=I$ und beschreibt normerhaltende Transformationen.
+\end{notebox}
+
+\begin{notebox}
+\textbf{Fehler 3: Kommutieren reicht nicht automatisch für Vollständigkeit.}
+Wenn $[A,B]=0$ gilt, sind $A$ und $B$ kompatibel. Ob sie zusammen einen VSKO bilden, hängt zusätzlich davon ab, ob ihre gemeinsamen Eigenwerte den Zustand eindeutig bestimmen.
+\end{notebox}
+
+\begin{notebox}
+\textbf{Fehler 4: Entartung ignorieren.}
+Bei entarteten Eigenwerten kollabiert der Zustand auf einen Eigenraum, nicht zwingend auf einen einzelnen Eigenvektor.
+\end{notebox}
+
+\begin{notebox}
+\textbf{Fehler 5: Randbedingungen vergessen.}
+Bei Differentialoperatoren entscheidet der Definitionsbereich mit über Selbstadjungiertheit. Ein formal hermitescher Ausdruck ist nicht automatisch ein selbstadjungierter Operator.
+\end{notebox}
+
+\section{Zusammenfassung}
+
+\begin{itemize}
+    \item Zustände sind Vektoren im Hilbertraum.
+    \item Observablen werden durch hermitesche Operatoren beschrieben.
+    \item Die möglichen Messergebnisse sind Eigenwerte der Observablen.
+    \item Erwartungswerte berechnet man mit
+    \[
+        \langle A\rangle=\langle\psi,A\psi\rangle.
+    \]
+    \item Messwahrscheinlichkeiten erhält man durch Projektion auf Eigenräume:
+    \[
+        P(a)=\norm{P_a\psi}^2.
+    \]
+    \item Nach einer idealen Messung mit Ergebnis $a$ ist der Zustand
+    \[
+        \psi_a'=\frac{P_a\psi}{\norm{P_a\psi}}.
+    \]
+    \item Kommutierende Observablen können gemeinsame Eigenzustände besitzen.
+    \item Ein VSKO ist ein Satz kommutierender Observablen, dessen gemeinsame Eigenwerte den Zustand eindeutig bestimmen.
+    \item Unitäre Operatoren erhalten Normen und Wahrscheinlichkeiten.
+    \item Bei Differentialoperatoren sind Randbedingungen Teil der Operatorfrage.
+\end{itemize}
+
+\begin{examtipbox}
+Für Klausuraufgaben zu Operatoren und Messungen solltest du sicher beherrschen: Eigenwerte und Eigenvektoren berechnen, Zustände in Eigenbasen entwickeln, Wahrscheinlichkeiten als Betragsquadrate berechnen, Zustand nach Messung angeben, Kommutatoren ausrechnen und VSKO-Fragen sauber von bloßen Kommutatorfragen trennen.
+\end{examtipbox}

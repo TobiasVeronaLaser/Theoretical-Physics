@@ -1,0 +1,900 @@
+\chapter{Beschleuniger}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt Teilchenbeschleuniger.
+Beschleuniger sind zentrale Werkzeuge der Kern- und Teilchenphysik, weil sie
+geladene Teilchen auf hohe Energien bringen und damit Streuung, Kernreaktionen
+oder Teilchenkollisionen ermoeglichen.
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item Beschleuniger,
+    \item elektrische Beschleunigung,
+    \item Radiofrequenz-Kavitaeten,
+    \item Linearbeschleuniger,
+    \item Kreisbeschleuniger,
+    \item Zyklotron,
+    \item Synchrotron,
+    \item Ablenkmagnete,
+    \item Quadrupolfokussierung,
+    \item Collider,
+    \item Fixed-Target-Experiment,
+    \item LHC,
+    \item Strahlenergie,
+    \item Luminositaet.
+\end{itemize}
+\end{notebox}
+
+\section{Warum braucht man Beschleuniger?}
+
+In der Kern- und Teilchenphysik will man sehr kleine Strukturen untersuchen.
+Dafuer braucht man Teilchen mit hoher Energie und kleinem de-Broglie-Wellenlaengenmassstab.
+
+\begin{conceptbox}
+Je groesser der Impuls eines Teilchens ist, desto kleiner ist seine de-Broglie-Wellenlaenge:
+\[
+    \lambda = \frac{h}{p}.
+\]
+
+Kleine Wellenlaengen erlauben die Untersuchung kleiner Strukturen.
+Beschleuniger liefern daher die notwendige Energie und den notwendigen Impuls.
+\end{conceptbox}
+
+\begin{conceptbox}
+Beschleuniger werden verwendet fuer:
+\begin{itemize}
+    \item Streuexperimente,
+    \item Kernreaktionen,
+    \item Erzeugung neuer Teilchen,
+    \item Untersuchung von Formfaktoren,
+    \item Teilchenphysik bei hohen Schwerpunktsenergien,
+    \item medizinische und technische Anwendungen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Merksatz:
+Hohe Energie bedeutet kurze Wellenlaenge.
+Kurze Wellenlaenge bedeutet hohe Strukturaufloesung.
+\end{examtipbox}
+
+\section{Welche Teilchen kann man beschleunigen?}
+
+Teilchenbeschleuniger beschleunigen geladene Teilchen.
+Neutrale Teilchen koennen nicht direkt durch elektrische Felder beschleunigt werden.
+
+\begin{definitionbox}
+Ein \emph{Teilchenbeschleuniger} ist eine Anlage, die geladene Teilchen durch
+elektrische Felder auf hohe Energien bringt.
+\end{definitionbox}
+
+\begin{conceptbox}
+Beschleunigt werden koennen zum Beispiel:
+\begin{itemize}
+    \item Elektronen,
+    \item Positronen,
+    \item Protonen,
+    \item Ionen,
+    \item schwere Kerne.
+\end{itemize}
+
+Neutronen sind elektrisch neutral und koennen daher nicht direkt durch elektrische
+Felder beschleunigt werden.
+\end{conceptbox}
+
+\begin{examtipbox}
+Elektrische Felder beschleunigen geladene Teilchen.
+
+Magnetische Felder lenken geladene Teilchen ab, verrichten aber keine Arbeit am
+Teilchen.
+\end{examtipbox}
+
+\section{Lorentzkraft}
+
+Die Bewegung geladener Teilchen in elektrischen und magnetischen Feldern wird durch
+die Lorentzkraft beschrieben.
+
+\begin{formulabox}
+Die Lorentzkraft ist
+\[
+    \vec F
+    =
+    q\left(
+        \vec E
+        +
+        \vec v \times \vec B
+    \right).
+\]
+Dabei ist:
+\begin{itemize}
+    \item $q$ die Teilchenladung,
+    \item $\vec E$ das elektrische Feld,
+    \item $\vec B$ das magnetische Feld,
+    \item $\vec v$ die Teilchengeschwindigkeit.
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+Das elektrische Feld kann Arbeit verrichten:
+\[
+    W = qU.
+\]
+Dadurch steigt die kinetische Energie des Teilchens.
+
+Das magnetische Feld wirkt senkrecht zur Geschwindigkeit.
+Es aendert daher die Bewegungsrichtung, aber nicht direkt die Energie.
+\end{conceptbox}
+
+\begin{examtipbox}
+Beschleunigung:
+\[
+    \vec E \text{-Feld}.
+\]
+
+Ablenkung und Kreisbahn:
+\[
+    \vec B \text{-Feld}.
+\]
+\end{examtipbox}
+
+\section{Energiegewinn in einem elektrischen Potential}
+
+Ein geladenes Teilchen gewinnt Energie, wenn es eine elektrische Spannung durchlaeuft.
+
+\begin{formulabox}
+Der Energiegewinn ist
+\[
+    \Delta E = qU.
+\]
+Fuer ein Teilchen mit Ladung $q=ze$ gilt:
+\[
+    \Delta E = zeU.
+\]
+\end{formulabox}
+
+\begin{definitionbox}
+Ein Elektronenvolt ist die Energie, die ein Teilchen mit Elementarladung $e$ beim
+Durchlaufen einer Spannung von einem Volt gewinnt:
+\[
+    1\,\mathrm{eV}=e\cdot 1\,\mathrm{V}.
+\]
+\end{definitionbox}
+
+\begin{examplebox}
+Ein Proton durchlaeuft eine Spannung von
+\[
+    U=\SI{1}{MV}.
+\]
+Da das Proton die Ladung
+\[
+    q=e
+\]
+hat, gewinnt es die Energie
+\[
+    \Delta E=eU=\SI{1}{MeV}.
+\]
+\end{examplebox}
+
+\begin{conceptbox}
+Um ein Proton auf
+\[
+    \SI{7}{TeV}
+\]
+zu bringen, braucht man insgesamt einen Energiegewinn von
+\[
+    \SI{7}{TeV}.
+\]
+Das entspricht fuer ein einfach geladenes Teilchen einer Gesamtspannung von
+\[
+    \SI{7}{TV}.
+\]
+In einem Kreisbeschleuniger wird diese Spannung nicht auf einmal durchlaufen,
+sondern schrittweise bei vielen Umlaeufen aufgebaut.
+\end{conceptbox}
+
+\section{Statische Beschleuniger}
+
+Die einfachste Beschleunigung erfolgt durch eine statische Hochspannung.
+
+\begin{definitionbox}
+Ein \emph{statischer Beschleuniger} beschleunigt geladene Teilchen durch eine feste
+Potentialdifferenz.
+\end{definitionbox}
+
+\begin{conceptbox}
+Beispiele fuer statische Beschleuniger sind:
+\begin{itemize}
+    \item Cockcroft-Walton-Beschleuniger,
+    \item Van-de-Graaff-Beschleuniger.
+\end{itemize}
+
+Die erreichbare Energie ist durch die maximal technisch beherrschbare Spannung
+begrenzt.
+\end{conceptbox}
+
+\begin{definitionbox}
+Ein \emph{Van-de-Graaff-Beschleuniger} erzeugt eine hohe elektrische Spannung durch
+Transport von Ladung auf eine isolierte Elektrode.
+\end{definitionbox}
+
+\begin{examtipbox}
+Statische Beschleuniger sind konzeptionell einfach:
+\[
+    \Delta E=qU.
+\]
+Ihr Nachteil ist, dass sehr hohe Spannungen technisch schwer zu realisieren sind.
+\end{examtipbox}
+
+\section{Radiofrequenz-Kavitaeten}
+
+Moderne Hochenergie-Beschleuniger verwenden zeitabhaengige elektrische Felder in
+Radiofrequenz-Kavitaeten.
+
+\begin{definitionbox}
+Eine \emph{Radiofrequenz-Kavitaet} beziehungsweise \emph{RF-Kavitaet} ist ein
+Hohlraumresonator, in dem ein oszillierendes elektrisches Feld aufgebaut wird.
+Dieses Feld beschleunigt geladene Teilchen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Die Beschleunigung erfolgt nur dann effizient, wenn die Teilchen zum richtigen
+Zeitpunkt in der Kavitaet ankommen.
+
+Das elektrische Feld muss so phasenrichtig sein, dass es das Teilchen in
+Bewegungsrichtung beschleunigt.
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Folien beschreiben die Beschleunigung mit Hochfrequenzresonatoren.
+In einem Kreisbeschleuniger erfolgt die Beschleunigung schrittweise:
+Runde fuer Runde erhalten die Teilchen einen kleinen Energiezuwachs.
+\end{notebox}
+
+\begin{examtipbox}
+RF-Kavitaeten liefern die Energieerhoehung.
+
+Magnete halten und fokussieren den Strahl.
+\end{examtipbox}
+
+\section{Linearbeschleuniger}
+
+Bei einem Linearbeschleuniger bewegen sich die Teilchen entlang einer geraden Linie.
+
+\begin{definitionbox}
+Ein \emph{Linearbeschleuniger} beschleunigt geladene Teilchen entlang einer geraden
+Bahn durch eine Folge elektrischer Beschleunigungsstrecken.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein Linearbeschleuniger hat den Vorteil, dass keine Synchrotronstrahlung durch
+Kreisbewegung entsteht.
+
+Der Nachteil ist:
+Jede Beschleunigungsstruktur wird im Wesentlichen nur einmal durchlaufen.
+Fuer sehr hohe Energien muss der Beschleuniger daher sehr lang sein.
+\end{conceptbox}
+
+\begin{notebox}
+Linearbeschleuniger werden oft auch als Vorbeschleuniger verwendet.
+Teilchen werden zuerst in einem Linearbeschleuniger auf eine Anfangsenergie gebracht
+und danach in einen Kreisbeschleuniger eingespeist.
+\end{notebox}
+
+\begin{examtipbox}
+Linearbeschleuniger:
+\begin{itemize}
+    \item gerade Bahn,
+    \item keine Umlaeufe,
+    \item kein Energieverlust durch Kreisbewegung,
+    \item sehr lang bei hohen Energien.
+\end{itemize}
+\end{examtipbox}
+
+\section{Kreisbeschleuniger}
+
+Bei einem Kreisbeschleuniger laufen Teilchen immer wieder durch dieselben
+Beschleunigungsstrecken.
+
+\begin{definitionbox}
+Ein \emph{Kreisbeschleuniger} fuehrt geladene Teilchen auf einer geschlossenen
+Bahn und beschleunigt sie bei vielen Umlaeufen schrittweise.
+\end{definitionbox}
+
+\begin{conceptbox}
+Der Vorteil eines Kreisbeschleunigers ist:
+Dieselben RF-Kavitaeten koennen viele Male verwendet werden.
+
+Dadurch kann man hohe Endenergien erreichen, ohne eine entsprechend lange gerade
+Beschleunigungsstrecke bauen zu muessen.
+\end{conceptbox}
+
+\begin{conceptbox}
+Der Nachteil ist:
+Geladene Teilchen auf Kreisbahnen werden beschleunigt, weil sich ihre Richtung
+aendert.
+Dadurch koennen sie Synchrotronstrahlung aussenden.
+
+Dieser Effekt ist besonders stark fuer leichte Teilchen wie Elektronen.
+\end{conceptbox}
+
+\section{Magnetische Ablenkung}
+
+Damit ein Teilchen eine Kreisbahn beschreibt, braucht man ein Magnetfeld.
+
+\begin{formulabox}
+Fuer ein Teilchen mit Impuls $p$ und Ladung $q$ in einem Magnetfeld $B$ gilt
+naeherungsweise:
+\[
+    p = qBr.
+\]
+Fuer hochrelativistische Teilchen schreibt man oft:
+\[
+    p[\mathrm{GeV}/c]
+    \approx
+    0.3\,B[\mathrm{T}]\,r[\mathrm{m}].
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Aus
+\[
+    p=qBr
+\]
+folgt:
+Je groesser der Impuls $p$ ist, desto staerker muss das Magnetfeld $B$ sein
+oder desto groesser muss der Radius $r$ des Beschleunigers sein.
+
+Das erklaert, warum Hochenergie-Kreisbeschleuniger sehr grosse Ringe und starke
+Magnete benoetigen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Die maximale Energie in einem Kreisbeschleuniger wird wesentlich begrenzt durch:
+\begin{itemize}
+    \item Magnetfeldstaerke,
+    \item Ringradius,
+    \item Synchrotronstrahlung,
+    \item Strahlstabilitaet.
+\end{itemize}
+\end{examtipbox}
+
+\section{Zyklotron}
+
+Das Zyklotron ist ein klassischer Kreisbeschleuniger fuer geladene Teilchen.
+
+\begin{definitionbox}
+Ein \emph{Zyklotron} beschleunigt geladene Teilchen in einem konstanten Magnetfeld
+und einem hochfrequenten elektrischen Wechselfeld.
+\end{definitionbox}
+
+\begin{conceptbox}
+Im Zyklotron bewegen sich die Teilchen auf Spiralbahnen nach aussen.
+Bei jedem Durchgang durch den Spalt zwischen den Elektroden erhalten sie Energie.
+
+Fuer nichtrelativistische Teilchen ist die Umlauffrequenz unabhaengig vom Radius:
+\[
+    \omega = \frac{qB}{m}.
+\]
+\end{conceptbox}
+
+\begin{formulabox}
+Die Zyklotronfrequenz ist:
+\[
+    \omega_c = \frac{qB}{m}.
+\]
+Die Frequenz ist:
+\[
+    f_c = \frac{qB}{2\pi m}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Bei hohen Energien wird die relativistische Massenzunahme beziehungsweise der
+Lorentzfaktor wichtig.
+Dann aendert sich die Umlauffrequenz, und das einfache Zyklotron geraet ausser Takt.
+\end{conceptbox}
+
+\begin{examtipbox}
+Zyklotron:
+\begin{itemize}
+    \item konstantes Magnetfeld,
+    \item Hochfrequenzfeld zur Beschleunigung,
+    \item Spiralbahn,
+    \item gut fuer nichtrelativistische Teilchen,
+    \item relativistische Effekte begrenzen die einfache Bauform.
+\end{itemize}
+\end{examtipbox}
+
+\section{Synchrotron}
+
+Das Synchrotron ist ein moderner Kreisbeschleuniger, bei dem Magnetfelder und
+RF-Frequenzen an die steigende Teilchenenergie angepasst werden.
+
+\begin{definitionbox}
+Ein \emph{Synchrotron} ist ein Kreisbeschleuniger, bei dem die Teilchen auf einer
+nahezu festen Bahn umlaufen und Magnetfeld sowie Beschleunigungsfrequenz synchron
+zur Teilchenenergie angepasst werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Im Synchrotron bleibt der Bahnradius im Wesentlichen konstant.
+
+Wenn die Teilchenenergie und damit der Impuls steigen, muss das Magnetfeld entsprechend
+erhoeht werden:
+\[
+    p=qBr.
+\]
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildungen zu Collider und Detektoren enthalten ein Elektronen-Synchrotron
+und einen Ringaufbau mit:
+\begin{itemize}
+    \item Ablenkmagneten,
+    \item Quadrupolfokussiereinheiten,
+    \item Beschleunigungseinheiten.
+\end{itemize}
+\end{notebox}
+
+\begin{examtipbox}
+Synchrotron:
+\begin{itemize}
+    \item feste Kreisbahn,
+    \item Magnetfeld wird mit der Energie hochgefahren,
+    \item RF-System bleibt phasensynchron,
+    \item geeignet fuer sehr hohe Energien.
+\end{itemize}
+\end{examtipbox}
+
+\section{Synchrotronstrahlung}
+
+Geladene Teilchen, die auf Kreisbahnen gezwungen werden, strahlen elektromagnetische
+Strahlung ab.
+
+\begin{definitionbox}
+\emph{Synchrotronstrahlung} ist elektromagnetische Strahlung, die von geladenen
+Teilchen bei beschleunigter Bewegung auf gekruemmten Bahnen ausgesendet wird.
+\end{definitionbox}
+
+\begin{conceptbox}
+Synchrotronstrahlung ist besonders stark fuer leichte Teilchen.
+Elektronen verlieren in Kreisbeschleunigern viel Energie durch Synchrotronstrahlung.
+
+Protonen sind viel schwerer.
+Deshalb ist Synchrotronstrahlung bei Protonen bei gleicher Energie deutlich weniger
+problematisch.
+\end{conceptbox}
+
+\begin{examtipbox}
+Warum sind sehr hohe Energien fuer Elektronen in Kreisbeschleunigern schwierig?
+
+Weil Elektronen wegen ihrer kleinen Masse starke Synchrotronstrahlung aussenden.
+Daher sind fuer sehr hohe Elektronenergien Linearbeschleuniger attraktiv.
+\end{examtipbox}
+
+\section{Fokussierung des Strahls}
+
+Ein Teilchenstrahl muss nicht nur beschleunigt, sondern auch gebuendelt werden.
+Sonst wuerde er auseinanderlaufen.
+
+\begin{definitionbox}
+\emph{Strahlfokussierung} bedeutet, den Teilchenstrahl raeumlich zusammenzuhalten
+und auf kleine Querschnitte zu buendeln.
+\end{definitionbox}
+
+\begin{conceptbox}
+In Beschleunigern verwendet man Magnetoptik.
+Dipolmagnete lenken den Strahl.
+Quadrupolmagnete fokussieren den Strahl.
+
+Ein Quadrupol fokussiert in einer Ebene und defokussiert in der anderen.
+Durch geeignete Kombination mehrerer Quadrupole kann der Strahl insgesamt stabil
+gefuehrt werden.
+\end{conceptbox}
+
+\begin{definitionbox}
+Ein \emph{Ablenkmagnet} beziehungsweise Dipolmagnet kraemmt die Bahn des Teilchenstrahls.
+
+Ein \emph{Quadrupolmagnet} fokussiert den Teilchenstrahl.
+\end{definitionbox}
+
+\begin{examtipbox}
+Dipolmagnete:
+Bahn kruemmen.
+
+Quadrupolmagnete:
+Strahl fokussieren.
+\end{examtipbox}
+
+\section{Collider und Fixed-Target-Experimente}
+
+Es gibt zwei wichtige experimentelle Geometrien:
+Fixed-Target-Experimente und Collider-Experimente.
+
+\begin{definitionbox}
+Bei einem \emph{Fixed-Target-Experiment} trifft ein beschleunigter Strahl auf ein
+ruhendes Target.
+
+Bei einem \emph{Collider} kollidieren zwei gegenlaeufige Teilchenstrahlen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Der Vorteil eines Colliders ist:
+Ein viel groesserer Anteil der Strahlenergie steht im Schwerpunktsystem fuer die
+Erzeugung neuer Teilchen zur Verfuegung.
+
+Bei einem Fixed-Target-Experiment steckt ein grosser Teil der Energie nach der
+Kollision in der Bewegung des Schwerpunktsystems.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer zwei gleich energiereiche, frontal kollidierende Teilchenstrahlen gilt:
+\[
+    E_{\mathrm{CM}}
+    \approx
+    E_1+E_2.
+\]
+Fuer einen Collider mit zwei Protonstrahlen von je
+\[
+    \SI{7}{TeV}
+\]
+gilt daher:
+\[
+    E_{\mathrm{CM}}=\SI{14}{TeV}.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Collider sind fuer Teilchenphysik sehr effizient, weil sie hohe
+Schwerpunktsenergien erreichen.
+
+Fixed-Target-Experimente koennen trotzdem sinnvoll sein, zum Beispiel fuer hohe
+Intensitaeten, spezielle Targets oder Praezisionsmessungen.
+\end{examtipbox}
+
+\section{Der LHC}
+
+Der Large Hadron Collider, kurz LHC, ist ein Proton-Proton-Collider am CERN.
+
+\begin{definitionbox}
+Der \emph{Large Hadron Collider} ist ein Kreisbeschleuniger und Collider, in dem
+hauptsaechlich Protonenstrahlen mit sehr hoher Energie zur Kollision gebracht werden.
+\end{definitionbox}
+
+\begin{notebox}
+Die LHC-Folien betonen:
+\begin{itemize}
+    \item LHC steht fuer Large Hadron Collider.
+    \item Das beschleunigte Hadron ist hauptsaechlich das Proton.
+    \item Es koennen auch Kerne wie Blei oder Xenon beschleunigt werden.
+    \item Der LHC ist ein Collider, nicht nur ein Fixed-Target-Beschleuniger.
+\end{itemize}
+\end{notebox}
+
+\begin{conceptbox}
+Im LHC laufen zwei Protonenstrahlen in entgegengesetzten Richtungen.
+An bestimmten Kollisionspunkten werden sie zur Ueberlappung gebracht.
+
+Dort befinden sich grosse Detektoren wie ATLAS, CMS, ALICE und LHCb.
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Detektorfolien nennen:
+\begin{itemize}
+    \item ATLAS = A Toroidal LHC ApparatuS,
+    \item CMS = Compact Muon Solenoid,
+    \item ALICE = A Large Ion Collider Experiment,
+    \item LHCb = LHC beauty.
+\end{itemize}
+\end{notebox}
+
+\section{Beschleunigung im LHC}
+
+\begin{conceptbox}
+Im LHC erfolgt die Beschleunigung mit Radiofrequenz-Kavitaeten.
+Die Teilchen erhalten pro Umlauf einen kleinen Energiezuwachs.
+
+Da die Protonen sehr viele Umlaeufe machen, summieren sich diese kleinen
+Energiegewinne zu einer sehr grossen Endenergie.
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Folien geben als Orientierung:
+\begin{itemize}
+    \item Endenergie pro Proton etwa $\SI{7}{TeV}$,
+    \item ein Beschleunigungsschritt pro Umlauf bringt grob $\SI{0.7}{MeV}$,
+    \item der Umfang des Rings liegt bei etwa $\SI{30}{km}$,
+    \item die Protonen bewegen sich praktisch mit Lichtgeschwindigkeit.
+\end{itemize}
+\end{notebox}
+
+\begin{calculationbox}
+Grobe Anzahl der Umlaeufe fuer die Beschleunigung von vernachlaessigbarer
+Einschussenergie auf
+\[
+    \SI{7}{TeV}
+\]
+bei einem Energiegewinn von
+\[
+    \SI{0.7}{MeV}
+\]
+pro Umlauf:
+\[
+    n
+    \approx
+    \frac{\SI{7}{TeV}}{\SI{0.7}{MeV}}.
+\]
+Mit
+\[
+    \SI{7}{TeV}=\SI{7e6}{MeV}
+\]
+folgt:
+\[
+    n
+    \approx
+    \frac{7\cdot 10^6}{0.7}
+    =
+    10^7.
+\]
+Also sind grob zehn Millionen Umlaeufe noetig.
+\end{calculationbox}
+
+\section{Relativistische Geschwindigkeit im LHC}
+
+Bei TeV-Energien sind Protonen hochrelativistisch.
+Ihre Geschwindigkeit liegt extrem nahe bei der Lichtgeschwindigkeit.
+
+\begin{formulabox}
+Die Gesamtenergie eines Teilchens ist:
+\[
+    E = \gamma mc^2.
+\]
+Daraus:
+\[
+    \gamma = \frac{E}{mc^2}.
+\]
+Die Geschwindigkeit ist gegeben durch:
+\[
+    \beta=\frac{v}{c}
+    =
+    \sqrt{1-\frac{1}{\gamma^2}}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Wenn die Energie bereits sehr gross gegenueber der Ruheenergie ist, fuehrt eine
+weitere Energieerhoehung kaum noch zu einer merklichen Erhoehung von $v$.
+
+Stattdessen steigt vor allem der Impuls und die Gesamtenergie.
+\end{conceptbox}
+
+\begin{examtipbox}
+Bei hochrelativistischen Teilchen gilt:
+Die Geschwindigkeit ist fast $c$.
+Mehr Energie bedeutet nicht viel mehr Geschwindigkeit, sondern vor allem mehr Impuls
+und mehr Schwerpunktsenergie.
+\end{examtipbox}
+
+\section{Protonenpakete und Strahlstruktur}
+
+Teilchenstrahlen in Beschleunigern sind nicht kontinuierlich homogen verteilt.
+Sie bestehen aus Paketen.
+
+\begin{definitionbox}
+Ein \emph{Bunch} beziehungsweise Teilchenpaket ist eine Gruppe vieler Teilchen, die
+gemeinsam im Beschleuniger umlaeuft.
+\end{definitionbox}
+
+\begin{conceptbox}
+Im LHC sind die Protonen in Paketen organisiert.
+Diese Pakete kollidieren an den Wechselwirkungspunkten.
+
+Die Zahl der Kollisionen haengt davon ab:
+\begin{itemize}
+    \item wie viele Pakete im Ring sind,
+    \item wie viele Protonen in jedem Paket sind,
+    \item wie klein die Strahlen fokussiert werden,
+    \item wie oft sich die Pakete treffen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Folien nennen als typische Groessen:
+\begin{itemize}
+    \item etwa $10^{11}$ Protonen pro Paket,
+    \item bis zu $2808$ Protonenpakete pro Strahl,
+    \item Protonenergie von etwa $\SI{7}{TeV}$.
+\end{itemize}
+\end{notebox}
+
+\section{Gesamtenergie des Protonenstrahls}
+
+Auch wenn ein einzelnes Proton mikroskopisch ist, enthaelt ein ganzer LHC-Strahl
+makroskopisch grosse Energie.
+
+\begin{calculationbox}
+Verwende die Groessen:
+\[
+    E_p=\SI{7}{TeV},
+    \qquad
+    N=1.15\cdot 10^{11}
+\]
+Protonen pro Paket und
+\[
+    k=2808
+\]
+Pakete pro Strahl.
+
+Die Gesamtenergie ist:
+\[
+    E_{\mathrm{Strahl}}
+    =
+    E_p\,N\,k.
+\]
+
+Mit
+\[
+    \SI{1}{eV}=1.602\cdot 10^{-19}\,\si{J}
+\]
+ist:
+\[
+    \SI{7}{TeV}
+    =
+    7\cdot 10^{12}\,\mathrm{eV}
+    \cdot
+    1.602\cdot 10^{-19}\,\si{J/eV}.
+\]
+Also:
+\[
+    \SI{7}{TeV}
+    \approx
+    1.12\cdot 10^{-6}\,\si{J}.
+\]
+
+Damit:
+\[
+    E_{\mathrm{Strahl}}
+    \approx
+    1.12\cdot 10^{-6}\,\si{J}
+    \cdot
+    1.15\cdot 10^{11}
+    \cdot
+    2808.
+\]
+\[
+    E_{\mathrm{Strahl}}
+    \approx
+    3.6\cdot 10^{8}\,\si{J}
+    =
+    \SI{360}{MJ}.
+\]
+\end{calculationbox}
+
+\begin{conceptbox}
+Die LHC-Folien vergleichen diese Energie mit der kinetischen Energie eines schweren
+Zuges.
+
+Das zeigt:
+Ein Teilchenstrahl ist nicht nur mikroskopisch interessant, sondern auch technisch
+gefaehrlich.
+Die Strahlkontrolle ist daher extrem wichtig.
+\end{conceptbox}
+
+\section{Luminositaet}
+
+Bei Collidern ist nicht nur die Energie wichtig.
+Man braucht auch viele Kollisionen.
+
+\begin{definitionbox}
+Die \emph{Luminositaet} $L$ beschreibt, wie viele Teilchenkollisionen pro Zeit und
+Wirkungsquerschnitt moeglich sind.
+\end{definitionbox}
+
+\begin{formulabox}
+Die Ereignisrate $R$ eines Prozesses ist:
+\[
+    R = L\sigma.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $R$ die Ereignisrate,
+    \item $L$ die Luminositaet,
+    \item $\sigma$ der Wirkungsquerschnitt des Prozesses.
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+Ein seltener Prozess hat einen kleinen Wirkungsquerschnitt.
+Um ihn trotzdem oft genug zu beobachten, braucht man eine hohe Luminositaet.
+
+Deshalb muessen Collider nicht nur hohe Energie liefern, sondern auch sehr intensive
+und gut fokussierte Strahlen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Energie entscheidet, welche Prozesse kinematisch moeglich sind.
+
+Luminositaet entscheidet, wie oft diese Prozesse beobachtet werden.
+\end{examtipbox}
+
+\section{Was begrenzt die Energie eines Beschleunigers?}
+
+\begin{conceptbox}
+Die erreichbare Energie eines Beschleunigers wird durch mehrere Faktoren begrenzt:
+\begin{itemize}
+    \item maximale elektrische Felder in den RF-Kavitaeten,
+    \item maximale Magnetfelder zur Strahlablenkung,
+    \item Groesse beziehungsweise Radius des Rings,
+    \item Synchrotronstrahlung,
+    \item Strahlstabilitaet,
+    \item Energie im Gesamtstrahl,
+    \item technische und finanzielle Grenzen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Bei Kreisbeschleunigern ist besonders wichtig:
+\[
+    p=qBr.
+\]
+Hohe Teilchenimpulse brauchen entweder starke Magnete oder grosse Radien.
+\end{examtipbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Beschleuniger bringen geladene Teilchen auf hohe Energien.
+    \item Elektrische Felder beschleunigen.
+    \item Magnetische Felder lenken und fokussieren.
+    \item Der Energiegewinn in einer Spannung ist
+    \[
+        \Delta E=qU.
+    \]
+    \item RF-Kavitaeten beschleunigen Teilchen mit zeitabhaengigen elektrischen Feldern.
+    \item Linearbeschleuniger beschleunigen entlang einer geraden Strecke.
+    \item Kreisbeschleuniger nutzen dieselben Beschleunigungsstrecken viele Male.
+    \item Im Zyklotron laufen Teilchen spiralfoermig nach aussen.
+    \item Im Synchrotron bleibt die Bahn naeherungsweise konstant.
+    \item Dipolmagnete lenken den Strahl.
+    \item Quadrupolmagnete fokussieren den Strahl.
+    \item Collider erreichen hohe Schwerpunktsenergien.
+    \item Der LHC ist ein Proton-Proton-Collider.
+    \item Luminositaet bestimmt zusammen mit dem Wirkungsquerschnitt die Ereignisrate.
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Warum braucht man Beschleuniger in der Kern- und Teilchenphysik?
+    \item Welche Teilchen kann man direkt beschleunigen?
+    \item Welche Rolle spielt das elektrische Feld?
+    \item Welche Rolle spielt das magnetische Feld?
+    \item Wie lautet die Lorentzkraft?
+    \item Was bedeutet $\Delta E=qU$?
+    \item Was ist ein Van-de-Graaff-Beschleuniger?
+    \item Was ist eine RF-Kavitaet?
+    \item Wie funktioniert ein Linearbeschleuniger?
+    \item Wie funktioniert ein Kreisbeschleuniger?
+    \item Was ist ein Zyklotron?
+    \item Warum funktioniert das einfache Zyklotron bei hohen Energien nicht mehr ideal?
+    \item Was ist ein Synchrotron?
+    \item Was ist Synchrotronstrahlung?
+    \item Warum ist Synchrotronstrahlung besonders fuer Elektronen wichtig?
+    \item Was machen Dipolmagnete?
+    \item Was machen Quadrupolmagnete?
+    \item Was ist der Unterschied zwischen Collider und Fixed-Target-Experiment?
+    \item Warum liefert ein Collider hoehere Schwerpunktsenergie?
+    \item Was ist der LHC?
+    \item Warum sind LHC-Protonen trotz riesiger Energie kaum schneller als Licht?
+    \item Was ist Luminositaet?
+    \item Wie haengt die Ereignisrate mit Luminositaet und Wirkungsquerschnitt zusammen?
+    \item Was begrenzt die maximale Energie eines Kreisbeschleunigers?
+\end{enumerate}
+\end{examtipbox}
