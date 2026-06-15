@@ -1,0 +1,853 @@
+\chapter{Radioaktivitaet und Kernzerfaelle}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt radioaktive Zerfaelle von Atomkernen.
+Im Mittelpunkt stehen das Zerfallsgesetz, Halbwertszeit, Aktivitaet,
+Alpha-Zerfall, Beta-Zerfall, Gamma-Zerfall, innere Konversion und die wichtigsten
+Erhaltungssaetze.
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item radioaktiver Zerfall,
+    \item Zerfallsgesetz,
+    \item Zerfallskonstante,
+    \item Halbwertszeit,
+    \item Aktivitaet,
+    \item Zerfallsreihen,
+    \item Alpha-Zerfall,
+    \item Geiger-Nuttall-Regel,
+    \item Beta-Zerfall,
+    \item Neutrino,
+    \item Elektroneneinfang,
+    \item Gamma-Zerfall,
+    \item innere Konversion,
+    \item Multipolstrahlung,
+    \item Erhaltungssaetze.
+\end{itemize}
+\end{notebox}
+
+\section{Was bedeutet radioaktiver Zerfall?}
+
+Radioaktive Kerne sind instabil.
+Sie wandeln sich spontan in andere Kerne oder andere Energiezustaende um.
+
+\begin{definitionbox}
+Ein \emph{radioaktiver Zerfall} ist eine spontane Umwandlung eines instabilen
+Atomkerns.
+
+Dabei koennen Teilchen und Strahlung ausgesendet werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Radioaktiver Zerfall ist ein statistischer Prozess.
+Man kann fuer einen einzelnen Kern nicht vorhersagen, wann er zerfaellt.
+
+Man kann aber fuer eine grosse Anzahl gleicher Kerne sehr genau vorhersagen,
+wie viele Kerne pro Zeitintervall im Mittel zerfallen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Wichtig:
+Radioaktiver Zerfall ist spontan und statistisch.
+Die Halbwertszeit beschreibt nicht den Zerfallszeitpunkt eines einzelnen Kerns,
+sondern das Verhalten einer grossen Anzahl gleicher Kerne.
+\end{examtipbox}
+
+\section{Zerfallsgesetz}
+
+Sei $N(t)$ die Anzahl der noch nicht zerfallenen Kerne zur Zeit $t$.
+
+\begin{definitionbox}
+Die \emph{Zerfallskonstante} $\lambda$ gibt die Zerfallswahrscheinlichkeit pro Zeit
+fuer einen einzelnen Kern an.
+\end{definitionbox}
+
+\begin{formulabox}
+Das Zerfallsgesetz lautet:
+\[
+    N(t)=N_0 e^{-\lambda t}.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $N_0=N(0)$ die Anfangszahl der Kerne,
+    \item $\lambda$ die Zerfallskonstante,
+    \item $t$ die Zeit.
+\end{itemize}
+\end{formulabox}
+
+\begin{derivationbox}
+Die Anzahl der Zerfaelle pro Zeit ist proportional zur Anzahl der noch vorhandenen
+Kerne:
+\[
+    \frac{\dd N}{\dd t}=-\lambda N.
+\]
+Trennung der Variablen ergibt:
+\[
+    \frac{\dd N}{N}=-\lambda \dd t.
+\]
+Integration liefert:
+\[
+    \ln N = -\lambda t + C.
+\]
+Mit $N(0)=N_0$ folgt:
+\[
+    N(t)=N_0 e^{-\lambda t}.
+\]
+\end{derivationbox}
+
+\begin{conceptbox}
+Das Minuszeichen in
+\[
+    \frac{\dd N}{\dd t}=-\lambda N
+\]
+bedeutet, dass die Zahl der noch nicht zerfallenen Kerne abnimmt.
+\end{conceptbox}
+
+\section{Halbwertszeit}
+
+\begin{definitionbox}
+Die \emph{Halbwertszeit} $T_{1/2}$ ist die Zeit, nach der nur noch die Haelfte der
+urspruenglichen Kerne vorhanden ist.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    N(T_{1/2})=\frac{N_0}{2}.
+\]
+Mit dem Zerfallsgesetz folgt:
+\[
+    \frac{N_0}{2}=N_0 e^{-\lambda T_{1/2}}.
+\]
+Daraus:
+\[
+    T_{1/2}=\frac{\ln 2}{\lambda}.
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Aus
+\[
+    \frac{1}{2}=e^{-\lambda T_{1/2}}
+\]
+folgt durch Logarithmieren:
+\[
+    \ln\left(\frac{1}{2}\right)=-\lambda T_{1/2}.
+\]
+Da
+\[
+    \ln\left(\frac{1}{2}\right)=-\ln 2
+\]
+ist, erhaelt man:
+\[
+    T_{1/2}=\frac{\ln 2}{\lambda}.
+\]
+\end{derivationbox}
+
+\begin{examtipbox}
+Wenn die Halbwertszeit bekannt ist, kann man die Zerfallskonstante bestimmen:
+\[
+    \lambda=\frac{\ln 2}{T_{1/2}}.
+\]
+\end{examtipbox}
+
+\section{Aktivitaet}
+
+\begin{definitionbox}
+Die \emph{Aktivitaet} $A(t)$ ist die Anzahl der Zerfaelle pro Zeit.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    A(t)=-\frac{\dd N}{\dd t}.
+\]
+Mit dem Zerfallsgesetz:
+\[
+    A(t)=\lambda N(t).
+\]
+Also:
+\[
+    A(t)=A_0 e^{-\lambda t},
+    \qquad
+    A_0=\lambda N_0.
+\]
+\end{formulabox}
+
+\begin{definitionbox}
+Die SI-Einheit der Aktivitaet ist das Becquerel:
+\[
+    1\,\mathrm{Bq}=1\,\mathrm{s}^{-1}.
+\]
+Ein Becquerel bedeutet ein Zerfall pro Sekunde.
+\end{definitionbox}
+
+\begin{conceptbox}
+Aktivitaet ist nicht dasselbe wie Anzahl der Kerne.
+Eine Probe kann viele Kerne enthalten, aber eine kleine Aktivitaet haben, wenn die
+Halbwertszeit sehr gross ist.
+\end{conceptbox}
+
+\begin{examtipbox}
+Typischer Rechenweg:
+\begin{enumerate}
+    \item Aus $T_{1/2}$ die Zerfallskonstante bestimmen:
+    \[
+        \lambda=\frac{\ln 2}{T_{1/2}}.
+    \]
+    \item Dann Aktivitaet berechnen:
+    \[
+        A=\lambda N.
+    \]
+\end{enumerate}
+\end{examtipbox}
+
+\section{Mittlere Lebensdauer}
+
+\begin{definitionbox}
+Die \emph{mittlere Lebensdauer} $\tau$ ist der Erwartungswert der Lebensdauer eines
+radioaktiven Kerns.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    \tau=\frac{1}{\lambda}.
+\]
+Der Zusammenhang mit der Halbwertszeit ist:
+\[
+    T_{1/2}=\tau\ln 2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die Halbwertszeit $T_{1/2}$ ist die Zeit, bis die Haelfte einer grossen Menge
+zerfallen ist.
+
+Die mittlere Lebensdauer $\tau$ ist der Mittelwert der individuellen Zerfallszeiten.
+\end{conceptbox}
+
+\section{Zerfallsreihen}
+
+Schwere Kerne zerfallen oft nicht in einem einzigen Schritt in einen stabilen Kern.
+Stattdessen entsteht eine Zerfallsreihe.
+
+\begin{definitionbox}
+Eine \emph{Zerfallsreihe} ist eine Folge radioaktiver Zerfaelle, bei der das
+Tochternuklid selbst wieder radioaktiv sein kann.
+\end{definitionbox}
+
+\begin{conceptbox}
+In natuerlichen Zerfallsreihen treten haeufig Alpha- und Beta-Zerfaelle auf.
+Jeder Zerfall veraendert $A$ und $Z$ nach festen Regeln.
+
+Alpha-Zerfall verringert:
+\[
+    A \rightarrow A-4,
+    \qquad
+    Z \rightarrow Z-2.
+\]
+
+Beta-Minus-Zerfall laesst $A$ gleich und erhoeht:
+\[
+    Z \rightarrow Z+1.
+\]
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildung zeigt natuerliche radioaktive Zerfallsreihen, zum Beispiel
+Uran-Radium-Reihe, Uran-Actinium-Reihe, Thorium-Reihe und Neptunium-Reihe.
+In solchen Darstellungen sieht man die charakteristischen Schritte von Alpha- und
+Beta-Zerfaellen im $(A,Z)$-Diagramm.
+\end{notebox}
+
+\begin{examtipbox}
+Bei Zerfallsreihen ist wichtig:
+\begin{itemize}
+    \item Alpha-Zerfall verschiebt den Kern um $\Delta A=-4$ und $\Delta Z=-2$.
+    \item Beta-Minus-Zerfall verschiebt den Kern um $\Delta A=0$ und $\Delta Z=+1$.
+    \item Beta-Plus-Zerfall oder Elektroneneinfang verschiebt um $\Delta A=0$ und $\Delta Z=-1$.
+\end{itemize}
+\end{examtipbox}
+
+\section{Alpha-Zerfall}
+
+Beim Alpha-Zerfall sendet ein instabiler Kern ein Alpha-Teilchen aus.
+Ein Alpha-Teilchen ist ein Helium-4-Kern.
+
+\begin{definitionbox}
+Ein \emph{Alpha-Teilchen} ist ein ${}^{4}_{2}\mathrm{He}$-Kern.
+Es besteht aus zwei Protonen und zwei Neutronen.
+\end{definitionbox}
+
+\begin{formulabox}
+Ein allgemeiner Alpha-Zerfall hat die Form:
+\[
+    {}^{A}_{Z}X
+    \rightarrow
+    {}^{A-4}_{Z-2}Y
+    +
+    {}^{4}_{2}\mathrm{He}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Beim Alpha-Zerfall gelten:
+\[
+    A \rightarrow A-4,
+    \qquad
+    Z \rightarrow Z-2.
+\]
+Die Massenzahl nimmt also um $4$ ab, die Protonenzahl um $2$.
+\end{conceptbox}
+
+\begin{examplebox}
+Ein Beispiel ist:
+\[
+    {}^{238}_{92}\mathrm{U}
+    \rightarrow
+    {}^{234}_{90}\mathrm{Th}
+    +
+    {}^{4}_{2}\mathrm{He}.
+\]
+Hier gilt:
+\[
+    238 \rightarrow 234+4,
+\]
+\[
+    92 \rightarrow 90+2.
+\]
+Massenzahl und Ladung sind erhalten.
+\end{examplebox}
+
+\section{Energiebilanz beim Alpha-Zerfall}
+
+\begin{definitionbox}
+Der $Q$-Wert des Alpha-Zerfalls ist die freiwerdende Energie:
+\[
+    Q_\alpha
+    =
+    \left(
+        m_{\mathrm{Mutter}}
+        -
+        m_{\mathrm{Tochter}}
+        -
+        m_{\alpha}
+    \right)c^2.
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+Alpha-Zerfall ist energetisch moeglich, wenn
+\[
+    Q_\alpha>0
+\]
+gilt.
+
+Die freiwerdende Energie erscheint vor allem als kinetische Energie des Alpha-Teilchens
+und des Tochterkerns.
+Da der Tochterkern viel schwerer ist, bekommt das Alpha-Teilchen den groessten Anteil
+der kinetischen Energie.
+\end{conceptbox}
+
+\begin{formulabox}
+Impulserhaltung verlangt:
+\[
+    \vec p_\alpha + \vec p_{\mathrm{Tochter}} = 0.
+\]
+Daher haben Alpha-Teilchen und Tochterkern betragsgleiche Impulse, aber entgegengesetzte
+Richtungen.
+\end{formulabox}
+
+\section{Alpha-Zerfall als Tunneleffekt}
+
+Klassisch waere der Alpha-Zerfall schwer zu verstehen.
+Das Alpha-Teilchen ist im Kern gebunden, sieht aber ausserhalb des Kerns eine
+Coulomb-Barriere.
+
+\begin{conceptbox}
+Der Alpha-Zerfall ist ein quantenmechanischer Tunneleffekt.
+
+Das Alpha-Teilchen besitzt nicht genug Energie, um die Coulomb-Barriere klassisch
+zu ueberwinden.
+Quantenmechanisch kann es aber mit endlicher Wahrscheinlichkeit durch die Barriere
+tunneln.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildung zum Alpha-Zerfall zeigt ein Potential mit gebundenen
+Zustaenden im Kerninneren und einer Coulomb-Barriere ausserhalb.
+Das Alpha-Teilchen kann durch diese Barriere tunneln.
+\end{notebox}
+
+\begin{examtipbox}
+Wichtige Aussage:
+Die sehr unterschiedlichen Halbwertszeiten von Alpha-Strahlern entstehen durch die
+starke Energieabhaengigkeit der Tunnelwahrscheinlichkeit.
+Schon kleine Unterschiede in der Alpha-Energie koennen grosse Unterschiede in der
+Halbwertszeit bewirken.
+\end{examtipbox}
+
+\section{Geiger-Nuttall-Regel}
+
+Die Geiger-Nuttall-Regel beschreibt den Zusammenhang zwischen Alpha-Energie und
+Halbwertszeit.
+
+\begin{definitionbox}
+Die \emph{Geiger-Nuttall-Regel} ist ein empirischer Zusammenhang zwischen der
+Reichweite beziehungsweise Energie von Alpha-Teilchen und der Zerfallskonstante
+beziehungsweise Halbwertszeit des Alpha-Strahlers.
+\end{definitionbox}
+
+\begin{conceptbox}
+Alpha-Teilchen mit groesserer Energie koennen die Coulomb-Barriere leichter
+durchtunneln.
+
+Daher gilt qualitativ:
+\[
+    E_\alpha \text{ gross}
+    \quad\Rightarrow\quad
+    T_{1/2} \text{ klein}.
+\]
+\[
+    E_\alpha \text{ klein}
+    \quad\Rightarrow\quad
+    T_{1/2} \text{ gross}.
+\]
+\end{conceptbox}
+
+\begin{notebox}
+In den Vorlesungsfolien ist eine Geiger-Nuttall-Kurve dargestellt.
+Sie zeigt experimentelle Werte fuer Alpha-Strahler aus natuerlichen Zerfallsreihen.
+\end{notebox}
+
+\section{Reichweite und Ionisation von Alpha-Teilchen}
+
+Alpha-Teilchen sind schwer und zweifach positiv geladen.
+Sie ionisieren Materie stark.
+
+\begin{conceptbox}
+Beim Durchgang durch Materie verliert ein Alpha-Teilchen Energie durch Ionisation
+und Anregung von Atomen.
+
+Die spezifische Ionisation steigt gegen Ende der Bahn stark an.
+Dieses Maximum nennt man Bragg-Peak.
+\end{conceptbox}
+
+\begin{definitionbox}
+Der \emph{Bragg-Peak} ist das Maximum der Energieabgabe eines geladenen Teilchens
+kurz vor dem Ende seiner Reichweite in Materie.
+\end{definitionbox}
+
+\begin{notebox}
+Die Vorlesungsabbildung zur spezifischen Ionisation von Alpha-Teilchen zeigt,
+dass die Ionisation entlang der Bahn ansteigt und kurz vor dem Stillstand ein Maximum
+erreicht.
+\end{notebox}
+
+\section{Beta-Zerfall}
+
+Beim Beta-Zerfall wird ein Neutron in ein Proton oder ein Proton in ein Neutron
+umgewandelt.
+Dabei wirken die schwache Wechselwirkung und Neutrinos.
+
+\begin{definitionbox}
+Beim \emph{Beta-Zerfall} aendert sich die Protonenzahl $Z$, aber die Massenzahl $A$
+bleibt gleich.
+\end{definitionbox}
+
+\subsection{Beta-Minus-Zerfall}
+
+\begin{formulabox}
+Beim $\beta^-$-Zerfall gilt:
+\[
+    n \rightarrow p + e^- + \overline{\nu}_e.
+\]
+Fuer den Kern:
+\[
+    {}^{A}_{Z}X
+    \rightarrow
+    {}^{A}_{Z+1}Y
+    +
+    e^-
+    +
+    \overline{\nu}_e.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Beim $\beta^-$-Zerfall steigt die Protonenzahl:
+\[
+    Z \rightarrow Z+1.
+\]
+Die Massenzahl bleibt gleich:
+\[
+    A \rightarrow A.
+\]
+\end{conceptbox}
+
+\subsection{Beta-Plus-Zerfall}
+
+\begin{formulabox}
+Beim $\beta^+$-Zerfall gilt:
+\[
+    p \rightarrow n + e^+ + \nu_e.
+\]
+Fuer den Kern:
+\[
+    {}^{A}_{Z}X
+    \rightarrow
+    {}^{A}_{Z-1}Y
+    +
+    e^+
+    +
+    \nu_e.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Beim $\beta^+$-Zerfall sinkt die Protonenzahl:
+\[
+    Z \rightarrow Z-1.
+\]
+Die Massenzahl bleibt gleich:
+\[
+    A \rightarrow A.
+\]
+\end{conceptbox}
+
+\subsection{Elektroneneinfang}
+
+\begin{definitionbox}
+Beim \emph{Elektroneneinfang} faengt der Kern ein Huellenelektron ein.
+Ein Proton wird dadurch in ein Neutron umgewandelt.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    p + e^- \rightarrow n + \nu_e.
+\]
+Fuer den Kern:
+\[
+    {}^{A}_{Z}X + e^-
+    \rightarrow
+    {}^{A}_{Z-1}Y + \nu_e.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Elektroneneinfang und $\beta^+$-Zerfall haben im Kern denselben Effekt:
+\[
+    Z \rightarrow Z-1,
+    \qquad
+    A \rightarrow A.
+\]
+\end{conceptbox}
+
+\section{Beta-Zerfall und Neutrino}
+
+Das Beta-Spektrum ist kontinuierlich.
+Das war historisch ein Hinweis darauf, dass neben Elektron oder Positron noch ein
+weiteres Teilchen beteiligt ist: das Neutrino.
+
+\begin{conceptbox}
+Bei einem Zweikoerperzerfall waere die Energie des ausgesendeten Elektrons fest.
+
+Beim Beta-Zerfall beobachtet man aber ein kontinuierliches Energiespektrum.
+Das bedeutet:
+Die Zerfallsenergie wird auf mehrere Teilchen verteilt.
+
+Das Neutrino beziehungsweise Antineutrino traegt einen variablen Anteil der Energie
+und des Impulses.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsfolie mit Bezug auf KATRIN gehoert zum Beta-Zerfall.
+KATRIN untersucht das Endpunktspektrum des Tritium-Beta-Zerfalls, um Informationen
+ueber die Neutrinomasse zu gewinnen.
+\end{notebox}
+
+\begin{examtipbox}
+Warum braucht man das Neutrino beim Beta-Zerfall?
+
+Damit Energie, Impuls und Drehimpuls erhalten bleiben und das kontinuierliche
+Beta-Spektrum erklaert wird.
+\end{examtipbox}
+
+\section{Erhaltungssaetze beim Beta-Zerfall}
+
+Beta-Zerfaelle muessen mehrere Erhaltungssaetze erfuellen.
+
+\begin{notebox}
+Wichtige Erhaltungsgroessen sind:
+\begin{itemize}
+    \item elektrische Ladung,
+    \item Baryonenzahl,
+    \item Leptonenzahl,
+    \item Energie,
+    \item Impuls,
+    \item Drehimpuls.
+\end{itemize}
+\end{notebox}
+
+\begin{examplebox}
+Beim Neutronzerfall:
+\[
+    n \rightarrow p + e^- + \overline{\nu}_e.
+\]
+
+Ladung:
+\[
+    0 = (+1) + (-1) + 0.
+\]
+
+Baryonenzahl:
+\[
+    1 = 1 + 0 + 0.
+\]
+
+Leptonenzahl:
+\[
+    0 = 0 + 1 - 1.
+\]
+\end{examplebox}
+
+\begin{examtipbox}
+Bei Beta-Zerfaellen ist die Leptonenzahl besonders wichtig.
+
+Ein Elektron hat
+\[
+    L_e=+1.
+\]
+Ein Elektron-Antineutrino hat
+\[
+    L_e=-1.
+\]
+Daher ist beim $\beta^-$-Zerfall die Leptonenzahl erhalten.
+\end{examtipbox}
+
+\section{Gamma-Zerfall}
+
+Beim Gamma-Zerfall aendert sich nicht die Zusammensetzung des Kerns, sondern nur
+sein Energiezustand.
+
+\begin{definitionbox}
+Beim \emph{Gamma-Zerfall} geht ein angeregter Kern in einen Zustand niedrigerer
+Energie ueber und sendet dabei ein Photon aus.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    {}^{A}_{Z}X^*
+    \rightarrow
+    {}^{A}_{Z}X
+    +
+    \gamma.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Beim Gamma-Zerfall bleiben Massenzahl und Protonenzahl gleich:
+\[
+    A \rightarrow A,
+    \qquad
+    Z \rightarrow Z.
+\]
+Nur die innere Energie des Kerns aendert sich.
+\end{conceptbox}
+
+\begin{definitionbox}
+Die Energie des Gamma-Photons ist naeherungsweise die Energiedifferenz zwischen
+Anfangs- und Endzustand:
+\[
+    E_\gamma \approx E_i-E_f.
+\]
+\end{definitionbox}
+
+\section{Gamma-Uebergaenge und Multipolstrahlung}
+
+Gamma-Uebergaenge unterliegen Auswahlregeln.
+Diese haengen mit Drehimpuls und Paritaet zusammen.
+
+\begin{definitionbox}
+Die \emph{Multipolordnung} $l$ beschreibt den Drehimpuls, der durch das emittierte
+Photon getragen wird.
+\end{definitionbox}
+
+\begin{notebox}
+In den Vorlesungsfolien werden Einteilchen-Gamma-Uebergangswahrscheinlichkeiten fuer
+verschiedene Multipolstrahlungen gezeigt:
+\begin{itemize}
+    \item $l=1$: Dipolstrahlung,
+    \item $l=2$: Quadrupolstrahlung,
+    \item $l=3$: Oktopolstrahlung.
+\end{itemize}
+
+Ausserdem wird zwischen elektrischen Uebergaengen $E l$ und magnetischen Uebergaengen
+$M l$ unterschieden.
+\end{notebox}
+
+\begin{conceptbox}
+Je hoeher die Multipolordnung ist, desto unwahrscheinlicher ist der Uebergang im
+Allgemeinen.
+
+Deshalb koennen bestimmte angeregte Kernzustaende relativ langlebig sein.
+Solche langlebigen angeregten Zustaende nennt man Kernisomere.
+\end{conceptbox}
+
+\begin{examtipbox}
+Wichtige Begriffe:
+\[
+    E1, \quad M1, \quad E2, \quad M2.
+\]
+Dabei steht $E$ fuer elektrischen Uebergang und $M$ fuer magnetischen Uebergang.
+Die Zahl gibt die Multipolordnung an.
+\end{examtipbox}
+
+\section{Innere Konversion}
+
+Gamma-Abregung ist nicht die einzige Moeglichkeit, wie ein angeregter Kern Energie
+abgeben kann.
+
+\begin{definitionbox}
+Bei der \emph{inneren Konversion} uebertraegt ein angeregter Kern seine Energie direkt
+auf ein Huellenelektron.
+Dieses Elektron wird aus dem Atom herausgeloest.
+\end{definitionbox}
+
+\begin{conceptbox}
+Innere Konversion ist kein Beta-Zerfall.
+
+Beim Beta-Zerfall entsteht ein Elektron im Kernprozess.
+Bei innerer Konversion war das Elektron bereits in der Atomhülle vorhanden und wird
+durch die Kernabregung herausgeschlagen.
+\end{conceptbox}
+
+\begin{formulabox}
+Die kinetische Energie des Konversionselektrons ist naeherungsweise:
+\[
+    E_{\mathrm{kin}}
+    =
+    E_{\mathrm{Uebergang}}
+    -
+    E_{\mathrm{Bindung}}
+\]
+wobei $E_{\mathrm{Bindung}}$ die Bindungsenergie des Huellenelektrons ist.
+\end{formulabox}
+
+\begin{examtipbox}
+Unterschied merken:
+
+Gamma-Zerfall:
+\[
+    \text{Kernenergie} \rightarrow \gamma\text{-Photon}.
+\]
+
+Innere Konversion:
+\[
+    \text{Kernenergie} \rightarrow \text{kinetische Energie eines Huellenelektrons}.
+\]
+\end{examtipbox}
+
+\section{Vergleich der Zerfallsarten}
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Zerfall & Aenderung von $A$ & Aenderung von $Z$ & ausgesendet \\
+\hline
+$\alpha$ & $A-4$ & $Z-2$ & ${}^{4}_{2}\mathrm{He}$ \\
+\hline
+$\beta^-$ & $A$ & $Z+1$ & $e^-+\overline{\nu}_e$ \\
+\hline
+$\beta^+$ & $A$ & $Z-1$ & $e^+ + \nu_e$ \\
+\hline
+Elektroneneinfang & $A$ & $Z-1$ & $\nu_e$ \\
+\hline
+$\gamma$ & $A$ & $Z$ & $\gamma$ \\
+\hline
+innere Konversion & $A$ & $Z$ & Huellenelektron \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{examtipbox}
+Die Tabelle ist sehr pruefungsrelevant.
+Bei Zerfallsaufgaben zuerst immer klaeren:
+\begin{itemize}
+    \item Was passiert mit $A$?
+    \item Was passiert mit $Z$?
+    \item Welche Teilchen werden ausgesendet?
+    \item Welche Erhaltungssaetze muessen gelten?
+\end{itemize}
+\end{examtipbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Radioaktiver Zerfall ist statistisch.
+    \item Das Zerfallsgesetz lautet:
+    \[
+        N(t)=N_0e^{-\lambda t}.
+    \]
+    \item Die Halbwertszeit ist:
+    \[
+        T_{1/2}=\frac{\ln 2}{\lambda}.
+    \]
+    \item Die Aktivitaet ist:
+    \[
+        A(t)=\lambda N(t).
+    \]
+    \item Alpha-Zerfall:
+    \[
+        A\rightarrow A-4,
+        \qquad
+        Z\rightarrow Z-2.
+    \]
+    \item Beta-Minus-Zerfall:
+    \[
+        A\rightarrow A,
+        \qquad
+        Z\rightarrow Z+1.
+    \]
+    \item Beta-Plus-Zerfall und Elektroneneinfang:
+    \[
+        A\rightarrow A,
+        \qquad
+        Z\rightarrow Z-1.
+    \]
+    \item Gamma-Zerfall aendert nur den Energiezustand des Kerns.
+    \item Alpha-Zerfall ist ein Tunneleffekt.
+    \item Das kontinuierliche Beta-Spektrum fuehrt zum Neutrino.
+    \item Gamma-Uebergaenge werden durch Multipolstrahlung beschrieben.
+    \item Innere Konversion ist eine Alternative zur Gamma-Emission.
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Was bedeutet radioaktiver Zerfall?
+    \item Warum ist radioaktiver Zerfall statistisch?
+    \item Wie lautet das Zerfallsgesetz?
+    \item Wie haengen Halbwertszeit und Zerfallskonstante zusammen?
+    \item Was ist Aktivitaet?
+    \item Was ist eine Zerfallsreihe?
+    \item Wie veraendern sich $A$ und $Z$ beim Alpha-Zerfall?
+    \item Warum ist Alpha-Zerfall ein Tunneleffekt?
+    \item Was beschreibt die Geiger-Nuttall-Regel?
+    \item Was ist der Bragg-Peak?
+    \item Wie veraendern sich $A$ und $Z$ beim $\beta^-$-Zerfall?
+    \item Wie veraendern sich $A$ und $Z$ beim $\beta^+$-Zerfall?
+    \item Was passiert beim Elektroneneinfang?
+    \item Warum braucht man das Neutrino beim Beta-Zerfall?
+    \item Welche Erhaltungssaetze gelten beim Beta-Zerfall?
+    \item Was passiert beim Gamma-Zerfall?
+    \item Was bedeutet Multipolstrahlung?
+    \item Was ist innere Konversion?
+    \item Wie unterscheidet man Gamma-Zerfall und innere Konversion?
+\end{enumerate}
+\end{examtipbox}

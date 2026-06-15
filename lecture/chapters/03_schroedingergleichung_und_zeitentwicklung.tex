@@ -1,0 +1,1046 @@
+\chapter{Schrödingergleichung und Zeitentwicklung}
+
+\section{Ziel dieses Kapitels}
+
+In diesem Kapitel geht es um die Frage, wie sich ein quantenmechanischer Zustand mit der Zeit entwickelt. Im vorherigen Kapitel wurde die Wellenfunktion als Zustandsbeschreibung eingeführt. Jetzt kommt die Bewegungsgleichung hinzu.
+
+Die zentralen Fragen sind:
+\begin{itemize}
+    \item Welche Differentialgleichung bestimmt die Zeitentwicklung von $\psi(\vec{x},t)$?
+    \item Wie entsteht der Hamiltonoperator aus der klassischen Energie?
+    \item Warum bleibt die Norm eines Zustands bei der Zeitentwicklung erhalten?
+    \item Was ist der Zeitentwicklungsoperator?
+    \item Was bedeutet ein stationärer Zustand?
+    \item Wie löst man zeitunabhängige Hamiltonoperatoren mit einem Separationsansatz?
+    \item Wie hängen Energieeigenwerte, Phasenfaktoren und allgemeine Lösungen zusammen?
+    \item Was sind Wahrscheinlichkeitsstrom und Kontinuitätsgleichung?
+    \item Wie beschreibt man freie Teilchen, ebene Wellen und Wellenpakete?
+\end{itemize}
+
+\begin{conceptbox}
+Die Schrödingergleichung ist für die Quantenmechanik das Analogon zu den Bewegungsgleichungen der klassischen Mechanik. Sie sagt nicht direkt voraus, welches einzelne Messergebnis auftritt. Sie sagt voraus, wie sich der Zustand entwickelt, aus dem dann Wahrscheinlichkeiten für Messergebnisse berechnet werden.
+\end{conceptbox}
+
+\section{Von der klassischen Energie zum Hamiltonoperator}
+
+\subsection{Klassische Ausgangsform}
+
+Für ein klassisches Teilchen der Masse $m$ im Potential $V(\vec{x})$ lautet die Hamiltonfunktion
+\[
+    H(\vec{x},\vec{p})
+    =\frac{\vec{p}^{\,2}}{2m}+V(\vec{x}).
+\]
+Klassisch sind $\vec{x}$ und $\vec{p}$ Zahlen beziehungsweise Vektoren von Zahlen. Quantenmechanisch werden daraus Operatoren.
+
+\begin{definitionbox}
+In der Ortsdarstellung verwendet man die Zuordnung
+\[
+    x_j \longmapsto X_j,
+    \qquad
+    p_j \longmapsto P_j=\frac{\hbar}{i}\frac{\partial}{\partial x_j}
+    =-i\hbar\frac{\partial}{\partial x_j}.
+\]
+Für ein Teilchen im Potential $V(\vec{x})$ ergibt sich daraus der Hamiltonoperator
+\[
+    H
+    =\frac{\vec{P}^{\,2}}{2m}+V(\vec{X})
+    =-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x}).
+\]
+Seine Wirkung auf eine Wellenfunktion ist
+\[
+    (H\psi)(\vec{x},t)
+    =\left(-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x})\right)\psi(\vec{x},t).
+\]
+\end{definitionbox}
+
+Dabei ist
+\[
+    \nabla^2
+    =\frac{\partial^2}{\partial x_1^2}
+     +\frac{\partial^2}{\partial x_2^2}
+     +\frac{\partial^2}{\partial x_3^2}
+\]
+der Laplaceoperator. In einer Raumdimension schreibt man entsprechend
+\[
+    H=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}+V(x).
+\]
+
+\begin{notebox}
+Man darf die Ersetzung $p_j\mapsto -i\hbar\partial_{x_j}$ nicht als gewöhnliches Einsetzen von Zahlen verstehen. $P_j$ ist ein Differentialoperator. Er wirkt auf alles, was rechts von ihm steht. Operatorreihenfolge kann daher wichtig sein.
+\end{notebox}
+
+\section{Zeitabhängige Schrödingergleichung}
+
+\subsection{Postulat der Zeitentwicklung}
+
+\begin{definitionbox}
+Die zeitliche Entwicklung eines quantenmechanischen Zustands wird durch die zeitabhängige Schrödingergleichung bestimmt:
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)
+    =H\psi(\vec{x},t).
+\]
+Für ein Teilchen im Potential $V(\vec{x})$ lautet sie explizit
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)
+    =\left(-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x})\right)\psi(\vec{x},t).
+\]
+\end{definitionbox}
+
+Die Schrödingergleichung ist:
+\begin{itemize}
+    \item erster Ordnung in der Zeit $t$,
+    \item zweiter Ordnung im Ort $\vec{x}$,
+    \item linear in $\psi$,
+    \item homogen, solange kein äußerer Quellterm addiert wird.
+\end{itemize}
+
+\begin{conceptbox}
+Da die Gleichung erster Ordnung in der Zeit ist, genügt eine Anfangswellenfunktion $\psi(\vec{x},t_0)$, um die spätere Wellenfunktion eindeutig zu bestimmen, sofern der Hamiltonoperator gegeben ist. Man muss nicht zusätzlich eine Anfangsgeschwindigkeit der Wellenfunktion angeben.
+\end{conceptbox}
+
+\subsection{Lineare Superposition}
+
+Seien $\psi_1(\vec{x},t)$ und $\psi_2(\vec{x},t)$ Lösungen derselben Schrödingergleichung mit demselben Hamiltonoperator $H$. Dann ist wegen der Linearität auch
+\[
+    \psi(\vec{x},t)
+    =c_1\psi_1(\vec{x},t)+c_2\psi_2(\vec{x},t)
+\]
+eine Lösung, wobei $c_1,c_2\in\mathbb{C}$ sind.
+
+\begin{derivationbox}
+Man setzt die Linearkombination in die Schrödingergleichung ein:
+\[
+    i\hbar\frac{\partial}{\partial t}(c_1\psi_1+c_2\psi_2)
+    =c_1 i\hbar\frac{\partial \psi_1}{\partial t}
+     +c_2 i\hbar\frac{\partial \psi_2}{\partial t}.
+\]
+Da $\psi_1$ und $\psi_2$ Lösungen sind, gilt
+\[
+    c_1 i\hbar\frac{\partial \psi_1}{\partial t}
+     +c_2 i\hbar\frac{\partial \psi_2}{\partial t}
+    =c_1 H\psi_1+c_2H\psi_2.
+\]
+Weil $H$ linear ist,
+\[
+    c_1 H\psi_1+c_2H\psi_2
+    =H(c_1\psi_1+c_2\psi_2).
+\]
+Also erfüllt auch $c_1\psi_1+c_2\psi_2$ die Schrödingergleichung.
+\end{derivationbox}
+
+\section{Normerhaltung und Unitarität}
+
+\subsection{Warum Normerhaltung wichtig ist}
+
+Die Normierung der Wellenfunktion lautet
+\[
+    \int_{\R^3}\dd^3x\,|\psi(\vec{x},t)|^2=1.
+\]
+Diese Gleichung bedeutet, dass das Teilchen irgendwo im Raum gefunden wird. Eine sinnvolle Zeitentwicklung muss daher diese Normierung erhalten. Wenn der Zustand zur Anfangszeit normiert ist, soll er zu jeder späteren Zeit normiert bleiben.
+
+\begin{formulabox}
+Für eine physikalische Zeitentwicklung gilt
+\[
+    \norm{\psi(t)}^2=(\psi(t),\psi(t))=1
+\]
+für alle Zeiten $t$, wenn
+\[
+    \norm{\psi(0)}^2=1
+\]
+gilt.
+\end{formulabox}
+
+\subsection{Beweis der Normerhaltung}
+
+Wir schreiben die Schrödingergleichung abstrakt als
+\[
+    i\hbar\frac{\dd}{\dd t}\psi(t)=H\psi(t).
+\]
+Daraus folgt
+\[
+    \frac{\dd}{\dd t}\psi(t)=-\frac{i}{\hbar}H\psi(t).
+\]
+Für den dualen Ausdruck folgt bei selbstadjungiertem $H=H^\dagger$
+\[
+    \frac{\dd}{\dd t}(\psi(t),\cdot)
+    =\frac{i}{\hbar}(\psi(t),H\cdot).
+\]
+Direkt für die Norm ergibt sich
+\begin{derivationbox}
+\[
+\begin{aligned}
+    \frac{\dd}{\dd t}(\psi,\psi)
+    &=\left(\frac{\dd\psi}{\dd t},\psi\right)
+      +\left(\psi,\frac{\dd\psi}{\dd t}\right) \\
+    &=\left(-\frac{i}{\hbar}H\psi,\psi\right)
+      +\left(\psi,-\frac{i}{\hbar}H\psi\right).
+\end{aligned}
+\]
+Beim Skalarprodukt ist der erste Eintrag antilinear. Deshalb gilt
+\[
+    \left(-\frac{i}{\hbar}H\psi,\psi\right)
+    =\frac{i}{\hbar}(H\psi,\psi).
+\]
+Damit
+\[
+\begin{aligned}
+    \frac{\dd}{\dd t}(\psi,\psi)
+    &=\frac{i}{\hbar}(H\psi,\psi)-\frac{i}{\hbar}(\psi,H\psi).
+\end{aligned}
+\]
+Ist $H$ selbstadjungiert, dann gilt
+\[
+    (H\psi,\psi)=(\psi,H\psi),
+\]
+also
+\[
+    \frac{\dd}{\dd t}(\psi,\psi)=0.
+\]
+Die Norm ist daher zeitlich konstant.
+\end{derivationbox}
+
+\begin{conceptbox}
+Die Selbstadjungiertheit des Hamiltonoperators ist nicht nur eine mathematische Feinheit. Sie garantiert reelle Energieeigenwerte und eine normerhaltende Zeitentwicklung.
+\end{conceptbox}
+
+\section{Zeitentwicklungsoperator}
+
+\subsection{Definition für zeitunabhängigen Hamiltonoperator}
+
+Wenn $H$ nicht explizit von der Zeit abhängt, kann man die Lösung der Schrödingergleichung formal schreiben als
+\[
+    \psi(t)=U(t)\psi(0),
+\]
+wobei
+\[
+    U(t)=\exp\left(-\frac{i}{\hbar}Ht\right)
+\]
+der Zeitentwicklungsoperator ist.
+
+\begin{definitionbox}
+Für einen zeitunabhängigen Hamiltonoperator $H$ heißt
+\[
+    U(t)=e^{-iHt/\hbar}
+\]
+der Zeitentwicklungsoperator. Er bildet den Anfangszustand auf den Zustand zur Zeit $t$ ab:
+\[
+    \psi(t)=U(t)\psi(0).
+\]
+\end{definitionbox}
+
+Die Exponentialfunktion eines Operators ist über die Potenzreihe definiert:
+\[
+    e^{-iHt/\hbar}
+    =\sum_{n=0}^{\infty}\frac{1}{n!}\left(-\frac{iHt}{\hbar}\right)^n.
+\]
+
+\subsection{Überprüfung der Schrödingergleichung}
+
+\begin{derivationbox}
+Da $H$ zeitunabhängig ist, gilt formal
+\[
+    \frac{\dd}{\dd t}U(t)
+    =\frac{\dd}{\dd t}e^{-iHt/\hbar}
+    =-\frac{i}{\hbar}H e^{-iHt/\hbar}
+    =-\frac{i}{\hbar}HU(t).
+\]
+Multipliziert man mit $i\hbar$, erhält man
+\[
+    i\hbar\frac{\dd}{\dd t}U(t)=HU(t).
+\]
+Für $\psi(t)=U(t)\psi(0)$ folgt also
+\[
+    i\hbar\frac{\dd}{\dd t}\psi(t)
+    =i\hbar\frac{\dd U(t)}{\dd t}\psi(0)
+    =HU(t)\psi(0)
+    =H\psi(t).
+\]
+Außerdem ist
+\[
+    U(0)=e^0=\mathbf{1},
+\]
+also
+\[
+    \psi(0)=U(0)\psi(0).
+\]
+\end{derivationbox}
+
+\subsection{Unitarität von $U(t)$}
+
+Ist $H=H^\dagger$, dann gilt
+\[
+    U(t)^\dagger
+    =\left(e^{-iHt/\hbar}\right)^\dagger
+    =e^{+iHt/\hbar}.
+\]
+Damit folgt
+\[
+    U(t)^\dagger U(t)
+    =e^{+iHt/\hbar}e^{-iHt/\hbar}
+    =\mathbf{1}.
+\]
+Also ist $U(t)$ unitär.
+
+\begin{formulabox}
+Die Zeitentwicklung eines abgeschlossenen quantenmechanischen Systems ist unitär:
+\[
+    U(t)^\dagger U(t)=U(t)U(t)^\dagger=\mathbf{1}.
+\]
+Daher gilt
+\[
+    \norm{U(t)\psi}=
+orm{\psi}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Bei einer Messung ist die Zustandsänderung im Allgemeinen nicht durch denselben unitären Zeitentwicklungsoperator beschrieben. Zwischen Messungen entwickelt sich der Zustand deterministisch und unitär. Beim Messergebnis tritt zusätzlich die probabilistische Zustandsreduktion auf.
+\end{notebox}
+
+\section{Zeitunabhängige Schrödingergleichung}
+
+\subsection{Separationsansatz}
+
+Viele wichtige Probleme haben einen Hamiltonoperator, der nicht explizit von der Zeit abhängt:
+\[
+    H=H(\vec{x},\vec{P}).
+\]
+Dann sucht man Lösungen der Form
+\[
+    \psi(\vec{x},t)=\varphi(\vec{x})T(t).
+\]
+Einsetzen in die zeitabhängige Schrödingergleichung liefert
+\[
+    i\hbar\varphi(\vec{x})\frac{\dd T(t)}{\dd t}
+    =T(t)H\varphi(\vec{x}).
+\]
+Division durch $\varphi(\vec{x})T(t)$ ergibt
+\[
+    i\hbar\frac{1}{T(t)}\frac{\dd T(t)}{\dd t}
+    =\frac{1}{\varphi(\vec{x})}H\varphi(\vec{x}).
+\]
+Die linke Seite hängt nur von $t$ ab, die rechte nur von $\vec{x}$. Deshalb müssen beide Seiten konstant sein. Diese Konstante nennt man $E$.
+
+\begin{derivationbox}
+Aus
+\[
+    i\hbar\frac{1}{T}\frac{\dd T}{\dd t}=E
+\]
+folgt
+\[
+    \frac{\dd T}{\dd t}=-\frac{iE}{\hbar}T.
+\]
+Die Lösung ist
+\[
+    T(t)=C e^{-iEt/\hbar}.
+\]
+Für den Ortsanteil erhält man
+\[
+    H\varphi(\vec{x})=E\varphi(\vec{x}).
+\]
+\end{derivationbox}
+
+\begin{definitionbox}
+Die Gleichung
+\[
+    H\varphi(\vec{x})=E\varphi(\vec{x})
+\]
+heißt zeitunabhängige Schrödingergleichung oder Energieeigenwertgleichung. Die Lösungen $\varphi_n$ heißen Energieeigenfunktionen, die Zahlen $E_n$ Energieeigenwerte.
+\end{definitionbox}
+
+\subsection{Stationäre Zustände}
+
+Ist $\varphi_n$ eine Energieeigenfunktion mit
+\[
+    H\varphi_n=E_n\varphi_n,
+\]
+dann ist
+\[
+    \psi_n(\vec{x},t)=\varphi_n(\vec{x})e^{-iE_nt/\hbar}
+\]
+eine Lösung der zeitabhängigen Schrödingergleichung.
+
+Die Wahrscheinlichkeitsdichte ist
+\[
+    |\psi_n(\vec{x},t)|^2
+    =|\varphi_n(\vec{x})|^2\left|e^{-iE_nt/\hbar}\right|^2
+    =|\varphi_n(\vec{x})|^2.
+\]
+Sie ist also zeitunabhängig.
+
+\begin{definitionbox}
+Ein Zustand der Form
+\[
+    \psi_n(\vec{x},t)=\varphi_n(\vec{x})e^{-iE_nt/\hbar}
+\]
+mit $H\varphi_n=E_n\varphi_n$ heißt stationärer Zustand. Seine Wahrscheinlichkeitsdichte ist zeitlich konstant.
+\end{definitionbox}
+
+\begin{notebox}
+Stationär heißt nicht, dass die Wellenfunktion selbst völlig konstant ist. Sie bekommt den Phasenfaktor $e^{-iE_nt/\hbar}$. Aber dieser globale Phasenfaktor ändert $|\psi_n|^2$ nicht.
+\end{notebox}
+
+\subsection{Allgemeine Lösung durch Superposition}
+
+Wenn die Energieeigenfunktionen $\varphi_n$ eine geeignete Basis bilden, kann ein Anfangszustand entwickelt werden als
+\[
+    \psi(\vec{x},0)=\sum_n c_n\varphi_n(\vec{x}).
+\]
+Die Zeitentwicklung ist dann
+\[
+    \psi(\vec{x},t)=\sum_n c_n\varphi_n(\vec{x})e^{-iE_nt/\hbar}.
+\]
+
+\begin{formulabox}
+Für ein diskretes Energiespektrum gilt
+\[
+    \boxed{\psi(\vec{x},t)=\sum_n c_n\varphi_n(\vec{x})e^{-iE_nt/\hbar}}
+\]
+mit
+\[
+    c_n=(\varphi_n,\psi(0))
+\]
+bei orthonormierten Eigenfunktionen.
+\end{formulabox}
+
+\begin{conceptbox}
+Die Zeitentwicklung in der Energieeigenbasis ist besonders einfach: Jeder Energieanteil bekommt nur seinen eigenen Phasenfaktor. Nichttriviale zeitabhängige Wahrscheinlichkeiten entstehen vor allem durch Superpositionen von Zuständen mit verschiedenen Energien.
+\end{conceptbox}
+
+\subsection{Diskretes und kontinuierliches Spektrum}
+
+Bei gebundenen Zuständen treten häufig nur bestimmte Energien $E_n$ auf. Dann ist das Spektrum diskret. Bei Streuzuständen können Energien kontinuierlich auftreten.
+
+Für ein kontinuierliches Spektrum ersetzt man Summen durch Integrale. Formal schreibt man zum Beispiel
+\[
+    \psi(x,t)=\int \dd E\,c(E)\varphi_E(x)e^{-iEt/\hbar}.
+\]
+Dabei sind die $\varphi_E$ oft nicht quadratintegrierbar. Sie sind dann idealisierte uneigentliche Eigenfunktionen, aus denen durch Wellenpakete normalisierbare Zustände gebaut werden.
+
+\begin{notebox}
+In konkreten Rechnungen unterscheidet man oft:
+\begin{itemize}
+    \item normierbare Eigenfunktionen: gebundene Zustände, diskretes Spektrum,
+    \item nichtnormierbare uneigentliche Eigenfunktionen: Streuzustände, kontinuierliches Spektrum,
+    \item Wellenpakete: normalisierbare Überlagerungen von Streuzuständen.
+\end{itemize}
+\end{notebox}
+
+\section{Wahrscheinlichkeitsdichte und Wahrscheinlichkeitsstrom}
+
+\subsection{Wahrscheinlichkeitsdichte}
+
+Die Wahrscheinlichkeitsdichte ist
+\[
+    \rho(\vec{x},t)=|\psi(\vec{x},t)|^2.
+\]
+Sie gibt an, wie wahrscheinlich es ist, das Teilchen zur Zeit $t$ in einem kleinen Volumen $\dd^3x$ um $\vec{x}$ zu finden:
+\[
+    \dd P=\rho(\vec{x},t)\dd^3x.
+\]
+
+Wenn sich $\rho$ zeitlich ändert, muss die Wahrscheinlichkeit irgendwohin fließen. Dafür führt man den Wahrscheinlichkeitsstrom $\vec{j}$ ein.
+
+\subsection{Definition des Wahrscheinlichkeitsstroms}
+
+\begin{definitionbox}
+Für ein Teilchen im Potential $V(\vec{x})$ ist der Wahrscheinlichkeitsstrom
+\[
+    \vec{j}(\vec{x},t)
+    =\frac{\hbar}{2mi}\left(\psi^*(\vec{x},t)\nabla\psi(\vec{x},t)
+    -\psi(\vec{x},t)\nabla\psi^*(\vec{x},t)\right).
+\]
+Äquivalent kann man schreiben
+\[
+    \vec{j}(\vec{x},t)
+    =\frac{\hbar}{m}\operatorname{Im}\left(\psi^*(\vec{x},t)\nabla\psi(\vec{x},t)\right).
+\]
+\end{definitionbox}
+
+In einer Raumdimension lautet die entsprechende Formel
+\[
+    j(x,t)
+    =\frac{\hbar}{2mi}\left(\psi^*(x,t)\frac{\partial\psi}{\partial x}(x,t)
+    -\psi(x,t)\frac{\partial\psi^*}{\partial x}(x,t)\right).
+\]
+
+\subsection{Kontinuitätsgleichung}
+
+\begin{formulabox}
+Wahrscheinlichkeitsdichte und Wahrscheinlichkeitsstrom erfüllen die Kontinuitätsgleichung
+\[
+    \frac{\partial \rho}{\partial t}+\nabla\cdot\vec{j}=0.
+\]
+In einer Raumdimension lautet sie
+\[
+    \frac{\partial \rho}{\partial t}+\frac{\partial j}{\partial x}=0.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die Kontinuitätsgleichung bedeutet lokale Wahrscheinlichkeitserhaltung. Wahrscheinlichkeit kann in ein Gebiet hinein- oder herausfließen, aber sie wird nicht erzeugt oder vernichtet.
+\end{conceptbox}
+
+\subsection{Herleitung in drei Dimensionen}
+
+Wir nehmen an, dass $V(\vec{x})$ reell ist. Dann gilt
+\[
+    i\hbar\frac{\partial\psi}{\partial t}
+    =-\frac{\hbar^2}{2m}\nabla^2\psi+V\psi.
+\]
+Die komplex konjugierte Gleichung ist
+\[
+    -i\hbar\frac{\partial\psi^*}{\partial t}
+    =-\frac{\hbar^2}{2m}\nabla^2\psi^*+V\psi^*.
+\]
+
+\begin{derivationbox}
+Die zeitliche Ableitung der Dichte ist
+\[
+    \frac{\partial \rho}{\partial t}
+    =\frac{\partial}{\partial t}(\psi^*\psi)
+    =\frac{\partial\psi^*}{\partial t}\psi+\psi^*\frac{\partial\psi}{\partial t}.
+\]
+Aus der Schrödingergleichung folgt
+\[
+    \frac{\partial\psi}{\partial t}
+    =\frac{i\hbar}{2m}\nabla^2\psi-\frac{i}{\hbar}V\psi
+\]
+und aus der konjugierten Gleichung
+\[
+    \frac{\partial\psi^*}{\partial t}
+    =-\frac{i\hbar}{2m}\nabla^2\psi^*+\frac{i}{\hbar}V\psi^*.
+\]
+Einsetzen ergibt
+\[
+\begin{aligned}
+    \frac{\partial \rho}{\partial t}
+    &=\left(-\frac{i\hbar}{2m}\nabla^2\psi^*+\frac{i}{\hbar}V\psi^*\right)\psi
+      +\psi^*\left(\frac{i\hbar}{2m}\nabla^2\psi-\frac{i}{\hbar}V\psi\right)\\
+    &=\frac{i\hbar}{2m}\left(\psi^*\nabla^2\psi-\psi\nabla^2\psi^*\right).
+\end{aligned}
+\]
+Die Potentialterme heben sich auf. Mit der Produktregel gilt
+\[
+    \nabla\cdot(\psi^*\nabla\psi-\psi\nabla\psi^*)
+    =\psi^*\nabla^2\psi-\psi\nabla^2\psi^*.
+\]
+Damit folgt
+\[
+    \frac{\partial \rho}{\partial t}
+    =\frac{i\hbar}{2m}\nabla\cdot(\psi^*\nabla\psi-\psi\nabla\psi^*).
+\]
+Da
+\[
+    \vec{j}=\frac{\hbar}{2mi}(\psi^*\nabla\psi-\psi\nabla\psi^*)
+    =-\frac{i\hbar}{2m}(\psi^*\nabla\psi-\psi\nabla\psi^*),
+\]
+ist
+\[
+    \frac{\partial \rho}{\partial t}=-\nabla\cdot\vec{j}.
+\]
+Also
+\[
+    \frac{\partial \rho}{\partial t}+\nabla\cdot\vec{j}=0.
+\]
+\end{derivationbox}
+
+\subsection{Globale Normerhaltung aus der Kontinuitätsgleichung}
+
+Integration der Kontinuitätsgleichung über den gesamten Raum ergibt
+\[
+    \frac{\dd}{\dd t}\int_{\R^3}\dd^3x\,\rho(\vec{x},t)
+    =-\int_{\R^3}\dd^3x\,\nabla\cdot\vec{j}(\vec{x},t).
+\]
+Mit dem Gaußschen Satz wird daraus
+\[
+    \frac{\dd}{\dd t}\int_{\R^3}\dd^3x\,\rho(\vec{x},t)
+    =-\oint_{\partial\R^3}\vec{j}\cdot\dd\vec{S}.
+\]
+Wenn der Strom am Rand verschwindet oder die Wellenfunktion hinreichend schnell abfällt, ist der Fluss durch den Rand null. Dann gilt
+\[
+    \frac{\dd}{\dd t}\int_{\R^3}\dd^3x\,\rho(\vec{x},t)=0.
+\]
+
+\section{Freies Teilchen}
+
+\subsection{Schrödingergleichung für $V=0$}
+
+Für ein freies Teilchen gilt
+\[
+    V(\vec{x})=0.
+\]
+Die Schrödingergleichung lautet dann
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)
+    =-\frac{\hbar^2}{2m}\nabla^2\psi(\vec{x},t).
+\]
+In einer Raumdimension:
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(x,t)
+    =-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t).
+\]
+
+\subsection{Ebene Wellen}
+
+Man versucht den Ansatz
+\[
+    \psi(\vec{x},t)=A e^{i(\vec{k}\cdot\vec{x}-\omega t)}.
+\]
+Dann gilt
+\[
+    \frac{\partial\psi}{\partial t}=-i\omega\psi,
+\]
+und
+\[
+    \nabla^2\psi=-k^2\psi,
+\]
+wobei $k=|\vec{k}|$ ist.
+
+\begin{derivationbox}
+Einsetzen in die freie Schrödingergleichung liefert
+\[
+    i\hbar(-i\omega)\psi
+    =-\frac{\hbar^2}{2m}(-k^2)\psi.
+\]
+Also
+\[
+    \hbar\omega\psi=\frac{\hbar^2k^2}{2m}\psi.
+\]
+Für $\psi\neq 0$ folgt die Dispersionsrelation
+\[
+    \hbar\omega=\frac{\hbar^2k^2}{2m}.
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Für ein freies nichtrelativistisches Teilchen gilt
+\[
+    E=\hbar\omega,
+    \qquad
+    \vec{p}=\hbar\vec{k},
+    \qquad
+    E=\frac{\vec{p}^{\,2}}{2m}=\frac{\hbar^2k^2}{2m}.
+\]
+Daraus folgt
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Ebene Wellen sind Eigenfunktionen des Impulsoperators:
+\[
+    -i\hbar\nabla e^{i\vec{k}\cdot\vec{x}}
+    =\hbar\vec{k}\,e^{i\vec{k}\cdot\vec{x}}.
+\]
+Sie sind aber auf ganz $\R^3$ nicht normierbar. Physikalisch benutzt man sie als idealisierte Bausteine für Wellenpakete.
+\end{notebox}
+
+\subsection{Wahrscheinlichkeitsstrom einer ebenen Welle}
+
+Für
+\[
+    \psi(\vec{x},t)=Ae^{i(\vec{k}\cdot\vec{x}-\omega t)}
+\]
+gilt
+\[
+    \nabla\psi=i\vec{k}\psi.
+\]
+Damit
+\[
+\begin{aligned}
+    \vec{j}
+    &=\frac{\hbar}{2mi}\left(\psi^* i\vec{k}\psi-\psi(-i\vec{k}\psi^*)\right)\\
+    &=\frac{\hbar}{2mi}\left(2i\vec{k}|\psi|^2\right)\\
+    &=\frac{\hbar\vec{k}}{m}|A|^2.
+\end{aligned}
+\]
+Da $\vec{p}=\hbar\vec{k}$ gilt,
+\[
+    \vec{j}=\frac{\vec{p}}{m}|A|^2.
+\]
+
+\begin{conceptbox}
+Bei einer ebenen Welle zeigt der Wahrscheinlichkeitsstrom in Richtung des Impulses. Die Geschwindigkeit ist klassisch $\vec{v}=\vec{p}/m=\hbar\vec{k}/m$.
+\end{conceptbox}
+
+\section{Wellenpakete}
+
+\subsection{Motivation}
+
+Eine einzelne ebene Welle ist nicht normalisierbar und überall im Raum gleich stark ausgedehnt. Ein physikalischer Zustand eines Teilchens soll aber oft räumlich lokalisiert sein. Deshalb bildet man Überlagerungen vieler ebener Wellen.
+
+In einer Dimension schreibt man
+\[
+    \psi(x,t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd k\,g(k)e^{i(kx-\omega(k)t)}.
+\]
+Die Funktion $g(k)$ gibt an, welche Wellenzahlen im Paket vorkommen.
+
+\begin{definitionbox}
+Ein Wellenpaket ist eine Superposition ebener Wellen:
+\[
+    \psi(x,t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd k\,g(k)e^{i(kx-\omega(k)t)}.
+\]
+Die Funktion $g(k)$ heißt Wellenzahlverteilung. Über $p=\hbar k$ entspricht sie einer Impulsverteilung.
+\end{definitionbox}
+
+Zur Anfangszeit gilt
+\[
+    \psi(x,0)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd k\,g(k)e^{ikx}.
+\]
+Die Umkehrformel lautet
+\[
+    g(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd x\,\psi(x,0)e^{-ikx}.
+\]
+
+\subsection{Gruppengeschwindigkeit}
+
+Wenn $g(k)$ stark um einen Wert $k_0$ konzentriert ist, entwickelt man $\omega(k)$ um $k_0$:
+\[
+    \omega(k)\approx \omega(k_0)+\left.\frac{\dd\omega}{\dd k}\right|_{k_0}(k-k_0).
+\]
+Die Größe
+\[
+    v_g=\left.\frac{\dd\omega}{\dd k}\right|_{k_0}
+\]
+heißt Gruppengeschwindigkeit.
+
+Für ein freies nichtrelativistisches Teilchen ist
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+Also
+\[
+    v_g=\frac{\dd}{\dd k}\frac{\hbar k^2}{2m}\bigg|_{k_0}
+    =\frac{\hbar k_0}{m}
+    =\frac{p_0}{m}.
+\]
+
+\begin{formulabox}
+Für ein freies nichtrelativistisches Teilchen bewegt sich das Zentrum eines schmalen Wellenpakets mit
+\[
+    v_g=\frac{\hbar k_0}{m}=\frac{p_0}{m}.
+\]
+Das ist genau die klassische Geschwindigkeit eines Teilchens mit Impuls $p_0$.
+\end{formulabox}
+
+\subsection{Phasengeschwindigkeit}
+
+Neben der Gruppengeschwindigkeit gibt es die Phasengeschwindigkeit
+\[
+    v_{\mathrm{ph}}=\frac{\omega}{k}.
+\]
+Für das freie nichtrelativistische Teilchen:
+\[
+    v_{\mathrm{ph}}=\frac{\hbar k}{2m}=\frac{p}{2m}.
+\]
+Sie ist also nur halb so groß wie die Gruppengeschwindigkeit.
+
+\begin{notebox}
+Die physikalische Geschwindigkeit eines lokalisierten freien Teilchens ist die Gruppengeschwindigkeit des Wellenpakets, nicht die Phasengeschwindigkeit einer einzelnen Phase.
+\end{notebox}
+
+\section{Gaußsches Wellenpaket und Zerfließen}
+
+\subsection{Anfangszustand}
+
+Ein besonders wichtiges Beispiel ist das gaußsche Wellenpaket in einer Dimension:
+\[
+    \psi(x,0)
+    =\left(\frac{2}{\pi a^2}\right)^{1/4}
+      e^{ik_0x}e^{-x^2/a^2}.
+\]
+Die Wahrscheinlichkeitsdichte ist
+\[
+    |\psi(x,0)|^2
+    =\left(\frac{2}{\pi a^2}\right)^{1/2}e^{-2x^2/a^2}.
+\]
+Sie ist um $x=0$ lokalisiert. Der Faktor $e^{ik_0x}$ verschiebt nicht die Ortswahrscheinlichkeit, sondern legt den mittleren Impuls fest.
+
+\begin{examplebox}
+Für dieses Paket gilt qualitativ:
+\[
+    \Delta x(0)\sim a,
+    \qquad
+    \Delta k\sim \frac{1}{a},
+    \qquad
+    \Delta p=\hbar\Delta k\sim \frac{\hbar}{a}.
+\]
+Je stärker ein Zustand im Ort lokalisiert ist, desto breiter ist seine Verteilung im Impulsraum.
+\end{examplebox}
+
+\subsection{Warum Wellenpakete zerfließen}
+
+Für ein freies Teilchen hängt die Frequenz quadratisch von $k$ ab:
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+Verschiedene $k$-Anteile bewegen sich daher mit verschiedenen Gruppengeschwindigkeiten
+\[
+    v_g(k)=\frac{\hbar k}{m}.
+\]
+Ein Wellenpaket besteht aus vielen $k$-Anteilen. Da diese Anteile unterschiedliche Geschwindigkeiten haben, läuft das Paket mit der Zeit auseinander.
+
+\begin{conceptbox}
+Das Zerfließen eines freien Wellenpakets ist keine Wirkung eines äußeren Potentials. Es entsteht schon bei $V=0$, weil die Dispersionsrelation $\omega(k)$ nicht linear in $k$ ist.
+\end{conceptbox}
+
+\subsection{Typisches Ergebnis für die Breite}
+
+Für das gaußsche Wellenpaket bleibt die Dichte gaußförmig, aber ihre Breite wächst. Bei der hier verwendeten Parametrisierung ist die Ortsunschärfe zur Zeit $t=0$
+\[
+    \Delta x(0)=\frac{a}{2}.
+\]
+Die Impulsunschärfe ist
+\[
+    \Delta p=\frac{\hbar}{a}.
+\]
+Damit
+\[
+    \Delta x(0)\Delta p=\frac{\hbar}{2}.
+\]
+Für spätere Zeiten hat die Breite die Form
+\[
+    \Delta x(t)=\frac{a}{2}\sqrt{1+\frac{4\hbar^2t^2}{m^2a^4}}.
+\]
+
+\begin{formulabox}
+Für ein freies gaußsches Wellenpaket gilt typisch
+\[
+    \langle X\rangle_t=\frac{\hbar k_0}{m}t,
+\]
+und
+\[
+    \Delta x(t)=\frac{a}{2}\sqrt{1+\frac{4\hbar^2t^2}{m^2a^4}}.
+\]
+Das Zentrum bewegt sich klassisch, aber die Breite wächst quantenmechanisch.
+\end{formulabox}
+
+\section{Propagator und Greensche Funktion}
+
+\subsection{Idee des Propagators}
+
+Die Schrödingergleichung bestimmt die Wellenfunktion zu späteren Zeiten aus einer Anfangswellenfunktion. Diese Abbildung kann man im Ortsraum mit einem Kern schreiben:
+\[
+    \psi(\vec{x},t)
+    =\int\dd^3x'\,G(\vec{x},t|\vec{x}',t')\psi(\vec{x}',t'),
+    \qquad t\geq t'.
+\]
+Der Kern $G$ heißt Propagator oder Greensche Funktion der Schrödingergleichung.
+
+\begin{definitionbox}
+Der Propagator $G(\vec{x},t|\vec{x}',t')$ ist so definiert, dass
+\[
+    \psi(\vec{x},t)
+    =\int\dd^3x'\,G(\vec{x},t|\vec{x}',t')\psi(\vec{x}',t')
+\]
+die Lösung der Schrödingergleichung mit Anfangszustand $\psi(\vec{x}',t')$ liefert.
+\end{definitionbox}
+
+Formal erfüllt $G$ für $t>t'$ die Gleichung
+\[
+    \left(i\hbar\frac{\partial}{\partial t}-H\right)
+    G(\vec{x},t|\vec{x}',t')=0
+\]
+mit der Anfangsbedingung
+\[
+    G(\vec{x},t'+0^+|\vec{x}',t')=\delta^{(3)}(\vec{x}-\vec{x}').
+\]
+
+\begin{conceptbox}
+Der Propagator beantwortet die Frage: Wenn der Zustand zur Zeit $t'$ an der Stelle $\vec{x}'$ konzentriert wäre, welche Amplitude trägt er zur späteren Stelle $\vec{x}$ zur Zeit $t$ bei?
+\end{conceptbox}
+
+\subsection{Zusammenhang mit dem Zeitentwicklungsoperator}
+
+Der Propagator ist die Ortsdarstellung des Zeitentwicklungsoperators:
+\[
+    G(\vec{x},t|\vec{x}',t')
+    =\langle \vec{x}|U(t,t')|\vec{x}'\rangle.
+\]
+Für zeitunabhängiges $H$ gilt
+\[
+    U(t,t')=e^{-iH(t-t')/\hbar}.
+\]
+Daher hängt der Propagator in zeittranslationsinvarianten Problemen nur von $t-t'$ ab.
+
+\section{Zeitabhängige Hamiltonoperatoren}
+
+Bisher wurde meist angenommen, dass $H$ zeitunabhängig ist. In vielen physikalischen Situationen hängt der Hamiltonoperator aber explizit von der Zeit ab, zum Beispiel bei einem zeitabhängigen äußeren Feld:
+\[
+    H=H(t).
+\]
+Die Schrödingergleichung bleibt
+\[
+    i\hbar\frac{\dd}{\dd t}\psi(t)=H(t)\psi(t).
+\]
+
+Ist $H(t)$ zeitabhängig, kann man im Allgemeinen nicht einfach schreiben
+\[
+    U(t)=e^{-\frac{i}{\hbar}\int_0^t H(t')\dd t'}.
+\]
+Der Grund ist, dass Operatoren zu verschiedenen Zeiten im Allgemeinen nicht kommutieren:
+\[
+    [H(t_1),H(t_2)]\neq 0.
+\]
+
+\begin{notebox}
+Die einfache Formel $U(t)=e^{-iHt/\hbar}$ gilt direkt nur für zeitunabhängigen Hamiltonoperator. Bei zeitabhängigen Hamiltonoperatoren braucht man im Allgemeinen zeitgeordnete Exponentialfunktionen oder löst die Differentialgleichung explizit.
+\end{notebox}
+
+Ein Beispiel für einen zeitabhängigen Hamiltonoperator tritt bei Spinresonanz und Rabi-Oszillationen auf. Dort wird die Zeitabhängigkeit oft durch Transformation in ein rotierendes Bezugssystem vereinfacht.
+
+\section{Energieerhaltung und Erwartungswerte}
+
+\subsection{Zeitliche Änderung von Erwartungswerten}
+
+Für eine Observable $A$ ist der Erwartungswert
+\[
+    \langle A\rangle_t=(\psi(t),A\psi(t)).
+\]
+Wenn $A$ nicht explizit von der Zeit abhängt, erhält man mit der Schrödingergleichung
+\[
+    \frac{\dd}{\dd t}\langle A\rangle_t
+    =\frac{i}{\hbar}\langle [H,A]\rangle_t.
+\]
+Wenn $A$ zusätzlich explizit zeitabhängig ist, kommt ein weiterer Term hinzu:
+\[
+    \frac{\dd}{\dd t}\langle A\rangle_t
+    =\frac{i}{\hbar}\langle [H,A]\rangle_t
+     +\left\langle\frac{\partial A}{\partial t}\right\rangle_t.
+\]
+
+\begin{formulabox}
+Ehrenfestsche Gleichung für Erwartungswerte:
+\[
+    \frac{\dd}{\dd t}\langle A\rangle
+    =\frac{i}{\hbar}\langle[H,A]\rangle
+    +\left\langle\frac{\partial A}{\partial t}\right\rangle.
+\]
+\end{formulabox}
+
+\subsection{Energieerhaltung}
+
+Setzt man $A=H$ und nimmt an, dass $H$ nicht explizit zeitabhängig ist, dann gilt
+\[
+    \frac{\dd}{\dd t}\langle H\rangle
+    =\frac{i}{\hbar}\langle[H,H]\rangle=0.
+\]
+Also ist die mittlere Energie erhalten.
+
+\begin{conceptbox}
+Wenn der Hamiltonoperator nicht explizit von der Zeit abhängt, ist Energie erhalten. Quantenmechanisch bedeutet das: Der Erwartungswert von $H$ ist konstant, und die Energieeigenzustände ändern nur ihre Phase.
+\end{conceptbox}
+
+\section{Klausurrelevante Standardgedanken}
+
+\subsection{Was man sicher können sollte}
+
+Für Aufgaben zu Schrödingergleichung und Zeitentwicklung sollte man folgende Schritte sicher beherrschen:
+\begin{itemize}
+    \item aus einem klassischen Hamiltonian den Hamiltonoperator in Ortsdarstellung hinschreiben,
+    \item die zeitabhängige Schrödingergleichung formulieren,
+    \item bei zeitunabhängigem $H$ den Separationsansatz verwenden,
+    \item die zeitunabhängige Schrödingergleichung als Eigenwertproblem erkennen,
+    \item stationäre Zustände mit $e^{-iEt/\hbar}$ zeitentwickeln,
+    \item allgemeine Anfangszustände in Energieeigenzustände entwickeln,
+    \item die Normerhaltung mit $H=H^\dagger$ begründen,
+    \item den Wahrscheinlichkeitsstrom und die Kontinuitätsgleichung herleiten,
+    \item ebene Wellen in die freie Schrödingergleichung einsetzen,
+    \item $E=\hbar\omega$ und $p=\hbar k$ anwenden,
+    \item Wellenpakete als Fourierüberlagerungen verstehen.
+\end{itemize}
+
+\subsection{Typische Fehler}
+
+\begin{examtipbox}
+Häufige Fehler in Aufgaben zu diesem Kapitel sind:
+\begin{itemize}
+    \item das Vorzeichen im Zeitfaktor falsch zu schreiben: korrekt ist $e^{-iEt/\hbar}$,
+    \item $P=-i\hbar\partial_x$ mit $+i\hbar\partial_x$ zu verwechseln,
+    \item stationär mit zeitunabhängiger Wellenfunktion zu verwechseln,
+    \item nicht zwischen $\psi$ und $|\psi|^2$ zu unterscheiden,
+    \item bei der Kontinuitätsgleichung den Strom mit falschem Vorzeichen zu definieren,
+    \item ebene Wellen als normalisierbare Zustände zu behandeln,
+    \item beim Separationsansatz die Konstante $E$ nicht als Energieeigenwert zu interpretieren.
+\end{itemize}
+\end{examtipbox}
+
+\subsection{Minimaler Rechenweg für Separationsaufgaben}
+
+Wenn eine Aufgabe sagt: 
+\enquote{Lösen Sie die Schrödingergleichung für einen zeitunabhängigen Hamiltonoperator}, dann ist der Standardweg:
+
+\begin{calculationbox}
+\begin{enumerate}
+    \item Starte mit
+    \[
+        i\hbar\frac{\partial}{\partial t}\psi(x,t)=H\psi(x,t).
+    \]
+    \item Setze
+    \[
+        \psi(x,t)=\varphi(x)T(t).
+    \]
+    \item Trenne Variablen:
+    \[
+        i\hbar\frac{1}{T}\frac{\dd T}{\dd t}
+        =\frac{1}{\varphi}H\varphi=E.
+    \]
+    \item Löse den Zeitteil:
+    \[
+        T(t)=e^{-iEt/\hbar}.
+    \]
+    \item Löse den Ortsteil:
+    \[
+        H\varphi=E\varphi.
+    \]
+    \item Baue die Lösung:
+    \[
+        \psi(x,t)=\varphi(x)e^{-iEt/\hbar}.
+    \]
+    \item Bei mehreren Eigenzuständen:
+    \[
+        \psi(x,t)=\sum_n c_n\varphi_n(x)e^{-iE_nt/\hbar}.
+    \]
+\end{enumerate}
+\end{calculationbox}
+
+\subsection{Zusammenfassung der wichtigsten Formeln}
+
+\begin{formulabox}
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)=H\psi(\vec{x},t)
+\]
+\[
+    H=-\frac{\hbar^2}{2m}\nabla^2+V(\vec{x})
+\]
+\[
+    U(t)=e^{-iHt/\hbar}
+\]
+\[
+    H\varphi_n=E_n\varphi_n
+\]
+\[
+    \psi_n(\vec{x},t)=\varphi_n(\vec{x})e^{-iE_nt/\hbar}
+\]
+\[
+    \rho=|\psi|^2
+\]
+\[
+    \vec{j}=\frac{\hbar}{2mi}\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right)
+\]
+\[
+    \frac{\partial\rho}{\partial t}+\nabla\cdot\vec{j}=0
+\]
+\[
+    E=\hbar\omega,
+    \qquad
+    \vec{p}=\hbar\vec{k},
+    \qquad
+    E=\frac{\hbar^2k^2}{2m}
+\]
+\[
+    v_g=\left.\frac{\dd\omega}{\dd k}\right|_{k_0}=\frac{\hbar k_0}{m}
+\]
+\end{formulabox}

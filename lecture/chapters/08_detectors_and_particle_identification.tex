@@ -1,0 +1,823 @@
+\chapter{Detektoren und Teilchenidentifikation}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt, wie Teilchen in Experimenten nachgewiesen und identifiziert
+werden.
+In der Kern- und Teilchenphysik sieht man Teilchen fast nie direkt.
+Man misst stattdessen ihre Wechselwirkungen mit Materie.
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item Teilchendetektoren,
+    \item Ionisation,
+    \item Energieverlust geladener Teilchen,
+    \item Bethe-Bloch-Formel,
+    \item Spurdetektoren,
+    \item Nebelkammer,
+    \item Blasenkammer,
+    \item Time Projection Chamber,
+    \item Szintillatoren,
+    \item Cherenkov-Strahlung,
+    \item Kalorimeter,
+    \item elektromagnetische Schauer,
+    \item hadronische Schauer,
+    \item Myondetektoren,
+    \item Neutrinodetektion,
+    \item Teilchenidentifikation,
+    \item Event Display.
+\end{itemize}
+\end{notebox}
+
+\section{Grundidee eines Teilchendetektors}
+
+Ein Detektor misst nicht das Teilchen selbst, sondern die Spuren seiner Wechselwirkung
+mit Materie.
+
+\begin{definitionbox}
+Ein \emph{Teilchendetektor} ist ein Messgeraet, das Teilchen durch ihre Wechselwirkung
+mit Materie nachweist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Teilchen koennen in Materie verschiedene Signale erzeugen:
+\begin{itemize}
+    \item Ionisation,
+    \item Anregung von Atomen oder Molekuelen,
+    \item Szintillationslicht,
+    \item Cherenkov-Licht,
+    \item elektromagnetische Schauer,
+    \item hadronische Schauer,
+    \item Spuren in Gasen, Fluessigkeiten oder Halbleitern.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Wichtiger Merksatz:
+Detektoren messen Energie, Impuls, Ort, Zeit und Teilchenart nicht direkt auf einmal.
+Man kombiniert verschiedene Detektorschichten, um diese Groessen gemeinsam zu rekonstruieren.
+\end{examtipbox}
+
+\section{Welche Teilchen sind direkt sichtbar?}
+
+Nicht alle Teilchen hinterlassen auf gleiche Weise Signale im Detektor.
+
+\begin{conceptbox}
+Geladene Teilchen sind relativ einfach nachzuweisen, weil sie Materie ionisieren.
+
+Neutrale Teilchen sind schwieriger nachzuweisen.
+Sie hinterlassen keine direkte Ionisationsspur.
+Man erkennt sie ueber ihre Wechselwirkungen, Zerfaelle oder fehlende Energie und
+fehlenden Impuls.
+\end{conceptbox}
+
+\begin{notebox}
+Typische Detektorsignaturen:
+\begin{itemize}
+    \item Elektronen: Spur und elektromagnetischer Schauer.
+    \item Photonen: kein Track vor dem Kalorimeter, aber elektromagnetischer Schauer.
+    \item Myonen: durchdringen viele Detektorschichten und erreichen Myonkammern.
+    \item Hadronen: hadronische Schauer.
+    \item Neutrinos: meist nur indirekt ueber fehlende Energie oder spezielle Nachweisreaktionen.
+\end{itemize}
+\end{notebox}
+
+\section{Ionisation}
+
+Geladene Teilchen verlieren in Materie Energie, indem sie Atome ionisieren oder anregen.
+
+\begin{definitionbox}
+\emph{Ionisation} bedeutet, dass ein Atom oder Molekuel ein Elektron verliert und
+dadurch ein Ion entsteht.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein geladenes Teilchen bewegt sich durch Materie und wechselwirkt elektromagnetisch
+mit den Elektronen der Atome.
+Dabei kann es:
+\begin{itemize}
+    \item Elektronen herausloesen,
+    \item Atome anregen,
+    \item Energie an das Medium abgeben.
+\end{itemize}
+\end{conceptbox}
+
+\begin{definitionbox}
+Der \emph{spezifische Energieverlust} ist die pro Wegstrecke abgegebene Energie:
+\[
+    -\frac{\dd E}{\dd x}.
+\]
+\end{definitionbox}
+
+\begin{examtipbox}
+Das Minuszeichen in
+\[
+    -\frac{\dd E}{\dd x}
+\]
+zeigt:
+Das Teilchen verliert Energie, waehrend es Materie durchlaeuft.
+\end{examtipbox}
+
+\section{Bethe-Bloch-Formel}
+
+Die Bethe-Bloch-Formel beschreibt den mittleren Energieverlust schwerer geladener
+Teilchen in Materie.
+
+\begin{definitionbox}
+Die \emph{Bethe-Bloch-Formel} beschreibt den mittleren Energieverlust geladener
+Teilchen durch Ionisation und Anregung in Materie.
+\end{definitionbox}
+
+\begin{formulabox}
+Qualitativ beschreibt die Bethe-Bloch-Formel:
+\[
+    -\frac{\dd E}{\dd x}
+    =
+    f(z,\beta,\gamma,Z,A,I).
+\]
+Dabei ist:
+\begin{itemize}
+    \item $z$ die Ladungszahl des Projektils,
+    \item $\beta=v/c$,
+    \item $\gamma$ der Lorentzfaktor,
+    \item $Z$ die Kernladungszahl des Materials,
+    \item $A$ die molare Masse des Materials,
+    \item $I$ die mittlere Anregungsenergie des Materials.
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+Die wichtigste qualitative Abhaengigkeit ist:
+\[
+    -\frac{\dd E}{\dd x}
+    \propto
+    \frac{z^2}{\beta^2}
+\]
+im nichtrelativistischen Bereich.
+
+Langsame geladene Teilchen ionisieren daher besonders stark.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsfolie zur Bethe-Bloch-Formel verwendet die Materiedicke in
+\[
+    \mathrm{g/cm^2}
+\]
+und enthaelt die Parameter $Z$, $A$, $I$, $\beta$, $\gamma$ und die Projektil-Ladung
+$z$.
+\end{notebox}
+
+\begin{examtipbox}
+Pruefungsrelevant ist meist nicht das Auswendiglernen der vollen Bethe-Bloch-Formel,
+sondern das Verstaendnis:
+\begin{itemize}
+    \item geladene Teilchen verlieren Energie durch Ionisation,
+    \item langsame Teilchen ionisieren staerker,
+    \item der Energieverlust haengt von Teilchenladung und Material ab,
+    \item Bethe-Bloch hilft bei Teilchenidentifikation.
+\end{itemize}
+\end{examtipbox}
+
+\section{Minimum ionizing particles}
+
+Viele relativistische geladene Teilchen haben einen minimalen Energieverlust.
+Man nennt sie minimum ionizing particles.
+
+\begin{definitionbox}
+Ein \emph{minimum ionizing particle}, kurz MIP, ist ein geladenes Teilchen, dessen
+Energieverlust in Materie nahe dem Minimum der Bethe-Bloch-Kurve liegt.
+\end{definitionbox}
+
+\begin{conceptbox}
+MIPs sind wichtig, weil sie in vielen Detektoren ein typisches Standardsignal liefern.
+Myonen in Hochenergieexperimenten verhalten sich oft naeherungsweise wie MIPs.
+\end{conceptbox}
+
+\begin{notebox}
+Ein Teilchen mit sehr kleinem Energieverlust kann viele Detektorschichten durchdringen.
+Das ist ein Grund, warum Myonen oft in aeusseren Myonkammern nachgewiesen werden.
+\end{notebox}
+
+\section{Bragg-Peak}
+
+Der Energieverlust geladener Teilchen steigt am Ende ihrer Bahn oft stark an.
+
+\begin{definitionbox}
+Der \emph{Bragg-Peak} ist das Maximum der Energieabgabe eines geladenen Teilchens
+kurz vor dem Ende seiner Reichweite in Materie.
+\end{definitionbox}
+
+\begin{conceptbox}
+Wenn ein geladenes Teilchen langsamer wird, steigt sein Energieverlust pro Wegstrecke
+zunaechst an.
+
+Kurz vor dem Stillstand gibt es ein Maximum der Ionisation.
+Dieses Maximum ist der Bragg-Peak.
+\end{conceptbox}
+
+\begin{examtipbox}
+Der Bragg-Peak ist besonders wichtig fuer schwere geladene Teilchen wie Alpha-Teilchen
+oder Ionen.
+
+Er ist auch wichtig in der Teilchentherapie, weil die Energie lokal am Ende der
+Reichweite deponiert werden kann.
+\end{examtipbox}
+
+\section{Spurdetektoren}
+
+Spurdetektoren messen die Bahn geladener Teilchen.
+
+\begin{definitionbox}
+Ein \emph{Spurdetektor} misst die Positionen, an denen ein geladenes Teilchen den
+Detektor durchquert.
+Aus mehreren Messpunkten rekonstruiert man die Teilchenspur.
+\end{definitionbox}
+
+\begin{conceptbox}
+In einem Magnetfeld sind die Spuren geladener Teilchen gekruemmt.
+Aus der Kruemmung kann man den Impuls bestimmen.
+
+Je groesser der Impuls, desto geringer ist die Kruemmung.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer ein Teilchen mit Ladung $q$ in einem Magnetfeld gilt:
+\[
+    p = qBr.
+\]
+In praktischen Einheiten:
+\[
+    p[\mathrm{GeV}/c]
+    \approx
+    0.3\,B[\mathrm{T}]\,r[\mathrm{m}].
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Spurdetektoren liefern:
+\begin{itemize}
+    \item Ort der Teilchenspur,
+    \item Ladungsvorzeichen aus der Kruemmungsrichtung,
+    \item Impuls aus dem Kruemmungsradius,
+    \item Vertices aus Schnittpunkten mehrerer Spuren.
+\end{itemize}
+\end{examtipbox}
+
+\section{Nebelkammer und Blasenkammer}
+
+Fruehe Detektoren machten Teilchenspuren direkt sichtbar.
+
+\begin{definitionbox}
+Eine \emph{Nebelkammer} macht Teilchenspuren durch Kondensation entlang ionisierter
+Bahnen sichtbar.
+\end{definitionbox}
+
+\begin{definitionbox}
+Eine \emph{Blasenkammer} macht Teilchenspuren durch Blasenbildung in einer
+ueberhitzten Fluessigkeit sichtbar.
+\end{definitionbox}
+
+\begin{conceptbox}
+Geladene Teilchen ionisieren das Medium.
+Entlang dieser Ionisationsspur bilden sich sichtbare Tropfen oder Blasen.
+
+Dadurch entstehen fotografierbare Spuren.
+\end{conceptbox}
+
+\begin{notebox}
+Die historischen Detektorabbildungen in den Vorlesungsfolien zeigen Teilchenspuren,
+z. B. in Zusammenhang mit Positron-Entdeckung und Blasenkammer-/Spuraufnahmen.
+\end{notebox}
+
+\begin{examtipbox}
+Nebelkammer und Blasenkammer sind heute vor allem historisch und konzeptionell wichtig.
+Sie zeigen sehr anschaulich:
+Geladene Teilchen hinterlassen Spuren durch Ionisation.
+\end{examtipbox}
+
+\section{Time Projection Chamber}
+
+Eine Time Projection Chamber, kurz TPC, ist ein moderner Spurdetektor.
+
+\begin{definitionbox}
+Eine \emph{Time Projection Chamber} ist ein gasgefuellter Spurdetektor, der die
+dreidimensionale Spur geladener Teilchen rekonstruiert.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein geladenes Teilchen ionisiert das Gas.
+Die freigesetzten Elektronen driften in einem elektrischen Feld zu einer Ausleseebene.
+
+Aus der Position an der Ausleseebene und der Driftzeit rekonstruiert man die
+dreidimensionale Spur.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildungen enthalten eine TPC-Abbildung.
+Eine TPC verbindet Ionisationsmessung mit raeumlicher Spurrekonstruktion.
+\end{notebox}
+
+\begin{examtipbox}
+TPC:
+\begin{itemize}
+    \item misst Spuren geladener Teilchen,
+    \item nutzt Ionisation im Gas,
+    \item Driftzeit liefert die dritte Koordinate,
+    \item kann auch Energieverlustinformation fuer Teilchenidentifikation liefern.
+\end{itemize}
+\end{examtipbox}
+
+\section{Halbleiterdetektoren}
+
+Moderne Experimente verwenden haeufig Halbleiterdetektoren nahe am Kollisionspunkt.
+
+\begin{definitionbox}
+Ein \emph{Halbleiterdetektor} weist Teilchen nach, indem geladene Teilchen in einem
+Halbleiter Elektron-Loch-Paare erzeugen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Halbleiterdetektoren besitzen sehr gute Ortsaufloesung.
+Sie sind deshalb ideal fuer innere Spurdetektoren.
+
+Man verwendet sie, um:
+\begin{itemize}
+    \item Primaervertices zu rekonstruieren,
+    \item Sekundaervertices zu finden,
+    \item kurzlebige Teilchen indirekt nachzuweisen,
+    \item Impulse geladener Teilchen zu messen.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Sekundaervertices sind wichtig fuer Teilchen mit messbarer Lebensdauer,
+zum Beispiel Hadronen mit schweren Quarks.
+\end{examtipbox}
+
+\section{Szintillatoren}
+
+Szintillatoren wandeln Teilchenenergie in Licht um.
+
+\begin{definitionbox}
+Ein \emph{Szintillator} ist ein Material, das bei Durchgang ionisierender Strahlung
+Licht aussendet.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein Teilchen regt Atome oder Molekuele im Szintillatormaterial an.
+Bei der Abregung wird Licht ausgesendet.
+Dieses Licht kann mit Photomultipliern oder Photodetektoren gemessen werden.
+\end{conceptbox}
+
+\begin{notebox}
+Szintillatoren werden haeufig fuer Trigger, Zeitmessung und Kalorimetrie verwendet.
+\end{notebox}
+
+\begin{examtipbox}
+Szintillatoren sind schnelle Detektoren.
+Sie sind daher besonders nuetzlich fuer Zeitmessung und Triggerentscheidungen.
+\end{examtipbox}
+
+\section{Cherenkov-Strahlung}
+
+Cherenkov-Strahlung entsteht, wenn ein geladenes Teilchen in einem Medium schneller
+ist als Licht in diesem Medium.
+
+\begin{definitionbox}
+\emph{Cherenkov-Strahlung} ist Licht, das ausgesendet wird, wenn ein geladenes
+Teilchen ein Medium mit einer Geschwindigkeit durchquert, die groesser ist als die
+Lichtgeschwindigkeit in diesem Medium.
+\end{definitionbox}
+
+\begin{formulabox}
+Die Bedingung fuer Cherenkov-Strahlung ist:
+\[
+    v > \frac{c}{n},
+\]
+oder
+\[
+    \beta n > 1.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $v$ die Teilchengeschwindigkeit,
+    \item $c$ die Lichtgeschwindigkeit im Vakuum,
+    \item $n$ der Brechungsindex des Mediums,
+    \item $\beta=v/c$.
+\end{itemize}
+\end{formulabox}
+
+\begin{formulabox}
+Der Cherenkov-Winkel erfuellt:
+\[
+    \cos\theta_C = \frac{1}{\beta n}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Aus dem Cherenkov-Winkel kann man die Geschwindigkeit des Teilchens bestimmen.
+Kombiniert man die Geschwindigkeit mit dem Impuls aus dem Spurdetektor, kann man
+die Masse und damit die Teilchenart bestimmen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Cherenkov-Detektoren sind Teilchenidentifikationsdetektoren.
+Sie liefern Geschwindigkeitsinformation.
+Zusammen mit dem Impuls kann man Teilchen unterscheiden.
+\end{examtipbox}
+
+\section{Kalorimeter}
+
+Kalorimeter messen die Energie von Teilchen, indem sie diese in Materie stoppen.
+
+\begin{definitionbox}
+Ein \emph{Kalorimeter} ist ein Detektor, der die Energie eines Teilchens misst,
+indem das Teilchen im Detektormaterial einen Schauer erzeugt und seine Energie
+deponiert.
+\end{definitionbox}
+
+\begin{conceptbox}
+Es gibt zwei wichtige Typen:
+\begin{itemize}
+    \item elektromagnetische Kalorimeter,
+    \item hadronische Kalorimeter.
+\end{itemize}
+\end{conceptbox}
+
+\begin{definitionbox}
+Ein \emph{elektromagnetisches Kalorimeter} misst vor allem Elektronen, Positronen
+und Photonen.
+
+Ein \emph{hadronisches Kalorimeter} misst Hadronen wie Protonen, Neutronen, Pionen
+und Kaonen.
+\end{definitionbox}
+
+\begin{examtipbox}
+Kalorimeter liefern Energieinformation.
+Spurdetektoren liefern Impuls- und Ortsinformation.
+Beides zusammen ist fuer Teilchenidentifikation sehr wichtig.
+\end{examtipbox}
+
+\section{Elektromagnetische Schauer}
+
+Elektronen, Positronen und Photonen erzeugen elektromagnetische Schauer.
+
+\begin{conceptbox}
+Ein hochenergetisches Elektron verliert Energie durch Bremsstrahlung:
+\[
+    e^- \rightarrow e^- + \gamma.
+\]
+
+Ein hochenergetisches Photon kann Paarbildung machen:
+\[
+    \gamma \rightarrow e^- + e^+.
+\]
+
+Diese Prozesse wiederholen sich und erzeugen einen elektromagnetischen Schauer.
+\end{conceptbox}
+
+\begin{definitionbox}
+Ein \emph{elektromagnetischer Schauer} ist eine Kaskade aus Elektronen, Positronen
+und Photonen, die durch Bremsstrahlung und Paarbildung entsteht.
+\end{definitionbox}
+
+\begin{examtipbox}
+Elektronen und Photonen werden im elektromagnetischen Kalorimeter gestoppt.
+
+Unterschied:
+\begin{itemize}
+    \item Elektron: hat eine Spur im inneren Detektor und einen elektromagnetischen Schauer.
+    \item Photon: hat normalerweise keine Spur vor dem Kalorimeter, aber einen elektromagnetischen Schauer.
+\end{itemize}
+\end{examtipbox}
+
+\section{Hadronische Schauer}
+
+Hadronen wechselwirken stark mit Atomkernen im Detektormaterial.
+
+\begin{definitionbox}
+Ein \emph{hadronischer Schauer} ist eine Kaskade aus Hadronen und Sekundaerteilchen,
+die durch starke Wechselwirkungen in Materie entsteht.
+\end{definitionbox}
+
+\begin{conceptbox}
+Hadronische Schauer sind im Allgemeinen komplexer als elektromagnetische Schauer,
+weil starke Wechselwirkungen, Kernaufbrueche und viele Sekundaerteilchen beteiligt sind.
+\end{conceptbox}
+
+\begin{examtipbox}
+Hadronen werden vor allem im hadronischen Kalorimeter nachgewiesen.
+
+Typische Hadronen sind:
+\begin{itemize}
+    \item Protonen,
+    \item Neutronen,
+    \item geladene und neutrale Pionen,
+    \item Kaonen.
+\end{itemize}
+\end{examtipbox}
+
+\section{Myondetektoren}
+
+Myonen sind relativ durchdringende Teilchen.
+Sie erreichen oft die aeusseren Detektorschichten.
+
+\begin{definitionbox}
+Ein \emph{Myondetektor} ist ein aeusserer Detektorbereich, der speziell fuer den
+Nachweis von Myonen ausgelegt ist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Myonen sind schwerer als Elektronen und verlieren in Materie oft nur wenig Energie
+durch Ionisation.
+Sie erzeugen normalerweise keine vollstaendig absorbierten elektromagnetischen oder
+hadronischen Schauer im inneren Detektor.
+
+Deshalb koennen sie viele Detektorschichten durchdringen und in den aeusseren
+Myonkammern gemessen werden.
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Folien zeigen Myonspuren in einem Event Display, zum Beispiel bei
+\[
+    pp \rightarrow \mu^+ \mu^- + \ldots
+\]
+Die Myonen erscheinen als durchgehende Spuren bis in die aeusseren Detektorbereiche.
+\end{notebox}
+
+\begin{examtipbox}
+Myon-Signatur:
+\begin{itemize}
+    \item Spur im inneren Detektor,
+    \item wenig Energie im Kalorimeter,
+    \item Treffer in Myonkammern.
+\end{itemize}
+\end{examtipbox}
+
+\section{Mehrschichtdetektoren am Collider}
+
+Grosse Collider-Experimente wie ATLAS und CMS bestehen aus mehreren Detektorschichten.
+
+\begin{conceptbox}
+Typischer Aufbau von innen nach aussen:
+\begin{itemize}
+    \item innerer Spurdetektor,
+    \item elektromagnetisches Kalorimeter,
+    \item hadronisches Kalorimeter,
+    \item Myonsystem.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Folien zeigen ATLAS und CMS als grosse Mehrzweckdetektoren.
+ATLAS ist sehr gross und besitzt eine zylindrische, mehrschichtige Detektorgeometrie.
+\end{notebox}
+
+\begin{conceptbox}
+Die Schichten sind so angeordnet, dass verschiedene Teilchenarten unterschiedliche
+Signaturen hinterlassen.
+
+Dadurch kann man aus dem Muster der Detektorsignale auf die Teilchenart schliessen.
+\end{conceptbox}
+
+\section{Teilchenidentifikation im Mehrschichtdetektor}
+
+\begin{notebox}
+Typische Signaturen:
+\begin{itemize}
+    \item Photon: elektromagnetischer Kalorimeterschauer ohne zugehoerige geladene Spur.
+    \item Elektron: geladene Spur plus elektromagnetischer Kalorimeterschauer.
+    \item Myon: geladene Spur plus Treffer im Myonsystem.
+    \item Geladenes Hadron: geladene Spur plus hadronischer Kalorimeterschauer.
+    \item Neutrales Hadron: hadronischer Kalorimeterschauer ohne geladene Spur.
+    \item Neutrino: fehlende transversale Energie beziehungsweise fehlender Impuls.
+\end{itemize}
+\end{notebox}
+
+\begin{examtipbox}
+Die Teilchenidentifikation erfolgt durch Kombination:
+\[
+    \text{Spur}
+    +
+    \text{Kalorimeterenergie}
+    +
+    \text{Myonsystem}
+    +
+    \text{fehlende Energie}.
+\]
+\end{examtipbox}
+
+\section{Neutrinodetektion}
+
+Neutrinos wechselwirken nur schwach.
+Deshalb sind sie extrem schwer nachzuweisen.
+
+\begin{definitionbox}
+Ein \emph{Neutrinodetektor} ist ein sehr grosser Detektor, der seltene schwache
+Wechselwirkungen von Neutrinos mit Materie nachweist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Neutrinos sind elektrisch neutral und wechselwirken nicht elektromagnetisch.
+Sie ionisieren Materie nicht direkt.
+
+Man weist sie nach, indem sie gelegentlich eine schwache Wechselwirkung mit einem
+Atomkern oder Elektron ausloesen.
+Dabei entstehen geladene Teilchen, die dann detektiert werden koennen.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildungen enthalten eine Super-Kamiokande-Abbildung.
+Super-Kamiokande ist ein grosser Wasser-Cherenkov-Detektor.
+Geladene Teilchen, die durch Neutrinowechselwirkungen entstehen, koennen Cherenkov-Licht
+im Wasser erzeugen.
+\end{notebox}
+
+\begin{examtipbox}
+Neutrinos sieht man nicht direkt.
+Man sieht geladene Sekundaerteilchen aus Neutrinowechselwirkungen oder rekonstruiert
+fehlende Energie und fehlenden Impuls.
+\end{examtipbox}
+
+\section{Fehlende Energie und fehlender Impuls}
+
+In Collider-Experimenten werden Neutrinos haeufig indirekt rekonstruiert.
+
+\begin{definitionbox}
+\emph{Fehlende transversale Energie} ist ein Hinweis darauf, dass unsichtbare Teilchen
+wie Neutrinos den Detektor verlassen haben.
+\end{definitionbox}
+
+\begin{conceptbox}
+In einem Collider ist der Anfangsimpuls quer zur Strahlrichtung naeherungsweise null.
+
+Wenn die sichtbaren Endprodukte insgesamt einen von null verschiedenen transversalen
+Impuls haben, muss ein unsichtbares Teilchen den fehlenden transversalen Impuls
+getragen haben.
+\end{conceptbox}
+
+\begin{formulabox}
+Die fehlende transversale Impulsbilanz ist grob:
+\[
+    \vec p_{\mathrm{T}}^{\,\mathrm{miss}}
+    =
+    -
+    \sum_{\mathrm{sichtbar}}
+    \vec p_{\mathrm{T},i}.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Fehlende transversale Energie ist typisch fuer Ereignisse mit Neutrinos oder anderen
+unsichtbaren Teilchen.
+\end{examtipbox}
+
+\section{Trigger}
+
+Collider erzeugen extrem viele Ereignisse.
+Nicht alle koennen gespeichert werden.
+
+\begin{definitionbox}
+Ein \emph{Trigger} ist ein System, das schnell entscheidet, welche Ereignisse
+gespeichert und genauer analysiert werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein Trigger sucht nach interessanten Signaturen, zum Beispiel:
+\begin{itemize}
+    \item hochenergetische Elektronen,
+    \item Myonen,
+    \item Photonen,
+    \item Jets,
+    \item grosse fehlende transversale Energie.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Ohne Trigger waeren moderne Collider-Experimente nicht auswertbar, weil die Rohdatenrate
+viel zu gross ist.
+\end{notebox}
+
+\section{Event Display}
+
+Ein Event Display ist eine grafische Darstellung eines einzelnen Kollisionsereignisses.
+
+\begin{definitionbox}
+Ein \emph{Event Display} ist eine Visualisierung der in einem Detektor gemessenen
+Spuren, Energiedepositionen und Treffer eines einzelnen Ereignisses.
+\end{definitionbox}
+
+\begin{conceptbox}
+In einem Event Display erkennt man zum Beispiel:
+\begin{itemize}
+    \item gekruemmte Spuren geladener Teilchen,
+    \item Energiecluster in Kalorimetern,
+    \item Myonspuren in aeusseren Detektorschichten,
+    \item Jets als gebuendelte Teilchenbuendel,
+    \item fehlende Energie aus Impulsungleichgewicht.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Die LHC-Folien zeigen Event Displays, unter anderem mit Myonen.
+Solche Darstellungen sind wichtig, um die Rekonstruktion von Ereignissen anschaulich
+zu verstehen.
+\end{notebox}
+
+\section{Zusammenspiel von Messgroessen}
+
+Teilchenidentifikation basiert auf mehreren gemessenen Groessen.
+
+\begin{conceptbox}
+Wichtige Messgroessen sind:
+\begin{itemize}
+    \item Impuls aus Spurkrümmung,
+    \item Ladungsvorzeichen aus Krümmungsrichtung,
+    \item Energie aus Kalorimetern,
+    \item Geschwindigkeit aus Cherenkov- oder Flugzeitmessung,
+    \item Energieverlust $\dd E/\dd x$,
+    \item Treffer im Myonsystem,
+    \item fehlende transversale Energie.
+\end{itemize}
+\end{conceptbox}
+
+\begin{formulabox}
+Wenn Impuls $p$ und Geschwindigkeit $v$ bekannt sind, kann man die Masse bestimmen.
+Relativistisch gilt:
+\[
+    p=\gamma mv.
+\]
+Mit
+\[
+    \beta=\frac{v}{c}
+\]
+und
+\[
+    \gamma=\frac{1}{\sqrt{1-\beta^2}}
+\]
+folgt:
+\[
+    m = \frac{p}{\gamma v}.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Teilchenidentifikation bedeutet meistens:
+Man misst mehrere Groessen und prueft, welche Teilchenhypothese dazu passt.
+\end{examtipbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Detektoren messen Wechselwirkungen von Teilchen mit Materie.
+    \item Geladene Teilchen ionisieren Materie und hinterlassen Spuren.
+    \item Der Energieverlust wird durch die Bethe-Bloch-Formel beschrieben.
+    \item Spurdetektoren messen Ort, Impuls und Ladungsvorzeichen geladener Teilchen.
+    \item Nebelkammern und Blasenkammern machen Ionisationsspuren sichtbar.
+    \item Eine TPC rekonstruiert dreidimensionale Spuren aus Driftzeit und Ausleseposition.
+    \item Halbleiterdetektoren liefern sehr gute Ortsaufloesung.
+    \item Szintillatoren wandeln Teilchenenergie in Licht um.
+    \item Cherenkov-Detektoren liefern Geschwindigkeitsinformation.
+    \item Kalorimeter messen Energien durch Schauerbildung.
+    \item Elektromagnetische Kalorimeter messen Elektronen und Photonen.
+    \item Hadronische Kalorimeter messen Hadronen.
+    \item Myonen erreichen oft aeussere Myonkammern.
+    \item Neutrinos werden indirekt ueber schwache Wechselwirkungen oder fehlende Energie nachgewiesen.
+    \item Teilchenidentifikation entsteht aus der Kombination mehrerer Detektorsignale.
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Warum sieht man Teilchen nicht direkt?
+    \item Welche Signale koennen Teilchen in Materie erzeugen?
+    \item Warum sind geladene Teilchen einfacher nachzuweisen als neutrale?
+    \item Was beschreibt die Bethe-Bloch-Formel?
+    \item Was bedeutet $-\dd E/\dd x$?
+    \item Was ist ein minimum ionizing particle?
+    \item Was ist der Bragg-Peak?
+    \item Wie funktioniert ein Spurdetektor?
+    \item Wie erhaelt man aus Spurkrümmung den Impuls?
+    \item Was ist der Unterschied zwischen Nebelkammer und Blasenkammer?
+    \item Wie funktioniert eine Time Projection Chamber?
+    \item Warum sind Halbleiterdetektoren nahe am Kollisionspunkt wichtig?
+    \item Was ist ein Szintillator?
+    \item Wann entsteht Cherenkov-Strahlung?
+    \item Wie lautet die Bedingung fuer Cherenkov-Strahlung?
+    \item Was misst ein Kalorimeter?
+    \item Was ist ein elektromagnetischer Schauer?
+    \item Was ist ein hadronischer Schauer?
+    \item Warum erreichen Myonen oft die aeusseren Detektorschichten?
+    \item Wie werden Neutrinos nachgewiesen?
+    \item Was bedeutet fehlende transversale Energie?
+    \item Was ist ein Trigger?
+    \item Was zeigt ein Event Display?
+    \item Wie kombiniert man Detektorsignale zur Teilchenidentifikation?
+\end{enumerate}
+\end{examtipbox}

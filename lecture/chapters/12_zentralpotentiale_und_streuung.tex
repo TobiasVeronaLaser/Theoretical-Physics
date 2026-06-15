@@ -1,0 +1,951 @@
+% Local commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+\providecommand{\braket}[2]{\left\langle#1\middle|#2\right\rangle}
+\providecommand{\mel}[3]{\left\langle#1\middle|#2\middle|#3\right\rangle}
+\providecommand{\dd}{\mathrm{d}}
+\providecommand{\ii}{\mathrm{i}}
+\providecommand{\e}{\mathrm{e}}
+\providecommand{\eps}{\varepsilon}
+\providecommand{\unit}{\mathbbm{1}}
+\providecommand{\grad}{\nabla}
+\providecommand{\laplace}{\Delta}
+
+\chapter{Zentralpotentiale und Streuung}
+
+\section{Ziel dieses Kapitels}
+
+In diesem Kapitel wird die Schrödingergleichung für ein Teilchen in einem dreidimensionalen Zentralpotential behandelt. Ein Zentralpotential ist ein Potential der Form
+\[
+    V(\vec r)=V(r),
+    \qquad r=|\vec r|.
+\]
+Es hängt also nur vom Abstand zum Ursprung ab, nicht von der Richtung. Dadurch besitzt das System Rotationssymmetrie. Diese Symmetrie ist der Grund dafür, dass der Drehimpuls eine zentrale Rolle spielt.
+
+\begin{conceptbox}
+Bei einem Zentralpotential kommutiert der Hamiltonoperator mit \(\vec L^{\,2}\) und mit \(L_z\). Deshalb können die stationären Zustände gleichzeitig als Eigenzustände von \(H\), \(\vec L^{\,2}\) und \(L_z\) gewählt werden. Die Winkelabhängigkeit wird durch Kugelflächenfunktionen beschrieben; die eigentliche Dynamik steckt dann in einer eindimensionalen radialen Differentialgleichung.
+\end{conceptbox}
+
+Die wichtigsten Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Warum vereinfacht Rotationssymmetrie die Schrödingergleichung?
+    \item Wie trennt man die Schrödingergleichung in Radial- und Winkelanteil?
+    \item Was ist das effektive Potential und woher kommt die Zentrifugalbarriere?
+    \item Wie beschreibt man gebundene Zustände in Zentralpotentialen?
+    \item Wie beschreibt man Streuzustände an kurzreichweitigen Zentralpotentialen?
+    \item Was sind Partialwellen, Streuphasen und Wirkungsquerschnitte?
+    \item Warum dominiert bei niedriger Energie die s-Wellenstreuung?
+    \item Wie funktionieren harte Kugel, Kastenpotential und Streuresonanzen als Standardbeispiele?
+\end{itemize}
+
+\section{Hamiltonoperator im Zentralpotential}
+
+\subsection{Definition des Problems}
+
+Wir betrachten ein Teilchen der Masse \(m\) in drei Dimensionen mit Hamiltonoperator
+\begin{definitionbox}
+\[
+    H = \frac{\vec P^{\,2}}{2m}+V(r)
+    = -\frac{\hbar^2}{2m}\Delta + V(r).
+\]
+Hier ist \(V(r)\) ein Zentralpotential.
+\end{definitionbox}
+
+Die zeitunabhängige Schrödingergleichung lautet
+\[
+    H\psi(\vec r)=E\psi(\vec r),
+\]
+also
+\[
+    \left[-\frac{\hbar^2}{2m}\Delta+V(r)\right]\psi(\vec r)=E\psi(\vec r).
+\]
+
+\begin{notebox}
+Ein Zentralpotential ist rotationssymmetrisch. Physikalisch bedeutet das: Es gibt keine ausgezeichnete Richtung im Raum. Beispiele sind kugelsymmetrische Potentialtöpfe, das Coulomb-Potential und idealisierte Streupotentiale endlicher Reichweite.
+\end{notebox}
+
+\subsection{Kommutatoren und gute Quantenzahlen}
+
+Da \(V(r)\) rotationsinvariant ist, gilt
+\[
+    [H,\vec L^{\,2}]=0,
+    \qquad
+    [H,L_z]=0.
+\]
+Zusätzlich gilt immer
+\[
+    [\vec L^{\,2},L_z]=0.
+\]
+Damit bilden
+\[
+    \{H,\vec L^{\,2},L_z\}
+\]
+einen naheliegenden vollständigen Satz kommutierender Observablen für Zentralpotentialprobleme.
+
+\begin{satzbox}
+Für ein Zentralpotential kann man stationäre Zustände in der Form
+\[
+    \psi_{E l m}(r,\theta,\varphi)
+    = R_{E l}(r)Y_l^m(\theta,\varphi)
+\]
+wählen. Dabei gilt
+\[
+    \vec L^{\,2}Y_l^m=\hbar^2l(l+1)Y_l^m,
+    \qquad
+    L_zY_l^m=\hbar mY_l^m.
+\]
+\end{satzbox}
+
+\begin{warningbox}
+Hier gibt es zwei verschiedene Bedeutungen von \(m\): Einerseits ist \(m\) oft die Teilchenmasse, andererseits ist \(m\) die magnetische Drehimpulsquantenzahl. In Formeln muss man aus dem Kontext erkennen, was gemeint ist. Für die Masse steht meistens \(m\) in Ausdrücken wie \(\hbar^2/(2m)\), während die magnetische Quantenzahl in \(Y_l^m\) oder \(L_z=\hbar m\) auftaucht.
+\end{warningbox}
+
+\section{Laplace-Operator in Kugelkoordinaten}
+
+In Kugelkoordinaten gilt
+\[
+    x=r\sin\theta\cos\varphi,
+    \qquad
+    y=r\sin\theta\sin\varphi,
+    \qquad
+    z=r\cos\theta.
+\]
+Der Laplace-Operator lautet
+\begin{formulabox}
+\[
+    \Delta
+    =\frac{1}{r^2}\frac{\partial}{\partial r}
+        \left(r^2\frac{\partial}{\partial r}\right)
+    +\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}
+        \left(\sin\theta\frac{\partial}{\partial\theta}\right)
+    +\frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\varphi^2}.
+\]
+\end{formulabox}
+
+Der Winkelanteil hängt direkt mit dem Bahndrehimpuls zusammen. Es gilt
+\[
+    \vec L^{\,2}
+    =-\hbar^2\left[\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+        \left(\sin\theta\frac{\partial}{\partial\theta}\right)
+    +\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\varphi^2}\right].
+\]
+Daraus folgt die sehr wichtige Identität
+\begin{formulabox}
+\[
+    \Delta
+    =\frac{1}{r^2}\frac{\partial}{\partial r}
+        \left(r^2\frac{\partial}{\partial r}\right)
+    -\frac{\vec L^{\,2}}{\hbar^2r^2}.
+\]
+\end{formulabox}
+
+Damit kann man den Hamiltonoperator schreiben als
+\[
+    H
+    =-\frac{\hbar^2}{2m}\frac{1}{r^2}\frac{\partial}{\partial r}
+        \left(r^2\frac{\partial}{\partial r}\right)
+    +\frac{\vec L^{\,2}}{2mr^2}+V(r).
+\]
+
+\begin{conceptbox}
+Der Term
+\[
+    \frac{\vec L^{\,2}}{2mr^2}
+\]
+ist die quantenmechanische Version der Rotationsenergie. Für einen Zustand mit Drehimpulsquantenzahl \(l\) wird daraus
+\[
+    \frac{\hbar^2l(l+1)}{2mr^2}.
+\]
+Dieser Term wirkt in der radialen Gleichung wie eine zusätzliche repulsive Barriere. Man nennt ihn Zentrifugalterm oder Zentrifugalbarriere.
+\end{conceptbox}
+
+\section{Separation der Schrödingergleichung}
+
+\subsection{Separationsansatz}
+
+Wir setzen
+\[
+    \psi(r,\theta,\varphi)=R_l(r)Y_l^m(\theta,\varphi).
+\]
+Einsetzen in die stationäre Schrödingergleichung liefert wegen
+\[
+    \vec L^{\,2}Y_l^m=\hbar^2l(l+1)Y_l^m
+\]
+die radiale Gleichung für \(R_l(r)\):
+\begin{formulabox}
+\[
+    -\frac{\hbar^2}{2m}\frac{1}{r^2}\frac{\dd}{\dd r}
+    \left(r^2\frac{\dd R_l}{\dd r}\right)
+    +\left[V(r)+\frac{\hbar^2l(l+1)}{2mr^2}\right]R_l(r)
+    =ER_l(r).
+\]
+\end{formulabox}
+
+\subsection{Reduzierte Radialfunktion}
+
+Die Gleichung wird einfacher, wenn man
+\[
+    P_l(r):=rR_l(r)
+\]
+einführt. Dann ist
+\[
+    R_l(r)=\frac{P_l(r)}{r}.
+\]
+Die Normierung wird ebenfalls einfacher:
+\[
+    \int_{\mathbb R^3}\dd^3r\,|\psi|^2
+    =\int_0^\infty r^2\dd r\,|R_l(r)|^2
+    \int\dd\Omega\,|Y_l^m|^2
+    =\int_0^\infty \dd r\,|P_l(r)|^2.
+\]
+
+\begin{definitionbox}
+Die reduzierte Radialfunktion \(P_l(r)=rR_l(r)\) erfüllt
+\[
+    P_l''(r)
+    +\left[\frac{2m}{\hbar^2}(E-V(r))-\frac{l(l+1)}{r^2}\right]P_l(r)=0.
+\]
+Äquivalent:
+\[
+    -\frac{\hbar^2}{2m}P_l''(r)
+    +\left[V(r)+\frac{\hbar^2l(l+1)}{2mr^2}\right]P_l(r)
+    =EP_l(r).
+\]
+\end{definitionbox}
+
+\begin{notebox}
+Diese Gleichung sieht aus wie eine eindimensionale Schrödingergleichung auf der Halbachse \(r\ge 0\), aber mit einem zusätzlichen effektiven Potential
+\[
+    V_{\mathrm{eff}}(r)=V(r)+\frac{\hbar^2l(l+1)}{2mr^2}.
+\]
+\end{notebox}
+
+\section{Randbedingungen der radialen Gleichung}
+
+\subsection{Reguläres Verhalten bei \texorpdfstring{\(r=0\)}{r=0}}
+
+Die volle Wellenfunktion muss bei \(r=0\) physikalisch akzeptabel sein. Da
+\[
+    \psi(r,\theta,\varphi)=\frac{P_l(r)}{r}Y_l^m(\theta,\varphi)
+\]
+gilt, darf \(P_l(r)\) nicht zu langsam gegen null gehen. Für reguläre Lösungen gilt typischerweise
+\[
+    P_l(r)\sim r^{l+1}
+    \qquad (r\to 0).
+\]
+Insbesondere gilt immer
+\begin{formulabox}
+\[
+    P_l(0)=0.
+\]
+\end{formulabox}
+
+\subsection{Verhalten für große Abstände}
+
+Für gebundene Zustände mit \(E<0\) muss die Wellenfunktion für große \(r\) abfallen, damit sie quadratintegrierbar ist. Für Streuzustände mit \(E>0\) ist sie dagegen nicht quadratintegrierbar, sondern beschreibt asymptotisch ein einlaufendes und ein auslaufendes Wellenfeld.
+
+\begin{conceptbox}
+Gebundene Zustände und Streuzustände unterscheiden sich also nicht nur durch das Vorzeichen der Energie, sondern auch durch die Randbedingungen:
+\begin{itemize}
+    \item gebunden: regulär bei \(r=0\), exponentiell abfallend für \(r\to\infty\), diskrete Energien;
+    \item gestreut: regulär bei \(r=0\), asymptotisch oszillierend für \(r\to\infty\), kontinuierliche Energien.
+\end{itemize}
+\end{conceptbox}
+
+\section{Gebundene Zustände in Zentralpotentialen}
+
+\subsection{Allgemeines Prinzip}
+
+Ein gebundener Zustand ist ein Eigenzustand mit normierbarer Wellenfunktion. Für ein Potential, das für große \(r\) gegen null geht, liegen gebundene Zustände typischerweise bei
+\[
+    E<0.
+\]
+Außerhalb des Bereichs, in dem das Potential wesentlich ist, gilt dann näherungsweise
+\[
+    P_l''(r)-\rho^2P_l(r)\approx 0,
+    \qquad
+    \rho=\frac{\sqrt{-2mE}}{\hbar}>0.
+\]
+Die physikalisch akzeptable Lösung ist
+\[
+    P_l(r)\sim \e^{-\rho r}.
+\]
+
+\begin{notebox}
+Die Größe \(1/\rho\) ist die typische Abklinglänge des gebundenen Zustands außerhalb des Potentialbereichs. Je stärker gebunden der Zustand ist, desto größer ist \(|E|\) und desto kleiner ist die Abklinglänge.
+\end{notebox}
+
+\subsection{s-Wellenzustände}
+
+Der einfachste Fall ist \(l=0\). Dann verschwindet die Zentrifugalbarriere:
+\[
+    \frac{\hbar^2l(l+1)}{2mr^2}=0.
+\]
+Die reduzierte Radialgleichung lautet
+\[
+    P_0''(r)+\frac{2m}{\hbar^2}(E-V(r))P_0(r)=0.
+\]
+Dies ist formal besonders ähnlich zur eindimensionalen Schrödingergleichung, aber auf der Halbachse \(r\ge 0\) mit der Randbedingung \(P_0(0)=0\).
+
+\begin{warningbox}
+Die s-Welle ist nicht dasselbe wie ein eindimensionales Problem auf der ganzen Achse. Der radiale Bereich ist nur \(r\ge 0\), und die Bedingung \(P_0(0)=0\) ist entscheidend.
+\end{warningbox}
+
+\section{Streuung an Zentralpotentialen}
+
+\subsection{Physikalische Situation}
+
+Bei einem Streuexperiment kommt ein Teilchen aus großer Entfernung mit Anfangsimpuls
+\[
+    \vec p=\hbar\vec k
+\]
+auf ein Streuzentrum zu. Nach der Wechselwirkung wird es in verschiedene Richtungen abgelenkt. Gesucht ist die Winkelverteilung der gestreuten Teilchen.
+
+Für kurzreichweitige Potentiale nimmt man an:
+\[
+    V(r)\to 0
+    \qquad (r\to\infty)
+\]
+hinreichend schnell. Dann sind einlaufende und auslaufende Teilchen asymptotisch frei.
+
+\begin{definitionbox}
+Die asymptotische Form eines Streuzustands lautet
+\[
+    \psi(\vec r)
+    \sim \e^{\ii kz}+f(\theta)\frac{\e^{\ii kr}}{r}
+    \qquad (r\to\infty).
+\]
+Der erste Term ist die einlaufende ebene Welle. Der zweite Term ist eine auslaufende Kugelwelle. Die Funktion \(f(\theta)\) heißt Streuamplitude.
+\end{definitionbox}
+
+Da das Potential rotationssymmetrisch ist, hängt \(f\) nur vom Streuwinkel \(\theta\) ab, nicht vom Azimutwinkel \(\varphi\).
+
+\section{Wirkungsquerschnitt}
+
+\subsection{Differentieller Wirkungsquerschnitt}
+
+Der differentielle Wirkungsquerschnitt misst, wie wahrscheinlich Streuung in einen bestimmten Raumwinkel \(\dd\Omega\) ist. In der Quantenmechanik gilt
+\begin{definitionbox}
+\[
+    \frac{\dd\sigma}{\dd\Omega}=|f(\theta)|^2.
+\]
+\end{definitionbox}
+
+\subsection{Totaler Wirkungsquerschnitt}
+
+Der totale Wirkungsquerschnitt ist das Integral über alle Streuwinkel:
+\[
+    \sigma=\int\dd\Omega\,\frac{\dd\sigma}{\dd\Omega}
+    =\int\dd\Omega\,|f(\theta)|^2.
+\]
+Für ein rotationssymmetrisches Problem ist
+\[
+    \dd\Omega=\sin\theta\,\dd\theta\,\dd\varphi,
+\]
+also
+\[
+    \sigma=2\pi\int_0^\pi\dd\theta\,\sin\theta\,|f(\theta)|^2.
+\]
+
+\begin{conceptbox}
+Der Wirkungsquerschnitt hat die Dimension einer Fläche. Klassisch kann man ihn sich als effektive Trefferfläche vorstellen. Quantenmechanisch enthält er Interferenz- und Wellenphänomene und ist daher nicht einfach eine geometrische Fläche.
+\end{conceptbox}
+
+\section{Partialwellenentwicklung}
+
+\subsection{Idee der Partialwellen}
+
+Bei einem Zentralpotential ist Drehimpuls erhalten. Deshalb zerlegt man den Streuzustand in Anteile mit festem Bahndrehimpuls \(l\). Diese Anteile heißen Partialwellen.
+
+Eine ebene Welle in \(z\)-Richtung kann nach Legendre-Polynomen entwickelt werden:
+\begin{formulabox}
+\[
+    \e^{\ii kr\cos\theta}
+    =\sum_{l=0}^{\infty}(2l+1)\ii^l j_l(kr)P_l(\cos\theta).
+\]
+Hier sind \(j_l\) die sphärischen Bessel-Funktionen und \(P_l\) die Legendre-Polynome.
+\end{formulabox}
+
+\subsection{Radiale Streuzustände}
+
+Für jede Partialwelle setzt man
+\[
+    \psi_{klm}(r,\theta,\varphi)
+    =\frac{P_{kl}(r)}{r}Y_l^m(\theta,\varphi).
+\]
+Die reduzierte Radialfunktion erfüllt
+\begin{formulabox}
+\[
+    P_{kl}''(r)+\left[k^2-\frac{2m}{\hbar^2}V(r)-\frac{l(l+1)}{r^2}\right]P_{kl}(r)=0,
+    \qquad
+    E=\frac{\hbar^2k^2}{2m}.
+\]
+\end{formulabox}
+
+Für \(r\) außerhalb des Potentialbereichs gilt \(V(r)=0\). Dann ist die Lösung eine Linearkombination aus freien radialen Lösungen. Asymptotisch schreibt man
+\begin{definitionbox}
+\[
+    P_{kl}(r)
+    \sim C_l\sin\left(kr-\frac{l\pi}{2}+\delta_l(k)\right)
+    \qquad (r\to\infty).
+\]
+Die Größe \(\delta_l(k)\) heißt Streuphase der \(l\)-ten Partialwelle.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ohne Potential hätte man asymptotisch
+\[
+    \sin\left(kr-\frac{l\pi}{2}\right).
+\]
+Das Potential verschiebt die Phase dieser stehenden Welle um \(\delta_l(k)\). Die ganze Streuinformation steckt bei Zentralpotentialen in den Streuphasen \(\delta_l(k)\).
+\end{conceptbox}
+
+\section{Streuamplitude und Streuphasen}
+
+\subsection{Partialwellenformel der Streuamplitude}
+
+Die Streuamplitude lautet in der Partialwellenentwicklung
+\begin{formulabox}
+\[
+    f(\theta)
+    =\frac{1}{k}\sum_{l=0}^{\infty}(2l+1)\e^{\ii\delta_l}\sin(\delta_l)P_l(\cos\theta).
+\]
+\end{formulabox}
+
+Damit folgt direkt
+\[
+    \frac{\dd\sigma}{\dd\Omega}
+    =\frac{1}{k^2}\left|\sum_{l=0}^{\infty}(2l+1)\e^{\ii\delta_l}\sin(\delta_l)P_l(\cos\theta)\right|^2.
+\]
+
+\subsection{Totaler Wirkungsquerschnitt}
+
+Aus der Orthogonalität der Legendre-Polynome folgt
+\begin{formulabox}
+\[
+    \sigma
+    =\frac{4\pi}{k^2}\sum_{l=0}^{\infty}(2l+1)\sin^2\delta_l(k).
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+In Aufgaben wird häufig zuerst die radiale Gleichung gelöst, dann aus der Anschlussbedingung die Streuphase \(\delta_l\) bestimmt und danach der Wirkungsquerschnitt mit
+\[
+    \sigma_l=\frac{4\pi}{k^2}(2l+1)\sin^2\delta_l
+\]
+berechnet.
+\end{examtipbox}
+
+\subsection{Optisches Theorem}
+
+Eine wichtige Beziehung ist das optische Theorem:
+\begin{formulabox}
+\[
+    \sigma=\frac{4\pi}{k}\operatorname{Im} f(0).
+\]
+\end{formulabox}
+
+\begin{notebox}
+Das optische Theorem verbindet den totalen Wirkungsquerschnitt mit der Vorwärtsstreuamplitude \(f(0)\). Es ist eine Konsequenz der Wahrscheinlichkeitserhaltung beziehungsweise der Unitarität der Streumatrix.
+\end{notebox}
+
+\section{s-Wellenstreuung}
+
+\subsection{Warum niedrige Energien von \texorpdfstring{\(l=0\)}{l=0} dominiert werden}
+
+Für kleine \(k\) haben Partialwellen mit höherem \(l\) wegen der Zentrifugalbarriere nur eine geringe Wahrscheinlichkeit, in den Potentialbereich einzudringen. Deshalb dominiert bei niedrigen Energien meist die \(l=0\)-Partialwelle.
+
+Für reine s-Wellenstreuung ist
+\[
+    P_0(\cos\theta)=1
+\]
+und daher
+\begin{formulabox}
+\[
+    f(\theta)=\frac{1}{k}\e^{\ii\delta_0}\sin\delta_0.
+\]
+\end{formulabox}
+Der differentielle Wirkungsquerschnitt ist isotrop:
+\begin{formulabox}
+\[
+    \frac{\dd\sigma}{\dd\Omega}=\frac{\sin^2\delta_0}{k^2}.
+\]
+\end{formulabox}
+Der totale Wirkungsquerschnitt ist
+\begin{formulabox}
+\[
+    \sigma=\frac{4\pi}{k^2}\sin^2\delta_0.
+\]
+\end{formulabox}
+
+\subsection{Streulänge}
+
+Für sehr kleine Energien schreibt man häufig
+\[
+    \delta_0(k)\sim -ka_s
+    \qquad (k\to 0),
+\]
+wobei \(a_s\) die Streulänge ist. Dann gilt
+\[
+    \sin^2\delta_0\sim k^2a_s^2
+\]
+und somit
+\begin{formulabox}
+\[
+    \sigma\sim 4\pi a_s^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die Streulänge ist ein Niedrigenergieparameter. Sie fasst die Wirkung des Potentials auf langsame Teilchen zusammen. Wenn \(|a_s|\) groß ist, kann der Wirkungsquerschnitt groß sein, auch wenn das Potential geometrisch klein ist.
+\end{conceptbox}
+
+\section{Beispiel: harte Kugel}
+
+\subsection{Potential und Randbedingung}
+
+Das Potential der harten Kugel ist
+\[
+    V(r)=
+    \begin{cases}
+        \infty, & r\le a,\\
+        0, & r>a.
+    \end{cases}
+\]
+Die Wellenfunktion muss im Bereich \(r\le a\) verschwinden. Für die reduzierte Radialfunktion gilt daher
+\[
+    P_l(a)=0.
+\]
+
+Außerhalb der Kugel ist das Teilchen frei. Die asymptotische beziehungsweise äußere Lösung kann mit sphärischen Bessel- und Neumann-Funktionen geschrieben werden:
+\[
+    P_l(r)=C_l\left[\hat j_l(kr)\cos\delta_l+\hat n_l(kr)\sin\delta_l\right]
+    \qquad (r>a),
+\]
+wobei \(\hat j_l(x)=xj_l(x)\) und \(\hat n_l(x)=xn_l(x)\) die Riccati-Bessel-Funktionen sind.
+
+Die Randbedingung liefert
+\begin{formulabox}
+\[
+    \tan\delta_l(k)=-\frac{\hat j_l(ka)}{\hat n_l(ka)}.
+\]
+\end{formulabox}
+
+\subsection{s-Welle der harten Kugel}
+
+Für \(l=0\) gilt
+\[
+    \hat j_0(x)=\sin x,
+    \qquad
+    \hat n_0(x)=-\cos x.
+\]
+Damit wird
+\[
+    \tan\delta_0=\tan(ka).
+\]
+Mit der physikalisch üblichen Wahl der stetigen Phase erhält man
+\begin{formulabox}
+\[
+    \delta_0(k)=-ka.
+\]
+\end{formulabox}
+Für kleine Energien folgt
+\[
+    \frac{\dd\sigma}{\dd\Omega}
+    =\frac{\sin^2(ka)}{k^2}\to a^2,
+\]
+und damit
+\begin{formulabox}
+\[
+    \sigma\to 4\pi a^2
+    \qquad (ka\ll 1).
+\]
+\end{formulabox}
+
+\begin{warningbox}
+Der quantenmechanische Niedrigenergie-Wirkungsquerschnitt der harten Kugel ist \(4\pi a^2\), also viermal die geometrische Querschnittsfläche \(\pi a^2\). Das ist kein Fehler, sondern eine Wellenerscheinung.
+\end{warningbox}
+
+\section{Beispiel: attraktives Kugel-Kastenpotential}
+
+\subsection{Definition}
+
+Ein wichtiges Standardbeispiel ist das attraktive Kugel-Kastenpotential
+\begin{definitionbox}
+\[
+    V(r)=
+    \begin{cases}
+        -V_0, & r\le a,\\
+        0, & r>a,
+    \end{cases}
+    \qquad V_0>0.
+\]
+\end{definitionbox}
+
+Dieses Potential ist einfach genug, um analytisch behandelt zu werden, zeigt aber bereits viele wichtige Effekte: gebundene Zustände, Streuphasen, Streuresonanzen und Ramsauer-Townsend-Transparenz.
+
+\section{s-Wellenstreuung am attraktiven Kugel-Kastenpotential}
+
+Für \(l=0\) und \(E>0\) gilt
+\[
+    E=\frac{\hbar^2k^2}{2m}.
+\]
+Im Inneren des Potentialtopfs ist die kinetische Energie um \(V_0\) größer. Wir definieren
+\[
+    K:=\sqrt{k^2+\frac{2mV_0}{\hbar^2}}.
+\]
+Die reguläre Lösung ist
+\[
+    P_0(r)=
+    \begin{cases}
+        A\sin(Kr), & r\le a,\\
+        B\sin(kr+\delta_0), & r>a.
+    \end{cases}
+\]
+Die Randbedingungen bei \(r=a\) sind Stetigkeit von \(P_0\) und \(P_0'\):
+\[
+    A\sin(Ka)=B\sin(ka+\delta_0),
+\]
+\[
+    AK\cos(Ka)=Bk\cos(ka+\delta_0).
+\]
+Durch Division erhält man
+\[
+    K\cot(Ka)=k\cot(ka+\delta_0).
+\]
+Äquivalent kann man schreiben
+\begin{formulabox}
+\[
+    \tan(ka+\delta_0)=\frac{k}{K}\tan(Ka).
+\]
+\end{formulabox}
+Daraus folgt
+\begin{formulabox}
+\[
+    \delta_0(k)=-ka+\arctan\left(\frac{k}{K}\tan(Ka)\right)
+\]
+bis auf ganzzahlige Vielfache von \(\pi\), abhängig von der gewählten stetigen Phasenkonvention.
+\end{formulabox}
+
+\begin{examtipbox}
+Der typische Rechenweg bei dieser Aufgabe ist:
+\begin{enumerate}
+    \item Radialgleichung innen und außen aufstellen.
+    \item Reguläre Lösung innen wählen: \(\sin(Kr)\), nicht \(\cos(Kr)\), weil \(P_0(0)=0\).
+    \item Außenlösung als \(\sin(kr+\delta_0)\) schreiben.
+    \item Logarithmische Ableitungen bei \(r=a\) gleichsetzen.
+    \item Daraus \(\delta_0\) bestimmen.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Niedrigenergiegrenze und Streulänge beim Kastenpotential}
+
+Für \(k\to 0\) gilt
+\[
+    K\to K_0:=\sqrt{\frac{2mV_0}{\hbar^2}}.
+\]
+Die Streulänge des attraktiven Kugel-Kastenpotentials lautet
+\begin{formulabox}
+\[
+    a_s=a\left(1-\frac{\tan(K_0a)}{K_0a}\right).
+\]
+\end{formulabox}
+Dann gilt bei kleinen Energien
+\[
+    \delta_0(k)\sim -ka_s,
+    \qquad
+    \sigma\sim 4\pi a_s^2.
+\]
+
+\begin{conceptbox}
+Die Streulänge divergiert, wenn
+\[
+    K_0a=\frac{\pi}{2},\frac{3\pi}{2},\frac{5\pi}{2},\dots
+\]
+gilt. Genau dann entsteht an der Schwelle \(E=0\) ein neuer gebundener Zustand. Eine solche Schwellenbedingung ist eng mit Streuresonanzen verbunden.
+\end{conceptbox}
+
+\section{Gebundene s-Zustände im Kugel-Kastenpotential}
+
+\subsection{Ansatz für \texorpdfstring{\(E<0\)}{E<0}}
+
+Für gebundene Zustände gilt \(E<0\). Wir definieren
+\[
+    \rho:=\frac{\sqrt{-2mE}}{\hbar}>0,
+    \qquad
+    K:=\frac{\sqrt{2m(V_0+E)}}{\hbar}.
+\]
+Dabei muss für oszillatorische Lösungen im Inneren \(V_0+E>0\) gelten.
+
+Für \(l=0\) lautet die Lösung
+\begin{formulabox}
+\[
+    P_0(r)=
+    \begin{cases}
+        A\sin(Kr), & r\le a,\\
+        B\e^{-\rho r}, & r>a.
+    \end{cases}
+\]
+\end{formulabox}
+Die innere Lösung erfüllt \(P_0(0)=0\). Die äußere Lösung fällt exponentiell ab und ist daher normierbar.
+
+\subsection{Eigenwertbedingung}
+
+Aus Stetigkeit bei \(r=a\) folgt
+\[
+    A\sin(Ka)=B\e^{-\rho a}.
+\]
+Aus Stetigkeit der Ableitung folgt
+\[
+    AK\cos(Ka)=-\rho B\e^{-\rho a}.
+\]
+Division liefert
+\[
+    K\cot(Ka)=-\rho.
+\]
+Äquivalent:
+\begin{formulabox}
+\[
+    \tan(Ka)=-\frac{K}{\rho}.
+\]
+\end{formulabox}
+Zusätzlich gilt wegen der Definitionen
+\[
+    K^2+\rho^2=\frac{2mV_0}{\hbar^2}=:K_0^2.
+\]
+
+\begin{conceptbox}
+Die Gleichung
+\[
+    K\cot(Ka)=-\rho
+\]
+ist eine transzendente Eigenwertgleichung. Man löst sie im Allgemeinen grafisch oder numerisch. Nur für bestimmte Potentialtiefen existieren Lösungen. Ist der Topf zu flach, gibt es keinen gebundenen s-Zustand.
+\end{conceptbox}
+
+\subsection{Schwellenbedingung}
+
+Ein neuer gebundener Zustand entsteht an der Schwelle \(E\to0^-\), also \(\rho\to0^+\). Dann wird
+\[
+    K\cot(Ka)=0.
+\]
+Für \(K\neq0\) bedeutet das
+\[
+    \cot(Ka)=0
+    \quad\Longleftrightarrow\quad
+    Ka=\frac{\pi}{2},\frac{3\pi}{2},\frac{5\pi}{2},\dots
+\]
+Da an der Schwelle \(K=K_0\) ist, gilt
+\begin{formulabox}
+\[
+    K_0a=\left(n+\frac12\right)\pi,
+    \qquad n=0,1,2,\dots
+\]
+\end{formulabox}
+Dies ist dieselbe Bedingung, bei der die Streulänge divergiert.
+
+\section{Streuresonanzen}
+
+\subsection{Was ist eine Streuresonanz?}
+
+Eine Streuresonanz tritt auf, wenn die Streuung bei einer bestimmten Energie besonders stark wird. In der Partialwellenbeschreibung bedeutet das, dass eine Streuphase schnell durch den Wert
+\[
+    \delta_l\approx\frac{\pi}{2}
+\]
+läuft. Dann ist
+\[
+    \sin^2\delta_l\approx1
+\]
+und der Beitrag dieser Partialwelle zum Wirkungsquerschnitt wird maximal:
+\[
+    \sigma_l\approx\frac{4\pi}{k^2}(2l+1).
+\]
+
+\begin{conceptbox}
+Eine Streuresonanz kann man sich als quasi-gebundenen Zustand vorstellen. Das Teilchen wird für eine gewisse Zeit im Potentialbereich eingefangen und danach wieder ausgesendet. Mathematisch zeigt sich das als starke Energieabhängigkeit der Streuphase.
+\end{conceptbox}
+
+\subsection{Zusammenhang mit gebundenen Zuständen}
+
+Wenn ein Potentialtopf tiefer gemacht wird, können neue gebundene Zustände entstehen. Kurz bevor ein gebundener Zustand wirklich unter die Schwelle \(E=0\) fällt, kann er als Resonanz im Streukontinuum sichtbar werden. Besonders deutlich ist dieser Zusammenhang in der s-Wellenstreuung über die Divergenz der Streulänge.
+
+\begin{notebox}
+Bei \(l>0\) spielt zusätzlich die Zentrifugalbarriere eine wichtige Rolle. Sie kann quasi-gebundene Zustände stabilisieren, weil sie das Entweichen aus dem Inneren des Potentials behindert. Deshalb treten Resonanzen bei höheren Partialwellen oft besonders anschaulich auf.
+\end{notebox}
+
+\section{Ramsauer-Townsend-Transparenz}
+
+Bei bestimmten Parametern kann ein attraktives Potential bei niedriger Energie fast transparent werden. Das bedeutet: Der Wirkungsquerschnitt verschwindet oder wird sehr klein. In der s-Wellen-Näherung geschieht das, wenn
+\[
+    \delta_0(k)\approx0
+\]
+und daher
+\[
+    \sigma\approx0.
+\]
+Für das Kugel-Kastenpotential ist die Niedrigenergie-Streuung klein, wenn die Streulänge verschwindet:
+\[
+    a_s=0.
+\]
+Mit
+\[
+    a_s=a\left(1-\frac{\tan(K_0a)}{K_0a}\right)
+\]
+folgt die Bedingung
+\begin{formulabox}
+\[
+    \tan(K_0a)=K_0a.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Ramsauer-Townsend-Transparenz ist ein Interferenzeffekt. Das Potential ist nicht null, aber die auslaufenden Beiträge interferieren so, dass die Streuamplitude verschwindet oder stark unterdrückt wird.
+\end{conceptbox}
+
+\section{Vergleich: gebundene Zustände vs. Streuzustände}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Eigenschaft & Gebundener Zustand & Streuzustand \\
+\midrule
+Energie & diskret, meist \(E<0\) & kontinuierlich, \(E>0\) \\
+Normierung & \(\int |\psi|^2\dd^3r=1\) & Delta-Normierung / Flussnormierung \\
+Asymptotik & exponentiell abfallend & oszillierend \\
+Physik & Teilchen bleibt lokalisiert & Teilchen kommt rein und geht raus \\
+Radialfunktion & \(P_l\sim \e^{-\rho r}\) & \(P_l\sim \sin(kr-l\pi/2+\delta_l)\) \\
+Information & Eigenenergie & Streuphase \(\delta_l\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Typische Rechenmuster}
+
+\subsection{Muster 1: Radialgleichung aufstellen}
+
+\begin{derivationbox}
+Ausgangspunkt:
+\[
+    H=-\frac{\hbar^2}{2m}\Delta+V(r).
+\]
+Mit
+\[
+    \Delta=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)-\frac{\vec L^{\,2}}{\hbar^2r^2}
+\]
+und
+\[
+    \psi=\frac{P_l(r)}{r}Y_l^m(\theta,\varphi)
+\]
+erhält man
+\[
+    P_l''(r)+\left[\frac{2m}{\hbar^2}(E-V(r))-\frac{l(l+1)}{r^2}\right]P_l(r)=0.
+\]
+\end{derivationbox}
+
+\subsection{Muster 2: Streuphase aus Anschlussbedingungen bestimmen}
+
+\begin{derivationbox}
+Für ein Potential endlicher Reichweite \(a\) löst man innen und außen getrennt. Für s-Wellenstreuung schreibt man häufig
+\[
+    P_0^{\mathrm{innen}}(r)=A\sin(Kr),
+    \qquad
+    P_0^{\mathrm{außen}}(r)=B\sin(kr+\delta_0).
+\]
+Dann verwendet man
+\[
+    \frac{P_0'(a^-)}{P_0(a^-)}=\frac{P_0'(a^+)}{P_0(a^+)}.
+\]
+Das ergibt
+\[
+    K\cot(Ka)=k\cot(ka+\delta_0),
+\]
+und daraus folgt \(\delta_0\).
+\end{derivationbox}
+
+\subsection{Muster 3: Wirkungsquerschnitt berechnen}
+
+\begin{derivationbox}
+Wenn alle Streuphasen bekannt sind, gilt
+\[
+    \sigma=\frac{4\pi}{k^2}\sum_{l=0}^{\infty}(2l+1)\sin^2\delta_l.
+\]
+Wenn nur die s-Welle wichtig ist, dann reduziert sich das auf
+\[
+    \sigma=\frac{4\pi}{k^2}\sin^2\delta_0.
+\]
+Für \(\delta_0\sim -ka_s\) folgt
+\[
+    \sigma\sim 4\pi a_s^2.
+\]
+\end{derivationbox}
+
+\section{Häufige Fehler}
+
+\begin{warningbox}
+\begin{itemize}
+    \item Nicht \(R_l(r)\) und \(P_l(r)=rR_l(r)\) verwechseln. Die einfache eindimensionale Radialgleichung gilt für \(P_l\), nicht direkt für \(R_l\).
+    \item Bei \(r=0\) muss \(P_l(0)=0\) gelten. Für \(l=0\) ist daher innen \(\sin(Kr)\) regulär, während \(\cos(Kr)\) für \(P_0\) am Ursprung nicht passt.
+    \item Die Zentrifugalbarriere \(\hbar^2l(l+1)/(2mr^2)\) nicht vergessen.
+    \item Streuzustände nicht wie gebundene Zustände auf \(1\) normieren. Sie sind nicht quadratintegrierbar.
+    \item Die Streuphase ist nur modulo \(\pi\) eindeutig. Physikalisch relevant sind Größen wie \(\sin^2\delta_l\) oder die stetige Energieabhängigkeit.
+    \item Bei niedriger Energie dominiert meistens \(l=0\), aber bei speziellen Resonanzen können höhere Partialwellen wichtig werden.
+\end{itemize}
+\end{warningbox}
+
+\section{Prüfungsrelevante Kurzfragen}
+
+\begin{examtipbox}
+\textbf{Warum kann man bei Zentralpotentialen separieren?}
+
+Weil \(V(r)\) rotationssymmetrisch ist und daher \([H,\vec L^{\,2}]=[H,L_z]=0\) gilt. Die Winkelabhängigkeit wird durch \(Y_l^m\) beschrieben, die Radialabhängigkeit durch eine radiale Schrödingergleichung.
+\end{examtipbox}
+
+\begin{examtipbox}
+\textbf{Was ist die physikalische Bedeutung der Streuphase?}
+
+Die Streuphase \(\delta_l(k)\) misst, wie stark die \(l\)-te Partialwelle gegenüber der freien radialen Welle phasenverschoben wird. Aus allen Streuphasen erhält man die Streuamplitude und den Wirkungsquerschnitt.
+\end{examtipbox}
+
+\begin{examtipbox}
+\textbf{Warum ist s-Wellenstreuung bei kleinen Energien wichtig?}
+
+Für \(l>0\) verhindert die Zentrifugalbarriere, dass langsame Teilchen den Potentialbereich erreichen. Deshalb ist bei \(ka\ll1\) meistens \(l=0\) dominant, und die Streuung ist isotrop.
+\end{examtipbox}
+
+\begin{examtipbox}
+\textbf{Was ist eine Streuresonanz?}
+
+Eine Streuresonanz liegt vor, wenn eine Partialwelle bei einer bestimmten Energie besonders stark streut. Typisch ist \(\delta_l\approx\pi/2\), sodass \(\sin^2\delta_l\approx1\) und der partielle Wirkungsquerschnitt groß wird.
+\end{examtipbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{answerbox}
+Für ein Zentralpotential
+\[
+    H=-\frac{\hbar^2}{2m}\Delta+V(r)
+\]
+kommutiert \(H\) mit \(\vec L^{\,2}\) und \(L_z\). Daher setzt man
+\[
+    \psi_{Elm}(r,\theta,\varphi)=\frac{P_l(r)}{r}Y_l^m(\theta,\varphi).
+\]
+Die reduzierte Radialfunktion erfüllt
+\[
+    P_l''(r)+\left[\frac{2m}{\hbar^2}(E-V(r))-\frac{l(l+1)}{r^2}\right]P_l(r)=0.
+\]
+Für Streuzustände mit \(E=\hbar^2k^2/(2m)>0\) ist asymptotisch
+\[
+    P_l(r)\sim \sin\left(kr-\frac{l\pi}{2}+\delta_l(k)\right).
+\]
+Die Streuphasen bestimmen die Streuamplitude
+\[
+    f(\theta)=\frac{1}{k}\sum_{l=0}^{\infty}(2l+1)\e^{\ii\delta_l}\sin\delta_l P_l(\cos\theta)
+\]
+und den totalen Wirkungsquerschnitt
+\[
+    \sigma=\frac{4\pi}{k^2}\sum_{l=0}^{\infty}(2l+1)\sin^2\delta_l.
+\]
+Bei niedriger Energie dominiert meist die s-Welle:
+\[
+    \sigma\approx\frac{4\pi}{k^2}\sin^2\delta_0\approx4\pi a_s^2.
+\]
+\end{answerbox}

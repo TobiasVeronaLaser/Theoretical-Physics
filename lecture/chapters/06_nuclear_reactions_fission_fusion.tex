@@ -1,0 +1,926 @@
+\chapter{Kernreaktionen, Spaltung und Fusion}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt Kernreaktionen.
+Eine Kernreaktion ist ein Prozess, bei dem ein Projektil mit einem Kern wechselwirkt
+und dadurch neue Kerne, Teilchen oder angeregte Zustaende entstehen.
+
+Im Zentrum stehen:
+\begin{itemize}
+    \item Reaktionsgleichungen,
+    \item Erhaltungssaetze,
+    \item Q-Werte,
+    \item Schwellenenergien,
+    \item Wirkungsquerschnitte,
+    \item Kernspaltung,
+    \item Kettenreaktionen,
+    \item Kernfusion,
+    \item Energieerzeugung in Sternen,
+    \item Bragg-Peak und Energieverlust in Materie.
+\end{itemize}
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item Kernreaktionen,
+    \item Q-Wert,
+    \item Reaktionsenergie,
+    \item Schwellenenergie,
+    \item Wirkungsquerschnitt,
+    \item Compound-Kern,
+    \item Spaltung,
+    \item induzierte Spaltung,
+    \item spontane Spaltung,
+    \item Kettenreaktion,
+    \item kritische Masse,
+    \item Kernfusion,
+    \item Coulomb-Barriere,
+    \item Tunneleffekt,
+    \item Proton-Proton-Kette,
+    \item CNO-Zyklus,
+    \item Bragg-Peak.
+\end{itemize}
+\end{notebox}
+
+\section{Was ist eine Kernreaktion?}
+
+\begin{definitionbox}
+Eine \emph{Kernreaktion} ist eine Wechselwirkung, bei der ein Atomkern durch ein
+einfallendes Teilchen oder einen anderen Kern veraendert wird.
+\end{definitionbox}
+
+\begin{conceptbox}
+Bei einer Kernreaktion koennen verschiedene Dinge passieren:
+\begin{itemize}
+    \item ein Kern wird angeregt,
+    \item ein Teilchen wird elastisch gestreut,
+    \item ein Teilchen wird inelastisch gestreut,
+    \item ein Teilchen wird eingefangen,
+    \item ein Kern wird gespalten,
+    \item zwei Kerne verschmelzen,
+    \item neue Teilchen werden erzeugt.
+\end{itemize}
+\end{conceptbox}
+
+\begin{formulabox}
+Eine typische Kernreaktion schreibt man als
+\[
+    a + A \rightarrow b + B.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $a$ das einfallende Projektil,
+    \item $A$ der Targetkern,
+    \item $b$ ein auslaufendes Teilchen,
+    \item $B$ der Restkern beziehungsweise Produktkern.
+\end{itemize}
+\end{formulabox}
+
+\begin{notebox}
+Man verwendet auch die Kurzschreibweise:
+\[
+    A(a,b)B.
+\]
+Diese bedeutet dasselbe wie:
+\[
+    a + A \rightarrow b + B.
+\]
+\end{notebox}
+
+\begin{examplebox}
+Die Reaktion
+\[
+    {}^{14}\mathrm{N}(\alpha,p){}^{17}\mathrm{O}
+\]
+bedeutet ausgeschrieben:
+\[
+    \alpha + {}^{14}\mathrm{N}
+    \rightarrow
+    p + {}^{17}\mathrm{O}.
+\]
+Ein Alpha-Teilchen trifft auf Stickstoff-14.
+Am Ende entstehen ein Proton und Sauerstoff-17.
+\end{examplebox}
+
+\section{Erhaltungssaetze bei Kernreaktionen}
+
+Kernreaktionen muessen grundlegende Erhaltungssaetze erfuellen.
+
+\begin{notebox}
+Wichtige Erhaltungsgroessen sind:
+\begin{itemize}
+    \item elektrische Ladung,
+    \item Nukleonenzahl beziehungsweise Baryonenzahl,
+    \item Energie,
+    \item Impuls,
+    \item Drehimpuls,
+    \item Paritaet, falls die Wechselwirkung sie erhaelt.
+\end{itemize}
+\end{notebox}
+
+\begin{conceptbox}
+In einfachen kernphysikalischen Reaktionsgleichungen prueft man zuerst:
+\[
+    A_{\mathrm{links}} = A_{\mathrm{rechts}},
+\]
+\[
+    Z_{\mathrm{links}} = Z_{\mathrm{rechts}}.
+\]
+
+Das bedeutet:
+Massenzahl und Ladungszahl muessen erhalten sein.
+\end{conceptbox}
+
+\begin{examplebox}
+Betrachte:
+\[
+    {}^{2}_{1}\mathrm{H}
+    +
+    {}^{3}_{1}\mathrm{H}
+    \rightarrow
+    {}^{4}_{2}\mathrm{He}
+    +
+    n.
+\]
+
+Massenzahlen:
+\[
+    2+3 = 4+1.
+\]
+
+Protonenzahlen:
+\[
+    1+1 = 2+0.
+\]
+
+Die Reaktion erhaelt also Massenzahl und elektrische Ladung.
+\end{examplebox}
+
+\begin{examtipbox}
+Bei jeder Kernreaktion zuerst kontrollieren:
+\begin{itemize}
+    \item Ist die Summe der Massenzahlen $A$ erhalten?
+    \item Ist die Summe der Protonenzahlen $Z$ erhalten?
+    \item Ist der Q-Wert positiv oder negativ?
+\end{itemize}
+\end{examtipbox}
+
+\section{Q-Wert einer Kernreaktion}
+
+Der Q-Wert beschreibt, ob bei einer Kernreaktion Energie frei wird oder Energie
+zugefuehrt werden muss.
+
+\begin{definitionbox}
+Der \emph{Q-Wert} einer Kernreaktion ist die Differenz der Ruheenergien vor und
+nach der Reaktion:
+\[
+    Q =
+    \left(
+        m_{\mathrm{Anfang}} - m_{\mathrm{Ende}}
+    \right)c^2.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+Fuer
+\[
+    a + A \rightarrow b + B
+\]
+gilt:
+\[
+    Q =
+    \left(
+        m_a + m_A - m_b - m_B
+    \right)c^2.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Wenn
+\[
+    Q>0
+\]
+ist, wird Energie frei.
+Die Reaktion ist exoenergetisch.
+
+Wenn
+\[
+    Q<0
+\]
+ist, muss Energie zugefuehrt werden.
+Die Reaktion ist endoenergetisch.
+\end{conceptbox}
+
+\begin{examtipbox}
+Ein positiver Q-Wert bedeutet nicht automatisch, dass die Reaktion bei beliebig
+kleiner Projektilenergie schnell ablaeuft.
+
+Auch bei positivem Q-Wert koennen Coulomb-Barrieren, Drehimpulsbarrieren oder kleine
+Wirkungsquerschnitte die Reaktion stark behindern.
+\end{examtipbox}
+
+\section{Schwellenenergie}
+
+Wenn eine Reaktion einen negativen Q-Wert hat, muss mindestens eine bestimmte
+kinetische Energie zugefuehrt werden.
+
+\begin{definitionbox}
+Die \emph{Schwellenenergie} ist die minimale Projektilenergie, die noetig ist,
+damit eine endoenergetische Reaktion ablaufen kann.
+\end{definitionbox}
+
+\begin{conceptbox}
+Wenn
+\[
+    Q<0
+\]
+ist, muss mindestens die Energie
+\[
+    |Q|
+\]
+in die Reaktion eingebracht werden.
+
+Im Laborsystem ist die notwendige Projektilenergie meist groesser als $|Q|$,
+weil Impuls erhalten bleiben muss und ein Teil der Energie in Bewegung des
+Schwerpunktsystems steckt.
+\end{conceptbox}
+
+\begin{formulabox}
+Fuer eine Reaktion
+\[
+    a + A \rightarrow b + B
+\]
+mit ruhendem Target $A$ ist die Schwellenenergie im nichtrelativistischen Grenzfall
+naeherungsweise:
+\[
+    E_{\mathrm{thr}}
+    \approx
+    -Q
+    \left(
+        1+\frac{m_a}{m_A}
+    \right)
+\]
+fuer $Q<0$.
+\end{formulabox}
+
+\begin{notebox}
+Die genaue Schwellenenergie folgt aus relativistischer Energie- und Impulserhaltung.
+Die obige Formel ist eine nuetzliche Naeherung fuer viele kernphysikalische Aufgaben.
+\end{notebox}
+
+\section{Wirkungsquerschnitt von Kernreaktionen}
+
+Wie wahrscheinlich eine Kernreaktion ist, wird durch den Wirkungsquerschnitt
+beschrieben.
+
+\begin{definitionbox}
+Der \emph{Wirkungsquerschnitt} $\sigma$ ist ein Mass fuer die Wahrscheinlichkeit,
+dass eine bestimmte Reaktion stattfindet.
+\end{definitionbox}
+
+\begin{conceptbox}
+Der Wirkungsquerschnitt haengt im Allgemeinen ab von:
+\begin{itemize}
+    \item der Energie des Projektils,
+    \item der Art des Projektils,
+    \item dem Targetkern,
+    \item der Wechselwirkung,
+    \item moeglichen Resonanzen,
+    \item Drehimpuls- und Paritaetsauswahlregeln.
+\end{itemize}
+\end{conceptbox}
+
+\begin{formulabox}
+Die Reaktionsrate ist grob proportional zu:
+\[
+    R \propto \Phi \, N_{\mathrm{Target}} \, \sigma.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $\Phi$ der Teilchenfluss,
+    \item $N_{\mathrm{Target}}$ die Zahl der Targetkerne,
+    \item $\sigma$ der Wirkungsquerschnitt.
+\end{itemize}
+\end{formulabox}
+
+\begin{examtipbox}
+Ein grosser Q-Wert bedeutet nicht automatisch einen grossen Wirkungsquerschnitt.
+
+Der Q-Wert sagt etwas ueber die Energiebilanz.
+Der Wirkungsquerschnitt sagt etwas ueber die Wahrscheinlichkeit des Prozesses.
+\end{examtipbox}
+
+\section{Compound-Kern}
+
+Viele Kernreaktionen laufen ueber einen Zwischenzustand ab.
+Diesen Zwischenzustand nennt man Compound-Kern.
+
+\begin{definitionbox}
+Ein \emph{Compound-Kern} ist ein angeregter Zwischenkern, der entsteht, wenn ein
+Projektil vom Targetkern eingefangen wird.
+\end{definitionbox}
+
+\begin{formulabox}
+Schematisch:
+\[
+    a + A \rightarrow C^* \rightarrow b + B.
+\]
+Dabei ist $C^*$ der angeregte Compound-Kern.
+\end{formulabox}
+
+\begin{conceptbox}
+Die Energie des einfallenden Projektils verteilt sich im Compound-Kern auf viele
+Nukleonen.
+
+Der Compound-Kern verliert anschliessend Energie durch:
+\begin{itemize}
+    \item Aussenden eines Teilchens,
+    \item Gamma-Emission,
+    \item Spaltung.
+\end{itemize}
+\end{conceptbox}
+
+\section{Kernspaltung}
+
+Bei der Kernspaltung zerfaellt ein schwerer Kern in zwei mittelschwere Fragmente.
+
+\begin{definitionbox}
+\emph{Kernspaltung} ist die Aufteilung eines schweren Atomkerns in zwei leichtere
+Kerne, meist begleitet von der Emission mehrerer Neutronen und Gamma-Strahlung.
+\end{definitionbox}
+
+\begin{conceptbox}
+Kernspaltung ist energetisch moeglich, weil sehr schwere Kerne eine kleinere
+Bindungsenergie pro Nukleon besitzen als mittelschwere Kerne.
+
+Wenn ein schwerer Kern in mittelschwere Fragmente zerfaellt, steigt die
+Bindungsenergie pro Nukleon.
+Die Differenz wird als Energie frei.
+\end{conceptbox}
+
+\begin{formulabox}
+Schematisch:
+\[
+    {}^{A}_{Z}X
+    \rightarrow
+    {}^{A_1}_{Z_1}Y
+    +
+    {}^{A_2}_{Z_2}W
+    +
+    k n
+    +
+    Q.
+\]
+Dabei gilt:
+\[
+    A=A_1+A_2+k,
+\]
+\[
+    Z=Z_1+Z_2.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Bei Spaltungsreaktionen immer beachten:
+\begin{itemize}
+    \item Massenzahl bleibt insgesamt erhalten.
+    \item Ladungszahl bleibt erhalten.
+    \item Mehrere Neutronen koennen frei werden.
+    \item Der Q-Wert ist bei schweren Kernen typischerweise positiv.
+\end{itemize}
+\end{examtipbox}
+
+\section{Induzierte Spaltung}
+
+Viele schwere Kerne koennen durch Neutroneneinfang zur Spaltung angeregt werden.
+
+\begin{definitionbox}
+Bei der \emph{induzierten Spaltung} wird ein schwerer Kern durch ein einfallendes
+Teilchen, meist ein Neutron, zur Spaltung gebracht.
+\end{definitionbox}
+
+\begin{examplebox}
+Ein klassisches Beispiel ist:
+\[
+    n + {}^{235}_{92}\mathrm{U}
+    \rightarrow
+    {}^{236}_{92}\mathrm{U}^{*}
+    \rightarrow
+    \text{Spaltfragmente}
+    + \text{Neutronen}
+    + Q.
+\]
+Das Neutron wird eingefangen.
+Es entsteht ein angeregter Compound-Kern ${}^{236}\mathrm{U}^{*}$, der spalten kann.
+\end{examplebox}
+
+\begin{conceptbox}
+Neutronen sind als Projektile fuer Spaltung besonders effektiv, weil sie keine
+elektrische Ladung besitzen.
+Sie muessen daher keine Coulomb-Barriere ueberwinden.
+\end{conceptbox}
+
+\section{Spontane Spaltung}
+
+\begin{definitionbox}
+Bei der \emph{spontanen Spaltung} spaltet ein schwerer Kern ohne ein einfallendes
+Projektil.
+\end{definitionbox}
+
+\begin{conceptbox}
+Spontane Spaltung ist ein quantenmechanischer Prozess.
+Der Kern kann durch eine Spaltbarriere tunneln.
+
+Sie wird besonders relevant bei sehr schweren Kernen, bei denen die Coulomb-Abstossung
+gross ist.
+\end{conceptbox}
+
+\begin{notebox}
+In der Nuklidkarte werden bei sehr schweren Kernen Zerfallstypen wie Alpha-Zerfall
+und spontane Spaltung markiert.
+Die Konkurrenz dieser Zerfallsarten ist wichtig fuer superschwere Elemente.
+\end{notebox}
+
+\section{Kettenreaktion}
+
+Bei einer Spaltung werden Neutronen frei.
+Diese Neutronen koennen weitere Spaltungen ausloesen.
+
+\begin{definitionbox}
+Eine \emph{Kettenreaktion} ist eine Folge von Spaltungen, bei der die bei einer
+Spaltung frei werdenden Neutronen weitere Spaltungen ausloesen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Wenn im Mittel weniger als ein Neutron pro Spaltung eine weitere Spaltung ausloest,
+stirbt die Kettenreaktion ab.
+
+Wenn im Mittel genau ein Neutron pro Spaltung eine weitere Spaltung ausloest,
+ist die Reaktion kritisch.
+
+Wenn im Mittel mehr als ein Neutron pro Spaltung eine weitere Spaltung ausloest,
+waechst die Reaktion an.
+\end{conceptbox}
+
+\begin{definitionbox}
+Der \emph{Multiplikationsfaktor} $k$ beschreibt, wie viele Neutronen einer Generation
+im Mittel zur naechsten Generation beitragen.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    k<1
+    \quad\Rightarrow\quad
+    \text{unterkritisch}.
+\]
+\[
+    k=1
+    \quad\Rightarrow\quad
+    \text{kritisch}.
+\]
+\[
+    k>1
+    \quad\Rightarrow\quad
+    \text{ueberkritisch}.
+\]
+\end{formulabox}
+
+\section{Kritische Masse und Moderation}
+
+\begin{definitionbox}
+Die \emph{kritische Masse} ist die minimale Masse eines spaltbaren Materials,
+bei der eine selbsterhaltende Kettenreaktion moeglich ist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ob eine Kettenreaktion erhalten bleibt, haengt nicht nur von der Masse ab.
+Wichtig sind auch:
+\begin{itemize}
+    \item Form des Materials,
+    \item Dichte,
+    \item Neutronenverluste nach aussen,
+    \item Neutronenabsorption,
+    \item Energie der Neutronen,
+    \item Moderation.
+\end{itemize}
+\end{conceptbox}
+
+\begin{definitionbox}
+Ein \emph{Moderator} ist ein Material, das schnelle Neutronen abbremst.
+\end{definitionbox}
+
+\begin{conceptbox}
+Bei manchen spaltbaren Materialien ist die Spaltwahrscheinlichkeit fuer langsame
+Neutronen groesser als fuer schnelle Neutronen.
+
+Ein Moderator kann daher die Kettenreaktion beguenstigen, indem er Neutronen abbremst.
+\end{conceptbox}
+
+\section{Verzoegerte Neutronen}
+
+\begin{definitionbox}
+\emph{Verzoegerte Neutronen} sind Neutronen, die nicht direkt bei der Spaltung,
+sondern erst beim radioaktiven Zerfall bestimmter Spaltprodukte entstehen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Verzoegerte Neutronen sind fuer die Steuerung von Kernreaktoren sehr wichtig.
+
+Ohne verzoegerte Neutronen wuerde sich die Neutronenzahl extrem schnell aendern.
+Mit verzoegerten Neutronen wird die Reaktordynamik langsamer und kontrollierbarer.
+\end{conceptbox}
+
+\begin{examtipbox}
+Pruefungsrelevanter Merksatz:
+Verzoegerte Neutronen sind entscheidend fuer die technische Kontrollierbarkeit eines
+Kernreaktors.
+\end{examtipbox}
+
+\section{Energie bei der Spaltung}
+
+\begin{conceptbox}
+Die Energie aus der Spaltung stammt aus dem Massendefekt.
+Die Spaltprodukte sind insgesamt staerker gebunden als der urspruengliche schwere
+Kern.
+
+Die freiwerdende Energie erscheint hauptsaechlich als:
+\begin{itemize}
+    \item kinetische Energie der Spaltfragmente,
+    \item kinetische Energie der Neutronen,
+    \item Gamma-Strahlung,
+    \item Beta-Zerfallsenergie der Spaltprodukte,
+    \item Neutrinoenergie.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Ein typischer Richtwert fuer die freiwerdende Energie pro Spaltung eines schweren
+Kerns ist etwa
+\[
+    \SI{200}{MeV}.
+\]
+Der genaue Wert haengt vom spaltenden Kern und den Spaltfragmenten ab.
+\end{notebox}
+
+\section{Kernfusion}
+
+Bei der Kernfusion verschmelzen leichte Kerne zu einem schwereren Kern.
+
+\begin{definitionbox}
+\emph{Kernfusion} ist die Verschmelzung leichter Atomkerne zu einem schwereren Kern.
+\end{definitionbox}
+
+\begin{conceptbox}
+Fusion leichter Kerne setzt Energie frei, weil die Bindungsenergie pro Nukleon
+bei leichten Kernen mit wachsender Massenzahl stark zunimmt.
+
+Die Produkte sind staerker gebunden als die Ausgangskerne.
+Die Massendifferenz wird als Energie frei.
+\end{conceptbox}
+
+\begin{examplebox}
+Eine wichtige Fusionsreaktion ist:
+\[
+    {}^{2}_{1}\mathrm{H}
+    +
+    {}^{3}_{1}\mathrm{H}
+    \rightarrow
+    {}^{4}_{2}\mathrm{He}
+    +
+    n
+    +
+    Q.
+\]
+Diese Reaktion ist die Deuterium-Tritium-Fusion.
+\end{examplebox}
+
+\section{Coulomb-Barriere bei der Fusion}
+
+Kerne sind positiv geladen.
+Damit zwei Kerne fusionieren koennen, muessen sie sich sehr nahe kommen.
+Dabei muessen sie die elektrische Abstossung ueberwinden.
+
+\begin{definitionbox}
+Die \emph{Coulomb-Barriere} ist die Energiebarriere, die durch die elektrische
+Abstossung zweier positiv geladener Kerne entsteht.
+\end{definitionbox}
+
+\begin{formulabox}
+Fuer zwei Kerne mit Ladungen $Z_1e$ und $Z_2e$ ist das Coulomb-Potential
+naeherungsweise:
+\[
+    V_C(r)
+    =
+    \frac{1}{4\pi\varepsilon_0}
+    \frac{Z_1Z_2e^2}{r}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Klassisch muessten die Kerne genug kinetische Energie besitzen, um die Coulomb-Barriere
+zu ueberwinden.
+
+Quantenmechanisch koennen sie aber mit endlicher Wahrscheinlichkeit durch die Barriere
+tunneln.
+
+Dieser Tunneleffekt ist entscheidend fuer Kernfusion in Sternen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Fusion in Sternen waere klassisch bei den dortigen Temperaturen zu selten.
+Der quantenmechanische Tunneleffekt macht Fusion trotzdem moeglich.
+\end{examtipbox}
+
+\section{Proton-Proton-Kette}
+
+Die Proton-Proton-Kette ist ein wichtiger Fusionsprozess in der Sonne.
+
+\begin{definitionbox}
+Die \emph{Proton-Proton-Kette} ist eine Folge von Fusionsreaktionen, bei der aus
+Wasserstoff letztlich Helium entsteht.
+\end{definitionbox}
+
+\begin{conceptbox}
+Die Netto-Reaktion der Wasserstofffusion in der Sonne ist:
+\[
+    4\,{}^{1}\mathrm{H}
+    \rightarrow
+    {}^{4}\mathrm{He}
+    + 2e^+
+    + 2\nu_e
+    + Q.
+\]
+Beruecksichtigt man die Annihilation der Positronen mit Elektronen, wird pro
+Netto-Reaktion eine Energie von etwa
+\[
+    Q \approx \SI{26.7}{MeV}
+\]
+frei.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildung zur Proton-Proton-Kette zeigt verschiedene Aeste.
+Ein wichtiger erster Schritt ist:
+\[
+    {}^{1}\mathrm{H}
+    +
+    {}^{1}\mathrm{H}
+    \rightarrow
+    {}^{2}\mathrm{H}
+    +
+    e^+
+    +
+    \nu_e.
+\]
+Danach entsteht ueber weitere Reaktionen Helium.
+\end{notebox}
+
+\begin{conceptbox}
+Der erste Schritt der pp-Kette ist schwach wechselwirkend, weil ein Proton in ein
+Neutron umgewandelt werden muss.
+
+Deshalb ist dieser Schritt langsam.
+Das ist wichtig fuer die lange Lebensdauer der Sonne.
+\end{conceptbox}
+
+\section{CNO-Zyklus}
+
+Neben der Proton-Proton-Kette gibt es den CNO-Zyklus.
+Er ist besonders in massereicheren Sternen wichtig.
+
+\begin{definitionbox}
+Der \emph{CNO-Zyklus} ist eine Fusionsreaktionskette, bei der Kohlenstoff, Stickstoff
+und Sauerstoff als Katalysatoren fuer die Umwandlung von Wasserstoff in Helium wirken.
+\end{definitionbox}
+
+\begin{conceptbox}
+Die Netto-Reaktion des CNO-Zyklus ist ebenfalls:
+\[
+    4\,{}^{1}\mathrm{H}
+    \rightarrow
+    {}^{4}\mathrm{He}
+    + 2e^+
+    + 2\nu_e
+    + Q.
+\]
+
+Kohlenstoff, Stickstoff und Sauerstoff werden dabei im Zyklus verbraucht und wieder
+erzeugt.
+Sie wirken daher als Katalysatoren.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildung zum CNO-Zyklus zeigt Reaktionen wie:
+\[
+    {}^{12}\mathrm{C}
+    +
+    {}^{1}\mathrm{H}
+    \rightarrow
+    {}^{13}\mathrm{N}
+    +
+    \gamma.
+\]
+Danach folgen Beta-Zerfaelle und weitere Protoneneinfangreaktionen, bis am Ende
+wieder ${}^{12}\mathrm{C}$ entsteht.
+\end{notebox}
+
+\begin{examtipbox}
+Proton-Proton-Kette und CNO-Zyklus haben dieselbe Netto-Reaktion:
+Wasserstoff wird zu Helium fusioniert.
+
+Der Unterschied ist:
+\begin{itemize}
+    \item pp-Kette: dominiert in sonnenaehnlichen Sternen.
+    \item CNO-Zyklus: wichtiger bei hoeheren Temperaturen und massereicheren Sternen.
+\end{itemize}
+\end{examtipbox}
+
+\section{Fusion und Temperatur}
+
+\begin{conceptbox}
+Fusion benoetigt hohe Temperaturen, weil die Kerne genug kinetische Energie brauchen,
+um nahe genug zusammenzukommen.
+
+Die Temperatur bestimmt die Geschwindigkeitsverteilung der Kerne.
+Nur ein Teil der Kerne besitzt genug Energie, um mit relevanter Wahrscheinlichkeit
+zu fusionieren.
+\end{conceptbox}
+
+\begin{definitionbox}
+Das \emph{Gamow-Fenster} ist der Energiebereich, in dem Fusionsreaktionen in Sternen
+hauptsaechlich stattfinden.
+
+Es ergibt sich aus dem Zusammenspiel von thermischer Energieverteilung und
+Tunnelwahrscheinlichkeit durch die Coulomb-Barriere.
+\end{definitionbox}
+
+\begin{conceptbox}
+Bei niedriger Energie gibt es viele Teilchen, aber die Tunnelwahrscheinlichkeit ist
+sehr klein.
+
+Bei hoher Energie ist die Tunnelwahrscheinlichkeit groesser, aber es gibt nur wenige
+Teilchen mit dieser Energie.
+
+Das Maximum des Produkts liegt im Gamow-Fenster.
+\end{conceptbox}
+
+\section{Bragg-Peak und Energieverlust in Materie}
+
+Geladene Teilchen verlieren beim Durchgang durch Materie Energie.
+Dieser Energieverlust ist fuer Kernreaktionen, Strahlenschutz und medizinische
+Anwendungen wichtig.
+
+\begin{definitionbox}
+Der \emph{Bragg-Peak} ist das Maximum der Energieabgabe eines geladenen Teilchens
+kurz vor dem Ende seiner Reichweite in Materie.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein geladenes Teilchen verliert Energie vor allem durch Ionisation und Anregung
+von Atomen.
+
+Wenn das Teilchen langsamer wird, steigt der Energieverlust pro Weglaenge zunaechst an.
+Kurz vor dem Stillstand tritt ein Maximum auf: der Bragg-Peak.
+\end{conceptbox}
+
+\begin{notebox}
+Die Vorlesungsabbildung zur Ionisation von Alpha-Teilchen zeigt genau dieses Verhalten:
+Die spezifische Ionisation steigt entlang der Bahn und erreicht kurz vor dem Ende
+der Reichweite ein Maximum.
+\end{notebox}
+
+\begin{examtipbox}
+Der Bragg-Peak ist wichtig, weil geladene Teilchen ihre Energie sehr lokal am Ende
+ihrer Reichweite abgeben koennen.
+
+Das ist zum Beispiel fuer Teilchentherapie relevant.
+\end{examtipbox}
+
+\section{Erzeugung schwerer und superschwerer Kerne}
+
+Sehr schwere Kerne koennen durch Kernreaktionen erzeugt werden.
+Dabei werden schwere Ionen auf Targetkerne geschossen.
+
+\begin{conceptbox}
+Um ein neues schweres Element zu erzeugen, muss ein Projektilkern mit einem Targetkern
+verschmelzen.
+
+Dabei entsteht ein hochangeregter Compound-Kern.
+Dieser kann entweder durch Abdampfen von Neutronen abkuehlen oder wieder zerfallen.
+\end{conceptbox}
+
+\begin{formulabox}
+Schematisch:
+\[
+    {}^{A_1}_{Z_1}X
+    +
+    {}^{A_2}_{Z_2}Y
+    \rightarrow
+    {}^{A_1+A_2}_{Z_1+Z_2}C^{*}
+    \rightarrow
+    \text{Produktkern}
+    +
+    x n.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die Erzeugung superschwerer Elemente ist schwierig, weil:
+\begin{itemize}
+    \item die Coulomb-Barriere sehr hoch ist,
+    \item der Compound-Kern stark angeregt ist,
+    \item Spaltung mit der Abkuehlung durch Neutronenemission konkurriert,
+    \item die Wirkungsquerschnitte sehr klein sind.
+\end{itemize}
+\end{conceptbox}
+
+\section{Vergleich: Spaltung und Fusion}
+
+\begin{center}
+\begin{tabular}{|p{4.2cm}|p{5.1cm}|p{5.1cm}|}
+\hline
+Eigenschaft & Spaltung & Fusion \\
+\hline
+Ausgangskerne & schwere Kerne & leichte Kerne \\
+\hline
+Produkte & mittelschwere Kerne und Neutronen & schwererer Kern, eventuell Teilchen \\
+\hline
+Energiegrund & Produkte staerker gebunden & Produkt staerker gebunden \\
+\hline
+Hindernis & Spaltbarriere, Neutronenbilanz & Coulomb-Barriere \\
+\hline
+Typisches Beispiel & Spaltung von Uran oder Plutonium & Wasserstofffusion zu Helium \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{examtipbox}
+Spaltung und Fusion setzen beide Energie frei, wenn die Endprodukte staerker gebunden
+sind als die Anfangskerne.
+
+Der Unterschied ist:
+\begin{itemize}
+    \item Fusion geht bei leichten Kernen in Richtung hoeherer Bindungsenergie pro Nukleon.
+    \item Spaltung geht bei sehr schweren Kernen in Richtung hoeherer Bindungsenergie pro Nukleon.
+\end{itemize}
+\end{examtipbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Kernreaktionen muessen Ladung, Nukleonenzahl, Energie und Impuls erhalten.
+    \item Der Q-Wert ist
+    \[
+        Q =
+        \left(
+            m_{\mathrm{Anfang}}
+            -
+            m_{\mathrm{Ende}}
+        \right)c^2.
+    \]
+    \item Bei $Q>0$ wird Energie frei.
+    \item Bei $Q<0$ braucht man eine Schwellenenergie.
+    \item Der Wirkungsquerschnitt beschreibt die Wahrscheinlichkeit einer Reaktion.
+    \item Ein Compound-Kern ist ein angeregter Zwischenkern.
+    \item Spaltung schwerer Kerne setzt Energie frei, weil die Fragmente staerker gebunden sind.
+    \item Eine Kettenreaktion entsteht durch bei Spaltung frei werdende Neutronen.
+    \item Fusion leichter Kerne setzt Energie frei, weil das Produkt staerker gebunden ist.
+    \item Fusion muss die Coulomb-Barriere ueberwinden oder durchtunneln.
+    \item Die Proton-Proton-Kette und der CNO-Zyklus wandeln netto Wasserstoff in Helium um.
+    \item Der Bragg-Peak beschreibt maximale Energieabgabe kurz vor dem Stillstand geladener Teilchen.
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Was ist eine Kernreaktion?
+    \item Wie liest man die Schreibweise $A(a,b)B$?
+    \item Welche Erhaltungssaetze gelten bei Kernreaktionen?
+    \item Was ist der Q-Wert?
+    \item Was bedeutet $Q>0$?
+    \item Was bedeutet $Q<0$?
+    \item Was ist eine Schwellenenergie?
+    \item Was beschreibt der Wirkungsquerschnitt?
+    \item Was ist ein Compound-Kern?
+    \item Was ist Kernspaltung?
+    \item Warum setzt Spaltung schwerer Kerne Energie frei?
+    \item Was ist induzierte Spaltung?
+    \item Warum sind Neutronen gute Projektile fuer Spaltung?
+    \item Was ist eine Kettenreaktion?
+    \item Was bedeuten unterkritisch, kritisch und ueberkritisch?
+    \item Warum sind verzoegerte Neutronen wichtig?
+    \item Was ist Kernfusion?
+    \item Warum gibt es bei Fusion eine Coulomb-Barriere?
+    \item Warum ist der Tunneleffekt fuer Sternfusion wichtig?
+    \item Was ist die Netto-Reaktion der Proton-Proton-Kette?
+    \item Was ist der CNO-Zyklus?
+    \item Was ist der Bragg-Peak?
+    \item Warum ist die Erzeugung superschwerer Elemente schwierig?
+\end{enumerate}
+\end{examtipbox}

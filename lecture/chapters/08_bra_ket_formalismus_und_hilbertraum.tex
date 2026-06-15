@@ -1,0 +1,1249 @@
+% Local Dirac notation commands for this chapter.
+\providecommand{\ket}[1]{\left|#1\right\rangle}
+\providecommand{\bra}[1]{\left\langle#1\right|}
+
+\chapter{Bra-Ket-Formalismus und Hilbertraum}
+
+\section{Ziel dieses Kapitels}
+
+In den vorherigen Kapiteln haben wir Zustände meistens als Wellenfunktionen geschrieben, zum Beispiel als $\psi(x)$ in Ortsdarstellung oder als $\tilde\psi(p)$ in Impulsdarstellung. Das ist für Rechnungen sehr nützlich, verdeckt aber manchmal die eigentliche Struktur der Quantenmechanik. Ein quantenmechanischer Zustand ist nicht zuerst eine bestimmte Funktion in einer bestimmten Darstellung, sondern ein abstrakter Vektor in einem komplexen Hilbertraum. Die Wellenfunktion ist dann nur die Darstellung dieses Vektors bezüglich einer bestimmten Basis.
+
+\begin{conceptbox}
+Der Bra-Ket-Formalismus ist die koordinatenfreie Sprache der Quantenmechanik. Ein Zustand wird als Ket $\ket{\psi}$ geschrieben. Eine Wellenfunktion $\psi(x)$ ist die Ortsdarstellung dieses Zustands:
+\[
+    \psi(x)=\langle x|\psi\rangle.
+\]
+Analog ist die Impulswellenfunktion
+\[
+    \tilde\psi(p)=\langle p|\psi\rangle.
+\]
+\end{conceptbox}
+
+Die zentralen Fragen dieses Kapitels sind:
+\begin{itemize}
+    \item Was ist ein Hilbertraum und warum braucht man ihn in der Quantenmechanik?
+    \item Was bedeuten Ket, Bra und Bra-Ket?
+    \item Wie hängen abstrakte Zustände, Ortsdarstellung und Impulsdarstellung zusammen?
+    \item Wie funktionieren Orthonormalbasen, Vollständigkeit und Entwicklung nach Basiszuständen?
+    \item Wie schreibt man Operatoren und Projektoren in Bra-Ket-Schreibweise?
+    \item Wie werden Matrixelemente, Erwartungswerte und Wahrscheinlichkeiten im Dirac-Formalismus formuliert?
+    \item Wie behandelt man kontinuierliche Basen wie $\ket{x}$ und $\ket{p}$?
+\end{itemize}
+
+\section{Warum eine abstrakte Zustandsbeschreibung?}
+
+In Ortsdarstellung beschreibt man ein Teilchen durch eine Funktion
+\[
+    \psi(x).
+\]
+In Impulsdarstellung beschreibt man denselben Zustand durch eine andere Funktion
+\[
+    \tilde\psi(p).
+\]
+Beide Funktionen enthalten dieselbe physikalische Information, nur in verschiedenen Darstellungen. Sie sind durch Fouriertransformation ineinander überführbar. Das legt nahe, dass es etwas Abstrakteres gibt, das unabhängig von der gewählten Darstellung ist.
+
+\begin{definitionbox}
+Der abstrakte quantenmechanische Zustand wird als Vektor $\ket{\psi}$ in einem komplexen Hilbertraum $\mathcal H$ beschrieben. Seine Darstellung in der Ortsbasis ist
+\[
+    \psi(x)=\langle x|\psi\rangle,
+\]
+und seine Darstellung in der Impulsbasis ist
+\[
+    \tilde\psi(p)=\langle p|\psi\rangle.
+\]
+\end{definitionbox}
+
+Man kann sich die Situation wie in der linearen Algebra vorstellen. Ein geometrischer Vektor im Raum ist nicht dasselbe wie seine Koordinatenspalte. Die Koordinatenspalte hängt davon ab, welche Basis man wählt. Genauso ist $\psi(x)$ nicht der Zustand selbst, sondern die Koordinatenfunktion des Zustands bezüglich der kontinuierlichen Ortsbasis.
+
+\begin{notebox}
+Die Quantenmechanik ist im Kern lineare Algebra über $\mathbb C$, aber meistens in unendlichdimensionalen Räumen. Der Bra-Ket-Formalismus erlaubt es, wie in endlicher Dimension zu rechnen, solange man bei kontinuierlichen Basen Integrale und Delta-Distributionen korrekt behandelt.
+\end{notebox}
+
+\section{Hilbertraum}
+
+\subsection{Vektorraumstruktur}
+
+Ein Zustandsraum muss erlauben, Zustände linear zu kombinieren. Das ist notwendig, weil die Schrödingergleichung linear ist und Superpositionen von Zuständen wieder Zustände sind.
+
+\begin{definitionbox}
+Ein komplexer Vektorraum $\mathcal H$ ist eine Menge von Vektoren, für die Addition und Multiplikation mit komplexen Zahlen definiert sind. Für $\ket{\psi},\ket{\phi}\in\mathcal H$ und $\alpha,\beta\in\mathbb C$ ist auch
+\[
+    \alpha\ket{\psi}+\beta\ket{\phi}\in\mathcal H.
+\]
+\end{definitionbox}
+
+Physikalisch bedeutet das: Wenn $\ket{\psi}$ und $\ket{\phi}$ mögliche Zustände sind, dann ist auch
+\[
+    \ket{\chi}=\alpha\ket{\psi}+\beta\ket{\phi}
+\]
+ein möglicher Zustand, sofern er normierbar ist.
+
+\subsection{Skalarprodukt}
+
+Um Wahrscheinlichkeiten, Normen, Orthogonalität und Erwartungswerte definieren zu können, braucht man ein Skalarprodukt.
+
+\begin{definitionbox}
+Ein Skalarprodukt auf $\mathcal H$ ordnet zwei Zuständen $\ket{\phi}$ und $\ket{\psi}$ eine komplexe Zahl zu:
+\[
+    \langle \phi|\psi\rangle\in\mathbb C.
+\]
+Es erfüllt:
+\begin{align*}
+    \langle \phi|\psi\rangle &= \langle \psi|\phi\rangle^*, \\
+    \langle \phi|\alpha\psi_1+\beta\psi_2\rangle
+    &=\alpha\langle\phi|\psi_1\rangle+\beta\langle\phi|\psi_2\rangle, \\
+    \langle \psi|\psi\rangle &\ge 0, \\
+    \langle \psi|\psi\rangle=0 &\Longleftrightarrow \ket{\psi}=0.
+\end{align*}
+\end{definitionbox}
+
+Wir verwenden hier die in der Physik übliche Konvention: Das Skalarprodukt ist linear im rechten Argument und antilinear im linken Argument. Also gilt
+\[
+    \langle \alpha\phi_1+\beta\phi_2|\psi\rangle
+    =\alpha^*\langle\phi_1|\psi\rangle+\beta^*\langle\phi_2|\psi\rangle.
+\]
+
+\begin{definitionbox}
+Die Norm eines Zustands ist
+\[
+    \norm{\psi}:=\sqrt{\langle\psi|\psi\rangle}.
+\]
+Ein Zustand heißt normiert, wenn
+\[
+    \langle\psi|\psi\rangle=1
+\]
+gilt.
+\end{definitionbox}
+
+\subsection{Hilbertraum als vollständiger Skalarproduktraum}
+
+\begin{definitionbox}
+Ein Hilbertraum ist ein komplexer Vektorraum mit Skalarprodukt, der bezüglich der durch das Skalarprodukt induzierten Norm vollständig ist.
+\end{definitionbox}
+
+Vollständigkeit bedeutet anschaulich: Wenn eine Folge von Zuständen immer näher zusammenrückt, dann liegt ihr Grenzzustand wieder im Raum. Das ist wichtig, weil Grenzprozesse, Reihenentwicklungen und Integrale in der Quantenmechanik ständig auftreten.
+
+\begin{examplebox}
+Für ein Teilchen auf der reellen Achse ist der typische Zustandsraum
+\[
+    \mathcal H=L^2(\mathbb R).
+\]
+Das ist der Raum quadratintegrierbarer komplexer Funktionen. Für $\psi\in L^2(\mathbb R)$ gilt
+\[
+    \int_{-\infty}^{\infty}\dd x\, |\psi(x)|^2<\infty.
+\]
+Das Skalarprodukt lautet
+\[
+    \langle\phi|\psi\rangle
+    =\int_{-\infty}^{\infty}\dd x\, \phi^*(x)\psi(x).
+\]
+\end{examplebox}
+
+\section{Ket, Bra und Bra-Ket}
+
+\subsection{Kets}
+
+\begin{definitionbox}
+Ein Ket $\ket{\psi}$ bezeichnet einen Vektor im Zustandsraum $\mathcal H$.
+\end{definitionbox}
+
+Beispiele sind
+\[
+    \ket{\psi},\qquad \ket{n},\qquad \ket{x},\qquad \ket{p},\qquad \ket{+},\qquad \ket{-}.
+\]
+Die Symbole im Ket sind Namen oder Labels. Sie können diskret sein, wie $n$, oder kontinuierlich, wie $x$ und $p$.
+
+\subsection{Bras}
+
+Zu jedem Ket gehört ein dualer Vektor, der Bra.
+
+\begin{definitionbox}
+Der Bra $\bra{\psi}$ ist das zu $\ket{\psi}$ adjungierte lineare Funktional. Er wirkt auf einen Ket $\ket{\phi}$ durch
+\[
+    \bra{\psi}\ket{\phi}=\langle\psi|\phi\rangle.
+\]
+\end{definitionbox}
+
+Das Symbol
+\[
+    \langle\psi|\phi\rangle
+\]
+heißt Bra-Ket und ist das Skalarprodukt zwischen $\ket{\psi}$ und $\ket{\phi}$.
+
+\subsection{Adjungieren von Linearkombinationen}
+
+Wenn
+\[
+    \ket{\chi}=\alpha\ket{\psi}+\beta\ket{\phi},
+\]
+dann ist
+\[
+    \bra{\chi}=\alpha^*\bra{\psi}+\beta^*\bra{\phi}.
+\]
+
+\begin{examplebox}
+Sei
+\[
+    \ket{\chi}=2\ket{1}+i\ket{2}.
+\]
+Dann ist
+\[
+    \bra{\chi}=2\bra{1}-i\bra{2}.
+\]
+Der Faktor $i$ wird beim Übergang zum Bra komplex konjugiert.
+\end{examplebox}
+
+\section{Physikalische Zustände und Normierung}
+
+Ein quantenmechanischer Zustand muss normiert werden können, weil $\langle\psi|\psi\rangle$ die Gesamtwahrscheinlichkeit beschreibt.
+
+\begin{definitionbox}
+Ein physikalischer reiner Zustand wird durch einen normierten Vektor $\ket{\psi}$ beschrieben:
+\[
+    \langle\psi|\psi\rangle=1.
+\]
+Zwei Zustandsvektoren, die sich nur um eine globale Phase unterscheiden, beschreiben denselben physikalischen Zustand:
+\[
+    \ket{\psi}\sim e^{i\alpha}\ket{\psi}.
+\]
+\end{definitionbox}
+
+Warum ist die globale Phase irrelevant? Wahrscheinlichkeiten enthalten Betragsquadrate von Skalarprodukten. Wenn
+\[
+    \ket{\psi'}=e^{i\alpha}\ket{\psi},
+\]
+dann ist für jeden Messzustand $\ket{a}$
+\[
+    |\langle a|\psi'\rangle|^2
+    =|e^{i\alpha}\langle a|\psi\rangle|^2
+    =|\langle a|\psi\rangle|^2.
+\]
+
+\begin{notebox}
+Eine globale Phase ist nicht beobachtbar. Relative Phasen zwischen Komponenten eines Zustands sind aber sehr wohl beobachtbar und führen zu Interferenz.
+\end{notebox}
+
+\section{Diskrete Orthonormalbasen}
+
+\subsection{Orthonormalität}
+
+Viele Rechnungen funktionieren wie in endlicher linearer Algebra. Sei $\{\ket{n}\}$ eine diskrete Basis des Hilbertraums.
+
+\begin{definitionbox}
+Eine Menge von Basiszuständen $\{\ket{n}\}$ heißt orthonormal, wenn
+\[
+    \langle m|n\rangle=\delta_{mn}
+\]
+gilt.
+\end{definitionbox}
+
+Hier ist $\delta_{mn}$ das Kronecker-Delta:
+\[
+    \delta_{mn}=\begin{cases}
+        1, & m=n,\\
+        0, & m\ne n.
+    \end{cases}
+\]
+
+\subsection{Vollständigkeit}
+
+Eine Orthonormalbasis ist vollständig, wenn jeder Zustand nach dieser Basis entwickelt werden kann.
+
+\begin{definitionbox}
+Eine diskrete Orthonormalbasis $\{\ket{n}\}$ ist vollständig, wenn
+\[
+    \sum_n \ket{n}\bra{n}=\mathbb 1
+\]
+gilt.
+\end{definitionbox}
+
+Die Gleichung
+\[
+    \sum_n \ket{n}\bra{n}=\mathbb 1
+\]
+heißt Vollständigkeitsrelation oder Zerlegung der Eins.
+
+\begin{derivationbox}
+Wendet man die Vollständigkeitsrelation auf einen beliebigen Zustand $\ket{\psi}$ an, erhält man
+\[
+    \ket{\psi}=\mathbb 1\ket{\psi}
+    =\sum_n \ket{n}\bra{n}\ket{\psi}
+    =\sum_n \langle n|\psi\rangle\ket{n}.
+\]
+Die Entwicklungskoeffizienten sind also
+\[
+    c_n=\langle n|\psi\rangle.
+\]
+Damit gilt
+\[
+    \ket{\psi}=\sum_n c_n\ket{n}.
+\]
+\end{derivationbox}
+
+\subsection{Norm in einer diskreten Basis}
+
+Für
+\[
+    \ket{\psi}=\sum_n c_n\ket{n}
+\]
+gilt
+\[
+\begin{aligned}
+    \langle\psi|\psi\rangle
+    &=\left(\sum_m c_m^*\bra{m}\right)
+      \left(\sum_n c_n\ket{n}\right) \\
+    &=\sum_{m,n}c_m^*c_n\langle m|n\rangle \\
+    &=\sum_{m,n}c_m^*c_n\delta_{mn} \\
+    &=\sum_n |c_n|^2.
+\end{aligned}
+\]
+Ein normierter Zustand erfüllt also
+\[
+    \sum_n |c_n|^2=1.
+\]
+
+\begin{conceptbox}
+Die Zahl
+\[
+    |c_n|^2=|\langle n|\psi\rangle|^2
+\]
+ist die Wahrscheinlichkeit, bei einer Messung in der Basis $\{\ket n\}$ das Ergebnis zu erhalten, das zum Basiszustand $\ket n$ gehört.
+\end{conceptbox}
+
+\section{Beispiel: Zweidimensionaler Hilbertraum}
+
+Ein Qubit oder ein Spin-$1/2$-System hat einen zweidimensionalen Zustandsraum. Eine typische Orthonormalbasis ist
+\[
+    \ket{0}=\begin{pmatrix}1\\0\end{pmatrix},
+    \qquad
+    \ket{1}=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Ein allgemeiner Zustand ist
+\[
+    \ket{\psi}=a\ket{0}+b\ket{1}
+    =\begin{pmatrix}a\\b\end{pmatrix}.
+\]
+Die Normierungsbedingung lautet
+\[
+    |a|^2+|b|^2=1.
+\]
+
+\begin{examplebox}
+Der Zustand
+\[
+    \ket{\psi}=\frac{1}{\sqrt2}\ket{0}+\frac{i}{\sqrt2}\ket{1}
+\]
+ist normiert, denn
+\[
+    \langle\psi|\psi\rangle
+    =\frac12+\frac12=1.
+\]
+Die Messwahrscheinlichkeiten in der Basis $\{\ket0,\ket1\}$ sind
+\[
+    P(0)=\frac12,
+    \qquad
+    P(1)=\frac12.
+\]
+Die relative Phase $i$ ist in dieser Basis nicht an den Einzelwahrscheinlichkeiten sichtbar, kann aber bei Messungen in einer anderen Basis sichtbar werden.
+\end{examplebox}
+
+\section{Operatoren im Bra-Ket-Formalismus}
+
+\subsection{Lineare Operatoren}
+
+\begin{definitionbox}
+Ein linearer Operator $A$ ordnet jedem Zustand $\ket{\psi}$ einen neuen Zustand $A\ket{\psi}$ zu und erfüllt
+\[
+    A(\alpha\ket{\psi}+\beta\ket{\phi})
+    =\alpha A\ket{\psi}+\beta A\ket{\phi}.
+\]
+\end{definitionbox}
+
+Operatoren beschreiben in der Quantenmechanik Observablen, Zeitentwicklungen, Symmetrien, Projektionsmessungen und Basiswechsel.
+
+\subsection{Matrixelemente}
+
+In einer Basis $\{\ket n\}$ ist ein Operator durch seine Matrixelemente bestimmt.
+
+\begin{definitionbox}
+Das Matrixelement von $A$ zwischen $\ket n$ und $\ket m$ ist
+\[
+    A_{mn}:=\langle m|A|n\rangle.
+\]
+\end{definitionbox}
+
+Die Reihenfolge ist wichtig: Der rechte Index gehört zum Eingabezustand, der linke Index zum Ausgabeanteil.
+
+\begin{derivationbox}
+Für
+\[
+    \ket{\psi}=\sum_n c_n\ket n
+\]
+gilt
+\[
+    A\ket\psi=A\sum_n c_n\ket n=\sum_n c_n A\ket n.
+\]
+Wir entwickeln $A\ket n$ wieder in der Basis:
+\[
+    A\ket n=\sum_m \ket m\langle m|A|n\rangle.
+\]
+Also
+\[
+    A\ket\psi=\sum_{m,n}A_{mn}c_n\ket m.
+\]
+Das ist genau die übliche Matrixmultiplikation.
+\end{derivationbox}
+
+\subsection{Operatorzerlegung in einer Basis}
+
+Aus der Vollständigkeitsrelation folgt
+\[
+    A=\mathbb 1 A\mathbb 1
+    =\left(\sum_m\ket m\bra m\right)A\left(\sum_n\ket n\bra n\right).
+\]
+Daher
+\[
+    A=\sum_{m,n}\ket m\langle m|A|n\rangle\bra n.
+\]
+Mit $A_{mn}=\langle m|A|n\rangle$ schreibt man
+\[
+    A=\sum_{m,n}A_{mn}\ket m\bra n.
+\]
+
+\begin{formulabox}
+Operatorentwicklung in diskreter Orthonormalbasis:
+\[
+    A=\sum_{m,n}\langle m|A|n\rangle\ket m\bra n.
+\]
+\end{formulabox}
+
+\section{Dyadische Operatoren und Matrixeinheiten}
+
+Ein sehr wichtiger Operator ist das äußere Produkt zweier Zustände.
+
+\begin{definitionbox}
+Für zwei Zustände $\ket\phi$ und $\ket\chi$ ist
+\[
+    \ket\phi\bra\chi
+\]
+der Operator, der auf einen Zustand $\ket\psi$ wirkt durch
+\[
+    (\ket\phi\bra\chi)\ket\psi
+    =\ket\phi\langle\chi|\psi\rangle.
+\]
+\end{definitionbox}
+
+Dieser Operator nimmt also die Komponente von $\ket\psi$ in Richtung $\ket\chi$ und gibt einen Vektor in Richtung $\ket\phi$ aus.
+
+\subsection{Operatoren $U_{mn}$}
+
+In einer diskreten Orthonormalbasis definiert man
+\[
+    U_{mn}:=\ket{\psi_m}\bra{\psi_n}.
+\]
+Diese Operatoren sind Matrixeinheiten.
+
+\begin{derivationbox}
+Das Adjungierte von $U_{mn}$ ist
+\[
+    U_{mn}^\dagger
+    =\left(\ket{\psi_m}\bra{\psi_n}\right)^\dagger
+    =\ket{\psi_n}\bra{\psi_m}
+    =U_{nm}.
+\]
+Das Produkt zweier solcher Operatoren ist
+\[
+\begin{aligned}
+    U_{mn}U_{pq}
+    &=\ket{\psi_m}\bra{\psi_n}\psi_p\rangle\bra{\psi_q} \\
+    &=\langle\psi_n|\psi_p\rangle\ket{\psi_m}\bra{\psi_q} \\
+    &=\delta_{np}U_{mq}.
+\end{aligned}
+\]
+\end{derivationbox}
+
+Wenn $\ket{\psi_n}$ Eigenzustände eines Operators $H$ sind,
+\[
+    H\ket{\psi_n}=\lambda_n\ket{\psi_n},
+\]
+dann gilt
+\[
+\begin{aligned}
+    U_{mn}H
+    &=\ket{\psi_m}\bra{\psi_n}H
+    =\lambda_n\ket{\psi_m}\bra{\psi_n}
+    =\lambda_n U_{mn}, \\
+    HU_{mn}
+    &=H\ket{\psi_m}\bra{\psi_n}
+    =\lambda_m\ket{\psi_m}\bra{\psi_n}
+    =\lambda_m U_{mn}.
+\end{aligned}
+\]
+Daher
+\[
+    [U_{mn},H]=U_{mn}H-HU_{mn}
+    = (\lambda_n-\lambda_m)U_{mn}.
+\]
+
+\begin{formulabox}
+Für $H\ket{\psi_n}=\lambda_n\ket{\psi_n}$ gilt
+\[
+    U_{mn}^\dagger=U_{nm},
+    \qquad
+    U_{mn}U_{pq}=\delta_{np}U_{mq},
+\]
+und
+\[
+    [U_{mn},H]=(\lambda_n-\lambda_m)U_{mn}.
+\]
+\end{formulabox}
+
+\section{Projektoren}
+
+\subsection{Projektor auf einen normierten Zustand}
+
+\begin{definitionbox}
+Ist $\ket\phi$ normiert, dann ist
+\[
+    P_\phi:=\ket\phi\bra\phi
+\]
+der Projektor auf den eindimensionalen Unterraum, der von $\ket\phi$ aufgespannt wird.
+\end{definitionbox}
+
+Er wirkt auf $\ket\psi$ durch
+\[
+    P_\phi\ket\psi=\ket\phi\langle\phi|\psi\rangle.
+\]
+Das Ergebnis ist proportional zu $\ket\phi$.
+
+\begin{derivationbox}
+Ein Projektor erfüllt $P^2=P$. Für $P_\phi=\ket\phi\bra\phi$ und $\langle\phi|\phi\rangle=1$ gilt
+\[
+\begin{aligned}
+    P_\phi^2
+    &=\ket\phi\bra\phi\ket\phi\bra\phi \\
+    &=\ket\phi\langle\phi|\phi\rangle\bra\phi \\
+    &=\ket\phi\bra\phi \\
+    &=P_\phi.
+\end{aligned}
+\]
+Außerdem ist
+\[
+    P_\phi^\dagger=(\ket\phi\bra\phi)^\dagger=\ket\phi\bra\phi=P_\phi.
+\]
+Der Projektor ist also selbstadjungiert.
+\end{derivationbox}
+
+\subsection{Projektor auf einen Unterraum}
+
+Wenn ein Unterraum von mehreren orthonormalen Zuständen $\ket{a,r}$ aufgespannt wird, dann lautet der Projektor
+\[
+    P_a=\sum_r \ket{a,r}\bra{a,r}.
+\]
+Dies ist wichtig bei entarteten Messwerten. Der Index $r$ nummeriert die verschiedenen Zustände mit demselben Eigenwert.
+
+\begin{conceptbox}
+Bei einer Messung einer Observablen $A$ mit Spektralzerlegung
+\[
+    A=\sum_a aP_a
+\]
+ist die Wahrscheinlichkeit für den Messwert $a$ im Zustand $\ket\psi$ gegeben durch
+\[
+    P(a)=\langle\psi|P_a|\psi\rangle.
+\]
+Nach der Messung ist der Zustand, falls $a$ gemessen wurde,
+\[
+    \ket{\psi_a}=\frac{P_a\ket\psi}{\sqrt{\langle\psi|P_a|\psi\rangle}}.
+\]
+\end{conceptbox}
+
+\section{Hermitesche und unitäre Operatoren}
+
+\subsection{Adjungierter Operator}
+
+\begin{definitionbox}
+Der adjungierte Operator $A^\dagger$ ist durch
+\[
+    \langle\phi|A\psi\rangle=\langle A^\dagger\phi|\psi\rangle
+\]
+für alle geeigneten Zustände $\ket\phi,\ket\psi$ definiert. In Bra-Ket-Schreibweise schreibt man auch
+\[
+    \langle\phi|A|\psi\rangle
+    =\langle A^\dagger\phi|\psi\rangle.
+\]
+\end{definitionbox}
+
+Für Produkte gilt
+\[
+    (AB)^\dagger=B^\dagger A^\dagger.
+\]
+Die Reihenfolge kehrt sich also um.
+
+\subsection{Hermitesche Operatoren}
+
+\begin{definitionbox}
+Ein Operator $A$ heißt hermitesch oder selbstadjungiert, wenn
+\[
+    A^\dagger=A
+\]
+gilt.
+\end{definitionbox}
+
+Observable werden in der Quantenmechanik durch selbstadjungierte Operatoren beschrieben. Der Grund ist, dass ihre Eigenwerte reell sind und dass Eigenzustände zu verschiedenen Eigenwerten orthogonal sind.
+
+\begin{derivationbox}
+Sei $A=A^\dagger$ und
+\[
+    A\ket a=a\ket a.
+\]
+Dann ist
+\[
+    \langle a|A|a\rangle=a\langle a|a\rangle.
+\]
+Weil $A$ selbstadjungiert ist, ist $\langle a|A|a\rangle$ reell. Bei $\langle a|a\rangle>0$ folgt, dass $a$ reell sein muss.
+\end{derivationbox}
+
+\subsection{Unitäre Operatoren}
+
+\begin{definitionbox}
+Ein Operator $U$ heißt unitär, wenn
+\[
+    U^\dagger U=UU^\dagger=\mathbb 1
+\]
+gilt.
+\end{definitionbox}
+
+Unitäre Operatoren erhalten Skalarprodukte:
+\[
+    \langle U\phi|U\psi\rangle
+    =\langle\phi|U^\dagger U|\psi\rangle
+    =\langle\phi|\psi\rangle.
+\]
+Damit erhalten sie auch Normen und Wahrscheinlichkeiten.
+
+\begin{notebox}
+Die Zeitentwicklung abgeschlossener quantenmechanischer Systeme ist unitär. Wenn $H$ zeitunabhängig ist, gilt
+\[
+    U(t)=\exp\left(-\frac{i}{\hbar}Ht\right).
+\]
+Ist $H$ selbstadjungiert, dann ist $U(t)$ unitär.
+\end{notebox}
+
+\section{Eigenwertgleichungen und Spektralzerlegung}
+
+\subsection{Diskretes Spektrum}
+
+Eine Observable $A$ mit diskretem Spektrum besitzt Eigenzustände $\ket{a_n}$ mit
+\[
+    A\ket{a_n}=a_n\ket{a_n}.
+\]
+Wenn die Eigenzustände eine Orthonormalbasis bilden, gilt
+\[
+    \langle a_m|a_n\rangle=\delta_{mn},
+    \qquad
+    \sum_n\ket{a_n}\bra{a_n}=\mathbb 1.
+\]
+Dann kann man $A$ schreiben als
+\[
+    A=\sum_n a_n\ket{a_n}\bra{a_n}.
+\]
+
+\begin{derivationbox}
+Wendet man
+\[
+    \sum_n a_n\ket{a_n}\bra{a_n}
+\]
+auf einen Basiszustand $\ket{a_k}$ an, erhält man
+\[
+    \sum_n a_n\ket{a_n}\langle a_n|a_k\rangle
+    =\sum_n a_n\ket{a_n}\delta_{nk}
+    =a_k\ket{a_k}.
+\]
+Der Operator hat also auf allen Basiszuständen dieselbe Wirkung wie $A$ und ist daher gleich $A$.
+\end{derivationbox}
+
+\subsection{Entartung}
+
+Wenn mehrere linear unabhängige Eigenzustände denselben Eigenwert $a$ besitzen, ist der Eigenwert entartet. Dann schreibt man
+\[
+    A\ket{a,r}=a\ket{a,r},
+\]
+wobei $r$ die Entartung nummeriert. Die Spektralzerlegung lautet
+\[
+    A=\sum_a aP_a,
+    \qquad
+    P_a=\sum_r\ket{a,r}\bra{a,r}.
+\]
+
+\section{Erwartungswerte und Varianzen}
+
+\subsection{Erwartungswert}
+
+\begin{definitionbox}
+Der Erwartungswert einer Observablen $A$ im normierten Zustand $\ket\psi$ ist
+\[
+    \langle A\rangle_\psi=\langle\psi|A|\psi\rangle.
+\]
+\end{definitionbox}
+
+Wenn $A$ die Spektralzerlegung
+\[
+    A=\sum_n a_n\ket{a_n}\bra{a_n}
+\]
+hat, dann folgt
+\[
+\begin{aligned}
+    \langle A\rangle_\psi
+    &=\sum_n a_n\langle\psi|a_n\rangle\langle a_n|\psi\rangle \\
+    &=\sum_n a_n |\langle a_n|\psi\rangle|^2.
+\end{aligned}
+\]
+Der Erwartungswert ist also der gewichtete Mittelwert der möglichen Messwerte.
+
+\subsection{Varianz und Unschärfe}
+
+\begin{definitionbox}
+Die Varianz einer Observablen $A$ im Zustand $\ket\psi$ ist
+\[
+    (\Delta A)^2
+    =\langle (A-\langle A\rangle)^2\rangle
+    =\langle A^2\rangle-\langle A\rangle^2.
+\]
+Die Standardabweichung $\Delta A$ heißt Unschärfe von $A$ im Zustand $\ket\psi$.
+\end{definitionbox}
+
+Wenn $\ket\psi$ ein Eigenzustand von $A$ ist, dann ist $\Delta A=0$. Dann ist der Messwert von $A$ scharf bestimmt.
+
+\section{Ortsbasis}
+
+\subsection{Eigenzustände des Ortsoperators}
+
+Der Ortsoperator $X$ hat kontinuierliche Eigenzustände $\ket{x}$ mit
+\[
+    X\ket{x}=x\ket{x}.
+\]
+Diese Zustände sind keine normalisierbaren Hilbertraumvektoren im gewöhnlichen Sinne, sondern verallgemeinerte Eigenzustände. Sie werden mit Delta-Distributionen normiert.
+
+\begin{formulabox}
+Für die Ortsbasis gilt
+\[
+    \langle x|x'\rangle=\delta(x-x'),
+\]
+und die Vollständigkeitsrelation lautet
+\[
+    \int_{-\infty}^{\infty}\dd x\,\ket{x}\bra{x}=\mathbb 1.
+\]
+\end{formulabox}
+
+\subsection{Wellenfunktion als Projektion}
+
+Die Ortswellenfunktion ist
+\[
+    \psi(x)=\langle x|\psi\rangle.
+\]
+Aus der Vollständigkeit folgt
+\[
+    \ket\psi=\int\dd x\,\ket{x}\langle x|\psi\rangle
+    =\int\dd x\,\psi(x)\ket{x}.
+\]
+
+\begin{conceptbox}
+Die Funktion $\psi(x)$ ist der Entwicklungskoeffizient des abstrakten Zustands $\ket\psi$ in der kontinuierlichen Ortsbasis.
+\end{conceptbox}
+
+\subsection{Skalarprodukt in Ortsdarstellung}
+
+Für zwei Zustände $\ket\phi$ und $\ket\psi$ gilt
+\[
+\begin{aligned}
+    \langle\phi|\psi\rangle
+    &=\langle\phi|\mathbb 1|\psi\rangle \\
+    &=\int\dd x\,\langle\phi|x\rangle\langle x|\psi\rangle \\
+    &=\int\dd x\,\phi^*(x)\psi(x).
+\end{aligned}
+\]
+Damit ergibt sich die Normierungsbedingung
+\[
+    \langle\psi|\psi\rangle
+    =\int\dd x\,|\psi(x)|^2=1.
+\]
+
+\subsection{Operatoren in Ortsdarstellung}
+
+Für einen Operator $A$ kann man seine Ortsdarstellung durch den Kern
+\[
+    A(x,x'):=\langle x|A|x'\rangle
+\]
+beschreiben. Dann gilt
+\[
+    (A\psi)(x)=\langle x|A|\psi\rangle
+    =\int\dd x'\,\langle x|A|x'\rangle\langle x'|\psi\rangle
+    =\int\dd x'\,A(x,x')\psi(x').
+\]
+
+Für den Ortsoperator gilt
+\[
+    \langle x|X|\psi\rangle=x\psi(x),
+\]
+also
+\[
+    (X\psi)(x)=x\psi(x).
+\]
+
+\section{Impulsbasis}
+
+\subsection{Eigenzustände des Impulsoperators}
+
+Der Impulsoperator besitzt kontinuierliche Eigenzustände $\ket p$ mit
+\[
+    P\ket p=p\ket p.
+\]
+Auch diese Zustände sind delta-normiert:
+\[
+    \langle p|p'\rangle=\delta(p-p').
+\]
+Die Vollständigkeitsrelation lautet
+\[
+    \int_{-\infty}^{\infty}\dd p\,\ket p\bra p=\mathbb 1.
+\]
+
+Die Impulswellenfunktion ist
+\[
+    \tilde\psi(p)=\langle p|\psi\rangle.
+\]
+Dann gilt
+\[
+    \ket\psi=\int\dd p\,\tilde\psi(p)\ket p.
+\]
+
+\subsection{Impulszustände in Ortsdarstellung}
+
+In Ortsdarstellung ist ein Impulseigenzustand eine ebene Welle:
+\[
+    \langle x|p\rangle=\frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar}.
+\]
+In drei Dimensionen gilt entsprechend
+\[
+    \langle \vec x|\vec p\rangle
+    =\frac{1}{(2\pi\hbar)^{3/2}}e^{i\vec p\cdot\vec x/\hbar}.
+\]
+
+\begin{derivationbox}
+In Ortsdarstellung wirkt der Impulsoperator als
+\[
+    P=-i\hbar\frac{\dd}{\dd x}.
+\]
+Die Eigenwertgleichung $P\ket p=p\ket p$ wird daher zu
+\[
+    -i\hbar\frac{\dd}{\dd x}\langle x|p\rangle
+    =p\langle x|p\rangle.
+\]
+Die Lösung ist
+\[
+    \langle x|p\rangle=C e^{ipx/\hbar}.
+\]
+Die delta-Normierung legt
+\[
+    C=\frac{1}{\sqrt{2\pi\hbar}}
+\]
+fest.
+\end{derivationbox}
+
+\subsection{Fouriertransformation zwischen Ort und Impuls}
+
+Mit der Vollständigkeit der Impulsbasis folgt
+\[
+\begin{aligned}
+    \psi(x)
+    &=\langle x|\psi\rangle \\
+    &=\int\dd p\,\langle x|p\rangle\langle p|\psi\rangle \\
+    &=\frac{1}{\sqrt{2\pi\hbar}}
+      \int\dd p\,e^{ipx/\hbar}\tilde\psi(p).
+\end{aligned}
+\]
+Umgekehrt
+\[
+\begin{aligned}
+    \tilde\psi(p)
+    &=\langle p|\psi\rangle \\
+    &=\int\dd x\,\langle p|x\rangle\langle x|\psi\rangle \\
+    &=\frac{1}{\sqrt{2\pi\hbar}}
+      \int\dd x\,e^{-ipx/\hbar}\psi(x).
+\end{aligned}
+\]
+
+\begin{formulabox}
+Fouriertransformation zwischen Orts- und Impulsdarstellung:
+\[
+    \psi(x)=\frac{1}{\sqrt{2\pi\hbar}}\int\dd p\,e^{ipx/\hbar}\tilde\psi(p),
+\]
+\[
+    \tilde\psi(p)=\frac{1}{\sqrt{2\pi\hbar}}\int\dd x\,e^{-ipx/\hbar}\psi(x).
+\]
+\end{formulabox}
+
+\section{Kontinuierliche und diskrete Basen im Vergleich}
+
+Der Übergang von diskreten zu kontinuierlichen Basen folgt einem einfachen Muster:
+\[
+    \sum_n \longrightarrow \int\dd x,
+    \qquad
+    \delta_{mn}\longrightarrow\delta(x-x').
+\]
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Begriff & Diskrete Basis & Kontinuierliche Ortsbasis \\
+\midrule
+Basiszustände & $\ket n$ & $\ket x$ \\
+Orthogonalität & $\langle m|n\rangle=\delta_{mn}$ & $\langle x|x'\rangle=\delta(x-x')$ \\
+Vollständigkeit & $\sum_n\ket n\bra n=\mathbb 1$ & $\int\dd x\,\ket x\bra x=\mathbb 1$ \\
+Entwicklung & $\ket\psi=\sum_n c_n\ket n$ & $\ket\psi=\int\dd x\,\psi(x)\ket x$ \\
+Koeffizient & $c_n=\langle n|\psi\rangle$ & $\psi(x)=\langle x|\psi\rangle$ \\
+Normierung & $\sum_n |c_n|^2=1$ & $\int\dd x\,|\psi(x)|^2=1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{notebox}
+Die Zustände $\ket x$ und $\ket p$ sind streng genommen keine normalen Hilbertraumvektoren, weil $\langle x|x\rangle=\delta(0)$ nicht endlich ist. Sie sind verallgemeinerte Eigenzustände. Für die üblichen Rechnungen verwendet man sie als Distributionen innerhalb der Dirac-Notation.
+\end{notebox}
+
+\section{Matrixelemente des Impulsoperators in Ortsdarstellung}
+
+Ein klassisches Beispiel ist das Matrixelement
+\[
+    \langle x'|\hat p|x\rangle.
+\]
+Man kann es über die Impulsbasis berechnen.
+
+\begin{derivationbox}
+Wir verwenden die Vollständigkeit der Impulsbasis:
+\[
+    \mathbb 1=\int\dd p\,\ket p\bra p.
+\]
+Dann ist
+\[
+\begin{aligned}
+    \langle x'|\hat p|x\rangle
+    &=\int\dd p\int\dd p'\,
+      \langle x'|p'\rangle\langle p'|\hat p|p\rangle\langle p|x\rangle.
+\end{aligned}
+\]
+In der Impulsbasis gilt
+\[
+    \langle p'|\hat p|p\rangle=p\delta(p'-p).
+\]
+Also
+\[
+\begin{aligned}
+    \langle x'|\hat p|x\rangle
+    &=\int\dd p\,p\langle x'|p\rangle\langle p|x\rangle \\
+    &=\frac{1}{2\pi\hbar}\int\dd p\,p\,e^{ipx'/\hbar}e^{-ipx/\hbar} \\
+    &=\frac{1}{2\pi\hbar}\int\dd p\,p\,e^{ip(x'-x)/\hbar}.
+\end{aligned}
+\]
+Da
+\[
+    \delta(x'-x)=\frac{1}{2\pi\hbar}\int\dd p\,e^{ip(x'-x)/\hbar},
+\]
+folgt durch Ableiten nach $x'$:
+\[
+    \frac{\partial}{\partial x'}\delta(x'-x)
+    =\frac{1}{2\pi\hbar}\int\dd p\,\frac{ip}{\hbar}e^{ip(x'-x)/\hbar}.
+\]
+Daher
+\[
+    \langle x'|\hat p|x\rangle
+    =-i\hbar\frac{\partial}{\partial x'}\delta(x'-x).
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Das Ortsraummatrixelement des Impulsoperators ist
+\[
+    \langle x'|\hat p|x\rangle
+    =-i\hbar\frac{\partial}{\partial x'}\delta(x'-x).
+\]
+Äquivalent kann man schreiben
+\[
+    \langle x'|\hat p|x\rangle
+    =i\hbar\frac{\partial}{\partial x}\delta(x'-x).
+\]
+\end{formulabox}
+
+\section{Beispielrechnung: Normierung und Projektor}
+
+Wir betrachten in einer Orthonormalbasis $\{\ket{\psi_1},\ket{\psi_2},\ket{\psi_3}\}$ den Zustand
+\[
+    \ket\phi=\frac{1}{\sqrt2}\ket{\psi_1}+\frac{i}{2}\ket{\psi_2}+\frac12\ket{\psi_3}.
+\]
+
+\begin{calculationbox}
+Die Norm ist
+\[
+\begin{aligned}
+    \langle\phi|\phi\rangle
+    &=\left|\frac1{\sqrt2}\right|^2+\left|\frac i2\right|^2+\left|\frac12\right|^2 \\
+    &=\frac12+\frac14+\frac14 \\
+    &=1.
+\end{aligned}
+\]
+Also ist $\ket\phi$ normiert.
+\end{calculationbox}
+
+Der zugehörige Projektor ist
+\[
+    P_\phi=\ket\phi\bra\phi.
+\]
+Mit
+\[
+    \bra\phi=\frac{1}{\sqrt2}\bra{\psi_1}-\frac{i}{2}\bra{\psi_2}+\frac12\bra{\psi_3}
+\]
+ergibt sich
+\[
+\begin{aligned}
+    P_\phi
+    =&\frac12\ket{\psi_1}\bra{\psi_1}
+    -\frac{i}{2\sqrt2}\ket{\psi_1}\bra{\psi_2}
+    +\frac{1}{2\sqrt2}\ket{\psi_1}\bra{\psi_3} \\
+    &+\frac{i}{2\sqrt2}\ket{\psi_2}\bra{\psi_1}
+    +\frac14\ket{\psi_2}\bra{\psi_2}
+    +\frac{i}{4}\ket{\psi_2}\bra{\psi_3} \\
+    &+\frac{1}{2\sqrt2}\ket{\psi_3}\bra{\psi_1}
+    -\frac{i}{4}\ket{\psi_3}\bra{\psi_2}
+    +\frac14\ket{\psi_3}\bra{\psi_3}.
+\end{aligned}
+\]
+
+\begin{notebox}
+Beim Bilden von $\bra\phi$ müssen alle Koeffizienten komplex konjugiert werden. Aus $i/2$ wird also $-i/2$. Das ist eine der häufigsten Fehlerquellen in Bra-Ket-Aufgaben.
+\end{notebox}
+
+\section{Beispielrechnung: Orthogonalität zweier Zustände}
+
+Sei zusätzlich
+\[
+    \ket\chi=\frac14\ket{\psi_1}+\frac13\ket{\psi_3}.
+\]
+Dann ist
+\[
+    \bra\chi=\frac14\bra{\psi_1}+\frac13\bra{\psi_3}.
+\]
+
+\begin{calculationbox}
+Die Norm von $\ket\chi$ ist
+\[
+    \langle\chi|\chi\rangle
+    =\frac1{16}+\frac1{9}
+    =\frac{25}{144}.
+\]
+Also ist $\ket\chi$ nicht normiert. Der normierte Zustand wäre
+\[
+    \ket{\chi_{\mathrm n}}
+    =\frac{\ket\chi}{\sqrt{25/144}}
+    =\frac{12}{5}\ket\chi
+    =\frac35\ket{\psi_1}+\frac45\ket{\psi_3}.
+\]
+\end{calculationbox}
+
+\begin{calculationbox}
+Das Skalarprodukt ist
+\[
+\begin{aligned}
+    \langle\phi|\chi\rangle
+    &=\left(\frac{1}{\sqrt2}\bra{\psi_1}-\frac{i}{2}\bra{\psi_2}+\frac12\bra{\psi_3}\right)
+      \left(\frac14\ket{\psi_1}+\frac13\ket{\psi_3}\right) \\
+    &=\frac{1}{4\sqrt2}+\frac16.
+\end{aligned}
+\]
+Dieser Ausdruck ist nicht null. Daher sind $\ket\phi$ und $\ket\chi$ nicht orthogonal.
+\end{calculationbox}
+
+\section{Bedingungen für $K=\ket\phi\bra\chi$}
+
+Sei
+\[
+    K=\ket\phi\bra\chi.
+\]
+Dann ist
+\[
+    K^\dagger=\ket\chi\bra\phi.
+\]
+
+\subsection{Wann ist $K$ hermitesch?}
+
+$K$ ist hermitesch, wenn
+\[
+    \ket\phi\bra\chi=\ket\chi\bra\phi
+\]
+gilt. Dies ist im Allgemeinen nur dann der Fall, wenn $\ket\phi$ und $\ket\chi$ proportional zueinander sind und die Proportionalitätsphase passend ist.
+
+Genauer: Sei
+\[
+    \ket\phi=c\ket\chi.
+\]
+Dann ist
+\[
+    K=c\ket\chi\bra\chi.
+\]
+Dieser Operator ist hermitesch genau dann, wenn $c$ reell ist.
+
+\begin{formulabox}
+Der Operator
+\[
+    K=\ket\phi\bra\chi
+\]
+ist hermitesch, wenn $\ket\phi=c\ket\chi$ mit $c\in\mathbb R$ gilt.
+\end{formulabox}
+
+\subsection{Wann ist $K$ ein Projektor?}
+
+Ein Projektor erfüllt
+\[
+    K^2=K.
+\]
+Nun ist
+\[
+    K^2=\ket\phi\bra\chi\ket\phi\bra\chi
+    =\langle\chi|\phi\rangle\ket\phi\bra\chi
+    =\langle\chi|\phi\rangle K.
+\]
+Daher gilt $K^2=K$, wenn
+\[
+    \langle\chi|\phi\rangle=1
+\]
+gilt, oder trivialerweise $K=0$.
+
+Wenn man zusätzlich fordert, dass ein physikalischer Projektor selbstadjungiert ist, muss außerdem $K^\dagger=K$ gelten. Dann reduziert sich der Fall auf den üblichen Projektor
+\[
+    K=\ket\phi\bra\phi
+\]
+mit normiertem $\ket\phi$.
+
+\section{Darstellungswechsel und Basistransformation}
+
+Ein Zustand ist unabhängig von der gewählten Basis. Seine Komponenten ändern sich aber, wenn man die Basis wechselt.
+
+Seien $\{\ket n\}$ und $\{\ket a\}$ zwei Orthonormalbasen. Dann gilt
+\[
+    \ket\psi=\sum_n c_n\ket n=\sum_a d_a\ket a.
+\]
+Die Koeffizienten sind
+\[
+    c_n=\langle n|\psi\rangle,
+    \qquad
+    d_a=\langle a|\psi\rangle.
+\]
+Mit der Eins
+\[
+    \mathbb 1=\sum_n\ket n\bra n
+\]
+folgt
+\[
+\begin{aligned}
+    d_a
+    &=\langle a|\psi\rangle \\
+    &=\sum_n\langle a|n\rangle\langle n|\psi\rangle \\
+    &=\sum_n\langle a|n\rangle c_n.
+\end{aligned}
+\]
+Die Matrixelemente
+\[
+    U_{an}=\langle a|n\rangle
+\]
+bilden die Transformationsmatrix zwischen den Basen.
+
+\begin{conceptbox}
+Ein Darstellungswechsel ist kein Wechsel des physikalischen Zustands. Es ändern sich nur die Koordinaten desselben Zustandsvektors.
+\end{conceptbox}
+
+\section{Zusammenhang mit Messungen}
+
+Wenn eine Observable $A$ gemessen wird, sind ihre Eigenzustände die natürliche Messbasis. Für
+\[
+    A\ket{a_n}=a_n\ket{a_n}
+\]
+und
+\[
+    \ket\psi=\sum_n c_n\ket{a_n}
+\]
+gilt
+\[
+    c_n=\langle a_n|\psi\rangle.
+\]
+Die Wahrscheinlichkeit für den Messwert $a_n$ ist
+\[
+    P(a_n)=|c_n|^2=|\langle a_n|\psi\rangle|^2.
+\]
+Nach der Messung ist der Zustand bei nichtentartetem Eigenwert $a_n$
+\[
+    \ket\psi\longrightarrow\ket{a_n}.
+\]
+Bei entartetem Eigenwert verwendet man den Projektor $P_a$ auf den Eigenraum:
+\[
+    \ket\psi\longrightarrow\frac{P_a\ket\psi}{\sqrt{\langle\psi|P_a|\psi\rangle}}.
+\]
+
+\begin{examtipbox}
+In Messaufgaben ist der Ablauf fast immer:
+\begin{enumerate}
+    \item Observable diagonalisieren oder Eigenbasis erkennen.
+    \item Anfangszustand in dieser Eigenbasis entwickeln.
+    \item Betragsquadrate der Koeffizienten bilden.
+    \item Falls nach dem Zustand nach der Messung gefragt wird: auf den gemessenen Eigenraum projizieren und normieren.
+\end{enumerate}
+\end{examtipbox}
+
+\section{Häufige Fehler}
+
+\begin{itemize}
+    \item Man verwechselt $\ket\psi$ mit $\psi(x)$. Der Ket ist der abstrakte Zustand, $\psi(x)=\langle x|\psi\rangle$ ist seine Ortsdarstellung.
+    \item Beim Übergang von Ket zu Bra werden komplexe Koeffizienten nicht konjugiert.
+    \item Man schreibt bei kontinuierlichen Basen Kronecker-Deltas statt Dirac-Deltas.
+    \item Man vergisst bei kontinuierlichen Basen das Integral in der Vollständigkeitsrelation.
+    \item Man behandelt $\ket x$ und $\ket p$ wie normalisierbare Zustände. Sie sind delta-normierte verallgemeinerte Eigenzustände.
+    \item Man verwechselt inneres Produkt $\langle\phi|\psi\rangle$ mit äußerem Produkt $\ket\phi\bra\psi$.
+    \item Man vergisst, dass $\ket\phi\bra\chi$ ein Operator ist, keine Zahl.
+    \item Man schreibt $A=\sum_n a_n\ket n\bra n$ in irgendeiner Basis. Diese Formel gilt nur in einer Eigenbasis von $A$.
+    \item Man vergisst bei Projektoren auf entartete Unterräume die Summe über alle Zustände im Eigenraum.
+\end{itemize}
+
+\section{Zusammenfassung}
+
+\begin{conceptbox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Ein quantenmechanischer Zustand ist ein abstrakter Vektor $\ket\psi$ in einem komplexen Hilbertraum.
+    \item Die Ortswellenfunktion ist $\psi(x)=\langle x|\psi\rangle$.
+    \item Die Impulswellenfunktion ist $\tilde\psi(p)=\langle p|\psi\rangle$.
+    \item Ein Bra ist der duale Vektor zum Ket: $\ket\psi\mapsto\bra\psi$.
+    \item Das Bra-Ket $\langle\phi|\psi\rangle$ ist ein Skalarprodukt.
+    \item Das äußere Produkt $\ket\phi\bra\chi$ ist ein Operator.
+    \item Für eine diskrete Orthonormalbasis gilt $\langle m|n\rangle=\delta_{mn}$ und $\sum_n\ket n\bra n=\mathbb 1$.
+    \item Für die Ortsbasis gilt $\langle x|x'\rangle=\delta(x-x')$ und $\int\dd x\,\ket x\bra x=\mathbb 1$.
+    \item Operatoren haben Matrixelemente $A_{mn}=\langle m|A|n\rangle$.
+    \item In einer Eigenbasis gilt die Spektralzerlegung $A=\sum_n a_n\ket{a_n}\bra{a_n}$.
+    \item Projektoren haben die Form $P=\ket\phi\bra\phi$ oder bei Entartung $P_a=\sum_r\ket{a,r}\bra{a,r}$.
+    \item Messwahrscheinlichkeiten sind Betragsquadrate von Projektionen: $P(a_n)=|\langle a_n|\psi\rangle|^2$.
+\end{itemize}
+\end{conceptbox}
+
+\section{Was du für Aufgaben sicher können solltest}
+
+Nach diesem Kapitel solltest du folgende Standardaufgaben lösen können:
+\begin{itemize}
+    \item Einen Ket in einer Orthonormalbasis entwickeln.
+    \item Normen und Skalarprodukte in Bra-Ket-Schreibweise berechnen.
+    \item Beim Übergang von Ket zu Bra komplexe Koeffizienten korrekt konjugieren.
+    \item Projektoren $\ket\phi\bra\phi$ bilden und ihre Eigenschaften prüfen.
+    \item Äußere Produkte $\ket\phi\bra\chi$ als Operatoren anwenden.
+    \item Matrixelemente $\langle m|A|n\rangle$ berechnen.
+    \item Einen Operator als $A=\sum_{m,n}A_{mn}\ket m\bra n$ schreiben.
+    \item Die Spektralzerlegung einer Observablen in ihrer Eigenbasis angeben.
+    \item Mit der Vollständigkeitsrelation $\sum_n\ket n\bra n=\mathbb 1$ rechnen.
+    \item Mit kontinuierlichen Basen $\ket x$ und $\ket p$ rechnen.
+    \item Fouriertransformationen aus $\langle x|p\rangle$ herleiten.
+    \item Messwahrscheinlichkeiten und Zustände nach Messungen mit Projektoren bestimmen.
+\end{itemize}

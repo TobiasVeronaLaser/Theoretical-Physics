@@ -1,0 +1,1082 @@
+\chapter{Feynman-Diagramme und Quarkliniendiagramme}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel behandelt die Darstellung von Teilchenreaktionen und Zerfaellen mit
+Feynman-Diagrammen und Quarkliniendiagrammen.
+
+Feynman-Diagramme sind keine Bilder von echten Teilchenbahnen.
+Sie sind eine symbolische Darstellung von Wechselwirkungen, Anfangszustaenden,
+Endzustaenden und Austauschteilchen.
+
+\begin{notebox}
+Dieses Kapitel behandelt die Stichwoerter:
+\begin{itemize}
+    \item Feynman-Diagramme,
+    \item Teilchenlinien,
+    \item Antiteilchenlinien,
+    \item Vertices,
+    \item Austauschteilchen,
+    \item Photon,
+    \item Gluon,
+    \item $W^\pm$-Boson,
+    \item $Z^0$-Boson,
+    \item elektromagnetische Wechselwirkung,
+    \item starke Wechselwirkung,
+    \item schwache Wechselwirkung,
+    \item Quarkliniendiagramme,
+    \item Beta-Zerfall,
+    \item Paarvernichtung,
+    \item Teilchenerzeugung,
+    \item Erhaltungssaetze an Vertices.
+\end{itemize}
+\end{notebox}
+
+\section{Was ist ein Feynman-Diagramm?}
+
+\begin{definitionbox}
+Ein \emph{Feynman-Diagramm} ist eine graphische Darstellung eines Terms in der
+Stoerungsrechnung einer Quantenfeldtheorie.
+
+Es zeigt, welche Teilchen einlaufen, welche Teilchen auslaufen und welche
+Austauschteilchen die Wechselwirkung vermitteln.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein Feynman-Diagramm ist kein klassisches Bahn-Bild.
+Die Linien zeigen nicht, dass ein Teilchen exakt so durch den Raum geflogen ist.
+
+Das Diagramm ist eine Rechen- und Ordnungshilfe fuer einen quantenmechanischen
+Prozess.
+\end{conceptbox}
+
+\begin{examtipbox}
+In der Pruefung ist meist nicht die mathematische Auswertung des Diagramms wichtig,
+sondern:
+\begin{itemize}
+    \item Welche Teilchen sind Anfangs- und Endzustand?
+    \item Welches Austauschteilchen ist beteiligt?
+    \item Welche Wechselwirkung ist beteiligt?
+    \item Sind Ladung, Baryonenzahl und Leptonenzahl erhalten?
+    \item Aendert sich ein Quark-Flavor?
+\end{itemize}
+\end{examtipbox}
+
+\section{Achsen und Leserichtung}
+
+Es gibt verschiedene Konventionen fuer Feynman-Diagramme.
+In diesem Skript verwenden wir die einfache Konvention:
+
+\begin{notebox}
+Die Zeit laeuft von links nach rechts.
+
+Einlaufende Teilchen stehen links.
+Auslaufende Teilchen stehen rechts.
+\end{notebox}
+
+\begin{conceptbox}
+Manchmal wird in Buechern oder Vorlesungsfolien die Zeitachse nach oben gezeichnet.
+Das ist ebenfalls erlaubt.
+
+Wichtig ist nicht die Orientierung des Blattes, sondern die korrekte Verbindung der
+Teilchenlinien und die Erhaltungssaetze an jedem Vertex.
+\end{conceptbox}
+
+\section{Elemente eines Feynman-Diagramms}
+
+\begin{definitionbox}
+Ein \emph{Vertex} ist ein Wechselwirkungspunkt in einem Feynman-Diagramm.
+An einem Vertex treffen Teilchenlinien und Austauschteilchenlinien zusammen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Typische Linien:
+\begin{itemize}
+    \item Fermionen werden als gerade Linien gezeichnet.
+    \item Photonen werden oft als Wellenlinien gezeichnet.
+    \item Gluonen werden oft als Spirallinien gezeichnet.
+    \item $W$- und $Z$-Bosonen werden als spezielle Bosonlinien gezeichnet.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+In reinem LaTeX ohne spezielle Feynman-Pakete beschreiben wir Diagramme in diesem
+Skript meist durch Reaktionsgleichungen und Vertex-Strukturen.
+
+Das ist fuer das Verstaendnis und fuer viele Pruefungsfragen ausreichend.
+\end{notebox}
+
+\section{Austauschteilchen und Wechselwirkungen}
+
+\begin{center}
+\begin{tabular}{|p{4.0cm}|p{4.0cm}|p{5.2cm}|}
+\hline
+Wechselwirkung & Austauschteilchen & typische Wirkung \\
+\hline
+elektromagnetisch & $\gamma$ & wirkt auf elektrische Ladung \\
+\hline
+stark & $g$ & wirkt auf Farbladung von Quarks und Gluonen \\
+\hline
+schwach geladen & $W^+$, $W^-$ & kann Flavor und Ladung aendern \\
+\hline
+schwach neutral & $Z^0$ & schwache Wechselwirkung ohne Ladungsaenderung \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{examtipbox}
+Zuordnung merken:
+\[
+    \gamma
+    \quad\Rightarrow\quad
+    \text{elektromagnetisch}.
+\]
+\[
+    g
+    \quad\Rightarrow\quad
+    \text{stark}.
+\]
+\[
+    W^\pm,\;Z^0
+    \quad\Rightarrow\quad
+    \text{schwach}.
+\]
+\end{examtipbox}
+
+\section{Erhaltungssaetze an Vertices}
+
+An jedem Vertex muessen die relevanten Erhaltungssaetze erfuellt sein.
+
+\begin{notebox}
+Immer erhalten sind:
+\begin{itemize}
+    \item elektrische Ladung,
+    \item Energie und Impuls,
+    \item Drehimpuls,
+    \item Baryonenzahl,
+    \item Leptonenzahl in den Standardprozessen dieser Vorlesung.
+\end{itemize}
+\end{notebox}
+
+\begin{conceptbox}
+Flavor-Quantenzahlen wie Strangeness sind nicht bei allen Wechselwirkungen erhalten.
+
+Starke und elektromagnetische Wechselwirkung aendern den Quark-Flavor nicht.
+
+Die schwache Wechselwirkung kann den Quark-Flavor aendern.
+\end{conceptbox}
+
+\begin{examtipbox}
+Wenn ein Diagramm einen Flavorwechsel zeigt, zum Beispiel
+\[
+    d \rightarrow u
+\]
+oder
+\[
+    s \rightarrow u,
+\]
+dann ist die schwache Wechselwirkung beteiligt.
+Meist tritt dann ein $W$-Boson auf.
+\end{examtipbox}
+
+\section{Elektromagnetischer Vertex}
+
+Der elektromagnetische Vertex koppelt ein geladenes Fermion an ein Photon.
+
+\begin{formulabox}
+Typische Vertex-Struktur:
+\[
+    f \rightarrow f + \gamma.
+\]
+Dabei ist $f$ ein geladenes Fermion.
+\end{formulabox}
+
+\begin{conceptbox}
+Das Photon koppelt an elektrische Ladung.
+Ein geladenes Teilchen kann daher ein Photon emittieren oder absorbieren.
+
+Das Photon aendert den Flavor des Fermions nicht.
+\end{conceptbox}
+
+\begin{examplebox}
+Ein Elektron kann ein Photon emittieren:
+\[
+    e^- \rightarrow e^- + \gamma.
+\]
+
+Ladung:
+\[
+    -1 = -1 + 0.
+\]
+
+Leptonenzahl:
+\[
+    1 = 1 + 0.
+\]
+
+Die Erhaltungssaetze passen.
+\end{examplebox}
+
+\begin{examtipbox}
+Elektromagnetische Wechselwirkung:
+\begin{itemize}
+    \item Photon als Austauschteilchen,
+    \item elektrische Ladung noetig,
+    \item kein Quark-Flavorwechsel,
+    \item kein Neutrino am einfachen elektromagnetischen Vertex.
+\end{itemize}
+\end{examtipbox}
+
+\section{Elektron-Positron-Annihilation}
+
+Ein wichtiges Beispiel ist die Paarvernichtung von Elektron und Positron.
+
+\begin{formulabox}
+\[
+    e^- + e^+ \rightarrow \gamma + \gamma.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Elektron und Positron koennen annihilieren.
+Dabei entstehen Photonen.
+
+Ein einzelnes Photon als Endzustand ist fuer freie Teilchen im Vakuum wegen
+Energie- und Impulserhaltung nicht ausreichend.
+Daher treten bei der einfachen Annihilation meist zwei Photonen auf.
+\end{conceptbox}
+
+\begin{examplebox}
+Ladung:
+\[
+    Q(e^-)+Q(e^+)
+    =
+    -1+1
+    =
+    0.
+\]
+
+Endzustand:
+\[
+    Q(\gamma)+Q(\gamma)=0+0=0.
+\]
+
+Die elektrische Ladung ist erhalten.
+\end{examplebox}
+
+\begin{examtipbox}
+Paarvernichtung:
+\[
+    \text{Teilchen}+\text{Antiteilchen}
+    \rightarrow
+    \text{Bosonen oder andere erlaubte Endzustaende}.
+\]
+Bei Elektron-Positron-Annihilation ist elektromagnetisch oft
+\[
+    e^-+e^+\rightarrow \gamma+\gamma
+\]
+der einfachste Prozess.
+\end{examtipbox}
+
+\section{Virtuelles Photon}
+
+In Streuung und Teilchenerzeugung tritt haeufig ein virtuelles Photon auf.
+
+\begin{definitionbox}
+Ein \emph{virtuelles Teilchen} ist ein internes Teilchen in einem Feynman-Diagramm,
+das nicht direkt als freies Endteilchen beobachtet wird.
+\end{definitionbox}
+
+\begin{formulabox}
+Ein typischer Prozess ist:
+\[
+    e^- + e^+
+    \rightarrow
+    \gamma^*
+    \rightarrow
+    \mu^- + \mu^+.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Das Symbol
+\[
+    \gamma^*
+\]
+bezeichnet ein virtuelles Photon.
+
+Es vermittelt die elektromagnetische Wechselwirkung zwischen Anfangs- und Endzustand.
+\end{conceptbox}
+
+\begin{examtipbox}
+Ein Sternchen am Teilchensymbol bedeutet oft:
+\[
+    \text{virtuell oder angeregt}.
+\]
+Bei
+\[
+    \gamma^*
+\]
+ist ein virtuelles Photon gemeint.
+\end{examtipbox}
+
+\section{Starker Vertex}
+
+Der starke Vertex koppelt Quarks an Gluonen.
+
+\begin{formulabox}
+Typische Vertex-Struktur:
+\[
+    q \rightarrow q + g.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Gluonen koppeln an Farbladung.
+Quarks tragen Farbladung und koennen daher Gluonen emittieren oder absorbieren.
+
+Der starke Vertex aendert den Quark-Flavor nicht.
+Ein Up-Quark bleibt ein Up-Quark, ein Strange-Quark bleibt ein Strange-Quark.
+\end{conceptbox}
+
+\begin{examplebox}
+Ein Quark kann ein Gluon emittieren:
+\[
+    u \rightarrow u + g.
+\]
+
+Der Flavor bleibt gleich:
+\[
+    u \rightarrow u.
+\]
+
+Die Farbladung kann sich aendern, aber die Gesamtfarbladung ist erhalten.
+\end{examplebox}
+
+\begin{examtipbox}
+Starke Wechselwirkung:
+\begin{itemize}
+    \item Gluon als Austauschteilchen,
+    \item wirkt auf Farbladung,
+    \item Quark-Flavor bleibt erhalten,
+    \item Hadronen sind beteiligt,
+    \item Prozesse sind typischerweise sehr schnell.
+\end{itemize}
+\end{examtipbox}
+
+\section{Gluon-Selbstwechselwirkung}
+
+Ein wichtiger Unterschied zwischen QED und QCD ist:
+Gluonen tragen selbst Farbladung.
+
+\begin{conceptbox}
+Photonen sind elektrisch neutral.
+Daher gibt es in der einfachen QED keinen direkten Photon-Photon-Vertex.
+
+Gluonen tragen Farbladung.
+Daher koennen Gluonen direkt miteinander wechselwirken.
+\end{conceptbox}
+
+\begin{notebox}
+In hoeheren Ordnungen der starken Wechselwirkung treten Gluon-Selbstwechselwirkungen
+auf.
+
+Das ist ein wichtiger Grund fuer die besonderen Eigenschaften der QCD:
+\begin{itemize}
+    \item Confinement,
+    \item asymptotische Freiheit,
+    \item Jetbildung.
+\end{itemize}
+\end{notebox}
+
+\begin{examtipbox}
+Merke:
+Photonen tragen keine elektrische Ladung.
+Gluonen tragen Farbladung.
+
+Deshalb wechselwirken Gluonen selbst stark miteinander.
+\end{examtipbox}
+
+\section{Schwacher geladener Strom}
+
+Die schwache Wechselwirkung mit $W^\pm$-Bosonen kann Teilchenflavors aendern.
+
+\begin{formulabox}
+Typische Quark-Vertices:
+\[
+    d \rightarrow u + W^-,
+\]
+\[
+    u \rightarrow d + W^+.
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Typische Lepton-Vertices:
+\[
+    e^- \rightarrow \nu_e + W^-,
+\]
+\[
+    \nu_e \rightarrow e^- + W^+.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Ein $W$-Boson traegt elektrische Ladung.
+Deshalb kann sich die Ladung des Fermions am Vertex aendern.
+
+Die Gesamtladung bleibt aber erhalten.
+\end{conceptbox}
+
+\begin{examplebox}
+Beim Vertex
+\[
+    d \rightarrow u + W^-
+\]
+gilt fuer die Ladung:
+\[
+    -\frac{1}{3}
+    =
+    +\frac{2}{3}
+    +
+    (-1).
+\]
+
+Die elektrische Ladung ist erhalten.
+\end{examplebox}
+
+\begin{examtipbox}
+Wenn sich die elektrische Ladung eines Fermions am Vertex aendert, ist ein geladenes
+$W$-Boson beteiligt.
+\end{examtipbox}
+
+\section{Beta-Minus-Zerfall auf Quarkebene}
+
+Der Beta-Minus-Zerfall ist ein zentrales Beispiel fuer ein schwaches
+Feynman-Diagramm.
+
+\begin{formulabox}
+Auf Nukleonenebene:
+\[
+    n \rightarrow p + e^- + \overline{\nu}_e.
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Auf Quarkebene:
+\[
+    d \rightarrow u + W^-,
+\]
+\[
+    W^- \rightarrow e^- + \overline{\nu}_e.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Das Neutron hat Quarkinhalt:
+\[
+    n=udd.
+\]
+
+Das Proton hat Quarkinhalt:
+\[
+    p=uud.
+\]
+
+Beim Beta-Minus-Zerfall wird also eines der Down-Quarks in ein Up-Quark umgewandelt:
+\[
+    d \rightarrow u.
+\]
+\end{conceptbox}
+
+\begin{examplebox}
+Gesamtprozess:
+\[
+    udd
+    \rightarrow
+    uud + e^- + \overline{\nu}_e.
+\]
+
+Baryonenzahl:
+\[
+    1 \rightarrow 1+0+0.
+\]
+
+Leptonenzahl:
+\[
+    0 \rightarrow 0+1-1.
+\]
+
+Ladung:
+\[
+    0 \rightarrow +1-1+0.
+\]
+\end{examplebox}
+
+\begin{examtipbox}
+Beta-Minus-Zerfall:
+\[
+    n \rightarrow p + e^- + \overline{\nu}_e.
+\]
+
+Quarkebene:
+\[
+    d \rightarrow u + W^-.
+\]
+Das $W^-$ zerfaellt in:
+\[
+    W^- \rightarrow e^-+\overline{\nu}_e.
+\]
+\end{examtipbox}
+
+\section{Beta-Plus-Zerfall}
+
+Beim Beta-Plus-Zerfall wird ein Proton in ein Neutron umgewandelt.
+
+\begin{formulabox}
+Auf Nukleonenebene:
+\[
+    p \rightarrow n + e^+ + \nu_e.
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Auf Quarkebene:
+\[
+    u \rightarrow d + W^+,
+\]
+\[
+    W^+ \rightarrow e^+ + \nu_e.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Das Proton hat Quarkinhalt:
+\[
+    p=uud.
+\]
+
+Das Neutron hat Quarkinhalt:
+\[
+    n=udd.
+\]
+
+Beim Beta-Plus-Zerfall wird also eines der Up-Quarks in ein Down-Quark umgewandelt:
+\[
+    u \rightarrow d.
+\]
+\end{conceptbox}
+
+\begin{examtipbox}
+Beta-Plus-Zerfall:
+\[
+    p \rightarrow n + e^+ + \nu_e.
+\]
+
+Quarkebene:
+\[
+    u \rightarrow d + W^+.
+\]
+\end{examtipbox}
+
+\section{Elektroneneinfang}
+
+Elektroneneinfang ist eng mit dem Beta-Plus-Prozess verwandt.
+
+\begin{formulabox}
+Auf Nukleonenebene:
+\[
+    p + e^- \rightarrow n + \nu_e.
+\]
+\end{formulabox}
+
+\begin{formulabox}
+Auf Quarkebene:
+\[
+    u + e^- \rightarrow d + \nu_e.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Man kann den Prozess als Austausch eines $W$-Bosons verstehen.
+
+Ein Proton im Kern faengt ein Huellenelektron ein.
+Dadurch wird ein Proton in ein Neutron umgewandelt.
+\end{conceptbox}
+
+\begin{examtipbox}
+Elektroneneinfang:
+\[
+    Z \rightarrow Z-1,
+    \qquad
+    A \rightarrow A.
+\]
+
+Im Kern wird ein Proton zu einem Neutron.
+\end{examtipbox}
+
+\section{Schwacher neutraler Strom}
+
+Neben dem geladenen Strom mit $W^\pm$ gibt es den neutralen schwachen Strom mit
+dem $Z^0$-Boson.
+
+\begin{formulabox}
+Typische Vertex-Struktur:
+\[
+    f \rightarrow f + Z^0.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Das $Z^0$-Boson ist elektrisch neutral.
+Es kann schwache Wechselwirkungen vermitteln, ohne die elektrische Ladung des
+Fermions zu aendern.
+
+Der Flavor bleibt am einfachen neutralen Strom erhalten.
+\end{conceptbox}
+
+\begin{examplebox}
+Ein Beispiel fuer einen neutralen schwachen Prozess ist:
+\[
+    \nu_\mu + e^- \rightarrow \nu_\mu + e^-.
+\]
+
+Dieser Prozess kann ueber Austausch eines $Z^0$-Bosons laufen.
+\end{examplebox}
+
+\section{Quarkliniendiagramme}
+
+Quarkliniendiagramme zeigen, wie die Quarks in Hadronen waehrend einer Reaktion
+umgeordnet oder umgewandelt werden.
+
+\begin{definitionbox}
+Ein \emph{Quarkliniendiagramm} ist eine Darstellung, in der die Quarklinien der
+beteiligten Hadronen explizit verfolgt werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Quarkliniendiagramme sind besonders nuetzlich fuer:
+\begin{itemize}
+    \item Hadronenreaktionen,
+    \item Mesonzerfaelle,
+    \item Baryonzerfaelle,
+    \item Erkennen von Quark-Flavor-Aenderungen,
+    \item Unterscheiden starker, elektromagnetischer und schwacher Prozesse.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Bei Quarkliniendiagrammen immer fragen:
+\begin{itemize}
+    \item Welche Quarks sind im Anfangszustand?
+    \item Welche Quarks sind im Endzustand?
+    \item Werden Quark-Antiquark-Paare erzeugt?
+    \item Aendert sich ein Flavor?
+    \item Ist die Reaktion stark, elektromagnetisch oder schwach?
+\end{itemize}
+\end{examtipbox}
+
+\section{Quarklinien bei starker Erzeugung}
+
+Bei starken Prozessen bleibt der Quark-Flavor erhalten.
+Neue Quark-Antiquark-Paare koennen erzeugt werden.
+
+\begin{examplebox}
+Betrachte die starke Erzeugung seltsamer Teilchen:
+\[
+    \pi^- + p \rightarrow K^0 + \Lambda^0.
+\]
+
+Quarkinhalte:
+\[
+    \pi^- = d\overline{u},
+\]
+\[
+    p=uud,
+\]
+\[
+    K^0=d\overline{s},
+\]
+\[
+    \Lambda^0=uds.
+\]
+\end{examplebox}
+
+\begin{conceptbox}
+Im Endzustand gibt es ein $s$-Quark und ein $\overline{s}$-Antiquark.
+Diese koennen stark als Paar erzeugt werden:
+\[
+    g \rightarrow s\overline{s}.
+\]
+
+Die gesamte Strangeness bleibt erhalten:
+\[
+    S_{\mathrm{links}}=0,
+\]
+\[
+    S_{\mathrm{rechts}}=+1-1=0.
+\]
+\end{conceptbox}
+
+\begin{examtipbox}
+Starke Produktion von Strangeness erfolgt paarweise:
+\[
+    s\overline{s}.
+\]
+
+Ein einzelner Strangeness-Wechsel ist dagegen schwach.
+\end{examtipbox}
+
+\section{Quarklinien bei schwachen Zerfaellen}
+
+Bei schwachen Zerfaellen kann ein Quark-Flavor geaendert werden.
+
+\begin{examplebox}
+Betrachte:
+\[
+    \Lambda^0 \rightarrow p+\pi^-.
+\]
+
+Quarkinhalte:
+\[
+    \Lambda^0=uds,
+\]
+\[
+    p=uud,
+\]
+\[
+    \pi^-=d\overline{u}.
+\]
+\end{examplebox}
+
+\begin{conceptbox}
+Die Strangeness aendert sich:
+\[
+    S(\Lambda^0)=-1,
+\]
+\[
+    S(p)+S(\pi^-)=0+0=0.
+\]
+
+Also:
+\[
+    \Delta S=+1.
+\]
+
+Das ist ein Hinweis auf schwache Wechselwirkung.
+Auf Quarkebene kann zum Beispiel ein strange-Quark schwach zerfallen:
+\[
+    s \rightarrow u + W^-.
+\]
+Danach:
+\[
+    W^- \rightarrow d+\overline{u}.
+\]
+\end{conceptbox}
+
+\begin{examtipbox}
+Wenn ein strange-Hadron in nicht-seltsame Hadronen zerfaellt, ist der Prozess oft
+schwach.
+Der Grund ist:
+\[
+    s \rightarrow u
+\]
+oder
+\[
+    s \rightarrow d
+\]
+ist ein Flavorwechsel.
+\end{examtipbox}
+
+\section{Innere Linien und virtuelle Teilchen}
+
+Interne Linien in Feynman-Diagrammen stellen virtuelle Teilchen dar.
+
+\begin{definitionbox}
+Eine \emph{interne Linie} ist eine Linie, die nicht im Anfangs- oder Endzustand
+endet, sondern nur innerhalb des Diagramms vorkommt.
+\end{definitionbox}
+
+\begin{conceptbox}
+Interne Teilchen muessen nicht dieselbe Energie-Impuls-Beziehung erfuellen wie reale
+freie Teilchen.
+
+Sie sind nicht direkt beobachtbar.
+Man beobachtet nur Anfangs- und Endteilchen.
+\end{conceptbox}
+
+\begin{examtipbox}
+Nicht sagen:
+Das virtuelle Teilchen wurde direkt gemessen.
+
+Richtig ist:
+Das virtuelle Teilchen ist Teil der theoretischen Beschreibung des Prozesses.
+\end{examtipbox}
+
+\section{Hoehere Ordnungen}
+
+Feynman-Diagramme koennen unterschiedliche Ordnungen haben.
+Hoehere Ordnungen enthalten mehr Vertices oder Schleifen.
+
+\begin{definitionbox}
+Ein \emph{Diagramm hoeherer Ordnung} enthaelt zusaetzliche Vertices, interne Linien
+oder Schleifen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Beispiele fuer Effekte hoeherer Ordnung sind:
+\begin{itemize}
+    \item Vakuumpolarisation,
+    \item Selbstenergie-Korrekturen,
+    \item Vertexkorrekturen,
+    \item Gluonabstrahlung,
+    \item Schleifendiagramme.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Hoehere Ordnungen sind wichtig fuer Praezisionsrechnungen.
+Fuer qualitative Pruefungsfragen reicht oft das fuehrende Diagramm.
+\end{notebox}
+
+\begin{examtipbox}
+Mehr Vertices bedeuten meistens eine hoehere Ordnung in der Kopplungskonstante.
+Solche Prozesse sind oft weniger wahrscheinlich, koennen aber fuer Praezisionsphysik
+wichtig sein.
+\end{examtipbox}
+
+\section{Kopplungskonstanten und Wahrscheinlichkeit}
+
+Die Staerke eines Prozesses haengt von der Kopplung an den Vertices ab.
+
+\begin{conceptbox}
+Jeder Vertex traegt einen Faktor, der mit der Kopplungsstaerke der jeweiligen
+Wechselwirkung zusammenhaengt.
+
+Qualitativ:
+\begin{itemize}
+    \item starke Wechselwirkung: grosse Kopplung bei niedrigen Energien,
+    \item elektromagnetische Wechselwirkung: Kopplung ueber elektrische Ladung,
+    \item schwache Wechselwirkung: bei niedrigen Energien durch schwere $W$- und
+    $Z$-Bosonen stark unterdrueckt.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examtipbox}
+Ein Prozess kann erlaubt sein, aber trotzdem selten.
+Erhaltungssaetze sagen, ob ein Prozess moeglich ist.
+Kopplungen und Phasenraum bestimmen, wie wahrscheinlich er ist.
+\end{examtipbox}
+
+\section{Typische Diagramm-Erkennung}
+
+\begin{center}
+\begin{tabular}{|p{4.0cm}|p{5.0cm}|p{5.0cm}|}
+\hline
+Beobachtung & wahrscheinliche Wechselwirkung & Grund \\
+\hline
+Photon beteiligt & elektromagnetisch & Photon koppelt an elektrische Ladung \\
+\hline
+Gluon beteiligt & stark & Gluon koppelt an Farbladung \\
+\hline
+$W^\pm$ beteiligt & schwach geladen & Ladung und Flavor koennen sich aendern \\
+\hline
+$Z^0$ beteiligt & schwach neutral & schwach ohne Ladungsaenderung \\
+\hline
+Neutrino im Endzustand & schwach & Neutrinos wechselwirken schwach \\
+\hline
+Strangeness nicht erhalten & schwach & Flavorwechsel \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Beispiel: Myonzerfall}
+
+Der Myonzerfall ist ein rein leptonischer schwacher Prozess.
+
+\begin{formulabox}
+\[
+    \mu^- \rightarrow e^- + \overline{\nu}_e + \nu_\mu.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Auf Vertex-Ebene:
+\[
+    \mu^- \rightarrow \nu_\mu + W^-,
+\]
+\[
+    W^- \rightarrow e^- + \overline{\nu}_e.
+\]
+\end{conceptbox}
+
+\begin{examplebox}
+Leptonenzahlen:
+
+Links:
+\[
+    L_\mu=1,
+    \qquad
+    L_e=0.
+\]
+
+Rechts:
+\[
+    \nu_\mu
+    \quad\Rightarrow\quad
+    L_\mu=1,
+\]
+\[
+    e^-+\overline{\nu}_e
+    \quad\Rightarrow\quad
+    L_e=1-1=0.
+\]
+
+Die Familien-Leptonenzahlen sind in dieser einfachen Darstellung erhalten.
+\end{examplebox}
+
+\section{Beispiel: Pionzerfall}
+
+Geladene Pionen zerfallen schwach.
+
+\begin{formulabox}
+\[
+    \pi^- \rightarrow \mu^- + \overline{\nu}_\mu.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Quarkinhalt:
+\[
+    \pi^- = d\overline{u}.
+\]
+
+Das Quark-Antiquark-Paar kann ueber ein virtuelles $W^-$ annihilieren:
+\[
+    d+\overline{u}\rightarrow W^-,
+\]
+\[
+    W^- \rightarrow \mu^-+\overline{\nu}_\mu.
+\]
+\end{conceptbox}
+
+\begin{examtipbox}
+Hadronische Anfangszustaende koennen schwach in Leptonen zerfallen, wenn ein
+$W$-Boson vermittelt.
+Das ist ein typisches Zeichen schwacher Wechselwirkung.
+\end{examtipbox}
+
+\section{Beispiel: Elektron-Proton-Streuung}
+
+Elektron-Proton-Streuung kann elektromagnetisch durch Photonenaustausch beschrieben
+werden.
+
+\begin{formulabox}
+\[
+    e^- + p \rightarrow e^- + p.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Das Elektron tauscht ein virtuelles Photon mit dem Proton aus:
+\[
+    e^- \rightarrow e^- + \gamma^*,
+\]
+\[
+    p+\gamma^* \rightarrow p.
+\]
+
+Bei groesserem Impulsuebertrag kann die innere Struktur des Protons sichtbar werden.
+Dann beschreibt man die Wechselwirkung auf Quarkebene.
+\end{conceptbox}
+
+\begin{examtipbox}
+Elektron-Proton-Streuung ist wichtig fuer den experimentellen Nachweis der
+Nukleonensubstruktur.
+Das virtuelle Photon sondiert die elektrische Struktur des Protons.
+\end{examtipbox}
+
+\section{Systematisches Vorgehen beim Zeichnen}
+
+\begin{examtipbox}
+Gehe beim Zeichnen eines Feynman-Diagramms so vor:
+
+\begin{enumerate}
+    \item Schreibe Anfangs- und Endteilchen auf.
+    \item Bestimme die beteiligte Wechselwirkung.
+    \item Waehle das passende Austauschteilchen:
+    \[
+        \gamma,\quad g,\quad W^\pm,\quad Z^0.
+    \]
+    \item Pruefe an jedem Vertex die elektrische Ladung.
+    \item Pruefe Baryonenzahl und Leptonenzahl.
+    \item Pruefe, ob Flavor erhalten oder geaendert wird.
+    \item Zeichne interne Teilchen als virtuelle Teilchen.
+\end{enumerate}
+\end{examtipbox}
+
+\begin{conceptbox}
+Ein richtiges Diagramm muss nicht kuenstlerisch perfekt sein.
+Es muss die richtige Physik zeigen:
+\begin{itemize}
+    \item richtige Teilchen,
+    \item richtige Vertices,
+    \item richtige Austauschteilchen,
+    \item richtige Erhaltungssaetze.
+\end{itemize}
+\end{conceptbox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Feynman-Diagramme sind symbolische Darstellungen von Wechselwirkungen.
+    \item Vertices sind Wechselwirkungspunkte.
+    \item Interne Linien stehen fuer virtuelle Teilchen.
+    \item Das Photon vermittelt elektromagnetische Wechselwirkung.
+    \item Gluonen vermitteln starke Wechselwirkung.
+    \item $W^\pm$- und $Z^0$-Bosonen vermitteln schwache Wechselwirkung.
+    \item Elektromagnetische und starke Vertices aendern den Quark-Flavor nicht.
+    \item Geladene schwache Vertices mit $W^\pm$ koennen Flavor aendern.
+    \item Beta-Minus-Zerfall auf Quarkebene:
+    \[
+        d \rightarrow u + W^-.
+    \]
+    \item Beta-Plus-Zerfall auf Quarkebene:
+    \[
+        u \rightarrow d + W^+.
+    \]
+    \item Quarkliniendiagramme verfolgen Quarkflavors in Hadronenreaktionen.
+    \item Starke Strangeness-Erzeugung erfolgt paarweise als $s\overline{s}$.
+    \item Einzelne Strangeness-Aenderungen sind typisch fuer schwache Prozesse.
+\end{itemize}
+\end{notebox}
+
+\section{Pruefungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten koennen:
+\begin{enumerate}
+    \item Was ist ein Feynman-Diagramm?
+    \item Warum ist ein Feynman-Diagramm kein klassisches Bahn-Bild?
+    \item Was ist ein Vertex?
+    \item Was bedeutet eine interne Linie?
+    \item Was ist ein virtuelles Teilchen?
+    \item Welches Austauschteilchen vermittelt die elektromagnetische Wechselwirkung?
+    \item Welches Austauschteilchen vermittelt die starke Wechselwirkung?
+    \item Welche Austauschteilchen vermitteln die schwache Wechselwirkung?
+    \item Was prueft man an jedem Vertex?
+    \item Warum aendert ein Photon keinen Quark-Flavor?
+    \item Warum aendert ein Gluon keinen Quark-Flavor?
+    \item Wie sieht der Beta-Minus-Zerfall auf Quarkebene aus?
+    \item Wie sieht der Beta-Plus-Zerfall auf Quarkebene aus?
+    \item Was passiert beim Elektroneneinfang auf Quarkebene?
+    \item Was ist ein schwacher neutraler Strom?
+    \item Was zeigt ein Quarkliniendiagramm?
+    \item Warum ist starke Strangeness-Erzeugung paarweise?
+    \item Warum sind einzelne Strangeness-Aenderungen schwach?
+    \item Was bedeutet hoehere Ordnung in einem Feynman-Diagramm?
+    \item Woran erkennt man elektromagnetische, starke und schwache Diagramme?
+\end{enumerate}
+\end{examtipbox}

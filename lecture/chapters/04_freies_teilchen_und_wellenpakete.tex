@@ -1,0 +1,999 @@
+\chapter{Freies Teilchen und Wellenpakete}
+
+\section{Ziel dieses Kapitels}
+
+In diesem Kapitel wird das freie quantenmechanische Teilchen systematisch behandelt. Ein freies Teilchen ist ein Teilchen ohne äußeres Potential. Mathematisch ist das der einfachste Fall der Schrödingergleichung, physikalisch aber einer der wichtigsten Fälle: An ihm sieht man, warum ebene Wellen nicht direkt lokalisierte Teilchen beschreiben, warum Wellenpakete nötig sind und warum ein lokalisiertes freies Teilchen mit der Zeit zerfließt.
+
+Die zentralen Fragen sind:
+\begin{itemize}
+    \item Wie lautet der Hamiltonoperator eines freien Teilchens?
+    \item Warum sind ebene Wellen Lösungen der Schrödingergleichung?
+    \item Was bedeuten die de-Broglie-Beziehungen $E=\hbar\omega$ und $p=\hbar k$?
+    \item Warum sind ebene Wellen keine normalisierbaren Zustände in $L^2(\R)$?
+    \item Wie baut man aus ebenen Wellen ein normalisierbares Wellenpaket?
+    \item Was ist der Unterschied zwischen Phasengeschwindigkeit und Gruppengeschwindigkeit?
+    \item Wie entwickelt sich ein gaußsches Wellenpaket zeitlich?
+    \item Warum zerfließt ein freies Wellenpaket?
+\end{itemize}
+
+\begin{conceptbox}
+Ein freies Teilchen in der Quantenmechanik ist nicht automatisch ein kleines punktförmiges Objekt an einem bestimmten Ort. Die einfachsten Energie- und Impulseigenzustände sind ebene Wellen. Sie haben einen scharfen Impuls, sind aber vollständig delokalisiert. Ein lokalisiertes Teilchen entsteht erst durch Überlagerung vieler Impulse, also durch ein Wellenpaket.
+\end{conceptbox}
+
+\section{Hamiltonoperator des freien Teilchens}
+
+\subsection{Definition}
+
+Ein freies Teilchen bewegt sich ohne äußeres Potential. Deshalb gilt
+\[
+    V(\vec{x})=0.
+\]
+Der Hamiltonoperator ist nur die kinetische Energie:
+\[
+    H_0=\frac{\vec{P}^{\,2}}{2m}.
+\]
+In der Ortsdarstellung ist
+\[
+    \vec{P}=-i\hbar\nabla,
+\]
+also
+\[
+    \vec{P}^{\,2}=P_x^2+P_y^2+P_z^2=-\hbar^2\nabla^2.
+\]
+Damit lautet der freie Hamiltonoperator
+\begin{formulabox}
+\[
+    H_0=-\frac{\hbar^2}{2m}\nabla^2.
+\]
+In einer Raumdimension gilt entsprechend
+\[
+    H_0=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}.
+\]
+\end{formulabox}
+
+Die zeitabhängige Schrödingergleichung des freien Teilchens ist somit
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(\vec{x},t)
+    =-\frac{\hbar^2}{2m}\nabla^2\psi(\vec{x},t).
+\]
+In einer Dimension:
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(x,t)
+    =-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t).
+\]
+
+\begin{notebox}
+Der Index $0$ in $H_0$ bedeutet hier: freier Hamiltonoperator, also Hamiltonoperator ohne Potential. Später wird oft ein vollständiger Hamiltonoperator als
+\[
+    H=H_0+V
+\]
+geschrieben. Dann ist $H_0$ der ungestörte oder freie Anteil.
+\end{notebox}
+
+\section{Ebene Wellen als Lösungen}
+
+\subsection{Ansatz in einer Dimension}
+
+Für das freie Teilchen in einer Dimension versucht man den Ansatz
+\[
+    \psi(x,t)=A\,\mathrm{e}^{i(kx-\omega t)}.
+\]
+Hierbei ist
+\begin{itemize}
+    \item $A$ eine konstante Amplitude,
+    \item $k$ die Wellenzahl,
+    \item $\omega$ die Kreisfrequenz.
+\end{itemize}
+
+\begin{derivationbox}
+Wir setzen
+\[
+    \psi(x,t)=A\,\mathrm{e}^{i(kx-\omega t)}
+\]
+in die freie Schrödingergleichung ein.
+
+Die Zeitableitung ist
+\[
+    \frac{\partial}{\partial t}\psi(x,t)
+    =-i\omega\psi(x,t).
+\]
+Also ist die linke Seite
+\[
+    i\hbar\frac{\partial}{\partial t}\psi(x,t)
+    =i\hbar(-i\omega)\psi(x,t)
+    =\hbar\omega\psi(x,t).
+\]
+Die zweite Ortsableitung ist
+\[
+    \frac{\partial^2}{\partial x^2}\psi(x,t)
+    =-k^2\psi(x,t).
+\]
+Die rechte Seite ist daher
+\[
+    -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x,t)
+    =-\frac{\hbar^2}{2m}(-k^2)\psi(x,t)
+    =\frac{\hbar^2k^2}{2m}\psi(x,t).
+\]
+Damit muss gelten
+\[
+    \hbar\omega=\frac{\hbar^2k^2}{2m}.
+\]
+Also
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Für freie Materiewellen gilt die Dispersionsrelation
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+Äquivalent gilt
+\[
+    E=\hbar\omega=\frac{\hbar^2k^2}{2m}.
+\]
+\end{formulabox}
+
+\subsection{Dreidimensionaler Fall}
+
+In drei Dimensionen lautet die ebene Welle
+\[
+    \psi_{\vec{k}}(\vec{x},t)=A\,\mathrm{e}^{i(\vec{k}\cdot\vec{x}-\omega t)}.
+\]
+Da
+\[
+    \nabla^2\mathrm{e}^{i\vec{k}\cdot\vec{x}}
+    =-\vec{k}^{\,2}\mathrm{e}^{i\vec{k}\cdot\vec{x}},
+\]
+folgt
+\[
+    \omega(\vec{k})=\frac{\hbar\vec{k}^{\,2}}{2m}.
+\]
+Der zugehörige Impuls ist
+\[
+    \vec{p}=\hbar\vec{k}.
+\]
+
+\begin{definitionbox}
+Die de-Broglie-Beziehungen lauten
+\[
+    E=\hbar\omega,
+    \qquad
+    \vec{p}=\hbar\vec{k}.
+\]
+Für ein freies nichtrelativistisches Teilchen folgt daraus
+\[
+    E=\frac{\vec{p}^{\,2}}{2m}
+    =\frac{\hbar^2\vec{k}^{\,2}}{2m}.
+\]
+\end{definitionbox}
+
+\section{Ebene Wellen als Impulseigenzustände}
+
+\subsection{Wirkung des Impulsoperators}
+
+In einer Dimension ist
+\[
+    P=-i\hbar\frac{\partial}{\partial x}.
+\]
+Wir betrachten
+\[
+    \varphi_k(x)=A\,\mathrm{e}^{ikx}.
+\]
+Dann gilt
+\begin{derivationbox}
+\[
+\begin{aligned}
+    P\varphi_k(x)
+    &=-i\hbar\frac{\partial}{\partial x}\left(A\mathrm{e}^{ikx}\right) \\
+    &=-i\hbar(ik)A\mathrm{e}^{ikx} \\
+    &=\hbar k\varphi_k(x).
+\end{aligned}
+\]
+Also ist $\varphi_k$ ein Eigenzustand des Impulsoperators mit Eigenwert
+\[
+    p=\hbar k.
+\]
+\end{derivationbox}
+
+In drei Dimensionen gilt analog
+\[
+    \vec{P}\,\mathrm{e}^{i\vec{k}\cdot\vec{x}}
+    =\hbar\vec{k}\,\mathrm{e}^{i\vec{k}\cdot\vec{x}}.
+\]
+
+\begin{conceptbox}
+Eine ebene Welle hat einen exakt bestimmten Impuls. Da der Impuls exakt bestimmt ist, ist der Ort maximal unbestimmt. Das sieht man daran, dass $|\mathrm{e}^{ikx}|^2=1$ überall gleich groß ist. Die Welle ist über den ganzen Raum ausgedehnt.
+\end{conceptbox}
+
+\section{Warum ebene Wellen nicht normalisierbar sind}
+
+Für eine physikalische Wellenfunktion in einer Dimension müsste gelten
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x,t)|^2=1.
+\]
+Für eine ebene Welle
+\[
+    \psi(x,t)=A\,\mathrm{e}^{i(kx-\omega t)}
+\]
+ist jedoch
+\[
+    |\psi(x,t)|^2=|A|^2.
+\]
+Daher
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x,t)|^2
+    =|A|^2\int_{-\infty}^{\infty}\dd x.
+\]
+Dieses Integral divergiert für jedes $A\neq 0$.
+
+\begin{notebox}
+Ebene Wellen sind keine Zustände aus $L^2(\R)$. Man verwendet sie trotzdem als verallgemeinerte Eigenfunktionen. Sie sind mathematisch ähnlich wie Delta-Distributionen: nicht selbst quadratintegrierbar, aber sehr nützlich als Basisbausteine zur Darstellung physikalischer Zustände.
+\end{notebox}
+
+\subsection{Delta-Normierung}
+
+Statt eine ebene Welle auf $1$ zu normieren, verwendet man oft die Delta-Normierung. In einer Dimension definiert man
+\[
+    \varphi_k(x)=\frac{1}{\sqrt{2\pi}}\mathrm{e}^{ikx}.
+\]
+Dann gilt formal
+\[
+    \int_{-\infty}^{\infty}\dd x\,\varphi_k^*(x)\varphi_{k'}(x)
+    =\delta(k-k').
+\]
+In Impulsnotation mit
+\[
+    v_p(x)=\frac{1}{\sqrt{2\pi\hbar}}\mathrm{e}^{ipx/\hbar}
+\]
+gilt
+\[
+    (v_p,v_{p'})=\delta(p-p').
+\]
+
+\begin{conceptbox}
+Die Delta-Normierung bedeutet nicht, dass eine einzelne ebene Welle eine normale Wahrscheinlichkeit besitzt. Sie bedeutet, dass ebene Wellen als kontinuierliche Basis verwendet werden können, ähnlich wie diskrete orthonormale Basisvektoren, nur mit Kronecker-Delta $\delta_{ij}$ durch Dirac-Delta $\delta(p-p')$ ersetzt.
+\end{conceptbox}
+
+\section{Fourierdarstellung und Impulsraum}
+
+\subsection{Fourierdarstellung in $k$}
+
+Ein normalisierbares Wellenpaket kann als Überlagerung ebener Wellen geschrieben werden:
+\[
+    \psi(x,t)
+    =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd k\,
+    g(k)\,\mathrm{e}^{i(kx-\omega(k)t)}.
+\]
+Zur Anfangszeit $t=0$ ist
+\[
+    \psi(x,0)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd k\,
+    g(k)\,\mathrm{e}^{ikx}.
+\]
+Die Umkehrformel lautet
+\[
+    g(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd x\,
+    \psi(x,0)\,\mathrm{e}^{-ikx}.
+\]
+
+\begin{definitionbox}
+$g(k)$ heißt Wellenzahlverteilung oder Spektralamplitude. Der Betrag $|g(k)|^2\dd k$ beschreibt, mit welchem Gewicht Wellenzahlen im Intervall $[k,k+\dd k]$ im Wellenpaket enthalten sind.
+\end{definitionbox}
+
+\subsection{Impulsdarstellung}
+
+Da
+\[
+    p=\hbar k,
+    \qquad
+    \dd p=\hbar\dd k,
+\]
+kann man statt $g(k)$ auch die Impulsraum-Wellenfunktion $\widetilde{\psi}(p)$ verwenden:
+\[
+    \psi(x)=\frac{1}{\sqrt{2\pi\hbar}}
+    \int_{-\infty}^{\infty}\dd p\,
+    \widetilde{\psi}(p)\mathrm{e}^{ipx/\hbar}.
+\]
+Die Umkehrung ist
+\[
+    \widetilde{\psi}(p)=\frac{1}{\sqrt{2\pi\hbar}}
+    \int_{-\infty}^{\infty}\dd x\,
+    \psi(x)\mathrm{e}^{-ipx/\hbar}.
+\]
+
+\begin{formulabox}
+Die Norm ist in Orts- und Impulsdarstellung gleich:
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x)|^2
+    =\int_{-\infty}^{\infty}\dd p\,|\widetilde{\psi}(p)|^2.
+\]
+Wenn $\psi$ normiert ist, gilt also
+\[
+    \int_{-\infty}^{\infty}\dd p\,|\widetilde{\psi}(p)|^2=1.
+\]
+\end{formulabox}
+
+\subsection{Zeitentwicklung im Impulsraum}
+
+Für das freie Teilchen ist der Impuls eine Erhaltungsgröße, weil
+\[
+    [H_0,P]=0.
+\]
+Deshalb ändert sich im Impulsraum nur die Phase:
+\[
+    \widetilde{\psi}(p,t)
+    =\widetilde{\psi}(p,0)\,
+    \mathrm{e}^{-iE(p)t/\hbar}
+\]
+mit
+\[
+    E(p)=\frac{p^2}{2m}.
+\]
+Also
+\begin{formulabox}
+\[
+    \widetilde{\psi}(p,t)
+    =\widetilde{\psi}(p,0)\,
+    \mathrm{e}^{-ip^2t/(2m\hbar)}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Im Impulsraum sieht die freie Zeitentwicklung besonders einfach aus: Die Wahrscheinlichkeitsverteilung $|\widetilde{\psi}(p,t)|^2$ bleibt konstant, nur die Phasen der verschiedenen Impulsanteile ändern sich unterschiedlich schnell.
+\end{notebox}
+
+\section{Phasengeschwindigkeit und Gruppengeschwindigkeit}
+
+\subsection{Phasengeschwindigkeit}
+
+Eine einzelne ebene Welle hat konstante Phase, wenn
+\[
+    kx-\omega t=\text{konstant}
+\]
+gilt. Daraus folgt
+\[
+    k\frac{\dd x}{\dd t}-\omega=0,
+\]
+also
+\[
+    v_\text{ph}=\frac{\omega}{k}.
+\]
+Für ein freies nichtrelativistisches Teilchen ist
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+Damit
+\[
+    v_\text{ph}=\frac{\hbar k}{2m}=\frac{p}{2m}.
+\]
+
+\begin{notebox}
+Die Phasengeschwindigkeit ist nicht die Geschwindigkeit des Teilchens. Sie beschreibt, wie sich die Phasenfronten einer einzelnen ebenen Welle bewegen. Für das freie nichtrelativistische Teilchen ist sie halb so groß wie die klassische Geschwindigkeit $p/m$.
+\end{notebox}
+
+\subsection{Gruppengeschwindigkeit}
+
+Ein Wellenpaket besteht aus vielen ebenen Wellen mit Wellenzahlen nahe einem zentralen Wert $k_0$. Die Geschwindigkeit der Paketmitte ist die Gruppengeschwindigkeit
+\[
+    v_g=\left.\frac{\dd\omega}{\dd k}\right|_{k_0}.
+\]
+Für
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}
+\]
+ergibt sich
+\[
+    \frac{\dd\omega}{\dd k}=\frac{\hbar k}{m}.
+\]
+Also
+\begin{formulabox}
+\[
+    v_g=\frac{\hbar k_0}{m}=\frac{p_0}{m}.
+\]
+\end{formulabox}
+
+\begin{conceptbox}
+Die Gruppengeschwindigkeit stimmt beim freien nichtrelativistischen Teilchen mit der klassischen Geschwindigkeit überein. Deshalb bewegt sich die Mitte eines freien Wellenpakets wie ein klassisches Teilchen mit Impuls $p_0=\hbar k_0$.
+\end{conceptbox}
+
+\subsection{Herleitung durch Entwicklung von $\omega(k)$}
+
+Sei $g(k)$ stark um $k_0$ konzentriert. Dann entwickelt man
+\[
+    \omega(k)=\omega(k_0)+\omega'(k_0)(k-k_0)+\frac{1}{2}\omega''(k_0)(k-k_0)^2+\dots
+\]
+Vernachlässigt man zunächst den quadratischen Term, so gilt
+\[
+    \omega(k)\approx \omega_0+v_g(k-k_0).
+\]
+Dann wird
+\begin{derivationbox}
+\[
+\begin{aligned}
+    \psi(x,t)
+    &=\frac{1}{\sqrt{2\pi}}\int\dd k\,
+      g(k)\mathrm{e}^{i(kx-\omega(k)t)} \\
+    &\approx \frac{1}{\sqrt{2\pi}}\int\dd k\,
+      g(k)\mathrm{e}^{i[kx-\omega_0t-v_g(k-k_0)t]} \\
+    &=\mathrm{e}^{-i\omega_0t+i v_g k_0 t}
+      \frac{1}{\sqrt{2\pi}}\int\dd k\,
+      g(k)\mathrm{e}^{ik(x-v_gt)}.
+\end{aligned}
+\]
+Bis auf einen globalen Phasenfaktor ist das
+\[
+    \psi(x,t)\approx \psi(x-v_gt,0).
+\]
+Die Form des Pakets verschiebt sich also mit $v_g$.
+\end{derivationbox}
+
+\begin{notebox}
+Diese Näherung ignoriert den quadratischen Term in der Taylorentwicklung von $\omega(k)$. Genau dieser Term ist aber für das Zerfließen des Wellenpakets verantwortlich.
+\end{notebox}
+
+\section{Warum Wellenpakete zerfließen}
+
+\subsection{Physikalische Idee}
+
+Ein Wellenpaket enthält nicht nur eine Wellenzahl $k_0$, sondern viele Wellenzahlen in einem Bereich um $k_0$. Für ein freies Teilchen ist
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+Die Gruppengeschwindigkeit hängt daher von $k$ ab:
+\[
+    v_g(k)=\frac{\dd\omega}{\dd k}=\frac{\hbar k}{m}.
+\]
+Verschiedene $k$-Anteile bewegen sich also mit verschiedenen Geschwindigkeiten. Das Paket verbreitert sich.
+
+\begin{conceptbox}
+Zerfließen bedeutet: Die Wahrscheinlichkeitsdichte $|\psi(x,t)|^2$ wird mit der Zeit breiter. Das liegt nicht an Reibung oder Energieverlust, sondern an der Dispersion der freien Schrödingergleichung.
+\end{conceptbox}
+
+\subsection{Dispersion als Ursache}
+
+Eine Wellengleichung heißt dispersiv, wenn $\omega(k)$ nicht linear in $k$ ist. Wäre
+\[
+    \omega(k)=ck,
+\]
+dann wäre
+\[
+    v_g=\frac{\dd\omega}{\dd k}=c
+\]
+für alle $k$ gleich. Ein schmales Paket würde dann ohne Formänderung laufen. Beim freien Schrödingerteilchen ist jedoch
+\[
+    \omega(k)\propto k^2.
+\]
+Daher ist die freie Schrödingergleichung dispersiv.
+
+\section{Gaußsches Wellenpaket zur Anfangszeit}
+
+\subsection{Definition}
+
+Ein besonders wichtiges Beispiel ist das gaußsche Wellenpaket in einer Dimension:
+\[
+    \psi(x,0)=\left(\frac{2}{\pi a^2}\right)^{1/4}
+    \mathrm{e}^{ik_0x}\mathrm{e}^{-x^2/a^2}.
+\]
+Hierbei gilt:
+\begin{itemize}
+    \item $a>0$ beschreibt die anfängliche Breite des Pakets,
+    \item $k_0$ ist die zentrale Wellenzahl,
+    \item $p_0=\hbar k_0$ ist der mittlere Impuls.
+\end{itemize}
+
+\begin{formulabox}
+Für das gaußsche Anfangspaket
+\[
+    \psi(x,0)=\left(\frac{2}{\pi a^2}\right)^{1/4}
+    \mathrm{e}^{ik_0x}\mathrm{e}^{-x^2/a^2}
+\]
+gilt
+\[
+    |\psi(x,0)|^2=\sqrt{\frac{2}{\pi a^2}}\,\mathrm{e}^{-2x^2/a^2}.
+\]
+\end{formulabox}
+
+\subsection{Normierung}
+
+\begin{derivationbox}
+Wir prüfen die Normierung:
+\[
+    \int_{-\infty}^{\infty}\dd x\,|\psi(x,0)|^2
+    =\sqrt{\frac{2}{\pi a^2}}\int_{-\infty}^{\infty}\dd x\,
+      \mathrm{e}^{-2x^2/a^2}.
+\]
+Mit dem Gaußintegral
+\[
+    \int_{-\infty}^{\infty}\dd x\,\mathrm{e}^{-\alpha x^2}
+    =\sqrt{\frac{\pi}{\alpha}}
+    \qquad (\alpha>0)
+\]
+und $\alpha=2/a^2$ folgt
+\[
+    \int_{-\infty}^{\infty}\dd x\,\mathrm{e}^{-2x^2/a^2}
+    =\sqrt{\frac{\pi a^2}{2}}.
+\]
+Daher
+\[
+    \sqrt{\frac{2}{\pi a^2}}\sqrt{\frac{\pi a^2}{2}}=1.
+\]
+Das Paket ist normiert.
+\end{derivationbox}
+
+\subsection{Erwartungswerte zur Anfangszeit}
+
+Da $|\psi(x,0)|^2$ symmetrisch um $x=0$ ist, gilt
+\[
+    \langle X\rangle_0=0.
+\]
+Die Varianz ist
+\[
+    (\Delta X)_0^2=\langle X^2\rangle_0-\langle X\rangle_0^2
+    =\langle X^2\rangle_0.
+\]
+Für das obige Paket ergibt sich
+\[
+    (\Delta X)_0^2=\frac{a^2}{4},
+\]
+also
+\begin{formulabox}
+\[
+    (\Delta X)_0=\frac{a}{2}.
+\]
+\end{formulabox}
+
+Der Impulserwartungswert ist
+\[
+    \langle P\rangle_0=\hbar k_0.
+\]
+Die Impulsunschärfe ist
+\[
+    (\Delta P)_0=\frac{\hbar}{a}.
+\]
+Damit
+\[
+    (\Delta X)_0(\Delta P)_0=\frac{a}{2}\frac{\hbar}{a}=\frac{\hbar}{2}.
+\]
+
+\begin{conceptbox}
+Das gaußsche Wellenpaket ist ein Zustand minimaler Unschärfe:
+\[
+    \Delta X\Delta P=\frac{\hbar}{2}.
+\]
+Es sättigt also die Heisenbergsche Unschärferelation.
+\end{conceptbox}
+
+\section{Fouriertransformierte des gaußschen Pakets}
+
+\subsection{Form der Wellenzahlverteilung}
+
+Die Fouriertransformierte des gaußschen Pakets ist wieder eine Gaußfunktion. Für
+\[
+    \psi(x,0)=\left(\frac{2}{\pi a^2}\right)^{1/4}
+    \mathrm{e}^{ik_0x}\mathrm{e}^{-x^2/a^2}
+\]
+verwenden wir
+\[
+    g(k)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\dd x\,
+    \psi(x,0)\mathrm{e}^{-ikx}.
+\]
+Dann erhält man
+\[
+    g(k)=\frac{\sqrt{a}}{(2\pi)^{1/4}}
+    \mathrm{e}^{-a^2(k-k_0)^2/4}.
+\]
+
+\begin{formulabox}
+Die Wellenzahlverteilung ist
+\[
+    |g(k)|^2=\frac{a}{\sqrt{2\pi}}
+    \mathrm{e}^{-a^2(k-k_0)^2/2}.
+\]
+Sie ist um $k_0$ zentriert und hat die Breite
+\[
+    \Delta k=\frac{1}{a}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Je kleiner $a$ ist, desto schmaler ist das Paket im Ort und desto breiter ist es im Impulsraum. Je größer $a$ ist, desto breiter ist das Paket im Ort und desto schärfer ist sein Impuls. Das ist die Fourierform der Unschärferelation.
+\end{notebox}
+
+\subsection{Herleitung der Fouriertransformierten}
+
+\begin{derivationbox}
+Wir berechnen
+\[
+    g(k)=\frac{1}{\sqrt{2\pi}}\left(\frac{2}{\pi a^2}\right)^{1/4}
+    \int_{-\infty}^{\infty}\dd x\,
+    \mathrm{e}^{-x^2/a^2}\mathrm{e}^{-i(k-k_0)x}.
+\]
+Das benötigte Gaußintegral ist
+\[
+    \int_{-\infty}^{\infty}\dd x\,
+    \mathrm{e}^{-\alpha x^2+\beta x}
+    =\sqrt{\frac{\pi}{\alpha}}\,
+    \mathrm{e}^{\beta^2/(4\alpha)}.
+\]
+Hier ist
+\[
+    \alpha=\frac{1}{a^2},
+    \qquad
+    \beta=-i(k-k_0).
+\]
+Daher
+\[
+    \frac{\beta^2}{4\alpha}
+    =\frac{[-i(k-k_0)]^2}{4/a^2}
+    =-\frac{a^2(k-k_0)^2}{4}.
+\]
+Außerdem
+\[
+    \sqrt{\frac{\pi}{\alpha}}=\sqrt{\pi a^2}=a\sqrt{\pi}.
+\]
+Einsetzen liefert
+\[
+    g(k)=\frac{\sqrt{a}}{(2\pi)^{1/4}}
+    \mathrm{e}^{-a^2(k-k_0)^2/4}.
+\]
+\end{derivationbox}
+
+\section{Zeitentwicklung des gaußschen Wellenpakets}
+
+\subsection{Allgemeine Darstellung}
+
+Die freie Zeitentwicklung lautet
+\[
+    \psi(x,t)=\frac{1}{\sqrt{2\pi}}
+    \int_{-\infty}^{\infty}\dd k\,
+    g(k)\mathrm{e}^{i(kx-\omega(k)t)}
+\]
+mit
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}.
+\]
+Für das gaußsche Paket ist also
+\[
+    \psi(x,t)=\frac{1}{\sqrt{2\pi} }
+    \int_{-\infty}^{\infty}\dd k\,
+    \frac{\sqrt{a}}{(2\pi)^{1/4}}
+    \mathrm{e}^{-a^2(k-k_0)^2/4}
+    \mathrm{e}^{i(kx-\hbar k^2t/(2m))}.
+\]
+Dieses Integral kann exakt ausgewertet werden. Für das Lernen ist vor allem die Wahrscheinlichkeitsdichte wichtig.
+
+\subsection{Wahrscheinlichkeitsdichte zu späteren Zeiten}
+
+Für das freie gaußsche Wellenpaket ergibt sich eine Gaußform, deren Breite zeitabhängig ist:
+\begin{formulabox}
+\[
+    |\psi(x,t)|^2
+    =\frac{1}{\sqrt{2\pi}\,\Delta X(t)}
+    \exp\left[-\frac{(x-v_0t)^2}{2(\Delta X(t))^2}\right],
+\]
+wobei
+\[
+    v_0=\frac{\hbar k_0}{m}
+\]
+und
+\[
+    \Delta X(t)=\frac{a}{2}
+    \sqrt{1+\frac{4\hbar^2t^2}{m^2a^4}}.
+\]
+\end{formulabox}
+
+Die Mitte des Pakets liegt bei
+\[
+    \langle X\rangle_t=v_0t=\frac{\hbar k_0}{m}t.
+\]
+Die Breite ist
+\[
+    \Delta X(t)=\frac{a}{2}
+    \sqrt{1+\left(\frac{2\hbar t}{ma^2}\right)^2}.
+\]
+
+\begin{conceptbox}
+Das Paket bewegt sich mit der klassischen Geschwindigkeit $v_0=p_0/m$, aber seine Breite wächst mit der Zeit. Die Paketmitte verhält sich klassisch, die Paketbreite ist ein rein quantenmechanischer Effekt der Dispersion.
+\end{conceptbox}
+
+\subsection{Grenzfälle}
+
+Für $t=0$ erhält man
+\[
+    \Delta X(0)=\frac{a}{2}.
+\]
+Für große Zeiten, also
+\[
+    \frac{2\hbar t}{ma^2}\gg 1,
+\]
+gilt näherungsweise
+\[
+    \Delta X(t)\approx \frac{a}{2}\frac{2\hbar t}{ma^2}
+    =\frac{\hbar t}{ma}.
+\]
+
+\begin{notebox}
+Ein stark lokalisiertes Paket hat kleines $a$. Dann ist $\Delta P=\hbar/a$ groß. Große Impulsstreuung bedeutet große Geschwindigkeitsstreuung. Deshalb zerfließt ein stark lokalisiertes Paket besonders schnell.
+\end{notebox}
+
+\section{Unschärferelation und Zerfließen}
+
+\subsection{Zusammenhang zwischen Orts- und Impulsbreite}
+
+Für das gaußsche Anfangspaket gilt
+\[
+    \Delta X(0)=\frac{a}{2},
+    \qquad
+    \Delta P(0)=\frac{\hbar}{a}.
+\]
+Da beim freien Teilchen
+\[
+    v=\frac{p}{m}
+\]
+gilt, ist die Geschwindigkeitsunschärfe
+\[
+    \Delta v=\frac{\Delta P}{m}=\frac{\hbar}{ma}.
+\]
+Nach einer Zeit $t$ führt diese Geschwindigkeitsunschärfe zu einer zusätzlichen Ortsunschärfe der Größenordnung
+\[
+    \Delta x_\text{zusätzlich}\sim \Delta v\,t
+    =\frac{\hbar t}{ma}.
+\]
+Das ist genau die große-Zeit-Skalierung von $\Delta X(t)$.
+
+\begin{conceptbox}
+Zerfließen ist eine direkte Konsequenz daraus, dass ein lokalisiertes Teilchen nicht nur einen Impuls besitzt. Es enthält viele Impulskomponenten. Diese bewegen sich mit verschiedenen Geschwindigkeiten auseinander.
+\end{conceptbox}
+
+\section{Wahrscheinlichkeitsstrom eines freien ebenen Wellenanteils}
+
+Für eine Wellenfunktion in einer Dimension ist der Wahrscheinlichkeitsstrom
+\[
+    j(x,t)=\frac{\hbar}{2mi}\left(\psi^*\frac{\partial\psi}{\partial x}
+    -\frac{\partial\psi^*}{\partial x}\psi\right).
+\]
+Für eine ebene Welle
+\[
+    \psi(x,t)=A\mathrm{e}^{i(kx-\omega t)}
+\]
+ist
+\[
+    \frac{\partial\psi}{\partial x}=ik\psi,
+    \qquad
+    \frac{\partial\psi^*}{\partial x}=-ik\psi^*.
+\]
+Damit
+\begin{derivationbox}
+\[
+\begin{aligned}
+    j
+    &=\frac{\hbar}{2mi}\left(\psi^*ik\psi-(-ik\psi^*)\psi\right) \\
+    &=\frac{\hbar}{2mi}\left(2ik|\psi|^2\right) \\
+    &=\frac{\hbar k}{m}|\psi|^2.
+\end{aligned}
+\]
+Da $p=\hbar k$, gilt
+\[
+    j=\frac{p}{m}|\psi|^2.
+\]
+\end{derivationbox}
+
+\begin{formulabox}
+Für einen ebenen Wellenanteil gilt
+\[
+    j=v|\psi|^2,
+    \qquad
+    v=\frac{\hbar k}{m}=\frac{p}{m}.
+\]
+\end{formulabox}
+
+\begin{notebox}
+Für $k>0$ fließt Wahrscheinlichkeit nach rechts, für $k<0$ nach links. Das ist später bei Streuproblemen wichtig, weil Reflexions- und Transmissionswahrscheinlichkeiten über Ströme verglichen werden.
+\end{notebox}
+
+\section{Freier Propagator}
+
+\subsection{Idee des Propagators}
+
+Der Propagator ist die Greensche Funktion der Schrödingergleichung. Er beantwortet die Frage: Wie entwickelt sich eine punktförmige Anfangsanregung von $x'$ zur Zeit $0$ bis zum Ort $x$ zur Zeit $t$?
+
+Für das freie Teilchen in einer Dimension gilt
+\begin{formulabox}
+\[
+    K(x,t;x',0)
+    =\sqrt{\frac{m}{2\pi i\hbar t}}
+    \exp\left(\frac{im(x-x')^2}{2\hbar t}\right)
+    \qquad (t>0).
+\]
+\end{formulabox}
+
+Mit diesem Propagator erhält man die allgemeine Lösung aus der Anfangswellenfunktion:
+\[
+    \psi(x,t)=\int_{-\infty}^{\infty}\dd x'\,
+    K(x,t;x',0)\psi(x',0).
+\]
+
+\begin{notebox}
+Der freie Propagator ist nicht lokal wie eine klassische Punktbahn. Selbst wenn man bei $x'$ startet, ist die Amplitude für spätere Zeiten formal überall ungleich null. Die Quantenmechanik beschreibt Ausbreitung von Amplituden, nicht deterministische Bahnen eines Punktteilchens.
+\end{notebox}
+
+\section{Klassischer Grenzfall}
+
+\subsection{Ehrenfest-Bild}
+
+Für das freie Teilchen gilt
+\[
+    H_0=\frac{P^2}{2m}.
+\]
+Aus den Ehrenfest-Gleichungen folgt
+\[
+    \frac{\dd}{\dd t}\langle X\rangle_t=\frac{1}{m}\langle P\rangle_t,
+\]
+und
+\[
+    \frac{\dd}{\dd t}\langle P\rangle_t=0.
+\]
+Damit ist
+\[
+    \langle P\rangle_t=\langle P\rangle_0=p_0
+\]
+und
+\[
+    \langle X\rangle_t=\langle X\rangle_0+\frac{p_0}{m}t.
+\]
+
+\begin{conceptbox}
+Der Erwartungswert des Ortes eines freien Teilchens bewegt sich wie ein klassisches freies Teilchen. Aber die Wellenfunktion selbst kann sich verbreitern. Klassische Bewegung der Paketmitte bedeutet daher nicht, dass das Paket punktförmig bleibt.
+\end{conceptbox}
+
+\section{Typische Aufgabenmuster}
+
+\subsection{Muster 1: Zeigen, dass ebene Wellen Lösungen sind}
+
+Wenn gefragt wird, ob
+\[
+    \psi(x,t)=A\mathrm{e}^{i(kx-\omega t)}
+\]
+eine Lösung der freien Schrödingergleichung ist, geht man immer so vor:
+\begin{enumerate}
+    \item Zeitableitung berechnen:
+    \[
+        \partial_t\psi=-i\omega\psi.
+    \]
+    \item Zweite Ortsableitung berechnen:
+    \[
+        \partial_x^2\psi=-k^2\psi.
+    \]
+    \item In die Schrödingergleichung einsetzen.
+    \item Dispersionsrelation ablesen:
+    \[
+        \hbar\omega=\frac{\hbar^2k^2}{2m}.
+    \]
+\end{enumerate}
+
+\subsection{Muster 2: Gruppengeschwindigkeit berechnen}
+
+Man verwendet
+\[
+    v_g=\frac{\dd\omega}{\dd k}.
+\]
+Für freie Teilchen:
+\[
+    \omega(k)=\frac{\hbar k^2}{2m}
+    \quad\Rightarrow\quad
+    v_g=\frac{\hbar k}{m}.
+\]
+Bei einem Paket um $k_0$:
+\[
+    v_g(k_0)=\frac{\hbar k_0}{m}.
+\]
+
+\subsection{Muster 3: Fouriertransformierte eines gaußschen Pakets}
+
+Man bringt das Integral auf die Form
+\[
+    \int_{-\infty}^{\infty}\dd x\,\mathrm{e}^{-\alpha x^2+\beta x}
+    =\sqrt{\frac{\pi}{\alpha}}\mathrm{e}^{\beta^2/(4\alpha)}.
+\]
+Der Faktor $\mathrm{e}^{ik_0x}$ verschiebt die Gaußfunktion im $k$-Raum von $0$ nach $k_0$.
+
+\subsection{Muster 4: Zerfließen interpretieren}
+
+Eine gute Erklärung enthält drei Sätze:
+\begin{enumerate}
+    \item Ein lokalisiertes Paket ist eine Superposition vieler Impulse.
+    \item Beim freien Teilchen hat jede Impulskomponente die Geschwindigkeit $v=p/m$.
+    \item Verschiedene Impulskomponenten laufen auseinander; deshalb wächst $\Delta X(t)$.
+\end{enumerate}
+
+\section{Mini-Beispiele}
+
+\subsection{Beispiel: Welche Geschwindigkeit hat ein Wellenpaket?}
+
+Ein freies Elektron werde durch ein schmales Paket um die Wellenzahl $k_0$ beschrieben. Dann ist der mittlere Impuls
+\[
+    p_0=\hbar k_0.
+\]
+Die Paketmitte bewegt sich mit
+\[
+    v_g=\frac{p_0}{m}=\frac{\hbar k_0}{m}.
+\]
+
+\begin{answerbox}
+Die Geschwindigkeit des Wellenpakets ist nicht die Phasengeschwindigkeit $\omega/k$, sondern die Gruppengeschwindigkeit $\dd\omega/\dd k$. Für ein freies nichtrelativistisches Teilchen ist das genau die klassische Geschwindigkeit $p_0/m$.
+\end{answerbox}
+
+\subsection{Beispiel: Warum ist ein Impulseigenzustand nicht lokalisiert?}
+
+Ein Impulseigenzustand in Ortsdarstellung ist
+\[
+    \varphi_p(x)=\frac{1}{\sqrt{2\pi\hbar}}\mathrm{e}^{ipx/\hbar}.
+\]
+Dann ist
+\[
+    |\varphi_p(x)|^2=\frac{1}{2\pi\hbar}
+\]
+unabhängig von $x$.
+
+\begin{answerbox}
+Alle Orte sind gleich stark vertreten. Der Zustand besitzt keinen bevorzugten Aufenthaltsort und ist nicht quadratintegrierbar. Ein exakt scharfer Impuls bedeutet vollständige Delokalisierung im Ort.
+\end{answerbox}
+
+\section{Zusammenfassung der wichtigsten Formeln}
+
+\begin{formulabox}
+Freier Hamiltonoperator:
+\[
+    H_0=-\frac{\hbar^2}{2m}\nabla^2.
+\]
+Ebene Welle:
+\[
+    \psi_{\vec{k}}(\vec{x},t)=A\mathrm{e}^{i(\vec{k}\cdot\vec{x}-\omega t)}.
+\]
+Dispersionsrelation:
+\[
+    \omega(\vec{k})=\frac{\hbar \vec{k}^{\,2}}{2m}.
+\]
+De-Broglie-Beziehungen:
+\[
+    E=\hbar\omega,
+    \qquad
+    \vec{p}=\hbar\vec{k}.
+\]
+Fourierdarstellung in 1D:
+\[
+    \psi(x,t)=\frac{1}{\sqrt{2\pi}}\int\dd k\,
+    g(k)\mathrm{e}^{i(kx-\omega(k)t)}.
+\]
+Gruppengeschwindigkeit:
+\[
+    v_g=\left.\frac{\dd\omega}{\dd k}\right|_{k_0}
+    =\frac{\hbar k_0}{m}.
+\]
+Gaußpaket:
+\[
+    \psi(x,0)=\left(\frac{2}{\pi a^2}\right)^{1/4}
+    \mathrm{e}^{ik_0x}\mathrm{e}^{-x^2/a^2}.
+\]
+Breite des freien Gaußpakets:
+\[
+    \Delta X(t)=\frac{a}{2}
+    \sqrt{1+\frac{4\hbar^2t^2}{m^2a^4}}.
+\]
+\end{formulabox}
+
+\section{Prüfungsrelevante Kernaussagen}
+
+\begin{examtipbox}
+Für Prüfungsaufgaben sollte man die folgenden Punkte sicher erklären können:
+\begin{itemize}
+    \item Eine ebene Welle ist Energie- und Impulseigenzustand des freien Teilchens.
+    \item Ebene Wellen sind nicht normalisierbar und daher keine physikalischen lokalisierten Zustände.
+    \item Ein physikalisches freies Teilchen wird durch ein Wellenpaket beschrieben.
+    \item Die Paketmitte bewegt sich mit der Gruppengeschwindigkeit $v_g=p_0/m$.
+    \item Das Paket zerfließt, weil die freie Schrödingergleichung dispersiv ist.
+    \item Beim gaußschen Paket gilt anfänglich $\Delta X=a/2$ und $\Delta P=\hbar/a$.
+    \item Das Produkt $\Delta X\Delta P=\hbar/2$ zeigt, dass das Gaußpaket minimale Unschärfe besitzt.
+\end{itemize}
+\end{examtipbox}

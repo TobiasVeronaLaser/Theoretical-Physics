@@ -1,0 +1,773 @@
+\chapter{Grundlagen der Kernphysik}
+
+\section{Ziel dieses Kapitels}
+
+Dieses Kapitel führt die Grundbegriffe der Kernphysik ein.
+Es behandelt Nuklide, Isotope, Isobare, Isotone, die Nuklidkarte, Kernradien,
+Massendefekt, Bindungsenergie und die erste qualitative Idee von Kernstabilität.
+
+\begin{notebox}
+Dieses Kapitel ist die Grundlage für spätere Themen wie:
+\begin{itemize}
+    \item Rutherfordstreuung und Formfaktoren,
+    \item Weizsäcker-Massenformel,
+    \item Massental,
+    \item Kernmodelle,
+    \item radioaktive Zerfälle,
+    \item Kernspaltung und Kernfusion.
+\end{itemize}
+\end{notebox}
+
+\section{Atomkerne, Protonen und Neutronen}
+
+Ein Atomkern besteht aus Protonen und Neutronen.
+Protonen und Neutronen werden zusammen als \emph{Nukleonen} bezeichnet.
+
+\begin{definitionbox}
+Die \emph{Protonenzahl} $Z$ gibt an, wie viele Protonen ein Kern enthält.
+
+Die \emph{Neutronenzahl} $N$ gibt an, wie viele Neutronen ein Kern enthält.
+
+Die \emph{Massenzahl} $A$ gibt die Gesamtzahl der Nukleonen an:
+\[
+    A = Z + N.
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+Die Protonenzahl $Z$ bestimmt das chemische Element.
+
+Beispiele:
+\[
+    Z=1 \Rightarrow \text{Wasserstoff},
+    \qquad
+    Z=6 \Rightarrow \text{Kohlenstoff},
+    \qquad
+    Z=92 \Rightarrow \text{Uran}.
+\]
+
+Die Neutronenzahl $N$ bestimmt dagegen, welche Kernsorte dieses Elements vorliegt.
+Unterschiedliche Neutronenzahlen können zu unterschiedlicher Stabilität führen.
+\end{conceptbox}
+
+\begin{formulabox}
+\[
+    A = Z + N
+\]
+und damit
+\[
+    N = A - Z.
+\]
+\end{formulabox}
+
+\begin{examtipbox}
+Bei jedem Nuklid zuerst bestimmen:
+\[
+    Z,\qquad A,\qquad N=A-Z.
+\]
+Die Massenzahl $A$ ist nicht die Neutronenzahl.
+\end{examtipbox}
+
+\section{Schreibweise von Nukliden}
+
+Ein Nuklid wird meistens in der Form
+\[
+    {}^A_Z X
+\]
+geschrieben. Dabei ist $X$ das Elementsymbol.
+
+\begin{definitionbox}
+Ein \emph{Nuklid} ist eine Kernsorte mit eindeutig festgelegter Protonenzahl $Z$
+und Neutronenzahl $N$.
+
+Da
+\[
+    A=Z+N
+\]
+gilt, kann man ein Nuklid auch durch $Z$ und $A$ eindeutig festlegen.
+\end{definitionbox}
+
+\begin{examplebox}
+Betrachte das Nuklid
+\[
+    {}^{238}_{92}\mathrm{U}.
+\]
+Dann ist
+\[
+    Z=92,
+    \qquad
+    A=238.
+\]
+Die Neutronenzahl ist daher
+\[
+    N=A-Z=238-92=146.
+\]
+Der Kern enthält also $92$ Protonen und $146$ Neutronen.
+\end{examplebox}
+
+\section{Nuklidsorten}
+
+Die wichtigsten Nuklidsorten sind Isotope, Isobare, Isotone und Kernisomere.
+Diese Begriffe beschreiben, welche der Zahlen $Z$, $N$ und $A$ gleich bleiben.
+
+\subsection{Isotope}
+
+\begin{definitionbox}
+\emph{Isotope} sind Nuklide mit gleicher Protonenzahl $Z$, aber unterschiedlicher
+Neutronenzahl $N$.
+
+Sie gehören also zum gleichen chemischen Element, haben aber unterschiedliche
+Massenzahlen $A$.
+\end{definitionbox}
+
+\begin{conceptbox}
+Isotope sind chemisch sehr ähnlich, weil das chemische Verhalten vor allem durch
+die Elektronenhülle bestimmt wird.
+Bei neutralen Atomen ist die Elektronenzahl gleich der Protonenzahl $Z$.
+
+Kernphysikalisch können Isotope aber sehr unterschiedlich sein.
+Ein Isotop kann stabil sein, ein anderes radioaktiv.
+\end{conceptbox}
+
+\begin{examplebox}
+Die Kohlenstoffisotope
+\[
+    {}^{12}_{6}\mathrm{C},
+    \qquad
+    {}^{13}_{6}\mathrm{C},
+    \qquad
+    {}^{14}_{6}\mathrm{C}
+\]
+haben alle
+\[
+    Z=6.
+\]
+Die Neutronenzahlen sind:
+\[
+    N({}^{12}\mathrm{C})=12-6=6,
+\]
+\[
+    N({}^{13}\mathrm{C})=13-6=7,
+\]
+\[
+    N({}^{14}\mathrm{C})=14-6=8.
+\]
+Sie sind also Isotope desselben Elements.
+\end{examplebox}
+
+\subsection{Isobare}
+
+\begin{definitionbox}
+\emph{Isobare} sind Nuklide mit gleicher Massenzahl $A$, aber unterschiedlicher
+Protonenzahl $Z$.
+\end{definitionbox}
+
+\begin{conceptbox}
+Isobare haben gleich viele Nukleonen, aber eine unterschiedliche Aufteilung in
+Protonen und Neutronen.
+
+Dadurch ändern sich:
+\begin{itemize}
+    \item die Coulomb-Abstoßung zwischen den Protonen,
+    \item das Verhältnis von Neutronen zu Protonen,
+    \item die Kernmasse,
+    \item die Stabilität.
+\end{itemize}
+\end{conceptbox}
+
+\begin{examplebox}
+Die Kerne
+\[
+    {}^{14}_{6}\mathrm{C}
+    \qquad\text{und}\qquad
+    {}^{14}_{7}\mathrm{N}
+\]
+haben beide
+\[
+    A=14.
+\]
+Sie besitzen aber verschiedene Protonenzahlen:
+\[
+    Z({}^{14}\mathrm{C})=6,
+    \qquad
+    Z({}^{14}\mathrm{N})=7.
+\]
+Damit sind sie Isobare.
+\end{examplebox}
+
+\subsection{Isotone}
+
+\begin{definitionbox}
+\emph{Isotone} sind Nuklide mit gleicher Neutronenzahl $N$, aber unterschiedlicher
+Protonenzahl $Z$.
+\end{definitionbox}
+
+\begin{examplebox}
+Betrachte
+\[
+    {}^{14}_{6}\mathrm{C}
+    \qquad\text{und}\qquad
+    {}^{15}_{7}\mathrm{N}.
+\]
+Dann gilt:
+\[
+    N({}^{14}\mathrm{C})=14-6=8,
+\]
+\[
+    N({}^{15}\mathrm{N})=15-7=8.
+\]
+Beide Kerne haben also dieselbe Neutronenzahl.
+Sie sind Isotone.
+\end{examplebox}
+
+\subsection{Kernisomere}
+
+\begin{definitionbox}
+Ein \emph{Kernisomer} ist ein langlebiger angeregter Zustand eines Atomkerns.
+
+Ein Kernisomer besitzt dieselbe Protonenzahl $Z$ und dieselbe Massenzahl $A$
+wie der zugehörige Grundzustand, aber eine andere innere Energie.
+\end{definitionbox}
+
+\begin{conceptbox}
+Ein Kernisomer ist kein anderes Element und kein anderes Isotop.
+Es ist derselbe Kern in einem metastabilen angeregten Zustand.
+
+Solche Zustände können zum Beispiel durch Aussenden von Gammastrahlung zerfallen.
+\end{conceptbox}
+
+\subsection{Vergleich der Nuklidsorten}
+
+\begin{center}
+\begin{tabular}{|l|l|l|p{6.4cm}|}
+\hline
+Begriff & Gleich & Verschieden & Bedeutung \\
+\hline
+Isotope & $Z$ & $N$, $A$ & gleiches chemisches Element \\
+\hline
+Isobare & $A$ & $Z$, $N$ & gleiche Gesamtzahl an Nukleonen \\
+\hline
+Isotone & $N$ & $Z$, $A$ & gleiche Neutronenzahl \\
+\hline
+Isomere & $Z$, $A$ & Energiezustand & gleicher Kern in angeregtem Zustand \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{examtipbox}
+Merke:
+\[
+    \text{Isotope: } Z \text{ gleich},
+\]
+\[
+    \text{Isobare: } A \text{ gleich},
+\]
+\[
+    \text{Isotone: } N \text{ gleich}.
+\]
+\end{examtipbox}
+
+\section{Nuklidkarte}
+
+Die Nuklidkarte ordnet Kerne nach Protonenzahl und Neutronenzahl.
+Sie ist eine Art Landkarte der Kernstabilität.
+
+\begin{definitionbox}
+Eine \emph{Nuklidkarte} ist eine Darstellung von Nukliden in einem Koordinatensystem,
+in dem typischerweise die Protonenzahl $Z$ und die Neutronenzahl $N$ aufgetragen werden.
+\end{definitionbox}
+
+\begin{conceptbox}
+Stabile Kerne liegen nicht zufällig in der Nuklidkarte.
+Sie bilden ein charakteristisches Stabilitätsband.
+
+Für leichte stabile Kerne gilt ungefähr:
+\[
+    N \approx Z.
+\]
+Für schwere stabile Kerne gilt meistens:
+\[
+    N > Z.
+\]
+\end{conceptbox}
+
+\begin{conceptbox}
+Der Grund für $N>Z$ bei schweren stabilen Kernen ist die Coulomb-Abstoßung zwischen Protonen.
+
+Protonen stoßen sich elektrisch ab.
+Neutronen tragen zur starken Kernbindung bei, erzeugen aber keine zusätzliche elektrische
+Abstoßung.
+
+Schwere Kerne benötigen daher zusätzliche Neutronen, um stabil zu bleiben.
+\end{conceptbox}
+
+\begin{notebox}
+In der Nuklidkarte werden auch Zerfallstypen markiert.
+Typische Zerfallstypen sind:
+\[
+    \beta^+,
+    \qquad
+    \varepsilon\text{-Einfang},
+    \qquad
+    \beta^-,
+    \qquad
+    \alpha,
+    \qquad
+    \text{spontane Spaltung}.
+\]
+Die genaue Behandlung dieser Zerfälle folgt im Kapitel über Radioaktivität.
+\end{notebox}
+
+\begin{examtipbox}
+Wenn ein Kern zu viele Neutronen besitzt, ist häufig $\beta^-$-Zerfall relevant.
+
+Wenn ein Kern zu viele Protonen besitzt, sind häufig $\beta^+$-Zerfall oder
+Elektroneneinfang relevant.
+
+Das ist eine qualitative Orientierung. Die genaue Entscheidung hängt von Massen
+und Energiebilanzen ab.
+\end{examtipbox}
+
+\section{Kernradius}
+
+Die typische Längenskala der Kernphysik ist der Femtometer:
+\[
+    1\,\si{fm}=10^{-15}\,\si{m}.
+\]
+
+\begin{definitionbox}
+Der \emph{Kernradius} beschreibt die räumliche Ausdehnung eines Atomkerns.
+
+Eine wichtige empirische Näherung ist:
+\[
+    R = r_0 A^{1/3},
+\]
+wobei
+\[
+    r_0 \approx \SI{1.2}{fm}
+\]
+ist.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    R = r_0 A^{1/3},
+    \qquad
+    r_0 \approx \SI{1.2}{fm}.
+\]
+\end{formulabox}
+
+\begin{derivationbox}
+Nimmt man den Kern näherungsweise als Kugel an, gilt:
+\[
+    V = \frac{4\pi}{3}R^3.
+\]
+Da Kernmaterie näherungsweise konstante Dichte besitzt, ist das Kernvolumen
+proportional zur Nukleonenzahl:
+\[
+    V \propto A.
+\]
+Damit folgt:
+\[
+    R^3 \propto A.
+\]
+Also:
+\[
+    R \propto A^{1/3}.
+\]
+Daraus ergibt sich die Näherung:
+\[
+    R = r_0 A^{1/3}.
+\]
+\end{derivationbox}
+
+\begin{examplebox}
+Schätze den Radius von ${}^{208}\mathrm{Pb}$.
+
+Für Blei-208 gilt:
+\[
+    A=208.
+\]
+Damit:
+\[
+    R \approx \SI{1.2}{fm}\cdot 208^{1/3}.
+\]
+Mit
+\[
+    208^{1/3}\approx 5.92
+\]
+folgt:
+\[
+    R \approx \SI{7.1}{fm}.
+\]
+\end{examplebox}
+
+\begin{examtipbox}
+Wenn $A$ um den Faktor $8$ größer wird, wächst der Radius nur um
+\[
+    8^{1/3}=2.
+\]
+Der Radius verdoppelt sich also.
+\end{examtipbox}
+
+\section{Elektromagnetischer Radius}
+
+Der Begriff Kernradius ist nicht eindeutig.
+Je nach Messmethode erhält man unterschiedliche Radiusbegriffe.
+
+\begin{definitionbox}
+Der \emph{elektromagnetische Radius} beschreibt die räumliche Ausdehnung der
+elektrischen Ladungsverteilung im Kern.
+\end{definitionbox}
+
+\begin{conceptbox}
+Atomkerne besitzen keine harte Oberfläche.
+Die Ladungsverteilung fällt am Kernrand über eine Randzone ab.
+
+Wichtige Größen zur Beschreibung der Ladungsverteilung sind zum Beispiel:
+\[
+    R_{1/2}
+\]
+als Radius, bei dem die Dichte auf die Hälfte der zentralen Dichte gefallen ist,
+und
+\[
+    \sqrt{\langle r^2\rangle}
+\]
+als mittlerer quadratischer Radius.
+\end{conceptbox}
+
+\begin{notebox}
+Die genaue Beziehung zwischen Ladungsverteilung, elektromagnetischem Radius und
+Formfaktor wird im Kapitel über Streuung und Formfaktoren behandelt.
+\end{notebox}
+
+\section{Rutherfordradius}
+
+\begin{definitionbox}
+Der \emph{Rutherfordradius} ist ein Radiusbegriff, der aus der Coulomb-Streuung
+geladener Teilchen an Kernen motiviert ist.
+
+Er hängt mit der kleinsten Annäherung eines geladenen Projektils an einen geladenen
+Kern zusammen.
+\end{definitionbox}
+
+\begin{conceptbox}
+Bei der Rutherfordstreuung wird die Ablenkung eines geladenen Projektils durch das
+Coulomb-Potential des Kerns beschrieben.
+
+Solange die gemessene Streuung der Rutherfordform folgt, sieht das Projektil im
+Wesentlichen nur die Coulomb-Wechselwirkung.
+
+Abweichungen von der Rutherfordstreuung zeigen, dass die endliche Kernausdehnung
+oder die starke Wechselwirkung relevant wird.
+\end{conceptbox}
+
+\begin{notebox}
+Der Rutherfordradius wird im Streuungskapitel genauer behandelt.
+Hier ist nur wichtig, dass unterschiedliche Experimente unterschiedliche
+Radiusbegriffe liefern können.
+\end{notebox}
+
+\section{Massen in der Kernphysik}
+
+In der Kernphysik sind Massen und Energien direkt miteinander verbunden:
+\[
+    E = mc^2.
+\]
+
+\begin{definitionbox}
+Die atomare Masseneinheit wird mit $\mathrm{u}$ bezeichnet.
+Sie ist definiert als ein Zwölftel der Masse eines neutralen Kohlenstoff-12-Atoms:
+\[
+    1\,\mathrm{u} = \frac{1}{12}m({}^{12}\mathrm{C}).
+\]
+Numerisch gilt:
+\[
+    1\,\mathrm{u}c^2 \approx \SI{931.5}{MeV}.
+\]
+\end{definitionbox}
+
+\begin{conceptbox}
+Teilchen- und Kernmassen werden häufig als Energieäquivalente angegeben.
+Statt eine Masse in Kilogramm anzugeben, schreibt man zum Beispiel:
+\[
+    m c^2 = \SI{931.5}{MeV}.
+\]
+Oder man gibt die Masse als
+\[
+    m = \SI{931.5}{MeV}/c^2
+\]
+an.
+\end{conceptbox}
+
+\begin{formulabox}
+\[
+    E = mc^2,
+    \qquad
+    1\,\mathrm{u}c^2 \approx \SI{931.5}{MeV}.
+\]
+\end{formulabox}
+
+\section{Massendefekt}
+
+Ein gebundener Atomkern ist leichter als die Summe seiner freien Nukleonen.
+
+\begin{definitionbox}
+Der \emph{Massendefekt} $\Delta m$ ist die Differenz zwischen der Summe der
+Massen der freien Nukleonen und der Masse des gebundenen Kerns:
+\[
+    \Delta m = Zm_p + Nm_n - m_{\mathrm{Kern}}.
+\]
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    \Delta m = Zm_p + Nm_n - m_{\mathrm{Kern}}.
+\]
+Dabei ist:
+\begin{itemize}
+    \item $m_p$ die Masse eines freien Protons,
+    \item $m_n$ die Masse eines freien Neutrons,
+    \item $m_{\mathrm{Kern}}$ die Masse des gebundenen Kerns.
+\end{itemize}
+\end{formulabox}
+
+\begin{conceptbox}
+Der Massendefekt bedeutet nicht, dass Masse verschwunden ist.
+Die fehlende Masse entspricht der Bindungsenergie des Kerns.
+
+Ein gebundenes System hat eine niedrigere Energie als die getrennten Bestandteile.
+Nach
+\[
+    E=mc^2
+\]
+entspricht diese niedrigere Energie einer kleineren Masse.
+\end{conceptbox}
+
+\section{Bindungsenergie}
+
+\begin{definitionbox}
+Die \emph{Bindungsenergie} $B$ ist die Energie, die benötigt wird, um einen Kern
+vollständig in freie Protonen und Neutronen zu zerlegen.
+
+Gleichzeitig ist sie die Energie, die frei wird, wenn der Kern aus freien Nukleonen
+gebildet wird.
+\end{definitionbox}
+
+\begin{formulabox}
+\[
+    B = \Delta m c^2.
+\]
+Mit dem Massendefekt:
+\[
+    B =
+    \left(
+        Zm_p + Nm_n - m_{\mathrm{Kern}}
+    \right)c^2.
+\]
+\end{formulabox}
+
+\begin{definitionbox}
+Die \emph{Bindungsenergie pro Nukleon} ist
+\[
+    \frac{B}{A}.
+\]
+Sie gibt an, wie stark ein einzelnes Nukleon im Kern im Mittel gebunden ist.
+\end{definitionbox}
+
+\begin{conceptbox}
+Die gesamte Bindungsenergie $B$ wächst grob mit der Größe des Kerns.
+Ein großer Kern hat daher schon deshalb eine große Gesamtbindungsenergie, weil er
+viele Nukleonen enthält.
+
+Zum Vergleich verschiedener Kerne ist deshalb die Bindungsenergie pro Nukleon
+wichtiger:
+\[
+    \frac{B}{A}.
+\]
+\end{conceptbox}
+
+\begin{examplebox}
+Angenommen, ein Kern hat den Massendefekt
+\[
+    \Delta m = 0.0304\,\mathrm{u}.
+\]
+Dann ist:
+\[
+    B = \Delta m c^2.
+\]
+Mit
+\[
+    1\,\mathrm{u}c^2 \approx \SI{931.5}{MeV}
+\]
+folgt:
+\[
+    B = 0.0304 \cdot \SI{931.5}{MeV}
+      \approx \SI{28.3}{MeV}.
+\]
+Falls
+\[
+    A=4
+\]
+ist, erhält man:
+\[
+    \frac{B}{A}
+    =
+    \frac{\SI{28.3}{MeV}}{4}
+    \approx \SI{7.1}{MeV}.
+\]
+\end{examplebox}
+
+\section{Bindungsenergie pro Nukleon und Energiegewinn}
+
+\begin{conceptbox}
+Die Kurve der Bindungsenergie pro Nukleon erklärt qualitativ, warum sowohl
+Kernfusion als auch Kernspaltung Energie freisetzen können.
+
+Bei leichten Kernen steigt $B/A$ mit zunehmender Massenzahl stark an.
+Fusion leichter Kerne kann daher Energie freisetzen.
+
+Bei sehr schweren Kernen fällt $B/A$ langsam wieder ab.
+Spaltung schwerer Kerne in mittelschwere Kerne kann daher ebenfalls Energie freisetzen.
+\end{conceptbox}
+
+\begin{formulabox}
+Für eine Kernreaktion ist der $Q$-Wert:
+\[
+    Q =
+    \left(
+        m_{\mathrm{Anfang}} - m_{\mathrm{Ende}}
+    \right)c^2.
+\]
+Wenn
+\[
+    Q>0,
+\]
+wird Energie frei.
+
+Wenn
+\[
+    Q<0,
+\]
+muss Energie zugeführt werden.
+\end{formulabox}
+
+\section{Isobaren, Massen und Stabilität}
+
+In den Vorlesungsfolien werden Kerne mit gleicher Massenzahl $A$ betrachtet.
+Das sind Isobare.
+
+\begin{conceptbox}
+Bei einer Isobarenreihe ist $A$ fest.
+Wenn sich $Z$ ändert, ändert sich automatisch auch
+\[
+    N=A-Z.
+\]
+
+Die Kernmasse hängt davon ab, wie viele Protonen und Neutronen vorhanden sind.
+Der stabile Kern einer Isobarenreihe liegt typischerweise beim Massenminimum.
+\end{conceptbox}
+
+\begin{examplebox}
+Ein Beispiel für eine Isobarenreihe ist:
+\[
+    A=81.
+\]
+Dazu gehören zum Beispiel:
+\[
+    {}^{81}_{33}\mathrm{As},
+    \quad
+    {}^{81}_{34}\mathrm{Se},
+    \quad
+    {}^{81}_{35}\mathrm{Br},
+    \quad
+    {}^{81}_{36}\mathrm{Kr},
+    \quad
+    {}^{81}_{37}\mathrm{Rb}.
+\]
+Alle besitzen dieselbe Massenzahl $A=81$, aber verschiedene Protonenzahlen.
+\end{examplebox}
+
+\begin{notebox}
+Die genaue Beschreibung, warum die Masse entlang einer Isobarenreihe ein Minimum
+besitzt, erfolgt später mit der Weizsäcker-Massenformel.
+Dabei spielen insbesondere Coulombterm und Asymmetrieterm eine wichtige Rolle.
+\end{notebox}
+
+\section{Qualitative Kernstabilität}
+
+\begin{conceptbox}
+Ob ein Kern stabil ist, hängt vom Zusammenspiel mehrerer Effekte ab:
+\begin{itemize}
+    \item starke Wechselwirkung zwischen Nukleonen,
+    \item Coulomb-Abstoßung zwischen Protonen,
+    \item Verhältnis von Neutronenzahl $N$ zu Protonenzahl $Z$,
+    \item Schaleneffekte,
+    \item Paarungseffekte.
+\end{itemize}
+\end{conceptbox}
+
+\begin{notebox}
+Diese Stabilitätsfragen werden in späteren Kapiteln genauer behandelt:
+\begin{itemize}
+    \item Weizsäcker-Massenformel,
+    \item Massental,
+    \item magische Zahlen,
+    \item Kernmodelle,
+    \item radioaktive Zerfälle.
+\end{itemize}
+\end{notebox}
+
+\section{Mini-Zusammenfassung}
+
+\begin{notebox}
+Die wichtigsten Punkte dieses Kapitels sind:
+\begin{itemize}
+    \item Ein Nuklid ist durch $Z$ und $N$ eindeutig bestimmt.
+    \item Es gilt
+    \[
+        A=Z+N.
+    \]
+    \item Isotope haben gleiches $Z$.
+    \item Isobare haben gleiches $A$.
+    \item Isotone haben gleiches $N$.
+    \item Die Nuklidkarte zeigt stabile und instabile Kerne.
+    \item Für schwere stabile Kerne gilt meistens $N>Z$.
+    \item Der Kernradius skaliert näherungsweise wie
+    \[
+        R=r_0A^{1/3}.
+    \]
+    \item Der Massendefekt ist
+    \[
+        \Delta m = Zm_p + Nm_n - m_{\mathrm{Kern}}.
+    \]
+    \item Die Bindungsenergie ist
+    \[
+        B=\Delta mc^2.
+    \]
+    \item Die Bindungsenergie pro Nukleon $B/A$ ist wichtig zum Vergleich verschiedener Kerne.
+\end{itemize}
+\end{notebox}
+
+\section{Prüfungscheck}
+
+\begin{examtipbox}
+Nach diesem Kapitel solltest du folgende Fragen beantworten können:
+\begin{enumerate}
+    \item Was bedeuten $Z$, $N$ und $A$?
+    \item Wie berechnet man aus ${}^A_ZX$ die Neutronenzahl?
+    \item Was ist ein Nuklid?
+    \item Was ist der Unterschied zwischen Isotopen, Isobaren und Isotonen?
+    \item Was ist ein Kernisomer?
+    \item Was zeigt die Nuklidkarte?
+    \item Warum besitzen schwere stabile Kerne meistens mehr Neutronen als Protonen?
+    \item Warum gilt näherungsweise $R=r_0A^{1/3}$?
+    \item Was ist der elektromagnetische Radius?
+    \item Was ist der Rutherfordradius?
+    \item Was ist der Massendefekt?
+    \item Wie hängt die Bindungsenergie mit dem Massendefekt zusammen?
+    \item Warum betrachtet man die Bindungsenergie pro Nukleon?
+    \item Was bedeutet ein positiver $Q$-Wert?
+    \item Warum ist bei Isobaren das Massenminimum wichtig für Stabilität?
+\end{enumerate}
+\end{examtipbox}
